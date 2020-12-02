@@ -1,4 +1,5 @@
-package com.analogics.controllers;
+package com.analogics.um.controllers;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,13 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class LoginController {
+public class SampleController {
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/call", method = RequestMethod.GET)
 	public ModelAndView sampleCall(HttpServletRequest request ,HttpServletResponse response) {
 		ModelAndView model =null;
 		try {
-			System.out.println("in login");
+			
+			System.out.println("in call");
 			model=new ModelAndView("common/homepage");
 		} catch (Exception e) {
 			e.printStackTrace();

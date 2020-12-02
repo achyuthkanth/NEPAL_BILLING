@@ -1,4 +1,4 @@
-package com.analogics.dao;
+package com.analogics.um.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
