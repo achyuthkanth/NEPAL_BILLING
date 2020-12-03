@@ -55,8 +55,6 @@ public class ModuleMasterController {
 		return model;
 	}
 
-	
-	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/fetchModuleMasterDetails", method = RequestMethod.GET)
 	public @ResponseBody
