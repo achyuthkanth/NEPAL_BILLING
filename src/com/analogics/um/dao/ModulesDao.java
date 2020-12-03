@@ -18,8 +18,8 @@ public class ModulesDao extends BaseHibernateDAO{
 		Session session = null;
 		try {
 			session = getSession();
-			StringBuilder strb = new StringBuilder();
-			strb.append("from ModuleMaster master");
+			StringBuilder strb = new StringBuilder(); 
+			strb.append("from ModuleMaster master order by "+colName+" "+sorting+"");
 			/*if(!masterObj.getColStr().equalsIgnoreCase("")&& !masterObj.getColParameter().equalsIgnoreCase("")){
 				strb.append(" where master."+masterObj.getColStr()+" like :colParameter");
 			}*/
