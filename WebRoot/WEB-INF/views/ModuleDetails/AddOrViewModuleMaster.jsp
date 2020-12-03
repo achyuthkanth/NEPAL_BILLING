@@ -191,24 +191,20 @@
 											<div class="form-group">
 							                  <label>Select Columns</label>
 							                  <div class="select2-purple">
-							                    <select class="select2" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
-							                      <option>Alabama</option>
-							                      <option>Alaska</option>
-							                      <option>California</option>
-							                      <option>Delaware</option>
-							                      <option>Tennessee</option>
-							                      <option>Texas</option>
-							                      <option>Washington</option>
-							                    </select>
+												<form:select path="command.colStr"
+													class="select2" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
+													<form:options items="${command.columnsMap}" />
+												</form:select>
 							                  </div>
 							                </div>
 										</div>
-										<div class="col-sm-4" >
-										</div>
-										<div class="col-sm-2" >
+										<!-- <div class="col-sm-4" >
+										<button type="reset" class="btn btn-warning">Go</button>
+										</div> -->
+										<div class="col-sm-6" >
 							                <div class="form-group">
 							                	<button type="button" class="btn btn-outline-danger btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
-								                  <!-- <button type="button" class="btn btn-primary pull-left btn-form-data" data-toggle="modal" data-target="#myModal" >Search Critearia</button> -->
+								                  <button type="reset" class="btn btn-warning">Go</button>
 							                </div>
 							                
 										</div>
@@ -403,7 +399,6 @@ $(document).ready(function() {
    		"responsive": true, "lengthChange": false, "autoWidth": false,
     	"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "bProcessing": true,
-        "dom": 't',
         "bServerSide": true,
         "sort": "position",
         "bStateSave": false,
@@ -432,7 +427,6 @@ $(document).ready(function() {
          
         ]
     } ).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
 } );
 </script>
 <script type="text/javascript">

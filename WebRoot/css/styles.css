@@ -1,14 +1,16 @@
-
+/* 
 .tableButtonTd{
-	width:15%
-}
+	width:20%
+} */
 
 
 .card-title{
 	color:#762bef;
 }
 
-
+.dataTables_filter{
+	display: none;
+}
 /* .card-header{
 	background:#6c618c;
 	color:#fff;important

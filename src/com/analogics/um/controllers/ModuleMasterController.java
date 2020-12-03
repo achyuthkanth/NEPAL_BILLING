@@ -2,7 +2,9 @@ package com.analogics.um.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,10 +34,24 @@ public class ModuleMasterController {
 		try {
 			model =new ModelAndView("ModuleDetails/AddOrViewModuleMaster",
 					"command", masterObj);
+			model.addObject("command", fetchModuleMasterColumsMap(masterObj));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return model;
+	}
+
+	private Object fetchModuleMasterColumsMap(ModuleMaster masterObj) {
+		try {
+			Map<String, String> columnsMap = new HashMap<String, String>();
+			columnsMap.put("moduleTypeName", "Module Type Name");
+			columnsMap.put("moduleTypeCode", "Module Type Code");
+			columnsMap.put("moduleDescription", "Module Description");
+			masterObj.setColumnsMap(columnsMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return masterObj;
 	}
 
 	@RequestMapping("/saveOrUpdateModuleMaster")
