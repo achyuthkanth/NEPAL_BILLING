@@ -19,7 +19,7 @@ public class ApplicationMasterController {
 		ModelAndView view=null;
 		
 		try{
-			System.out.println("applicationMaster");
+//			System.out.println("applicationMaster");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
