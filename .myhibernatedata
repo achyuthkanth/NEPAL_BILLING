@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Wed Dec 02 16:32:36 IST 2020
+#Thu Dec 03 10:40:25 IST 2020
 sessionFactoryName=com.analogics.dao.HibernateSessionFactory
 genBasicCompId=true
 profile=
@@ -17,7 +17,7 @@ addLibs2Project=true
 genVersionTag=false
 sessionFactoryId=
 basePersistenceClass=
-genAnnotations=true
+genAnnotations=false
 reSettingsFile=
 configFile=/zzz/src/hibernate.cfg.xml
 createConfigFile=true
