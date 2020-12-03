@@ -38,8 +38,8 @@ public class ModuleMasterController {
 		return model;
 	}
 
-	@RequestMapping("/saveModuleMasterDetails")
-	public ModelAndView saveModuleMasterDetails(
+	@RequestMapping("/saveOrUpdateModuleMaster")
+	public ModelAndView saveOrUpdateModuleMaster(
 			@ModelAttribute("masterObj") ModuleMaster masterObj) {
 		ModelAndView model = null;
 		boolean isSaved = false;
@@ -78,7 +78,7 @@ public class ModuleMasterController {
 				if (col < 0 || col > 5)
 					col = 0;
 			}
-			String[] cols = { "","moduleTypeName", "moduleTypeCode", "moduleDescription"};
+			String[] cols = { "","moduleTypeName", "moduleTypeCode", "moduleDescription",""};
 			String colName = cols[col];
 
 			int pageNumber = 0;
@@ -104,6 +104,40 @@ public class ModuleMasterController {
 			e.printStackTrace();
 		}
 		return json;
+	}
+	
+	@RequestMapping(value = "/deleteModuleMaster", method = RequestMethod.POST)
+	public ModelAndView deleteModuleMaster(
+			@RequestParam("moduleTypeName") String moduleTypeName) {
+		ModelAndView model = null;
+		boolean isDeleted = false;
+		ModulesDao masterDaoObj = new ModulesDao();
+		try {
+			isDeleted = masterDaoObj.deleteModuleMaster(moduleTypeName);
+			if (isDeleted == true) {
+				model = new ModelAndView("redirect:/moduleMasterDetails");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	@RequestMapping(value = "/viewModuleMaster", method = RequestMethod.POST)
+	public ModelAndView viewModuleMaster(@RequestParam("moduleTypeName") String moduleTypeName,
+			@RequestParam("viewType") String viewType) {
+		ModelAndView model = null;
+		ModuleMaster masterObj = new ModuleMaster();
+		ModulesDao masterDaoObj = new ModulesDao();
+		try {
+			masterObj = masterDaoObj.fetchModuleMasterData(moduleTypeName);
+			masterObj.setViewType(viewType);
+			model =new ModelAndView("ModuleDetails/AddOrViewModuleMaster",
+					"command", masterObj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
 	
 	

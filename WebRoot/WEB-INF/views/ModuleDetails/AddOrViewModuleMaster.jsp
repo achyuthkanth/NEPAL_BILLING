@@ -58,45 +58,84 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
+						<c:if test="${command.viewType=='Edit' || command.viewType==null}">
 							<div class="card card-secondary">
 								<div class="card-header">
 									<h3 class="card-title">Add / Update Module Master</h3>
 								</div>
 								<!-- /.card-header -->
-								<form:form action="saveModuleMasterDetails">
+								<form:form action="saveOrUpdateModuleMaster">
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label>Module Type Name</label> <input type="text"
-														name="moduleTypeName" class="form-control"
+														name="moduleTypeName" value="${command.moduleTypeName}" class="form-control moduleNameClass"
 														placeholder="Module Type Name">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label>Module Type Code</label> <input type="text"
-														name="moduleTypeCode" class="form-control"
+														name="moduleTypeCode" value="${command.moduleTypeCode}" class="form-control"
 														placeholder="Module Type Code">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label>Module Description</label> <input type="text"
-														name="moduleDescription" class="form-control"
+														name="moduleDescription" value="${command.moduleDescription}" class="form-control"
 														placeholder="Module Description">
 												</div>
 											</div>
 											<div class="form-group col-sm-12" style="text-align: center;">
-												<button type="submit" class="btn btn-success">Save</button>
+												<button type="submit" class="btn btn-success">Save/Update</button>
 											</div>
-											<!-- <div class="form-group"></div> -->
 										</div>
 									</div>
 								</form:form>
 						</div>
+						</c:if>
+						<c:if test="${command.viewType=='View'}">
+							<div class="card card-secondary">
+								<div class="card-header">
+									<h3 class="card-title">View Module Master</h3>
+								</div>
+								<!-- /.card-header -->
+								<form:form action="saveOrUpdateModuleMaster">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-6">
+												<label class="col-sm-5 col-xs-12">Module Type Name</label>
+												<div class="col-sm-7 col-xs-12"
+													style="color: blue;font-weight: bold;">
+													<c:out value="${command.moduleTypeName}"></c:out>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Module Type Code</label> 
+													<div class="col-sm-7 col-xs-12"
+													style="color: blue;font-weight: bold;">
+													<c:out value="${command.moduleTypeCode}"></c:out>
+												</div>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Module Description</label> <div class="col-sm-7 col-xs-12"
+													style="color: blue;font-weight: bold;">
+													<c:out value="${command.moduleDescription}"></c:out>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form:form>
+						</div>
+						</c:if>
 					</div>
-				</div>
+				</div></div>
 			</section>
 
 			<!-- Main content -->
@@ -104,24 +143,14 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<!-- <div class="card">
-								<div class="card-header">
-									<h3 class="card-title">DataTable with minimal features &
-										hover style</h3>
-								</div>
-								/.card-header
-								<div class="card-body"></div>
-								/.card-body
-							</div> -->
-							<!-- /.card -->
-
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">Module Master Details</h3>
 								</div>
 								<!-- /.card-header -->
-								<div class="card-body">
-									<table id="example1" class="table table-bordered table-striped">
+								<div class="card-body p-0">
+          							<!-- <table class="table table-striped projects"> -->
+									<table id="example1" class="table table-striped projects">
 										<thead>
 											<tr>
 												<th>S.No</th>
@@ -131,20 +160,6 @@
 												<th></th>
 											</tr>
 										</thead>
-										<!-- <tbody>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td>4</td>
-												<td class="project-actions text-right"><a
-													class="btn btn-primary btn-sm" href="#"> <i
-														class="fas fa-folder"> </i> View </a> <a
-													class="btn btn-info btn-sm" href="#"> <i
-														class="fas fa-pencil-alt"> </i> Edit </a> <a
-													class="btn btn-danger btn-sm" href="#"> <i
-														class="fas fa-trash"> </i> Delete </a></td>
-											</tr> -->
 									</table>
 								</div>
 								<!-- /.card-body -->
@@ -222,7 +237,7 @@
       "autoWidth": false,
       "responsive": true,
     });
-  });
+  });table table-bordered table-striped
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -246,37 +261,55 @@ $(document).ready(function() {
 	                 return meta.row + meta.settings._iDisplayStart + 1;
 			    }
 			},
-       		/* {
-          		render: function (data, type, row){
-         		return '<a class="fa fa-eye" onClick="submitMyForm(\'' + 'viewModuleDetails' + '\',\'' + row.moduleName + '\')"></a>';
-         		}  
-       		}, */
        		{ "mData": "moduleTypeName" ,  "defaultContent": "-"},
          	{ "mData": "moduleTypeCode" ,  "defaultContent": "-"},
          	{ "mData": "moduleDescription" ,  "defaultContent": "-"},
-         	{
-          		render: function (data, type, row)
-                {
-                return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\')"><i class="fas fa-folder"></i> View</a>';
-                 }
-            },
-         	/* {
-          		render: function (data, type, row)
-                {
-                return '<a class="fa fa-edit" onClick="submitMyForm(\'' + 'editModuleMaster' + '\',\'' + row.moduleName + '\')"></a>';
-                 }
-            },
-         	{
-          		render: function (data, type, row)
-                {
-                return '<a class="fa fa-trash" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleName + '\')"></a>';
-                 }
-            }, */
+         	/* { data: function ( row, type, set ) 
+         		{
+			    return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-folder"></i> View</a>';
+				} 
+			},
+			{ data: function ( row, type, set ) 
+         		{
+			    return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i> Edit</a>';
+				} 
+			},
+			{ data: function ( row, type, set ) 
+         		{
+			    return ' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + '' + '\')"><i class="fas fa-trash"></i> Delete</a>';
+				} 
+			}, */
+         	
+         	
+         	
+         	 { data: function ( row, type, set ) {
+			    return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-folder"></i> View</a>'
+                +' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i> Edit</a>'
+                +' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + '' + '\')"><i class="fas fa-trash"></i> Delete</a>';
+				} 
+			}, 
          
         ]
     } ).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
 } );
+</script>
+<script type="text/javascript">
+function submitMyForm(action,moduleTypeName,viewType){
+if(action=="deleteModuleMaster"){
+confirm("Are you Sure want to delete?");
+}
+    $('<form method="post" action="'+action+'"><input type="text" name="moduleTypeName" value="'+moduleTypeName+'" /><input type="text" name="viewType" value="'+viewType+'" /></form>').appendTo('body').submit();
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+   if ($(".moduleNameClass").val() == '') {
+   $(".moduleNameClass").prop('readonly', false);
+   }else{
+   $(".moduleNameClass").prop('readonly', 'true');
+   }
+});
 </script>
 
 </body>

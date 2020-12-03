@@ -12,6 +12,9 @@ public class ModuleMaster implements java.io.Serializable {
 	private String moduleTypeName;
 	private String moduleTypeCode;
 	private String moduleDescription;
+	
+	//Required Fields
+	private String viewType;
 
 	// Constructors
 
@@ -57,6 +60,14 @@ public class ModuleMaster implements java.io.Serializable {
 
 	public void setModuleDescription(String moduleDescription) {
 		this.moduleDescription = moduleDescription;
+	}
+
+	public String getViewType() {
+		return viewType;
+	}
+
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
 	}
 
 }
