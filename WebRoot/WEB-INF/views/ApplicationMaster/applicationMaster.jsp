@@ -215,7 +215,6 @@
 									<div class="row col-sm-12" >
 										<div class="col-sm-6" >
 											<div class="form-group">
-							                  <label>Select Columns</label>
 							                  <div class="select2-purple">
 							                    <select class="select2" multiple="multiple" data-placeholder="Select columns" data-dropdown-css-class="select2-purple" style="width: 100%;">
 							                      <option>Alabama</option>
@@ -229,14 +228,15 @@
 							                  </div>
 							                </div>
 										</div>
-										<div class="col-sm-4" >
-										</div>
-										<div class="col-sm-2" >
+										<div class="col-sm-1" >
 							                <div class="form-group">
-							                	<button type="button" class="btn btn-outline-danger btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
-								                  <!-- <button type="button" class="btn btn-primary pull-left btn-form-data" data-toggle="modal" data-target="#myModal" >Search Critearia</button> -->
+							                	<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
 							                </div>
-							                
+										</div>
+										<div class="col-sm-1" >
+											 <button type="button" class="btn btn-danger"><i class="fa fa-retweet"></i>Re-Load</button>
+										</div>
+										<div class="col-sm-4" >
 										</div>
 									</div>
 									
@@ -305,10 +305,8 @@
 											</tr>
 									</table>
 
-							<div id="myModal" class="modal fade" role="dialog"
-								aria-hidden="true" style="display: none;">
+							<div id="myModal" class="modal fade" role="dialog" aria-hidden="true" style="display: none;">
 								<div class="modal-dialog">
-
 									<!-- Modal content-->
 									<div class="modal-content" style="width: 830px;">
 										<div class="modal-header">
