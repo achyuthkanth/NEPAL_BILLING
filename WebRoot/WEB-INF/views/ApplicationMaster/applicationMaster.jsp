@@ -139,7 +139,7 @@
 					<!-- SELECT2 EXAMPLE -->
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Contact Info</h3>
+							<h3 class="card-title">Contact Information</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -193,7 +193,7 @@
 				<div class="container-fluid">
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Application Master Details</h3>
+							<h3 class="card-title">Application Master Data Table</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -202,15 +202,6 @@
 								
 							</div>
 						</div>
-						<!-- 
-					<div class="row">
-						<div class="col-12">
-							<div class="card card-secondary">
-								<div class="card-header">
-									<h3 class="card-title">Application Master Details</h3>
-								</div> -->
-								
-								
 								<div class="card-body">
 									<div class="row col-sm-12" >
 										<div class="col-sm-6" >
@@ -228,15 +219,15 @@
 							                  </div>
 							                </div>
 										</div>
-										<div class="col-sm-1" >
+										<div class="col-sm-2" >
 							                <div class="form-group">
 							                	<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
 							                </div>
 										</div>
-										<div class="col-sm-1" >
+										<div class="col-sm-2" >
 											 <button type="button" class="btn btn-danger"><i class="fa fa-retweet"></i>Re-Load</button>
 										</div>
-										<div class="col-sm-4" >
+										<div class="col-sm-2" >
 										</div>
 									</div>
 									
@@ -418,6 +409,62 @@
       "responsive": true,
     });
   });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#example1").dataTable( {
+   		"responsive": true, "lengthChange": false, "autoWidth": false,
+    	"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "bProcessing": true,
+        "bServerSide": true,
+        "sort": "position",
+        "bStateSave": false,
+        "iDisplayLength": 10,
+        "iDisplayStart": 0,
+        "fnDrawCallback": function () {
+          },        
+        "sAjaxSource": "fetchModuleMasterDetails",
+        "aoColumns": [
+        		{
+	                 "mData": "id",
+	                 "defaultContent" : "-",
+	                 render: function (data, type, row, meta) {
+	                 return meta.row + meta.settings._iDisplayStart + 1;
+			    }
+			},
+       		{ "mData": "moduleTypeName" ,  "defaultContent": "-"},
+         	{ "mData": "moduleTypeCode" ,  "defaultContent": "-"},
+         	{ "mData": "moduleDescription" ,  "defaultContent": "-"},
+         	/* { data: function ( row, type, set ) 
+         		{
+			    return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-folder"></i> View</a>';
+				} 
+			},
+			{ data: function ( row, type, set ) 
+         		{
+			    return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i> Edit</a>';
+				} 
+			},
+			{ data: function ( row, type, set ) 
+         		{
+			    return ' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + '' + '\')"><i class="fas fa-trash"></i> Delete</a>';
+				} 
+			}, */
+         	
+         	
+         	
+         	 { data: function ( row, type, set ) {
+			    return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-folder"></i> View</a>'
+                +' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i> Edit</a>'
+                +' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + '' + '\')"><i class="fas fa-trash"></i> Delete</a>';
+				} 
+			}, 
+         
+        ]
+    } ).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+} );
 </script>
 
 <script type="text/javascript">
