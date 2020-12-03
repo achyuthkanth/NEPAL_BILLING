@@ -128,7 +128,7 @@
 												<th>Module Type Name</th>
 												<th>Module Type Code</th>
 												<th>Module Description</th>
-												<th></th>
+												<th>View</th>
 											</tr>
 										</thead>
 										<!-- <tbody>
