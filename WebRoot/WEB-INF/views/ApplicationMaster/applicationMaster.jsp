@@ -77,12 +77,12 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Application Name</label> <input type="text"
+										<label>Application Name</label> <input type="text" required="required"
 											name="applicationname" class="form-control"
 											placeholder="Application Name">
 									</div>
 									<div class="form-group">
-										<label>Owner Name</label> <input type="text"
+										<label>Owner Name</label> <input type="text" required="required"
 											name="applicationowner" class="form-control"
 											placeholder="Application Owner Name">
 									</div>
@@ -217,7 +217,7 @@
 											<div class="form-group">
 							                  <label>Select Columns</label>
 							                  <div class="select2-purple">
-							                    <select class="select2" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
+							                    <select class="select2" multiple="multiple" data-placeholder="Select columns" data-dropdown-css-class="select2-purple" style="width: 100%;">
 							                      <option>Alabama</option>
 							                      <option>Alaska</option>
 							                      <option>California</option>
@@ -243,6 +243,7 @@
 									<table id="example1" class="table table-bordered table-hover">
 										<thead>
 											<tr>
+												<th>S.No</th>
 												<th>Rendering engine</th>
 												<th>Browser</th>
 												<th>Platform(s)</th>
@@ -253,34 +254,38 @@
 										</thead>
 										<tbody>
 											<tr>
+												<td>1</td>
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> View </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> Edit </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> Delete </a></td>
+												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 											<tr>
+												<td>2</td>
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> View </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> Edit </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> Delete </a></td>
+												
+												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 											<tr>
+												<td>3</td>
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> View </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> Edit </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> Delete </a></td>
+												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 									</table>
 
@@ -336,23 +341,24 @@
 											</div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
+											<button type="button" class="btn btn-success"
 												data-dismiss="modal" data-i18n="modalClose">Close</button>
-											<input type="submit" value="Search" data-i18n="modalOkay"
-												class="btn btn-danger btn-sm submitClass">
+											<button type="submit" class="btn btn-warning"
+												data-dismiss="modal" data-i18n="modalClose">submit</button>	
+											<!-- <input type="button" value="Search" data-i18n="modalOkay"
+												class="btn btn-danger btn-sm"> -->
 										</div>
 
 									</div>
 								</div>
 							</div>
 
-
-							
 								</div>
 							</div>
 							<!-- /.card -->
 						</div>
 					</section>
+					
 						<!-- /.col -->
 					</div>
 					<!-- /.row -->
@@ -396,6 +402,11 @@
 
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
+	
+	<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+
+
 	<!-- Page specific script -->
 	<script>
   $(function () {
@@ -412,13 +423,9 @@
 </script>
 
 <script type="text/javascript">
- $(function () {
-    //Initialize Select2 Elements
+$(function () {
     $('.select2').select2();
-    
-    });
-
-
+});
 </script>
 </body>
 </html>
