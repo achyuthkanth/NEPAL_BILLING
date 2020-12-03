@@ -21,11 +21,11 @@
 	<mvc:resources mapping="/**" location="/" />
 	<mvc:annotation-driven />
 
-	<bean id="sessionFactory"
+	<!-- <bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation" value="classpath:hibernate.cfg.xml">
 		</property>
-	</bean>
+	</bean> -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>

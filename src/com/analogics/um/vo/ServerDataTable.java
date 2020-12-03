@@ -4,7 +4,7 @@ import java.util.List;
 
 
 
-public class ServerDataTable<T> {
+public class ServerDataTable<T>{
 
     int iTotalRecords;
 
