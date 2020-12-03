@@ -223,10 +223,6 @@
 	<!-- Page specific script -->
 	<script>
   $(function () {
-    /* $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)'); */
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -266,7 +262,7 @@ $(document).ready(function() {
          	{ data: function ( row, type, set ) {
 			    return '<a class="btn btn-primary btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-folder"></i> View</a>'
                 +' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i> Edit</a>'
-                +' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'' + 'deleteModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + '' + '\')"><i class="fas fa-trash"></i> Delete</a>';
+                +" <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i> Delete</a>";
 				} 
 			},
          
@@ -277,9 +273,6 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
 function submitMyForm(action,moduleTypeName,viewType){
-if(action=="deleteModuleMaster"){
-confirm("Are you Sure want to delete?");
-}
     $('<form method="post" action="'+action+'"><input type="text" name="moduleTypeName" value="'+moduleTypeName+'" /><input type="text" name="viewType" value="'+viewType+'" /></form>').appendTo('body').submit();
 }
 </script>

@@ -108,7 +108,7 @@ public class ModuleMasterController {
 		return json;
 	}
 	
-	@RequestMapping(value = "/deleteModuleMaster", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteModuleMaster", method = RequestMethod.GET)
 	public ModelAndView deleteModuleMaster(
 			@RequestParam("moduleTypeName") String moduleTypeName) {
 		ModelAndView model = null;

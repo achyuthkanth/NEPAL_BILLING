@@ -15,7 +15,6 @@
         <property name="myeclipse.connection.profile">postgres</property>
         
         <mapping resource="com/analogics/um/hbm/ModuleMaster.hbm.xml" />
-<!--         <mapping class="com.analogics.um.vo.ModuleMaster" /> -->
         
     </session-factory>
 
