@@ -1,6 +1,6 @@
 #MyEclipse Hibernate Properties
-#Wed Dec 02 16:33:05 IST 2020
-sessionFactoryName=
+#Wed Dec 02 18:02:05 IST 2020
+sessionFactoryName=com.analogics.dao.HibernateSessionFactory
 genBasicCompId=true
 profile=
 daoSFId=

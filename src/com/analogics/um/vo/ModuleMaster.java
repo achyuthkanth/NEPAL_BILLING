@@ -1,20 +1,14 @@
-package com.analogics.vo;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.analogics.um.vo;
 
 /**
  * ModuleMaster entity. @author MyEclipse Persistence Tools
  */
-@Entity
-@Table(name = "module_master")
+
 public class ModuleMaster implements java.io.Serializable {
 
-	private static final long serialVersionUID = 3670965793841489961L;
 	// Fields
 
+	private static final long serialVersionUID = 7511288528787687146L;
 	private String moduleTypeName;
 	private String moduleTypeCode;
 	private String moduleDescription;
@@ -40,8 +34,7 @@ public class ModuleMaster implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "module_type_name", unique = true, nullable = false, length = 100)
+
 	public String getModuleTypeName() {
 		return this.moduleTypeName;
 	}
@@ -50,7 +43,6 @@ public class ModuleMaster implements java.io.Serializable {
 		this.moduleTypeName = moduleTypeName;
 	}
 
-	@Column(name = "module_type_code", nullable = false, length = 20)
 	public String getModuleTypeCode() {
 		return this.moduleTypeCode;
 	}
@@ -59,7 +51,6 @@ public class ModuleMaster implements java.io.Serializable {
 		this.moduleTypeCode = moduleTypeCode;
 	}
 
-	@Column(name = "module_description", length = 200)
 	public String getModuleDescription() {
 		return this.moduleDescription;
 	}
