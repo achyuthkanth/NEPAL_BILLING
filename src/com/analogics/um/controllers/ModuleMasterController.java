@@ -44,10 +44,22 @@ public class ModuleMasterController {
 	private Object fetchModuleMasterColumsMap(ModuleMaster masterObj) {
 		try {
 			Map<String, String> columnsMap = new HashMap<String, String>();
-			columnsMap.put("moduleTypeName", "Module Type Name");
-			columnsMap.put("moduleTypeCode", "Module Type Code");
-			columnsMap.put("moduleDescription", "Module Description");
+			columnsMap.put("1", "Module Type Name");
+			columnsMap.put("2", "Module Type Code");
+			columnsMap.put("3", "Module Description");
 			masterObj.setColumnsMap(columnsMap);
+			
+			Map<String,String> searchColumnsMap=new HashMap<String,String>();
+			searchColumnsMap.put("moduleTypeName", "MODULE TYPE NAME");
+			searchColumnsMap.put("moduleTypeCode", "MODULE TYPE CODE");
+			searchColumnsMap.put("moduleDescription", "MODULE DESCRIPTION");
+			masterObj.setSearchColumnsMap(searchColumnsMap);
+			
+			List<String> conditionListStr = new ArrayList<String>();
+			conditionListStr.add("LIKE");
+			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("NOT EQUAL TO");
+			masterObj.setConditionListStr(conditionListStr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,6 @@
 	href="datatables/datatables-buttons/css/buttons.bootstrap4.min.css">
 <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
 
 
 <!-- Theme style -->
@@ -176,7 +177,7 @@
 								
 							</div>
 						</div>
-						<!-- 
+					<!-- 
 					<div class="row">
 						<div class="col-12">
 							<div class="card card-secondary">
@@ -189,24 +190,24 @@
 									<div class="row col-sm-12" >
 										<div class="col-sm-6" >
 											<div class="form-group">
-							                  <label>Select Columns</label>
 							                  <div class="select2-purple">
 												<form:select path="command.colStr"
-													class="select2" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
+													class="select2 displayColumnsClass" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
 													<form:options items="${command.columnsMap}" />
 												</form:select>
 							                  </div>
 							                </div>
 										</div>
-										<!-- <div class="col-sm-4" >
-										<button type="reset" class="btn btn-warning">Go</button>
-										</div> -->
-										<div class="col-sm-6" >
+										
+										<div class="col-sm-2" >
 							                <div class="form-group">
-							                	<button type="button" class="btn btn-outline-danger btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
-								                  <button type="reset" class="btn btn-warning">Go</button>
+							                	<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
 							                </div>
-							                
+										</div>
+										<div class="col-sm-2" >
+											 <button type="button" class="btn btn-danger showColumnsClass"><i class="fa fa-retweet"></i>Re-Load</button>
+										</div>
+										<div class="col-sm-2" >
 										</div>
 									</div>
 									
@@ -262,44 +263,35 @@
 										<div class="modal-header">
 											<h4 class="modal-title">Search Fields</h4>
 										</div>
+										<input type="hidden" class="countClass" dest="1">
 
 										<div class="modal-body" id="searchMainId">
 											<div class="row" id="startingROw">
 												<div class="col col-md-4">
-													<select id="searchSelectVar" name="searchSelectVar"
-														class="form-control checkVar0 searchSelectVarClass1">
-														<option selected="selected" value="SELECT">Column</option>
-														<option value="FREQUENCY">FREQUENCY</option>
-														<option value="ACTIVE_CURRENT_R">ACTIVE_CURRENT_R</option>
-														<option value="ACTIVE_ENERGY_EXPORT">ACTIVE_ENERGY_EXPORT</option>
-														<option value="ACTIVE_CURRENT_B">ACTIVE_CURRENT_B</option>
-														<option value="ACTIVE_CURRENT_Y">ACTIVE_CURRENT_Y</option>
-														<option value="METER NUMBER">METER NUMBER</option>
-														<option value="METER DATE TIME">METER DATE TIME</option>
-														<option value="ACTIVE_ENERGY_IMPORT">ACTIVE_ENERGY_IMPORT</option>
-													</select>
+													<form:select class="form-control checkVar0 searchSelectVarClass1"
+														path="command.searchSelectVar">
+														<form:option value="SELECT" selected="selected">Column</form:option>
+														<form:options items="${command.searchColumnsMap}" />
+													</form:select>
 												</div>
 												<div class="col col-md-4">
-													<select id="conditionStr" name="conditionStr"
-														class="form-control checkVar0 conditionStrClass1">
-														<option value="SELECT">Type</option>
-														<option value="LIKE">LIKE</option>
-														<option value="EQUAL TO">EQUAL TO</option>
-														<option value="NOT EQUAL TO">NOT EQUAL TO</option>
-													</select>
+													<form:select class="form-control checkVar0 conditionStrClass1"
+														path="command.conditionStr">
+														<form:option value="SELECT">Type</form:option>
+														<form:options items="${command.conditionListStr}" />
+													</form:select>
 												</div>
-
 												<div class="col col-md-3">
-													<input type="text"
-														class="form-control checkVar0 searchParameterC1"
-														name="command.searchParameter" value="" autocomplete="off"
-														ondrop="return false;">
+													<input type="text" 
+														class="form-control checkVar0 searchParameterC1" 
+														name="command.searchParameter" value="${command.searchParameter}" 
+														autocomplete="off"  ondrop="return false;">
 												</div>
 
 												<div class="col col-md-1">
 													<div class="btn-group" role="group" aria-label="operation">
-														<a class="btn btn-success btn-sm" href="#"> <i class="fas fa-plus"> </i> </a>&nbsp;
-														<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-minus"> </i> </a>
+														<a class="btn btn-success btn-plus btn-sm" href="#"> <i class="fas fa-plus"> </i> </a>&nbsp;
+														<!-- <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-minus"> </i> </a> -->
 													</div>
 												</div>
 											</div>
@@ -376,7 +368,7 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
 	<!-- Page specific script -->
-	<script>
+<!-- 	<script>
   $(function () {
     /* $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -392,12 +384,27 @@
       "responsive": true,
     });
   });
-</script>
+</script> -->
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#example1").dataTable( {
+var hideColumns="";
+var showColumns="0";
+
+var url;
+		url="searchSelectVar="+'${command.searchSelectVar}'+"&"+
+		"searchParameter="+'${command.searchParameter}'+"&"+
+		"conditionStr="+'${command.conditionStr}';
+		loadDataTable(url,"","");
+
+function loadDataTable(url,hideColumns,showColumns) {
+// alert("hideColumns "+hideColumns);
+// alert("showColumns "+showColumns);
+
+	var $table = $('#example1');
+    var table = $table.DataTable({
    		"responsive": true, "lengthChange": false, "autoWidth": false,
     	"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    	"destroy": true,
         "bProcessing": true,
         "bServerSide": true,
         "sort": "position",
@@ -406,7 +413,7 @@ $(document).ready(function() {
         "iDisplayStart": 0,
         "fnDrawCallback": function () {
           },        
-        "sAjaxSource": "fetchModuleMasterDetails",
+        "sAjaxSource": "fetchModuleMasterDetails?"+url,
         "aoColumns": [
         		{
 	                 "mData": "id",
@@ -426,7 +433,62 @@ $(document).ready(function() {
 			},
          
         ]
-    } ).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    } );
+    
+    	if(hideColumns!="" || showColumns!="0"){
+    		table.columns(hideColumns).visible( false );
+		 	table.columns(showColumns).visible( true );
+    	}else{
+    		table.columns(0,1,2,3,4).visible(true);
+    	}
+}		
+	$('.showColumnsClass').on('click', function(e) {
+    e.preventDefault();
+    hideColumns="";
+	showColumns="0";
+    var columns = $('.displayColumnsClass').val().toString();
+		 for(var i=0;i<4;i++){
+			 var x = i+1;
+			 if(columns.includes(x)){
+			 	hideColumns = x + ","+hideColumns;
+			 }else{
+			 	showColumns = x + ","+showColumns;
+			 }
+		 }
+		 hideColumns = hideColumns.slice(0, -1);
+		 loadDataTable(url,hideColumns,showColumns);
+	});
+	
+	$('.submitClass').click(function(){
+	  validate = true;
+		var searchParameter = "",searchSelectVar = "",conditionStr = "";
+				 $( ".countClass" ).each(function() {
+						var i=$(this).attr('dest');
+						searchParameter = searchParameter + $('.searchParameterC'+i).val() + ",";
+						searchSelectVar = searchSelectVar + $('.searchSelectVarClass'+i).val() + ",";
+						conditionStr = conditionStr + $('.conditionStrClass'+i).val() + ",";
+						
+						 $('.checkVar'+i).each(function() {
+		                           $(this).css('border-color', '');
+		                                    if ($(this).val() == "SELECT" || $(this).val() == '' || $(this).val() == '0') {
+			                                    var abc=$(this).val();
+			                                    validate = false;
+			                                    $(this).css('border-color', 'red');
+		                                    }
+		                         });
+					});
+			
+				searchParameter = searchParameter.slice(0, -1);
+				searchSelectVar = searchSelectVar.slice(0, -1);
+				conditionStr = conditionStr.slice(0, -1);
+			if(validate){
+				url="searchSelectVar="+searchSelectVar+"&"+
+					"searchParameter="+searchParameter+"&"+
+					"conditionStr="+conditionStr;
+	    			loadDataTable(url,"","");
+	    		  $("#myModal").modal("hide"); 
+			}
+	  });
 } );
 </script>
 <script type="text/javascript">
@@ -445,13 +507,73 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
  $(function () {
-    //Initialize Select2 Elements
     $('.select2').select2();
-    
-    });
-
-
+ });
 </script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  var y=1;
+	  var list='${command.searchColumnsMap}';
+	
+   		$('#searchMainId').on('click', '.btn-plus', function(){
+   		  validate = true;
+   			var i;
+		   		 for (i = 0; i <= y; i++) {
+		       		 $('.checkVar'+i).each(function() {
+		                           $(this).css('border-color', '');
+		                                    if ($(this).val() == "SELECT" || $(this).val() == '' || $(this).val() == '0') {
+		                                   var abc=$(this).val();
+		                                    validate = false;
+		                                    $(this).css('border-color', 'red');
+		                                        }
+		                         });
+				} 
+   		if(validate){
+	   			  ++y;
+				var htmlContent="<div class='row removeDiv"+y+"'><div class='col col-md-4 removeDiv"+y+"'>"
+				+"<div><select name='searchSelectVar' id='listStr"+y+"' class='form-control checkVar"+y+" searchSelectVarClass"+y+"'>"
+				+"<option value='SELECT'>Column</option></select></div></div><div class='col col-md-4 removeDiv"+y+"'>"
+				+"<select id='conditionStr' name='conditionStr' class='form-control checkVar"+y+" conditionStrClass"+y+"'><option value='SELECT'>Type</option>"
+				+"<option value='LIKE'>LIKE</option><option value='EQUAL TO'>EQUAL TO</option><option value='NOT EQUAL TO'>NOT EQUAL TO</option></select><input type='hidden' class='form-control countClass' dest="+y+"></div>"
+				+"<div class='col col-md-3 removeDiv"+y+"'><input type='text' class='form-control checkVar"+y+" searchParameterC"+y+"' name='searchParameter' autocomplete='off' onpaste='return false;' ondrop='return false;'>"
+				+"</div><div class='col col-md-1 removeDiv"+y+"'><div class='btn-group' role='group' aria-label='operation'><button type='button' class='btn btn-success btn-sm btn-plus btn-secondary'>"
+				+"<span class='fa-img'><i class='fa fa-plus'></i></span></button>&nbsp;"
+				+"<button type='button' class='btn btn-danger btn-sm btn-minus btn-secondary' dest='"+y+"'><span class='fa-img'>"
+				+"<i class='fa fa-minus'></i></span></button></div></div>"
+				+"</div>";
+				$("#searchMainId").append(htmlContent);
+				
+						var xy = new Array();
+			            xy=list.split(", ");
+			        	for(var i=0;i<xy.length;i++){
+			        	var splitArr=xy[i].split("=");
+			        	var key=splitArr[0].replace("{","").replace("}","");
+			        	var value=splitArr[1].replace("{","").replace("}","");
+		                $("#listStr"+y).append('<option value="'+key+'">'+value+'</option>');
+		           	}
+		           	
+	 					var itemNo=0;
+	          			 $( ".countClass" ).each(function() {
+	                       itemNo=itemNo+1;
+	                       $(this).val(itemNo);
+			             });
+   					}
+   			
+		});
+		
+			$('#searchMainId').on('click', '.btn-minus', function(){
+				var destId=$(this).attr('dest');
+				$('.removeDiv'+destId).remove();
+							var itemNo=0;
+	          			 	$( ".countClass" ).each(function() {
+		                       itemNo=itemNo+1;
+		                       $(this).val(itemNo);
+				            });
+			});
+   	});
+</script>
+
 
 </body>
 </html>

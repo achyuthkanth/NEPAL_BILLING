@@ -8,8 +8,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.analogics.um.vo.ModuleMaster;
+import com.analogics.utils.CommonQueryFrameUtils;
 
 public class ModulesDao extends BaseHibernateDAO{
+	
+	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();	
 
 	@SuppressWarnings("unchecked")
 	public List<ModuleMaster> fetchModuleMasterList(int pageNumber,
@@ -19,8 +22,19 @@ public class ModulesDao extends BaseHibernateDAO{
 		Session session = null;
 		try {
 			session = getSession();
-			StringBuilder strb = new StringBuilder(); 
+			StringBuilder strb = new StringBuilder();
+			StringBuilder strb1 = new StringBuilder(); 
 			strb.append("from ModuleMaster master ");
+			
+			if(!masterObj.getSearchSelectVar().equalsIgnoreCase("")
+					&& !masterObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
+				strb.append(" where ");
+				strb1 = queryFrameObj.conditionQuery(masterObj.getSearchSelectVar(),
+						masterObj.getSearchParameter(),
+						masterObj.getConditionStr());
+				strb.append(strb1);
+			}
+			
 			if(colName!=""){
 				strb.append(" order by "+colName+" "+sorting+"");
 			}
@@ -51,7 +65,17 @@ public class ModulesDao extends BaseHibernateDAO{
 		try {
 			session = getSession();
 			StringBuilder strb = new StringBuilder();
-			strb.append("select count(*) from ModuleMaster master");
+			StringBuilder strb1 = new StringBuilder(); 
+			strb.append("select count(*) from ModuleMaster master ");
+			
+			if(!masterObj.getSearchSelectVar().equalsIgnoreCase("")
+					&& !masterObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
+				strb.append(" where ");
+				strb1 = queryFrameObj.conditionQuery(masterObj.getSearchSelectVar(),
+						masterObj.getSearchParameter(),
+						masterObj.getConditionStr());
+				strb.append(strb1);
+			}
 			/*if(!masterObj.getColStr().equalsIgnoreCase("")&& !masterObj.getColParameter().equalsIgnoreCase("")){
 				strb.append(" where master."+masterObj.getColStr()+" like :colParameter");
 			}*/
@@ -115,5 +139,5 @@ public class ModulesDao extends BaseHibernateDAO{
 		return masterObj;
 	}
 	
-
+	
 }

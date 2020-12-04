@@ -228,15 +228,15 @@
 							                  </div>
 							                </div>
 										</div>
-										<div class="col-sm-1" >
+										<div class="col-sm-2" >
 							                <div class="form-group">
 							                	<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
 							                </div>
 										</div>
-										<div class="col-sm-1" >
+										<div class="col-sm-2" >
 											 <button type="button" class="btn btn-danger"><i class="fa fa-retweet"></i>Re-Load</button>
 										</div>
-										<div class="col-sm-4" >
+										<div class="col-sm-2" >
 										</div>
 									</div>
 									
@@ -261,11 +261,7 @@
 												<td>4</td>
 												<td>X</td>
 												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-<<<<<<< HEAD
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-=======
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
->>>>>>> 74671ee6195ab8033b06e691124f58ac3b6ec6a8
 												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 											<tr>
@@ -275,16 +271,10 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-<<<<<<< HEAD
 												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
 												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
-=======
 												
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
->>>>>>> 74671ee6195ab8033b06e691124f58ac3b6ec6a8
 											</tr>
 											<tr>
 												<td>3</td>
@@ -293,15 +283,9 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-<<<<<<< HEAD
 												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
 												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
-=======
-												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
->>>>>>> 74671ee6195ab8033b06e691124f58ac3b6ec6a8
 											</tr>
 									</table>
 
