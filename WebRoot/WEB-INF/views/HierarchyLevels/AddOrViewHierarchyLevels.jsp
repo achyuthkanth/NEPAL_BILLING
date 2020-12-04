@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -18,12 +19,18 @@
 	href="datatables/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet"
 	href="datatables/datatables-buttons/css/buttons.bootstrap4.min.css">
-<script src="plugins/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+
 
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
+<link rel="stylesheet" href="css/styles.css">
 <script src="js/validation.js"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -39,77 +46,98 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>HIERARCHY LEVELS</h1>
+							<h1>Application Master</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">HIERARCHY LEVELS</li>
+								<li class="breadcrumb-item"><a href="#">Home</a>
+								</li>
+								<li class="breadcrumb-item active">Application Master</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
+
 			<section class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card card-secondary">
-								<div class="card-header">
-									<h3 class="card-title">Upload  HierarchyLevels </h3>
-								</div>
-								<!-- /.card-header -->
-								<div class="card-body">
-
-									<form:form method="post" action="saveHierarchies" enctype="multipart/form-data">
-										<div class="row">
-											<input type="file" name="file" id="fileToUpload"
-												class="form-control">
-										</div>
-										<div class="col-sm-12" align="center">
-										<button type="submit" class="btn btn-danger">Upload
-											Hierarchies</button>
+					<!-- SELECT2 EXAMPLE -->
+					<div class="card card-default">
+						<div class="card-header">
+							<h3 class="card-title">Upload  Hierarchy Levels</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								
+							</div>
+						</div>
+						<!-- /.card-header -->
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<form:form method="post" action="saveHierarchies"
+											enctype="multipart/form-data">
+											<div class="form-group">
+												<label>Upload Hierarchies CSV file</label> <input name="file" type="file"
+													class="form-control" placeholder="Address" />
+											</div>
+										</form:form>
 									</div>
-									</form:form>
+								</div>
+								<div class="form-group col-sm-12" style="text-align: center;">
+									<button type="submit" class="btn btn-success">Upload
+										Hierarchies</button>
 								</div>
 							</div>
 						</div>
-					</div>
+				</div>
 			</section>
+			
 			<section class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card card-secondary">
-								<div class="card-header">
-									<h3 class="card-title">Add HierarchyLevels Details</h3>
-								</div>
-								<!-- /.card-header -->
-								<div class="card-body">
-
-									<form:form method="post" action="">
+					<!-- SELECT2 EXAMPLE -->
+					<div class="card card-default">
+						<div class="card-header">
+							<h3 class="card-title">Hierarchies Information</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								
+							</div>
+						</div>
+						<!-- /.card-header -->
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<form:form method="post">
 										<div class="row">
 											<%@ include
 												file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
 										</div>
-
 									</form:form>
-									<div class="" align="center" style="margin-top: 20px;">
-										<button type="submit" class="btn btn-danger submitClass">View
-											Hierarchies</button>
 									</div>
+								</div>
+								<div class="form-group col-sm-12" style="text-align: center;">
+									<button type="submit" class="btn btn-success submitClass">View
+											Hierarchies</button>
 								</div>
 							</div>
 						</div>
-					</div>
+				</div>
+			</section>
 
+			<section class="content">
+				<div class="container-fluid">
 					<a class='updateCall' href='javascript:void(0)'> <input
-						type="button" id="myDataToggle" data-toggle='modal'
-						data-target='#addtagblock' style="display: none;" /> </a>
-
-					<div class="modal fade" id="addtagblock" tabindex="-1"
-						role="dialog">
+										type="button" id="myDataToggle" data-toggle='modal'
+										data-target='#addtagblock' style="display: none;" /> </a>	
+					<div class="card card-default">
+							<div class="modal fade" id="addtagblock" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -149,10 +177,11 @@
 								</div>
 							</div>
 						</div>
+						</div>
 					</div>
+				</div>
 			</section>
-
-			<!-- Main content -->
+			
 			<section class="content">
 				<div class="container-fluid">
 					<div class="row">
@@ -165,7 +194,7 @@
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="example1" class="table table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>S.NO</th>
@@ -188,26 +217,14 @@
 				</div>
 				<!-- /.container-fluid -->
 			</section>
-			<!-- /.content -->
 		</div>
-		<!-- /.content-wrapper -->
-
-
+		<!-- /.row -->
+	</div>
 
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
-
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- /.control-sidebar -->
-	</div>
-	<!-- ./wrapper -->
-
 	<!-- jQuery -->
-
+	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -229,6 +246,10 @@
 	<script src="datatables/datatables-buttons/js/buttons.html5.min.js"></script>
 	<script src="datatables/datatables-buttons/js/buttons.print.min.js"></script>
 	<script src="datatables/datatables-buttons/js/buttons.colVis.min.js"></script>
+	
+	
+	<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
 
 
 	<!-- AdminLTE App -->
@@ -237,13 +258,15 @@
 
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
+	
+	<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+
+
+
 	<!-- Page specific script -->
-	<!-- <script>
+	<script>
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -254,9 +277,11 @@
       "responsive": true,
     });
   });
-</script> -->
+</script>
+
 	<script>
 	$(document).ready(function(){
+	
 	 function loadDataTable(url) {
 		$('#example1').dataTable({
 	        "bServerSide": true,
@@ -288,25 +313,28 @@
 	            { "mData": "hLevelUniqueCode" ,  "defaultContent": "-"},  
 	            { "mData": "hPreviousLevelId" ,  "defaultContent": "-"}	  	  		
 	        ]
-	    } ).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+	    } );
 	    }
-	     					url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
-								"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
-								"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
-								"level4Id="+$('.level4Class').find('option:selected').val()+"&"+
-								"level5Id="+$('.level5Class').find('option:selected').val()+"&"+
-								"level6Id="+$('.level6Class').find('option:selected').val()+"&"+
-								"level7Id="+$('.level7Class').find('option:selected').val()+"&"+
-								"level8Id="+$('.level8Class').find('option:selected').val()+"&"+
-								"level9Id="+$('.level9Class').find('option:selected').val()+"&"+
-								"level10Id="+$('.level10Class').find('option:selected').val()+"&"+
-								"level11Id="+$('.level11Class').find('option:selected').val()+"&"+
-								"level12Id="+$('.level12Class').find('option:selected').val()+"&"+
-								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
-								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
-								"level15Id="+$('.level15Class').find('option:selected').val();
-								loadDataTable(url);
 	    
+	    
+		var url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
+			"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
+			"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
+			"level4Id="+$('.level4Class').find('option:selected').val()+"&"+
+			"level5Id="+$('.level5Class').find('option:selected').val()+"&"+
+			"level6Id="+$('.level6Class').find('option:selected').val()+"&"+
+			"level7Id="+$('.level7Class').find('option:selected').val()+"&"+
+			"level8Id="+$('.level8Class').find('option:selected').val()+"&"+
+			"level9Id="+$('.level9Class').find('option:selected').val()+"&"+
+			"level10Id="+$('.level10Class').find('option:selected').val()+"&"+
+			"level11Id="+$('.level11Class').find('option:selected').val()+"&"+
+			"level12Id="+$('.level12Class').find('option:selected').val()+"&"+
+			"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
+			"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
+			"level15Id="+$('.level15Class').find('option:selected').val();
+								
+		loadDataTable(url);
+	   
 	    	$('.submitClass').click(function(){
 	    		 url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
 								"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
@@ -323,10 +351,15 @@
 								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
 								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 								"level15Id="+$('.level15Class').find('option:selected').val();
-	    	loadDataTable(url);
+	    	//loadDataTable(url);
 	    	
 	    	});
  });
+</script>
+<script type="text/javascript">
+$(function () {
+    $('.select2').select2();
+});
 </script>
 </body>
 </html>
