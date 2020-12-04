@@ -8,9 +8,11 @@
 
 
 $(document).ready(function() {
+	 alert("aaa");
 	 $(".levelSelectClass").change(function() {
+		 
 		 var levelIdRef=$(this).attr('id');
-//		 alert(levelIdRef);
+		 alert(levelIdRef);
 		 var levelValue=$(this).val();
 		 var levelCount=1;
 

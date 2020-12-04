@@ -21,14 +21,15 @@
 	href="datatables/datatables-buttons/css/buttons.bootstrap4.min.css">
 <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
-
+<!-- jQuery -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+<script src="js/validation.js"></script>
 
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
 <link rel="stylesheet" href="css/styles.css">
-<script src="js/validation.js"></script>
+
 
 
 </head>
@@ -223,8 +224,7 @@
 
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
-	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -265,19 +265,7 @@
 
 
 	<!-- Page specific script -->
-	<script>
-  $(function () {
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+	
 
 	<script>
 	$(document).ready(function(){
@@ -313,7 +301,7 @@
 	            { "mData": "hLevelUniqueCode" ,  "defaultContent": "-"},  
 	            { "mData": "hPreviousLevelId" ,  "defaultContent": "-"}	  	  		
 	        ]
-	    } );
+	    });
 	    }
 	    
 	    
@@ -351,7 +339,7 @@
 								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
 								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 								"level15Id="+$('.level15Class').find('option:selected').val();
-	    	//loadDataTable(url);
+	    	loadDataTable(url);
 	    	
 	    	});
  });
