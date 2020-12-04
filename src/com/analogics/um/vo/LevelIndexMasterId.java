@@ -8,6 +8,10 @@ public class LevelIndexMasterId implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2106169047565248131L;
 	private Integer level15id;
 	private Integer level14id;
 	private Integer level13id;

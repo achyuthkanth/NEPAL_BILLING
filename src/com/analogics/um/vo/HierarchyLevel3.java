@@ -8,6 +8,10 @@ public class HierarchyLevel3 implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8942354919002298321L;
 	private String level3Uniquecode;
 	private Integer level3Id;
 	private String level3Name;

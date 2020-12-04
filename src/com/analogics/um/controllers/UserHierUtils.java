@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.analogics.um.dao.BaseHibernateDAO;
 import com.analogics.um.vo.HierarchyLevelsVo;

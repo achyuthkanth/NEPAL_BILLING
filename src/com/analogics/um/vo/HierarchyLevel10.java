@@ -6,6 +6,10 @@ package com.analogics.um.vo;
 
 public class HierarchyLevel10 implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5263694147464632380L;
 	// Fields
 
 	private String level10Uniquecode;
