@@ -83,23 +83,24 @@
 											<div class="form-group">
 												<label>Module Type Name</label> <input type="text"
 													name="moduleTypeName" value="${command.moduleTypeName}"
-													class="form-control moduleNameClass"
-													placeholder="Module Type Name">
+													class="form-control moduleNameClass" autocomplete="off"
+													placeholder="Module Type Name" required="required">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Module Type Code</label> <input type="text"
 													name="moduleTypeCode" value="${command.moduleTypeCode}"
-													class="form-control" placeholder="Module Type Code">
+													class="form-control" autocomplete="off"
+													 placeholder="Module Type Code" required="required">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Module Description</label> <input type="text"
-													name="moduleDescription"
-													value="${command.moduleDescription}" class="form-control"
-													placeholder="Module Description">
+													name="moduleDescription" value="${command.moduleDescription}"
+													 class="form-control" autocomplete="off"
+													placeholder="Module Description" required="required">
 											</div>
 										</div>
 										<div class="form-group col-sm-12" style="text-align: center;">

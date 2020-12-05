@@ -162,6 +162,7 @@ public class ModuleMasterController {
 			masterObj.setViewType(viewType);
 			model =new ModelAndView("ModuleDetails/AddOrViewModuleMaster",
 					"command", masterObj);
+			model.addObject("command", fetchModuleMasterColumsMap(masterObj));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
