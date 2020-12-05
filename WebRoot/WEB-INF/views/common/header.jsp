@@ -169,6 +169,10 @@
 							SuperUser Masters<i class="right fas fa-angle-left"></i>
 						</p> </a>
 					<ul class="nav nav-treeview">
+					<li class="nav-item"><a href="moduleMasterDetails"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Module Master</p> </a>
+						</li>
 						<li class="nav-item"><a href="applicationMaster"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Master</p> </a>
