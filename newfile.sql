@@ -2,6 +2,8 @@
 
 select * from module_Master;
 
+delete from module_Master where module_Type_Name=' ';
+
 
 select * from module_Master master  where  master.moduleTypeName like '%bb%'  and  master.MODULE DESCRIPTION = 'ss'
 

@@ -167,25 +167,16 @@
 			<section class="content">
 				<div class="container-fluid">
 					<div class="card card-default">
-						<div class="card-header">
-							<h3 class="card-title">Module Master Details</h3>
-							<div class="card-tools">
-								<button type="button" class="btn btn-tool"
-									data-card-widget="collapse">
-									<i class="fas fa-minus"></i>
-								</button>
-								
+							<div class="card-header">
+								<h3 class="card-title">Module Master Details</h3>
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool"
+										data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									
+								</div>
 							</div>
-						</div>
-					<!-- 
-					<div class="row">
-						<div class="col-12">
-							<div class="card card-secondary">
-								<div class="card-header">
-									<h3 class="card-title">Application Master Details</h3>
-								</div> -->
-								
-								
 								<div class="card-body">
 									<div class="row col-sm-12" >
 										<div class="col-sm-6" >
@@ -221,37 +212,6 @@
 												<th></th>
 											</tr>
 										</thead>
-										<!-- <tbody>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td>4</td>
-												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td>4</td>
-												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td>4</td>
-												<td>X</td>
-												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
-											</tr> -->
 									</table>
 
 							<div id="myModal" class="modal fade" role="dialog"
@@ -318,11 +278,7 @@
 		</div>
 		<!-- /.content-wrapper -->
 
-
-
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-
-
 
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
@@ -367,24 +323,6 @@
 
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
-	<!-- Page specific script -->
-<!-- 	<script>
-  $(function () {
-    /* $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)'); */
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script> -->
 <script type="text/javascript">
 $(document).ready(function() {
 var hideColumns="";
@@ -411,6 +349,11 @@ function loadDataTable(url,hideColumns,showColumns) {
         "bStateSave": false,
         "iDisplayLength": 10,
         "iDisplayStart": 0,
+        "processing": true,
+        "language": {
+            'loadingRecords': '&nbsp;',
+            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
+        },   
         "fnDrawCallback": function () {
           },        
         "sAjaxSource": "fetchModuleMasterDetails?"+url,
