@@ -1,4 +1,3 @@
-<div class="">
 <div class="form-group">
 	<label> Level 1</label>
 	<form:select path="level1Id" id="level1Id"
@@ -7,9 +6,6 @@
 		<form:options items="${level1Map}" />
 	</form:select>
 	</div>
-</div>
-
-<div class="">
 <div class="form-group">
 	<label> Level 2</label>
 	<form:select path="level2Id" id="level2Id"
@@ -18,9 +14,6 @@
 		<form:options items="${level2Map}" />
 	</form:select>
 	</div>
-</div>
-
-<div class="">
 <div class="form-group">
 	<label> Level 3</label>
 	<form:select path="level3Id" id="level3Id"

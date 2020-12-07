@@ -79,12 +79,18 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-12">
-										<form:form method="post" action="saveHierarchies"
-											enctype="multipart/form-data">
-											<div class="form-group">
-												<label>Upload Hierarchies CSV file</label> <input name="file" type="file"
-													class="form-control" placeholder="Address" />
-											</div>
+										<form:form method="post" action="saveHierarchies" enctype="multipart/form-data">
+											<div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+						                      <div class="form-group">
+						                        <label for="exampleInputFile">Upload Hierarchies CSV file</label>
+						                        <div class="input-group">
+						                          <div class="custom-file">
+						                            <input type="file" class="custom-file-input" name="file" id="exampleInputFile">
+						                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+						                          </div>
+						                        </div>
+						                      </div>
+						                    </div>
 										</form:form>
 									</div>
 								</div>
