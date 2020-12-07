@@ -14,7 +14,9 @@
 
 <!-- DataTables -->
 <link rel="stylesheet"
+
 	href="datatables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	
 <link rel="stylesheet"
 	href="datatables/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet"
@@ -163,7 +165,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td id="levelCodeVal"></td>
+													<td ></td>
 													<td></td>
 													<td><label>Level Code</label><input name="levelCode"
 														id="levelCode" class="text_field" /> <input type="hidden"

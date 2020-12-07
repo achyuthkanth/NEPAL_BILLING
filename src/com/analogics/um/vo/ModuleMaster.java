@@ -1,10 +1,12 @@
 package com.analogics.um.vo;
 
+import com.analogics.utils.ExtraFieldspojo;
+
 /**
  * ModuleMaster entity. @author MyEclipse Persistence Tools
  */
 
-public class ModuleMaster implements java.io.Serializable {
+public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializable {
 
 	// Fields
 

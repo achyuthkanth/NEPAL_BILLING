@@ -8,6 +8,13 @@
 	color:#762bef;
 }
 
+.dataTables_filter{
+	display: none;
+}
+
+.clear {
+    clear: both;
+}
 
 /* .card-header{
 	background:#6c618c;

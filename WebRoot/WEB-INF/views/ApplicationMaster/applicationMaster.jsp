@@ -252,7 +252,7 @@
 												<td>4</td>
 												<td>X</td>
 												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
 												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 											<tr>
@@ -262,10 +262,10 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
+												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
 												
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
 											</tr>
 											<tr>
 												<td>3</td>
@@ -274,9 +274,9 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
-												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
+												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
+												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
 											</tr>
 									</table>
 

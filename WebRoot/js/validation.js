@@ -8,11 +8,9 @@
 
 
 $(document).ready(function() {
-	 alert("aaa");
 	 $(".levelSelectClass").change(function() {
 		 
 		 var levelIdRef=$(this).attr('id');
-		 alert(levelIdRef);
 		 var levelValue=$(this).val();
 		 var levelCount=1;
 
@@ -73,11 +71,11 @@ $(document).ready(function() {
 			 		}else{
 				 		 var prelevelCount=levelCount-1;
 						 if($('#level'+prelevelCount+'Id').val()=="-1"){
-							alert("Please select level"+prelevelCount+"Id");
+//							alert("Please select level"+prelevelCount+"Id");
 							$('#level'+levelCount+'Id').val("-1");
 							return false;
 						 }else if($('#level'+prelevelCount+'Id').val()=="NEW LEVEL"){
-						 	alert("Please select level"+prelevelCount+"Id");
+//						 	alert("Please select level"+prelevelCount+"Id");
 							$('#level'+levelCount+'Id').val("-1");
 							return false;
 						 }else{

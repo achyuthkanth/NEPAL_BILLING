@@ -2,7 +2,9 @@ package com.analogics.um.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,10 +34,36 @@ public class ModuleMasterController {
 		try {
 			model =new ModelAndView("ModuleDetails/AddOrViewModuleMaster",
 					"command", masterObj);
+			model.addObject("command", fetchModuleMasterColumsMap(masterObj));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return model;
+	}
+
+	private Object fetchModuleMasterColumsMap(ModuleMaster masterObj) {
+		try {
+			Map<String, String> columnsMap = new HashMap<String, String>();
+			columnsMap.put("1", "Module Type Name");
+			columnsMap.put("2", "Module Type Code");
+			columnsMap.put("3", "Module Description");
+			masterObj.setColumnsMap(columnsMap);
+			
+			Map<String,String> searchColumnsMap=new HashMap<String,String>();
+			searchColumnsMap.put("moduleTypeName", "MODULE TYPE NAME");
+			searchColumnsMap.put("moduleTypeCode", "MODULE TYPE CODE");
+			searchColumnsMap.put("moduleDescription", "MODULE DESCRIPTION");
+			masterObj.setSearchColumnsMap(searchColumnsMap);
+			
+			List<String> conditionListStr = new ArrayList<String>();
+			conditionListStr.add("LIKE");
+			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("NOT EQUAL TO");
+			masterObj.setConditionListStr(conditionListStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return masterObj;
 	}
 
 	@RequestMapping("/saveOrUpdateModuleMaster")
@@ -106,7 +134,7 @@ public class ModuleMasterController {
 		return json;
 	}
 	
-	@RequestMapping(value = "/deleteModuleMaster", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteModuleMaster", method = RequestMethod.GET)
 	public ModelAndView deleteModuleMaster(
 			@RequestParam("moduleTypeName") String moduleTypeName) {
 		ModelAndView model = null;
@@ -134,6 +162,7 @@ public class ModuleMasterController {
 			masterObj.setViewType(viewType);
 			model =new ModelAndView("ModuleDetails/AddOrViewModuleMaster",
 					"command", masterObj);
+			model.addObject("command", fetchModuleMasterColumsMap(masterObj));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
