@@ -1,5 +1,9 @@
 
 
+
+select * from application_master;
+
+
  insert into hierarchy_level2  (level2_name ,level2_code,level2_uniquecode ,level1_id) values('NEA1','NEA1','1_NEA1','1')
 
 
