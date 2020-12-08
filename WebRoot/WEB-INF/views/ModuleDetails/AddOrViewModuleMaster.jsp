@@ -78,6 +78,7 @@
 														</div>
 													</form:form>
 												</div>
+<<<<<<< HEAD
 											</c:if>
 											<c:if test="${command.viewType=='View'}">
 												<div class="card-header">
@@ -119,6 +120,90 @@
 												<h3 class="card-title">Module Master Details</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
+=======
+											</div>
+										</div>
+									</div>
+
+								</form:form>
+							</div>
+						</c:if>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="card card-default">
+							<div class="card-header">
+								<h3 class="card-title">Module Master Details</h3>
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool"
+										data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									
+								</div>
+							</div>
+								<div class="card-body">
+									<div class="row col-sm-12" >
+										<div class="col-sm-6" >
+											<div class="form-group">
+							                  <div class="select2-purple">
+												<form:select path="command.colStr"
+													class="select2 displayColumnsClass" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
+													<form:options items="${command.columnsMap}" />
+												</form:select>
+							                  </div>
+							                </div>
+										</div>
+										
+										<div class="col-sm-2" >
+							                <div class="form-group">
+							                	<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
+							                </div>
+										</div>
+										<div class="col-sm-2" >
+											 <button type="button" class="btn btn-danger showColumnsClass"><i class="fa fa-retweet"></i>Re-Load</button>
+										</div>
+										<div class="col-sm-2" >
+										</div>
+									</div>
+									
+									<table id="example1" class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>S.No</th>
+												<th>Module Type Name</th>
+												<th>Module Type Code</th>
+												<th>Module Description</th>
+												<th></th>
+											</tr>
+										</thead>
+									</table>
+
+							<div id="myModal" class="modal fade" role="dialog"
+								aria-hidden="true" style="display: none;">
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content" style="width: 830px;">
+										<div class="modal-header">
+											<h4 class="modal-title">Search Fields</h4>
+										</div>
+										<input type="hidden" class="countClass" dest="1">
+
+										<div class="modal-body" id="searchMainId">
+											<div class="row" id="startingROw">
+												<div class="col col-md-4">
+													<form:select class="form-control checkVar0 searchSelectVarClass1"
+														path="command.searchSelectVar">
+														<form:option value="SELECT" selected="selected">Column</form:option>
+														<form:options items="${command.searchColumnsMap}" />
+													</form:select>
+>>>>>>> bfb1b471850a2de4975b0acdcf53cfd1b8a6fe3b
 												</div>
 											</div>
 											<div class="card-body">
@@ -195,6 +280,7 @@
 								</section>
 								<!-- /.content -->
 							</div>
+<<<<<<< HEAD
 							<!-- /.content-wrapper -->
 							<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 								<!-- Control Sidebar -->
@@ -351,6 +437,161 @@
 								$("#myModal").modal("hide");
 							}
 						});
+=======
+
+
+							
+								</div>
+							</div>
+							<!-- /.card -->
+						</div>
+					</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+	</div>
+	<!-- ./wrapper -->
+
+		<!-- jQuery -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+	<!-- DataTables  & Plugins -->
+	<script src="datatables/datatables/jquery.dataTables.min.js"></script>
+	<script src="datatables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="datatables/datatables-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="datatables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+	<script
+		src="datatables/datatables-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="datatables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+	<script src="datatables/jszip/jszip.min.js"></script>
+	<script src="datatables/pdfmake/pdfmake.min.js"></script>
+	<script src="datatables/pdfmake/vfs_fonts.js"></script>
+	<script src="datatables/datatables-buttons/js/buttons.html5.min.js"></script>
+	<script src="datatables/datatables-buttons/js/buttons.print.min.js"></script>
+	<script src="datatables/datatables-buttons/js/buttons.colVis.min.js"></script>
+	
+	
+	<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+
+
+	<!-- AdminLTE App -->
+	<script src="dist/js/adminlte.min.js"></script>
+
+
+	<!-- AdminLTE for demo purposes -->
+	<script src="dist/js/demo.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+var hideColumns="";
+var showColumns="0";
+
+var url;
+		url="searchSelectVar="+'${command.searchSelectVar}'+"&"+
+		"searchParameter="+'${command.searchParameter}'+"&"+
+		"conditionStr="+'${command.conditionStr}';
+		loadDataTable(url,"","");
+
+function loadDataTable(url,hideColumns,showColumns) {
+// alert("hideColumns "+hideColumns);
+// alert("showColumns "+showColumns);
+
+	var $table = $('#example1');
+    var table = $table.DataTable({
+   		"responsive": true, "lengthChange": false, "autoWidth": false,
+    	"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    	"destroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "sort": "position",
+        "bStateSave": false,
+        "iDisplayLength": 10,
+        "iDisplayStart": 0,
+        "processing": true,
+        "language": {
+            'loadingRecords': '&nbsp;',
+            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
+        },   
+        "fnDrawCallback": function () {
+          },        
+        "sAjaxSource": "fetchModuleMasterDetails?"+url,
+        "aoColumns": [
+        		{
+	                 "mData": "id",
+	                 "defaultContent" : "-",
+	                 render: function (data, type, row, meta) {
+	                 return meta.row + meta.settings._iDisplayStart + 1;
+			    }
+			},
+       		{ "mData": "moduleTypeName" ,  "defaultContent": "-"},
+         	{ "mData": "moduleTypeCode" ,  "defaultContent": "-"},
+         	{ "mData": "moduleDescription" ,  "defaultContent": "-"},
+         	{ data: function ( row, type, set ) {
+			    return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>'
+                +' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'' + 'viewModuleMaster' + '\',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>'
+                +" <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i></a>";
+				} 
+			},
+         
+        ]
+    } );
+    
+    	if(hideColumns!="" || showColumns!="0"){
+    		table.columns(hideColumns).visible( false );
+		 	table.columns(showColumns).visible( true );
+    	}else{
+    		table.columns(0,1,2,3,4).visible(true);
+    	}
+}		
+	$('.showColumnsClass').on('click', function(e) {
+    e.preventDefault();
+    hideColumns="";
+	showColumns="0";
+    var columns = $('.displayColumnsClass').val().toString();
+		 for(var i=0;i<4;i++){
+			 var x = i+1;
+			 if(columns.includes(x)){
+			 	hideColumns = x + ","+hideColumns;
+			 }else{
+			 	showColumns = x + ","+showColumns;
+			 }
+		 }
+		 hideColumns = hideColumns.slice(0, -1);
+		 loadDataTable(url,hideColumns,showColumns);
+	});
+	
+	$('.submitClass').click(function(){
+	  validate = true;
+		var searchParameter = "",searchSelectVar = "",conditionStr = "";
+				 $( ".countClass" ).each(function() {
+						var i=$(this).attr('dest');
+						searchParameter = searchParameter + $('.searchParameterC'+i).val() + ",";
+						searchSelectVar = searchSelectVar + $('.searchSelectVarClass'+i).val() + ",";
+						conditionStr = conditionStr + $('.conditionStrClass'+i).val() + ",";
+						
+						 $('.checkVar'+i).each(function() {
+		                           $(this).css('border-color', '');
+		                                    if ($(this).val() == "SELECT" || $(this).val() == '' || $(this).val() == '0') {
+			                                    var abc=$(this).val();
+			                                    validate = false;
+			                                    $(this).css('border-color', 'red');
+		                                    }
+		                         });
+>>>>>>> bfb1b471850a2de4975b0acdcf53cfd1b8a6fe3b
 					});
 					</script>
 					<script type="text/javascript">
