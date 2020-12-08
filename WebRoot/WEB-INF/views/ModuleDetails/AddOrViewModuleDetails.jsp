@@ -33,11 +33,11 @@
 									<div class="container-fluid">
 										<div class="row mb-2">
 											<div class="col-sm-6">
-												<h1>Module Master</h1> </div>
+												<h1>Module Details</h1> </div>
 											<div class="col-sm-6">
 												<ol class="breadcrumb float-sm-right">
 													<li class="breadcrumb-item"><a href="#">Home</a> </li>
-													<li class="breadcrumb-item active">Module Master</li>
+													<li class="breadcrumb-item active">Module Details</li>
 												</ol>
 											</div>
 										</div>
@@ -50,25 +50,25 @@
 										<div class="card card-default">
 											<c:if test="${command.viewType=='Edit' || command.viewType==null}">
 												<div class="card-header">
-													<h3 class="card-title">Add / Update Module Master</h3>
+													<h3 class="card-title">Add / Update Module Details</h3>
 													<div class="card-tools">
 														<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 													</div>
 												</div>
 												<div class="card-body">
-													<form:form action="saveOrUpdateModuleMaster">
+													<form:form action="saveOrUpdateModuleDetails">
 														<div class="row">
 															<div class="col-sm-12">
 																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label>Module Type Name</label>
-																		<input type="text" name="moduleTypeName" value="${command.moduleTypeName}" class="form-control moduleNameClass" autocomplete="off" placeholder="Module Type Name" required="required"> </div>
+																		<input type="text" name="id.moduleTypeName" value="${command.id.moduleTypeName}" class="form-control moduleNameClass" autocomplete="off" placeholder="Module Type Name" required="required"> </div>
 																	<div class="form-group">
-																		<label>Module Type Code</label>
-																		<input type="text" name="moduleTypeCode" value="${command.moduleTypeCode}" class="form-control" autocomplete="off" placeholder="Module Type Code" required="required"> </div>
+																		<label>Module Action</label>
+																		<input type="text" name="id.moduleAction" value="${command.id.moduleAction}" class="form-control moduleActionClass" autocomplete="off" placeholder="Module Action" required="required"> </div>
 																	<div class="form-group">
 																		<label>Module Description</label>
-																		<input type="text" name="moduleDescription" value="${command.moduleDescription}" class="form-control" autocomplete="off" placeholder="Module Description" required="required"> </div>
+																		<input type="text" name="moduledescription" value="${command.moduledescription}" class="form-control" autocomplete="off" placeholder="Module Description" required="required"> </div>
 																</div>
 															</div>
 															<div class="form-group col-sm-12" style="text-align: center;">
@@ -81,34 +81,33 @@
 											</c:if>
 											<c:if test="${command.viewType=='View'}">
 												<div class="card-header">
-													<h3 class="card-title">View Module Master</h3>
+													<h3 class="card-title">View Module Details</h3>
 													<div class="card-tools">
 														<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 													</div>
 												</div>
 												<!-- /.card-header -->
-
-											<div class="col-md-6">
-													<!-- /.card-header -->
-													<div class="card-body">
-														<dl class="row">
-															<dt class="col-sm-4">Module Type Name</dt>
-															<dd class="col-sm-8">
-																<c:out value="${command.moduleTypeName}"></c:out>
-															</dd>
-															<dt class="col-sm-4">Module Type Code</dt>
-															<dd class="col-sm-8">
-																<c:out value="${command.moduleTypeCode}"></c:out>
-															</dd>
-															<dt class="col-sm-4">Module Description</dt>
-															<dd class="col-sm-8">
-																<c:out value="${command.moduleDescription}"></c:out>
-															</dd>
-														</dl>
+												<div class="card-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label>Module Type Name : <c:out
+																			value="${command.id.moduleTypeName}"></c:out> </label>
+																</div>
+																<div class="form-group">
+																	<label>Module Action : <c:out
+																			value="${command.id.moduleAction}"></c:out> </label>
+																</div>
+																<div class="form-group">
+																	<label>Module Description : <c:out
+																			value="${command.moduledescription}"></c:out> </label>
+																</div>
+															</div>
+														</div>
 													</div>
-													<!-- /.card-body -->
-											</div>
-										</c:if>
+												</div>
+											</c:if>
 										</div>
 									</div>
 								</section>
@@ -147,7 +146,7 @@
 														<tr>
 															<th>S.No</th>
 															<th>Module Type Name</th>
-															<th>Module Type Code</th>
+															<th>Module Action</th>
 															<th>Module Description</th>
 															<th>View</th>
 															<th>Edit</th>
@@ -251,7 +250,7 @@
 						var hideColumns = "";
 						var showColumns = "0";
 						var url;
-						url = "searchSelectVar=" + '${command.searchSelectVar}' + "&" + "searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
+						url = "id.moduleTypeName=" + '${command.id.moduleTypeName}' + "&" +"searchSelectVar=" + '${command.searchSelectVar}' + "&" + "searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
 						loadDataTable(url, "", "");
 
 						function loadDataTable(url, hideColumns, showColumns) {
@@ -276,35 +275,33 @@
 						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
 						        },
 								"fnDrawCallback": function() {},
-								"sAjaxSource": "fetchModuleMasterDetails?" + url,
+								"sAjaxSource": "fetchModuleViewDetails?" + url,
 								"aoColumns": [{
 									"mData": "id",
 									"defaultContent": "-",
 									render: function(data, type, row, meta) {
 										return meta.row + meta.settings._iDisplayStart + 1;
 									}
-								}, {
-						          data: function (row, type, set)
-						              {
-						             return '<a href="#" onClick="submitMyForm(\'fetchOrAddModuleDetails\',\'' + row.moduleTypeName + '\',\'\')">'+ row.moduleTypeName+'</a>';
-						              }
-						        } ,{
-									"mData": "moduleTypeCode",
+								},{
+									"mData": "id.moduleTypeName",
 									"defaultContent": "-"
 								}, {
-									"mData": "moduleDescription",
+									"mData": "id.moduleAction",
+									"defaultContent": "-"
+								}, {
+									"mData": "moduledescription",
 									"defaultContent": "-"
 								}, {
 									data: function(row, type, set) {
-										return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'viewModuleMaster \',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
+										return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'viewModuleDetails \',\'' + row.id.moduleTypeName + '\',\'' + row.id.moduleAction + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
 									}
 								}, {
 									data: function(row, type, set) {
-										return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'viewModuleMaster \',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>';
+										return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'viewModuleDetails \',\'' + row.id.moduleTypeName + '\',\'' + row.id.moduleAction + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>';
 									}
 								}, {
 									data: function(row, type, set) {
-										return " <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i></a>";
+										return " <a href='deleteModuleDetails?id.moduleTypeName=" + row.id.moduleTypeName + "&id.moduleAction=" + row.id.moduleAction + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i></a>";
 									}
 								}, ]
 							});
@@ -356,7 +353,7 @@
 							searchSelectVar = searchSelectVar.slice(0, -1);
 							conditionStr = conditionStr.slice(0, -1);
 							if(validate) {
-								url = "searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
+								url = "id.moduleTypeName=" + '${command.id.moduleTypeName}' + "&" +"searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
 								loadDataTable(url, "", "");
 								$("#myModal").modal("hide");
 							}
@@ -364,8 +361,8 @@
 					});
 					</script>
 					<script type="text/javascript">
-					function submitMyForm(action, moduleTypeName, viewType) {
-						$('<form method="post" action="' + action + '"><input type="text" name="moduleTypeName" value="' + moduleTypeName + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+					function submitMyForm(action, moduleTypeName, moduleAction, viewType) {
+						$('<form method="post" action="' + action + '"><input type="text" name="id.moduleTypeName" value="' + moduleTypeName + '" /><input type="text" name="id.moduleAction" value="' + moduleAction + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
 					}
 					</script>
 					<script type="text/javascript">
@@ -374,6 +371,11 @@
 							$(".moduleNameClass").prop('readonly', false);
 						} else {
 							$(".moduleNameClass").prop('readonly', 'true');
+						}
+						if($(".moduleActionClass").val() == '') {
+							$(".moduleActionClass").prop('readonly', false);
+						} else {
+							$(".moduleActionClass").prop('readonly', 'true');
 						}
 					});
 					</script>

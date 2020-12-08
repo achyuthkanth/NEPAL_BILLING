@@ -1,5 +1,8 @@
 package com.analogics.um.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.analogics.utils.ExtraFieldspojo;
 
 /**
@@ -15,6 +18,9 @@ public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializabl
 	private String moduleTypeCode;
 	private String moduleDescription;
 	
+	//Required Fields
+	private List<ModuleDetails> modulesList=new ArrayList<ModuleDetails>();
+
 	// Constructors
 
 	/** default constructor */
@@ -59,6 +65,14 @@ public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializabl
 
 	public void setModuleDescription(String moduleDescription) {
 		this.moduleDescription = moduleDescription;
+	}
+
+	public List<ModuleDetails> getModulesList() {
+		return modulesList;
+	}
+
+	public void setModulesList(List<ModuleDetails> modulesList) {
+		this.modulesList = modulesList;
 	}
 
 }
