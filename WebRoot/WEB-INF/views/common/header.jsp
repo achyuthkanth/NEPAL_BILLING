@@ -177,6 +177,14 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Master</p> </a>
 						</li>
+						<li class="nav-item"><a href="userGroups"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>User Groups</p> </a>
+						</li>
+						<li class="nav-item"><a href="viewsMaster"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Views master</p> </a>
+						</li>
 						<li class="nav-item"><a href="viewHierarchyLevels"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Hierarchy Master</p> </a>
