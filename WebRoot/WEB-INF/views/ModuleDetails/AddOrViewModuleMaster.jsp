@@ -87,27 +87,28 @@
 													</div>
 												</div>
 												<!-- /.card-header -->
-												<div class="card-body">
-													<div class="row">
-														<div class="col-sm-12">
-															<div class="col-sm-6">
-																<div class="form-group">
-																	<label>Module Type Name : <c:out
-																			value="${command.moduleTypeName}"></c:out> </label>
-																</div>
-																<div class="form-group">
-																	<label>Module Type Code : <c:out
-																			value="${command.moduleTypeCode}"></c:out> </label>
-																</div>
-																<div class="form-group">
-																	<label>Module Description : <c:out
-																			value="${command.moduleDescription}"></c:out> </label>
-																</div>
-															</div>
-														</div>
+
+											<div class="col-md-6">
+													<!-- /.card-header -->
+													<div class="card-body">
+														<dl class="row">
+															<dt class="col-sm-4">Module Type Name</dt>
+															<dd class="col-sm-8">
+																<c:out value="${command.moduleTypeName}"></c:out>
+															</dd>
+															<dt class="col-sm-4">Module Type Code</dt>
+															<dd class="col-sm-8">
+																<c:out value="${command.moduleTypeCode}"></c:out>
+															</dd>
+															<dt class="col-sm-4">Module Description</dt>
+															<dd class="col-sm-8">
+																<c:out value="${command.moduleDescription}"></c:out>
+															</dd>
+														</dl>
 													</div>
-												</div>
-											</c:if>
+													<!-- /.card-body -->
+											</div>
+										</c:if>
 										</div>
 									</div>
 								</section>
