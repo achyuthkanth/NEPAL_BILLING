@@ -270,6 +270,11 @@
 								"bStateSave": false,
 								"iDisplayLength": 10,
 								"iDisplayStart": 0,
+								"processing": true,
+						        "language": {
+						            'loadingRecords': '&nbsp;',
+						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
+						        },
 								"fnDrawCallback": function() {},
 								"sAjaxSource": "fetchModuleMasterDetails?" + url,
 								"aoColumns": [{
@@ -301,24 +306,26 @@
 									}
 								}, ]
 							});
-							if(hideColumns != "" || showColumns != "0") {
+							if(hideColumns != "") {
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0, 1, 2, 3, 4).visible(true);
+								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true);
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
-							hideColumns = "";
-							showColumns = "0";
+							hideColumns = "";       
+							showColumns = "0,4,5,6";			  //S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
-							for(var i = 0; i < 4; i++) {
-								var x = i + 1;
-								if(columns.includes(x)) {
-									hideColumns = x + "," + hideColumns;
-								} else {
-									showColumns = x + "," + showColumns;
+							if(columns!=""){
+								for(var i = 0; i < 4; i++) {
+									var x = i + 1;
+									if(columns.includes(x)) {
+										showColumns = x + "," + showColumns;
+									} else {
+										hideColumns = x + "," + hideColumns;
+									}
 								}
 							}
 							hideColumns = hideColumns.slice(0, -1);
@@ -376,7 +383,8 @@
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var y = 1;
-						var list = '${command.searchColumnsMap}';
+						var columnsList = '${command.searchColumnsMap}';
+						var conditionsList = '${command.conditionListStr}';
 						$('#searchMainId').on('click', '.btn-plus', function() {
 							validate = true;
 							var i;
@@ -392,16 +400,25 @@
 							}
 							if(validate) {
 								++y;
-								var htmlContent = "<div class='row removeDiv" + y + "'><div class='col col-md-4 removeDiv" + y + "'>" + "<div><select name='searchSelectVar' id='listStr" + y + "' class='form-control checkVar" + y + " searchSelectVarClass" + y + "'>" + "<option value='SELECT'>Column</option></select></div></div><div class='col col-md-4 removeDiv" + y + "'>" + "<select id='conditionStr' name='conditionStr' class='form-control checkVar" + y + " conditionStrClass" + y + "'>" + "<option value='EQUAL TO'>EQUAL TO</option><option value='LIKE'>LIKE</option><option value='NOT EQUAL TO'>NOT EQUAL TO</option></select><input type='hidden' class='form-control countClass' dest=" + y + "></div>" + "<div class='col col-md-3 removeDiv" + y + "'><input type='text' class='form-control checkVar" + y + " searchParameterC" + y + "' name='searchParameter' autocomplete='off' onpaste='return false;' ondrop='return false;'>" + "</div><div class='col col-md-1 removeDiv" + y + "'><div class='btn-group' role='group' aria-label='operation'><button type='button' class='btn btn-success btn-sm btn-plus btn-secondary'>" + "<span class='fa-img'><i class='fa fa-plus'></i></span></button>&nbsp;" + "<button type='button' class='btn btn-danger btn-sm btn-minus btn-secondary' dest='" + y + "'><span class='fa-img'>" + "<i class='fa fa-minus'></i></span></button></div></div>" + "</div>";
+								var htmlContent = "<div class='row removeDiv" + y + "'><div class='col col-md-4 removeDiv" + y + "'>" + "<div><select name='searchSelectVar' id='listStr" + y + "' class='form-control checkVar" + y + " searchSelectVarClass" + y + "'>" + "<option value='SELECT'>Column</option></select></div></div><div class='col col-md-4 removeDiv" + y + "'>" + "<select name='conditionStr' id='conditionListStr" + y + "' class='form-control checkVar" + y + " conditionStrClass" + y + "'>" + "</select><input type='hidden' class='form-control countClass' dest=" + y + "></div>" + "<div class='col col-md-3 removeDiv" + y + "'><input type='text' class='form-control checkVar" + y + " searchParameterC" + y + "' name='searchParameter' autocomplete='off' onpaste='return false;' ondrop='return false;'>" + "</div><div class='col col-md-1 removeDiv" + y + "'><div class='btn-group' role='group' aria-label='operation'><button type='button' class='btn btn-success btn-sm btn-plus btn-secondary'>" + "<span class='fa-img'><i class='fa fa-plus'></i></span></button>&nbsp;" + "<button type='button' class='btn btn-danger btn-sm btn-minus btn-secondary' dest='" + y + "'><span class='fa-img'>" + "<i class='fa fa-minus'></i></span></button></div></div>" + "</div>";
 								$("#searchMainId").append(htmlContent);
-								var xy = new Array();
-								xy = list.split(", ");
-								for(var i = 0; i < xy.length; i++) {
-									var splitArr = xy[i].split("=");
+								var searchCols = new Array();
+								searchCols = columnsList.split(", ");
+								for(var i = 0; i < searchCols.length; i++) {
+									var splitArr = searchCols[i].split("=");
 									var key = splitArr[0].replace("{", "").replace("}", "");
 									var value = splitArr[1].replace("{", "").replace("}", "");
 									$("#listStr" + y).append('<option value="' + key + '">' + value + '</option>');
 								}
+								
+								var conditionCols = new Array();
+								conditionCols = conditionsList.split(", ");
+								for(var i = 0; i < conditionCols.length; i++) {
+									var splitArr = conditionCols[i];
+									var val = splitArr.replace("[", "").replace("]", "");
+									$("#conditionListStr" + y).append('<option value="' + val + '">' + val + '</option>');
+								}
+								
 								var itemNo = 0;
 								$(".countClass").each(function() {
 									itemNo = itemNo + 1;
