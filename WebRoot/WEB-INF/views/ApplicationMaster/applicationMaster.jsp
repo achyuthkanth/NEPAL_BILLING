@@ -241,6 +241,8 @@
 												<th>Engine version</th>
 												<th>CSS grade</th>
 												<th></th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -251,9 +253,12 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
+												<!-- <td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i>  </a>
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i>  </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i>  </a></td> -->
+												<th><a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a></th>
+												<th><a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a></th>
+												<th><a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></th>
 											</tr>
 											<tr>
 												<td>2</td>
@@ -262,9 +267,12 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
+												<!-- <td  class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td> -->
+												<th><a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a></th>
+												<th><a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a></th>
+												<th><a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></th>
 												
 											</tr>
 											<tr>
@@ -274,9 +282,12 @@
 												<td>Win 95+</td>
 												<td>4</td>
 												<td>X</td>
-												<td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
+												<!-- <td class="tableButtonTd"> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a>
 												<a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a>
-												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td>
+												<a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></td> -->
+												<th><a class="btn btn-info btn-sm" href="#"> <i class="fas fa-binoculars"> </i> </a></th>
+												<th><a class="btn btn-warning btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> </a></th>
+												<th><a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> </a></th>
 											</tr>
 									</table>
 

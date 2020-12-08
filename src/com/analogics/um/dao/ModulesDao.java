@@ -10,6 +10,11 @@ import org.hibernate.Transaction;
 import com.analogics.um.vo.ModuleMaster;
 import com.analogics.utils.CommonQueryFrameUtils;
 
+/**
+ * 
+ * @author Sandhya.B
+ *
+ */
 public class ModulesDao extends BaseHibernateDAO{
 	
 	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();	

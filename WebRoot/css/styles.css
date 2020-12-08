@@ -20,3 +20,17 @@
 	background:#6c618c;
 	color:#fff;important
 } */
+
+.btn-info {
+    color: #fff;
+    background-color: #5a3c81;
+    border-color: #274348;
+    box-shadow: none;
+}
+
+.btn-warning {
+    color: #1f2d3d;
+    background-color: #f0c544;
+    border-color: #ffc107;
+    box-shadow: none;
+}

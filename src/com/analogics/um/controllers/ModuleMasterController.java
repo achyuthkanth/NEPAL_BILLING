@@ -23,6 +23,11 @@ import com.analogics.um.vo.ServerDataTable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * @author Sandhya.B
+ *
+ */
 @Controller
 public class ModuleMasterController {
 	
@@ -56,8 +61,8 @@ public class ModuleMasterController {
 			masterObj.setSearchColumnsMap(searchColumnsMap);
 			
 			List<String> conditionListStr = new ArrayList<String>();
-			conditionListStr.add("LIKE");
 			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("LIKE");
 			conditionListStr.add("NOT EQUAL TO");
 			masterObj.setConditionListStr(conditionListStr);
 		} catch (Exception e) {

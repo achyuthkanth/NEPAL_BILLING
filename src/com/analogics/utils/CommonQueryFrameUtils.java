@@ -2,6 +2,11 @@ package com.analogics.utils;
 
 import com.analogics.um.dao.BaseHibernateDAO;
 
+/**
+ * 
+ * @author Sandhya.B
+ *
+ */
 public class CommonQueryFrameUtils extends BaseHibernateDAO {
 	
 	public StringBuilder conditionQuery(String searchSelectVar, String searchParameter, String conditionStr){
