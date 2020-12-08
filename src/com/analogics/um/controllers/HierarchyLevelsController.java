@@ -179,7 +179,7 @@ public class HierarchyLevelsController {
 		try {
 			File file1=new File("/tmp/"+fileName); 
 			file.transferTo(file1);
-			System.out.println(file1);
+//			System.out.println(file1);
 			
 			List<String> dataList= FileUtils.readLines(file1);
 			
@@ -200,17 +200,15 @@ public class HierarchyLevelsController {
 						levelCount++;
 					}
 					
-					System.out.println(levelMap);
+//					System.out.println(levelMap);
 					
 					levelName=levelMap.get("level1name");
 					levelCode=levelMap.get("level1code");
 					
-					
 					Map<Integer,Integer> levelIndexMap=new HashMap<Integer,Integer>();
-
-					
 				
 					try {
+						
 						if(levelName!=null){
 						levelId=daoObj.saveHierarchyLevel1(level1Id,levelName,levelCode,uniqueCode);
 						levelIndexMap.put(1, levelId);
@@ -313,14 +311,13 @@ public class HierarchyLevelsController {
 						levelId=daoObj.saveHierarchyLevel(level2Id,levelName,levelCode,uniqueCode,levelId,15);
 						levelIndexMap.put(15, levelId);
 						}
-						
-						
-						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+					
+					
 					if(levelIndexMap.get(1) !=null){
-					levelMasterIdObj.setLevel1id(levelIndexMap.get(1));
+						levelMasterIdObj.setLevel1id(levelIndexMap.get(1));
 					}else{
 						levelMasterIdObj.setLevel1id(-1);
 					}
@@ -331,14 +328,11 @@ public class HierarchyLevelsController {
 						levelMasterIdObj.setLevel2id(-1);
 					}
 					
-					
-					
 					if(levelIndexMap.get(3) !=null){
 						levelMasterIdObj.setLevel3id(levelIndexMap.get(3));					
 						}else{
 						levelMasterIdObj.setLevel3id(-1);
 					}
-					
 					
 					if(levelIndexMap.get(4) !=null){
 						levelMasterIdObj.setLevel4id(levelIndexMap.get(4));
@@ -346,49 +340,35 @@ public class HierarchyLevelsController {
 						levelMasterIdObj.setLevel4id(-1);
 					}
 					
-					
 					if(levelIndexMap.get(5) !=null){
 						levelMasterIdObj.setLevel5id(levelIndexMap.get(5));
 					}else{
 						levelMasterIdObj.setLevel5id(-1);
 					}
 					
-					
-
 					if(levelIndexMap.get(6) !=null){
 						levelMasterIdObj.setLevel6id(levelIndexMap.get(6));
 					}else{
 						levelMasterIdObj.setLevel6id(-1);
 					}
-					
-					
-					
 
 					if(levelIndexMap.get(7) !=null){
 						levelMasterIdObj.setLevel7id(levelIndexMap.get(7));
 					}else{
 						levelMasterIdObj.setLevel7id(-1);
 					}
-					
-					
 
 					if(levelIndexMap.get(8) !=null){
 						levelMasterIdObj.setLevel8id(levelIndexMap.get(8));
 					}else{
 						levelMasterIdObj.setLevel8id(-1);
 					}
-					
-					
-					
 
 					if(levelIndexMap.get(9) !=null){
 						levelMasterIdObj.setLevel9id(levelIndexMap.get(9));
 					}else{
 						levelMasterIdObj.setLevel9id(-1);
 					}
-					
-					
-					
 
 					if(levelIndexMap.get(10) !=null){
 						levelMasterIdObj.setLevel10id(levelIndexMap.get(10));
@@ -396,15 +376,11 @@ public class HierarchyLevelsController {
 						levelMasterIdObj.setLevel10id(-1);
 					}
 					
-					
-					
-
 					if(levelIndexMap.get(11) !=null){
 						levelMasterIdObj.setLevel11id(levelIndexMap.get(11));
 					}else{
 						levelMasterIdObj.setLevel11id(-1);
 					}
-				
 					
 					if(levelIndexMap.get(12) !=null){
 						levelMasterIdObj.setLevel12id(levelIndexMap.get(12));
@@ -412,26 +388,17 @@ public class HierarchyLevelsController {
 						levelMasterIdObj.setLevel12id(-1);
 					}
 				
-					
-					
-					
 					if(levelIndexMap.get(13) !=null){
 						levelMasterIdObj.setLevel13id(levelIndexMap.get(13));
 					}else{
 						levelMasterIdObj.setLevel13id(-1);
 					}
-				
-					
-					
 					
 					if(levelIndexMap.get(14) !=null){
 						levelMasterIdObj.setLevel14id(levelIndexMap.get(14));
 					}else{
 						levelMasterIdObj.setLevel14id(-1);
 					}
-				
-					
-					
 					
 					if(levelIndexMap.get(15) !=null){
 						levelMasterIdObj.setLevel15id(levelIndexMap.get(15));
@@ -440,9 +407,7 @@ public class HierarchyLevelsController {
 					}
 					levelMasterObj.setId(levelMasterIdObj);
 					
-					
 					response=daoObj.saveHierarchyDetails(levelMasterObj);
-					
 					
 				}catch (Exception e) {
 			e.printStackTrace();

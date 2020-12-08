@@ -33,7 +33,13 @@
 		<mapping resource="com/analogics/um/hbm/ModuleMaster.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ModuleDetails.hbm.xml" />
 		
-
+		
+		<mapping resource="com/analogics/um/hbm/ViewsMaster1.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ViewsMaster2.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ViewsMaster3.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ViewsMaster4.hbm.xml" />
+		
+		
 	</session-factory>
 
 </hibernate-configuration>

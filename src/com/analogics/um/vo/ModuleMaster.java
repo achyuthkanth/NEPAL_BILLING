@@ -19,7 +19,7 @@ public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializabl
 	private String moduleDescription;
 	
 	//Required Fields
-	List<ModuleDetails> modulesList=new ArrayList<ModuleDetails>();
+	private List<ModuleDetails> modulesList=new ArrayList<ModuleDetails>();
 
 	// Constructors
 

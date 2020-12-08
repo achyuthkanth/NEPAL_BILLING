@@ -146,7 +146,8 @@
 										type="button" id="myDataToggle" data-toggle='modal'
 										data-target='#addtagblock' style="display: none;" /> </a>	
 					<div class="card card-default">
-							<div class="modal fade" id="addtagblock" tabindex="-1" role="dialog">
+					
+					<%-- <div class="modal fade" id="addtagblock" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -186,7 +187,38 @@
 								</div>
 							</div>
 						</div>
-						</div>
+						</div> --%>
+						
+						<div class="modal fade" id="addtagblock" tabindex="-1" role="dialog">
+													<div class="modal-dialog">
+														<!-- Modal content-->
+														<div class="modal-content" style="width: 830px;">
+															<div class="modal-header">
+																<h4 class="modal-title">Search Fields</h4> </div>
+															<input type="hidden" class="countClass" dest="1">
+															<div class="modal-body" id="searchMainId">
+																<div class="row" id="startingROw">
+																	<div class="col col-md-4">
+																	</div>
+																	<div class="col col-md-4">
+																	</div>
+																	<div class="col col-md-3">
+																	<div class="col col-md-1">
+																		<div class="btn-group" role="group" aria-label="operation">
+																			<a class="btn btn-success btn-plus btn-sm" href="#"> <i class="fas fa-plus"> </i> </a>&nbsp;
+																			</div>
+																	</div>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-success" data-dismiss="modal" data-i18n="modalClose">Close</button>
+																<button type="submit" class="btn btn-warning submitClass" data-dismiss="modal" data-i18n="modalOkay">Search</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												
 					</div>
 				</div>
 			</section>
