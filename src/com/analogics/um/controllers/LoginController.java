@@ -16,6 +16,10 @@ public class LoginController {
 	public ModelAndView sampleCall(HttpServletRequest request ,HttpServletResponse response) {
 		ModelAndView model =null;
 		try {
+			
+			
+			
+			
 			System.out.println("in login");
 			model=new ModelAndView("common/homepage");
 		} catch (Exception e) {

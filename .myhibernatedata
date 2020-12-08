@@ -1,9 +1,5 @@
 #MyEclipse Hibernate Properties
-<<<<<<< HEAD
-#Thu Dec 03 10:40:25 IST 2020
-=======
-#Wed Dec 02 18:02:05 IST 2020
->>>>>>> e985723c20e61a255c63757aa8303073f9c3750d
+#Tue Dec 08 15:02:49 IST 2020
 sessionFactoryName=com.analogics.dao.HibernateSessionFactory
 genBasicCompId=true
 profile=
