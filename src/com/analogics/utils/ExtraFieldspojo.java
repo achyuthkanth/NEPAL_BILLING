@@ -15,6 +15,10 @@ public class ExtraFieldspojo {
 	private String conditionStr;
 	private String searchSelectVar;
 	private String selectParam;
+	private String viewType;
+	
+	private String response;
+	private String reasonResponse;
 	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
@@ -63,6 +67,24 @@ public class ExtraFieldspojo {
 	}
 	public void setSelectParam(String selectParam) {
 		this.selectParam = selectParam;
+	}
+	public String getResponse() {
+		return response;
+	}
+	public void setResponse(String response) {
+		this.response = response;
+	}
+	public String getReasonResponse() {
+		return reasonResponse;
+	}
+	public void setReasonResponse(String reasonResponse) {
+		this.reasonResponse = reasonResponse;
+	}
+	public String getViewType() {
+		return viewType;
+	}
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
 	}
 
 }

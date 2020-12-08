@@ -15,9 +15,6 @@ public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializabl
 	private String moduleTypeCode;
 	private String moduleDescription;
 	
-	//Required Fields
-	private String viewType;
-
 	// Constructors
 
 	/** default constructor */
@@ -62,14 +59,6 @@ public class ModuleMaster extends ExtraFieldspojo implements java.io.Serializabl
 
 	public void setModuleDescription(String moduleDescription) {
 		this.moduleDescription = moduleDescription;
-	}
-
-	public String getViewType() {
-		return viewType;
-	}
-
-	public void setViewType(String viewType) {
-		this.viewType = viewType;
 	}
 
 }
