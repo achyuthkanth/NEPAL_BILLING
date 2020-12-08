@@ -15,6 +15,15 @@ public class ExtraFieldspojo {
 	private String conditionStr;
 	private String searchSelectVar;
 	private String selectParam;
+	private String viewType;
+	
+	public String getViewType() {
+		return viewType;
+	}
+
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
+	}
 	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
