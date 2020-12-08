@@ -15,6 +15,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.analogics.um.dao.BaseHibernateDAO;
+import com.analogics.um.vo.ApplicationLevelIndexMaster;
+import com.analogics.um.vo.ApplicationLevelIndexMasterId;
 import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.LevelIndexMasterId;
@@ -294,6 +296,35 @@ public class UserHierUtils extends BaseHibernateDAO{
   			e.printStackTrace();
   		}
   }
+
+	public ApplicationLevelIndexMaster appLevelIndexDetails(
+			Map<String, String> extraMap) {
+		ApplicationLevelIndexMaster appLevelIndexMasterObj=new ApplicationLevelIndexMaster();
+		ApplicationLevelIndexMasterId appLevelIndexMasterIdObj=new ApplicationLevelIndexMasterId();
+		
+		try{
+			appLevelIndexMasterIdObj.setLevel1id(Integer.parseInt(extraMap.get("level1Id")));
+				appLevelIndexMasterIdObj.setLevel2id(Integer.parseInt(extraMap.get("level2Id")));
+				appLevelIndexMasterIdObj.setLevel3id(Integer.parseInt(extraMap.get("level3Id")));
+				appLevelIndexMasterIdObj.setLevel4id(Integer.parseInt(extraMap.get("level4Id")));
+				appLevelIndexMasterIdObj.setLevel5id(Integer.parseInt(extraMap.get("level5Id")));
+				appLevelIndexMasterIdObj.setLevel6id(Integer.parseInt(extraMap.get("level6Id")));
+				appLevelIndexMasterIdObj.setLevel7id(Integer.parseInt(extraMap.get("level7Id")));
+				appLevelIndexMasterIdObj.setLevel8id(Integer.parseInt(extraMap.get("level8Id")));
+				appLevelIndexMasterIdObj.setLevel9id(Integer.parseInt(extraMap.get("level9Id")));
+				appLevelIndexMasterIdObj.setLevel10id(Integer.parseInt(extraMap.get("level10Id")));
+				appLevelIndexMasterIdObj.setLevel11id(Integer.parseInt(extraMap.get("level11Id")));
+				appLevelIndexMasterIdObj.setLevel12id(Integer.parseInt(extraMap.get("level12Id")));
+				appLevelIndexMasterIdObj.setLevel13id(Integer.parseInt(extraMap.get("level13Id")));
+				appLevelIndexMasterIdObj.setLevel14id(Integer.parseInt(extraMap.get("level14Id")));
+				appLevelIndexMasterIdObj.setLevel15id(Integer.parseInt(extraMap.get("level15Id")));
+				appLevelIndexMasterObj.setId(appLevelIndexMasterIdObj);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return appLevelIndexMasterObj;
+	}
 
 	
 		

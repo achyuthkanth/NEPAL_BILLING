@@ -17,7 +17,7 @@ insert into HierarchyLevel1 (level1Name ,level1Code,level1Uniquecode ) values('N
 
 insert into hierarchy_level1 (level1_name ,level1_code,level1_uniquecode ) values('NEA1','NEA1','NEA1');
 SELECT level1_Id from hierarchy_level1 where level1_Code='NEA'
-select * from hierarchy_level1
+select * from Application_hierarchy_level2
 SELECT level1_Id from hierarchy_level1 where level1_Code='NEA'
 
 SELECT level1_Id from hierarchy_level1 where level1_Code='NEA'

@@ -49,13 +49,13 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Application Master</h1>
+							<h1>Hierarchy Levels</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Home</a>
 								</li>
-								<li class="breadcrumb-item active">Application Master</li>
+								<li class="breadcrumb-item active">Hierarchy Levels </li>
 							</ol>
 						</div>
 					</div>
@@ -194,10 +194,10 @@
 														<!-- Modal content-->
 														<div class="modal-content" style="width: 830px;">
 															<div class="modal-header">
-																<h4 class="modal-title">Search Fields</h4> </div>
+																<h4 class="modal-title">Add New Level</h4> </div>
 															<input type="hidden" class="countClass" dest="1">
 															<div class="modal-body" id="searchMainId">
-																<div class="row" id="startingROw">
+																<!-- <div class="row" id="startingROw">
 																	<div class="col col-md-4">
 																	</div>
 																	<div class="col col-md-4">
@@ -209,10 +209,33 @@
 																			</div>
 																	</div>
 																</div>
-															</div>
-															<div class="modal-footer">
+															</div> -->
+										<form method="post" id="levelForm">
+											<div id="tableform">
+												<table>
+													<tr>
+														<td id="LevelNameVal"></td>
+														<td></td>
+														<td><label>Level Name</label> <input name="levelName"
+															id="levelName" class="text_field"></input></td>
+													</tr>
+													<tr>
+														<td></td>
+														<td></td>
+														<td><label>Level Code</label><input name="levelCode"
+															id="levelCode" class="text_field" /> <input
+															type="hidden" value="" id="levelIdRef" /> <input
+															type="hidden" value="" id="levelValue" /> <input
+															type="hidden" value="" id="levelCount" />
+														</td>
+													</tr>
+												</table>
+											</div>
+										</form>
+										<div class="modal-footer">
 																<button type="button" class="btn btn-success" data-dismiss="modal" data-i18n="modalClose">Close</button>
-																<button type="submit" class="btn btn-warning submitClass" data-dismiss="modal" data-i18n="modalOkay">Search</button>
+																<input type="reset" class="btn btn-primary" value="Reset" />
+														<input type="submit" class="btn btn-primary" id="submitButton" value="Save" />
 															</div>
 														</div>
 													</div>
@@ -231,7 +254,7 @@
 
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">DataTable with default features</h3>
+									<h3 class="card-title">View Hierarchy Levels</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
