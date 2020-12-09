@@ -1,34 +1,32 @@
 package com.analogics.um.vo;
 
 import java.sql.Timestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+import com.analogics.utils.ExtraFieldspojo;
 
 /**
  * ApplicationMaster entity. @author MyEclipse Persistence Tools
  */
-@Entity
-@Table(name = "application_master", schema = "public", uniqueConstraints = @UniqueConstraint(columnNames = "applicationuniqueid"))
-public class ApplicationMaster implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
+public class ApplicationMaster extends ExtraFieldspojo implements java.io.Serializable {
+
+	// Fields
+
+	private static final long serialVersionUID = 1162675275720806791L;
 	private String applicationuniquecode;
-	private String applicationname;
-	private String applicationid;
-	private String applicationowner;
-	private String primarycontact;
-	private String alternatecontact;
-	private String contactaddress;
-	private String emailaddress;
-	private Long personsallowed;
-	private Long appusersallowed;
+	private String applicationname;//
+	private String applicationid;//
+	private String applicationowner;//
+	private String primarycontact; //
+	private String alternatecontact;//
+	private String contactaddress;//
+	private String emailaddress;//
+	private Long personsallowed;//
+	private Long appusersallowed;//
 	private String applicationstatus;
 	private Long level1Id;
-	private Integer orghierarchylevel;
-	private Integer subhierarchylevel;
+	private Integer orghierarchylevel;//
+	private Integer subhierarchylevel;//
 	private String subhierarchyleveltype;
 	private Long applicationuniqueid;
 	private String inserteduser;
@@ -80,8 +78,7 @@ public class ApplicationMaster implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "applicationuniquecode", unique = true, nullable = false, length = 300)
+
 	public String getApplicationuniquecode() {
 		return this.applicationuniquecode;
 	}
@@ -90,7 +87,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationuniquecode = applicationuniquecode;
 	}
 
-	@Column(name = "applicationname", length = 45)
 	public String getApplicationname() {
 		return this.applicationname;
 	}
@@ -99,7 +95,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationname = applicationname;
 	}
 
-	@Column(name = "applicationid", length = 45)
 	public String getApplicationid() {
 		return this.applicationid;
 	}
@@ -108,7 +103,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationid = applicationid;
 	}
 
-	@Column(name = "applicationowner", length = 45)
 	public String getApplicationowner() {
 		return this.applicationowner;
 	}
@@ -117,7 +111,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationowner = applicationowner;
 	}
 
-	@Column(name = "primarycontact", length = 45)
 	public String getPrimarycontact() {
 		return this.primarycontact;
 	}
@@ -126,7 +119,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.primarycontact = primarycontact;
 	}
 
-	@Column(name = "alternatecontact", length = 45)
 	public String getAlternatecontact() {
 		return this.alternatecontact;
 	}
@@ -135,7 +127,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.alternatecontact = alternatecontact;
 	}
 
-	@Column(name = "contactaddress", length = 300)
 	public String getContactaddress() {
 		return this.contactaddress;
 	}
@@ -144,7 +135,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.contactaddress = contactaddress;
 	}
 
-	@Column(name = "emailaddress", length = 45)
 	public String getEmailaddress() {
 		return this.emailaddress;
 	}
@@ -153,7 +143,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.emailaddress = emailaddress;
 	}
 
-	@Column(name = "personsallowed")
 	public Long getPersonsallowed() {
 		return this.personsallowed;
 	}
@@ -162,7 +151,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.personsallowed = personsallowed;
 	}
 
-	@Column(name = "appusersallowed")
 	public Long getAppusersallowed() {
 		return this.appusersallowed;
 	}
@@ -171,7 +159,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.appusersallowed = appusersallowed;
 	}
 
-	@Column(name = "applicationstatus", length = 45)
 	public String getApplicationstatus() {
 		return this.applicationstatus;
 	}
@@ -180,7 +167,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationstatus = applicationstatus;
 	}
 
-	@Column(name = "level1_id")
 	public Long getLevel1Id() {
 		return this.level1Id;
 	}
@@ -189,7 +175,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.level1Id = level1Id;
 	}
 
-	@Column(name = "orghierarchylevel")
 	public Integer getOrghierarchylevel() {
 		return this.orghierarchylevel;
 	}
@@ -198,7 +183,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.orghierarchylevel = orghierarchylevel;
 	}
 
-	@Column(name = "subhierarchylevel")
 	public Integer getSubhierarchylevel() {
 		return this.subhierarchylevel;
 	}
@@ -207,7 +191,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.subhierarchylevel = subhierarchylevel;
 	}
 
-	@Column(name = "subhierarchyleveltype", length = 45)
 	public String getSubhierarchyleveltype() {
 		return this.subhierarchyleveltype;
 	}
@@ -216,7 +199,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.subhierarchyleveltype = subhierarchyleveltype;
 	}
 
-	@Column(name = "applicationuniqueid", unique = true, nullable = false)
 	public Long getApplicationuniqueid() {
 		return this.applicationuniqueid;
 	}
@@ -225,7 +207,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.applicationuniqueid = applicationuniqueid;
 	}
 
-	@Column(name = "inserteduser", length = 45)
 	public String getInserteduser() {
 		return this.inserteduser;
 	}
@@ -234,7 +215,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.inserteduser = inserteduser;
 	}
 
-	@Column(name = "inserteddate", length = 22)
 	public Timestamp getInserteddate() {
 		return this.inserteddate;
 	}
@@ -243,7 +223,6 @@ public class ApplicationMaster implements java.io.Serializable {
 		this.inserteddate = inserteddate;
 	}
 
-	@Column(name = "imagelogo", length = 45)
 	public String getImagelogo() {
 		return this.imagelogo;
 	}

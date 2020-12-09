@@ -125,6 +125,8 @@ public class ModuleMasterController {
 			isSaved = daoObj.saveOrUpdate(masterObj);
 			if (isSaved == true) {
 				model = new ModelAndView("redirect:/moduleMasterDetails");
+			}else{
+				model = new ModelAndView("common/error");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,6 +144,8 @@ public class ModuleMasterController {
 			isDeleted = masterDaoObj.deleteModuleMaster(moduleTypeName);
 			if (isDeleted == true) {
 				model = new ModelAndView("redirect:/moduleMasterDetails");
+			}else{
+				model = new ModelAndView("common/error");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -272,6 +276,8 @@ public class ModuleMasterController {
 				model =new ModelAndView("ModuleDetails/AddOrViewModuleDetails",
 						"command", detailsObj);
 				model.addObject("command", fetchModuleDetailsColumsMap(detailsObj));
+			}else{
+				model = new ModelAndView("common/error");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -300,7 +306,7 @@ public class ModuleMasterController {
 		return model;
 	}
 	
-	@RequestMapping(value="/deleteModuleDetails" ,method= RequestMethod.GET)
+	@RequestMapping(value="/deleteModuleDetails" ,method= RequestMethod.POST)
 	public ModelAndView deleteModuleDetails(
 			@ModelAttribute("moduleDetails") ModuleDetails detailsObj){
 		ModelAndView model = null;
@@ -318,36 +324,13 @@ public class ModuleMasterController {
 				model =new ModelAndView("ModuleDetails/AddOrViewModuleDetails",
 						"command", detailsObj);
 				model.addObject("command", fetchModuleDetailsColumsMap(detailsObj));
+			 }else{
+				model = new ModelAndView("common/error");
 			 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return model;
 	}
-	
-	/*
-	 @RequestMapping(value="fetchOrAddModuleDetails",method=RequestMethod.GET)
-	 public ModelAndView fetchOrAddModuleDetails(@RequestParam("moduleTypeName") String moduleTypeName)
-	 {
-		 ModelAndView model = null;
-		 ModulesDao masterDaoObj = new ModulesDao();
-		 ModuleMaster masterObj = new ModuleMaster();
-		 List<ModuleDetails> modulesList=new ArrayList<ModuleDetails>();
-		 
-		 try {
-			 modulesList=masterDaoObj.fetchModuleDetails(moduleTypeName);
-			 
-			 masterObj.setModulesList(modulesList);
-			 masterObj.setModuleTypeName(moduleTypeName);
-		 } catch (Exception e) {
-			e.printStackTrace();
-		}
-		 
-		 return new ModelAndView("/ModuleDetails/AddOrViewModuleDetails","command",masterDaoObj);
-		 
-	 }
-	*/
-	
-	
 	
 }

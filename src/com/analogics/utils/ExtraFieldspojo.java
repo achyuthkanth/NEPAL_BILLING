@@ -20,6 +20,12 @@ public class ExtraFieldspojo {
 	private String response;
 	private String reasonResponse;
 	
+	
+	//Application Master
+	private Map<String,String> applicationStatusList = new HashMap<String,String>();
+	private Map<String,String> organizationList = new HashMap<String,String>();
+	private Map<Integer,String> levelMapList = new HashMap<Integer, String>();
+	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
 	}
@@ -85,6 +91,24 @@ public class ExtraFieldspojo {
 	}
 	public void setViewType(String viewType) {
 		this.viewType = viewType;
+	}
+	public Map<String, String> getApplicationStatusList() {
+		return applicationStatusList;
+	}
+	public void setApplicationStatusList(Map<String, String> applicationStatusList) {
+		this.applicationStatusList = applicationStatusList;
+	}
+	public Map<String, String> getOrganizationList() {
+		return organizationList;
+	}
+	public void setOrganizationList(Map<String, String> organizationList) {
+		this.organizationList = organizationList;
+	}
+	public Map<Integer, String> getLevelMapList() {
+		return levelMapList;
+	}
+	public void setLevelMapList(Map<Integer, String> levelMapList) {
+		this.levelMapList = levelMapList;
 	}
 
 }

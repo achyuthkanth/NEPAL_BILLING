@@ -94,13 +94,13 @@ public class ModulesDao extends BaseHibernateDAO{
 			String sqlQuery = "delete from ModuleMaster where moduleTypeName=:moduleTypeName";
 			Query query = session.createQuery(sqlQuery);
 			query.setParameter("moduleTypeName", moduleTypeName);
+			int res = query.executeUpdate();
 			
 			String sqlQuery2 = "delete from ModuleDetails where id.moduleTypeName=:moduleTypeName1";
 			Query query2 = session.createQuery(sqlQuery2);
 			query2.setParameter("moduleTypeName1", moduleTypeName);
-			int res = query.executeUpdate();
-			int res2 = query2.executeUpdate();
-			if (res > 0 && res2 > 0) {
+			query2.executeUpdate();
+			if (res > 0) {
 				tr.commit();
 				isDeleted = true;
 			}

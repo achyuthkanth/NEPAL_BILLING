@@ -48,7 +48,7 @@
 									<div class="container-fluid">
 										<!-- SELECT2 EXAMPLE -->
 										<div class="card card-default">
-											<c:if test="${command.viewType=='Edit' || command.viewType==null}">
+											<c:if test="${command.viewType=='Edit' || command.viewType==null || command.viewType==''}">
 												<div class="card-header">
 													<h3 class="card-title">Add / Update Module Details</h3>
 													<div class="card-tools">
@@ -177,7 +177,7 @@
 																	<div class="col col-md-1">
 																		<div class="btn-group" role="group" aria-label="operation">
 																			<a class="btn btn-success btn-plus btn-sm" href="#"> <i class="fas fa-plus"> </i> </a>&nbsp;
-																			<!-- <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-minus"> </i> </a> --></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -228,23 +228,6 @@
 					<!-- AdminLTE for demo purposes -->
 					<script src="dist/js/demo.js"></script>
 					<!-- Page specific script -->
-					<!-- 	<script>
-  $(function () {
-    /* $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)'); */
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script> -->
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var hideColumns = "";
@@ -254,8 +237,6 @@
 						loadDataTable(url, "", "");
 
 						function loadDataTable(url, hideColumns, showColumns) {
-							// alert("hideColumns "+hideColumns);
-							// alert("showColumns "+showColumns);
 							var $table = $('#example1');
 							var table = $table.DataTable({
 								"responsive": true,
@@ -301,7 +282,7 @@
 									}
 								}, {
 									data: function(row, type, set) {
-										return " <a href='deleteModuleDetails?id.moduleTypeName=" + row.id.moduleTypeName + "&id.moduleAction=" + row.id.moduleAction + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i></a>";
+										return ' <a class="btn btn-danger btn-sm" onClick="submitMyForm(\'deleteModuleDetails \',\'' + row.id.moduleTypeName + '\',\'' + row.id.moduleAction + '\',\'\')"><i class="fas fa-trash"></i></a>';
 									}
 								}, ]
 							});
@@ -309,18 +290,18 @@
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true);
+								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true); //Total No.of columns
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
 							hideColumns = "";       
-							showColumns = "0,4,5,6";			  //S.No,View,Edit and Delete columns
+							showColumns = "0,4,5,6";			  					//S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
-								for(var i = 0; i < 4; i++) {
+								for(var i = 0; i < 4; i++) {					//Iterate Columns
 									var x = i + 1;
-									if(columns.includes(x)) {
+									if(columns.includes(x+"")) {
 										showColumns = x + "," + showColumns;
 									} else {
 										hideColumns = x + "," + hideColumns;
@@ -362,7 +343,17 @@
 					</script>
 					<script type="text/javascript">
 					function submitMyForm(action, moduleTypeName, moduleAction, viewType) {
-						$('<form method="post" action="' + action + '"><input type="text" name="id.moduleTypeName" value="' + moduleTypeName + '" /><input type="text" name="id.moduleAction" value="' + moduleAction + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+						var proceed='false';
+						if(viewType==""){
+							if(confirm("Are you sure You want to delete this record?")){
+							proceed='true';
+							}
+						}else{
+							proceed='true';
+						}
+						if(proceed=='true'){
+							$('<form method="post" id="myForm" action="' + action + '"><input type="text" name="id.moduleTypeName" value="' + moduleTypeName + '" /><input type="text" name="id.moduleAction" value="' + moduleAction + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+						}
 					}
 					</script>
 					<script type="text/javascript">

@@ -178,7 +178,7 @@
 																	<div class="col col-md-1">
 																		<div class="btn-group" role="group" aria-label="operation">
 																			<a class="btn btn-success btn-plus btn-sm" href="#"> <i class="fas fa-plus"> </i> </a>&nbsp;
-																			<!-- <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-minus"> </i> </a> --></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -229,23 +229,6 @@
 					<!-- AdminLTE for demo purposes -->
 					<script src="dist/js/demo.js"></script>
 					<!-- Page specific script -->
-					<!-- 	<script>
-  $(function () {
-    /* $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)'); */
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script> -->
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var hideColumns = "";
@@ -304,7 +287,7 @@
 									}
 								}, {
 									data: function(row, type, set) {
-										return " <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are You Sure Want To Delete this record?')\"><i class='fas fa-trash'></i></a>";
+										return " <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure You want to delete this record?')\"><i class='fas fa-trash'></i></a>";
 									}
 								}, ]
 							});
@@ -312,7 +295,7 @@
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true);
+								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true); //Total No.of columns
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
@@ -321,9 +304,9 @@
 							showColumns = "0,4,5,6";			  //S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
-								for(var i = 0; i < 4; i++) {
+								for(var i = 0; i < 4; i++) {		//Iterate Columns
 									var x = i + 1;
-									if(columns.includes(x)) {
+									if(columns.includes(x+"")) {
 										showColumns = x + "," + showColumns;
 									} else {
 										hideColumns = x + "," + hideColumns;
