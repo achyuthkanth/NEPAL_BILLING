@@ -189,7 +189,10 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Hierarchy Master</p> </a>
 						</li>
-						
+						<li class="nav-item"><a href="ViewNewUserMaster"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>New User Master</p> </a>
+						</li>
 						<!-- <li class="nav-item"><a href="viewAppHierarchyLevels"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Hierarchy Master</p> </a>

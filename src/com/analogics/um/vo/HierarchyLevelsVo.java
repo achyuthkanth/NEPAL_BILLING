@@ -3,7 +3,9 @@ package com.analogics.um.vo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HierarchyLevelsVo {
+import com.analogics.utils.ExtraFieldspojo;
+
+public class HierarchyLevelsVo  extends ExtraFieldspojo{
 	private String level1Id="-1";
 	private String level2Id="-1";
 	private String level3Id="-1";

@@ -19,7 +19,8 @@ public class ExtraFieldspojo {
 	
 	private String response;
 	private String reasonResponse;
-	
+	private List<String> userStatusList=new ArrayList<String>();
+	private List<String> bioUserGroupList=new ArrayList<String>();
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
 	}
@@ -85,6 +86,18 @@ public class ExtraFieldspojo {
 	}
 	public void setViewType(String viewType) {
 		this.viewType = viewType;
+	}
+	public List<String> getUserStatusList() {
+		return userStatusList;
+	}
+	public void setUserStatusList(List<String> userStatusList) {
+		this.userStatusList = userStatusList;
+	}
+	public List<String> getBioUserGroupList() {
+		return bioUserGroupList;
+	}
+	public void setBioUserGroupList(List<String> bioUserGroupList) {
+		this.bioUserGroupList = bioUserGroupList;
 	}
 
 }

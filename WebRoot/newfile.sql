@@ -1,6 +1,6 @@
 
 
-
+select * from bio_user_details
 select * from application_master;
 
 
@@ -28,6 +28,6 @@ SELECT level1_Id from hierarchy_level1 where level1_Code='NEA'
 
 insert into hierarchy_level1 (level1_Name ,level1_Code,level1_UniqueCode ) values(?,?,?)
 delete from  hierarchy_level2 where level1_id='1'
-select * from hierarchy_level2;
+select * from hierarchy_level1;
 
 INSERT INTO hierarchy_level2 VALUES(null,'NEA1','NEA1','1_NEA1','1')
