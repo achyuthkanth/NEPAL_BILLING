@@ -919,4 +919,48 @@ public class HierarchyLevelsDao extends BaseHibernateDAO{
 		}
 		return levelId;
 	}
+	public Map<String, String> levelsDataMap(String levelId, String levelValue,
+			String prelevelValue) {
+		Map<String, String> levelMap = new HashMap<String, String>();
+		Session session = null;
+		try {
+			session = getSession();
+			StringBuilder strb = new StringBuilder();
+			Integer preLevelId = Integer.parseInt(levelId) - 1;
+
+			strb.append("select level" + levelId + "Id,level" + levelId
+					+ "Name from HierarchyLevel" + levelId);
+
+			if (!levelValue.equalsIgnoreCase("-1")) {
+				strb.append(" where level" + levelId + "Id=:levelValue");
+			}
+
+			if (!levelId.equalsIgnoreCase("1")) {
+				if (strb.toString().contains("where")) {
+					strb.append(" and ");
+				} else {
+					strb.append(" where ");
+				}
+				strb.append(" level" + preLevelId + "Id=:prelevelValue");
+			}
+			Query queryLevel1Map = session.createQuery(strb.toString());
+			if (!levelValue.equalsIgnoreCase("-1")) {
+				queryLevel1Map.setParameter("levelValue", Integer.parseInt(levelValue));
+			}
+			if (!levelId.equalsIgnoreCase("1")) {
+				queryLevel1Map.setParameter("prelevelValue", Integer.parseInt(prelevelValue));
+			}
+			
+			List<Object[]> list = queryLevel1Map.list();
+			for (Object levelObj[] : list) {
+				levelMap.put(String.valueOf(levelObj[0]), (String) levelObj[1]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return levelMap;
+	}
 }
