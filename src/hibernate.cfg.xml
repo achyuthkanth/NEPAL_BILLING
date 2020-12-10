@@ -64,7 +64,8 @@
 		<mapping resource="com/analogics/um/hbm/UserGroup.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/BioUserDetails.hbm.xml" />
 			<mapping resource="com/analogics/um/hbm/ApplicationMaster.hbm.xml" />
-		
+		<mapping resource="com/analogics/um/hbm/UserGroupActions.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/UserGroupViews.hbm.xml" />
 		
 	</session-factory>
 

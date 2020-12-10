@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UserLoginDetails {
+public class UserLoginDetails extends HierarchyLevelsVo{
 
 	
 	public BioUserDetails biouserdetails = new BioUserDetails();
