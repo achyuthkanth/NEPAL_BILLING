@@ -306,7 +306,7 @@
 							if(columns!=""){
 								for(var i = 0; i < 4; i++) {		//Iterate Columns
 									var x = i + 1;
-									if(columns.includes(x+"")) {
+									if(columns.split(",").includes(x+"")) {	
 										showColumns = x + "," + showColumns;
 									} else {
 										hideColumns = x + "," + hideColumns;

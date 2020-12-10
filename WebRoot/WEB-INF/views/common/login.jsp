@@ -24,9 +24,9 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="login" >
+      <form action="userLogin">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="User name">
+          <input type="text" name="userid" class="form-control" placeholder="User name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="userpassword" class="form-control" placeholder="User password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

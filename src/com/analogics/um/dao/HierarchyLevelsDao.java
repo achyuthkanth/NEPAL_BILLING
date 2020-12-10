@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.analogics.um.vo.ApplicationLevelIndexMaster;
 import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.um.vo.LevelIndexMaster;
 
@@ -697,5 +698,225 @@ public class HierarchyLevelsDao extends BaseHibernateDAO{
 		return response;
 	}
 
+	public Map<String, String> AppnextLevelsMap(String levelId, String levelValue) {
+		Map<String, String> levelMap = new HashMap<String, String>();
+		Integer nextLevelId = Integer.parseInt(levelId) + 1;
+		Session session = null;
+		try {
+			session = getSession();
+			StringBuilder strb = new StringBuilder();
+			strb.append("select level" + nextLevelId + "Id,level" + nextLevelId
+					+ "Name from ApplicationHierarchyLevel" + nextLevelId);
+			if (!levelValue.equalsIgnoreCase("-1")) {
+				strb.append(" where level" + levelId + "Id=:levelValue");
+			}
+			Query queryLevel1Map = session.createQuery(strb.toString());
+			if (!levelValue.equalsIgnoreCase("-1")) {
+				queryLevel1Map.setParameter("levelValue", Integer.parseInt(levelValue));
+			}
+			@SuppressWarnings("unchecked")
+			List<Object[]> list = queryLevel1Map.list();
 
+			for (Object levelObj[] : list) {
+				levelMap.put(String.valueOf(levelObj[0]), (String) levelObj[1]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return levelMap;
+	}
+
+	
+	public int fetchAppIndexId(ApplicationLevelIndexMaster masterObj) {
+		Transaction tr = null;
+		int indexId=0;
+		Session session = null;
+		try {
+			session = getSession();
+			tr = session.beginTransaction();
+			 Query queryObj = session
+						.createSQLQuery("select app_indexid from application_level_index_master where level_1Id=?" +
+								" and level_2Id=? and level_3Id=?" +
+								" and level_4Id=? and level_5Id=?" +
+								" and level_6Id=? and level_7Id=?" +
+								" and level_8Id=? and level_9Id=?" +
+								" and level_10Id=? and level_11Id=?" +
+								" and level_12Id=? and level_13Id=?" +
+								" and level_14Id=? and level_15Id=?");
+				
+				 queryObj.setParameter(0, masterObj.getId().getLevel1id());
+				 queryObj.setParameter(1, masterObj.getId().getLevel2id());
+				 queryObj.setParameter(2, masterObj.getId().getLevel3id());
+				 queryObj.setParameter(3, masterObj.getId().getLevel4id());
+				 queryObj.setParameter(4, masterObj.getId().getLevel5id());
+				 queryObj.setParameter(5, masterObj.getId().getLevel6id());
+				 queryObj.setParameter(6, masterObj.getId().getLevel7id());
+				 queryObj.setParameter(7, masterObj.getId().getLevel8id());
+				 queryObj.setParameter(8, masterObj.getId().getLevel9id());
+				 queryObj.setParameter(9, masterObj.getId().getLevel10id());
+				 queryObj.setParameter(10, masterObj.getId().getLevel11id());
+				 queryObj.setParameter(11, masterObj.getId().getLevel12id());
+				 queryObj.setParameter(12, masterObj.getId().getLevel13id());
+				 queryObj.setParameter(13, masterObj.getId().getLevel14id());
+				 queryObj.setParameter(14, masterObj.getId().getLevel15id());
+				
+				indexId = (Integer) queryObj.list().get(0);
+		} catch (Exception e) {
+			tr.rollback();
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return indexId;
+	}
+
+	public boolean saveAppNewHierarchyLevel(HierarchyLevelsVo hierarchyLevelsVoObj, int appIndexId) {
+		Transaction tr = null;
+		Session session = null;
+		String preLeveluniqCode=null;
+		boolean isSaved = false;
+		ApplicationLevelIndexMaster levelIndexObj = hierarchyLevelsVoObj
+				.getAppLevelIndexObj();
+		try {
+			session = getSession();
+			tr = session.beginTransaction();
+			StringBuilder strb = new StringBuilder();
+
+			Integer levelCount = Integer.parseInt(hierarchyLevelsVoObj.getLevelCount());
+			Integer preCountInteger = levelCount - 1;
+
+			String prelevelId = preLevelId(levelIndexObj);
+			if(levelCount!=1){
+				preLeveluniqCode = appIndexId + "_"+ hierarchyLevelsVoObj.getLevelName();
+			}else{
+				preLeveluniqCode = hierarchyLevelsVoObj.getLevelName();
+			}
+			 
+
+			strb.append("insert into application_hierarchy_level" + levelCount);
+			strb.append(" (level" + levelCount + "_Name");
+			strb.append(" ,level" + levelCount + "_Code,level" + levelCount
+					+ "_UniqueCode ");
+			if (levelCount != 1) {
+				strb.append(",level" + preCountInteger + "_Id");
+			} else {
+				strb.append(",applicationUniqueId");
+			}
+			strb.append(") values(?,?,?");
+			if (levelCount != 1) {
+				strb.append(",?");
+			} else {
+				strb.append(",?");
+			}
+			strb.append(")");
+
+			Query queryObj = session.createSQLQuery(strb.toString());
+			queryObj.setParameter(0, hierarchyLevelsVoObj.getLevelName());
+			queryObj.setParameter(1, hierarchyLevelsVoObj.getLevelCode());
+			queryObj.setParameter(2, preLeveluniqCode);
+			if (levelCount != 1) {
+				queryObj.setParameter(3, Integer.parseInt(prelevelId));
+			}else {
+				queryObj.setParameter(3, hierarchyLevelsVoObj.gethApplicationUniqueId() );
+			}
+			int insertFlag = queryObj.executeUpdate();
+			if (insertFlag == 1) {
+				isSaved = true;
+			}
+			if (isSaved == true) {
+				isSaved = false;
+				String strData = "select level" + levelCount
+						+ "_Id from application_hierarchy_level" + levelCount
+						+ " where level" + levelCount + "_UniqueCode=?";
+				Query qObj = session.createSQLQuery(strData);
+				qObj.setParameter(0, preLeveluniqCode);
+				Integer levelId = (Integer) qObj.list().get(0);
+
+				if (levelCount == 1)
+					levelIndexObj.getId().setLevel1id(levelId);
+				if (levelCount == 2)
+					levelIndexObj.getId().setLevel2id(levelId);
+				if (levelCount == 3)
+					levelIndexObj.getId().setLevel3id(levelId);
+				if (levelCount == 4)
+					levelIndexObj.getId().setLevel4id(levelId);
+				if (levelCount == 5)
+					levelIndexObj.getId().setLevel5id(levelId);
+				if (levelCount == 6)
+					levelIndexObj.getId().setLevel6id(levelId);
+				if (levelCount == 7)
+					levelIndexObj.getId().setLevel7id(levelId);
+				if (levelCount == 8)
+					levelIndexObj.getId().setLevel8id(levelId);
+				if (levelCount == 9)
+					levelIndexObj.getId().setLevel9id(levelId);
+				if (levelCount == 10)
+					levelIndexObj.getId().setLevel10id(levelId);
+				if (levelCount == 11)
+					levelIndexObj.getId().setLevel11id(levelId);
+				if (levelCount == 12)
+					levelIndexObj.getId().setLevel12id(levelId);
+				if (levelCount == 13)
+					levelIndexObj.getId().setLevel13id(levelId);
+				if (levelCount == 14)
+					levelIndexObj.getId().setLevel14id(levelId);
+				if (levelCount == 15)
+					levelIndexObj.getId().setLevel15id(levelId);
+
+				session.save(levelIndexObj);
+				tr.commit();
+				isSaved = true;
+			}
+		} catch (Exception e) {
+			tr.rollback();
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return isSaved;
+	}
+
+	private String preLevelId(ApplicationLevelIndexMaster levelIndexObj) {
+		String levelId = "0";
+		try {
+			if (levelIndexObj.getId().getLevel1id() != -1)
+				levelId = levelIndexObj.getId().getLevel1id() + "";
+			if (levelIndexObj.getId().getLevel2id() != -1)
+				levelId = levelIndexObj.getId().getLevel2id() + "";
+			if (levelIndexObj.getId().getLevel3id() != -1)
+				levelId = levelIndexObj.getId().getLevel3id() + "";
+			if (levelIndexObj.getId().getLevel4id() != -1)
+				levelId = levelIndexObj.getId().getLevel4id() + "";
+			if (levelIndexObj.getId().getLevel5id() != -1)
+				levelId = levelIndexObj.getId().getLevel5id() + "";
+			if (levelIndexObj.getId().getLevel6id() != -1)
+				levelId = levelIndexObj.getId().getLevel6id() + "";
+			if (levelIndexObj.getId().getLevel7id() != -1)
+				levelId = levelIndexObj.getId().getLevel7id() + "";
+			if (levelIndexObj.getId().getLevel8id() != -1)
+				levelId = levelIndexObj.getId().getLevel8id() + "";
+			if (levelIndexObj.getId().getLevel9id() != -1)
+				levelId = levelIndexObj.getId().getLevel9id() + "";
+			if (levelIndexObj.getId().getLevel10id() != -1)
+				levelId = levelIndexObj.getId().getLevel10id() + "";
+			if (levelIndexObj.getId().getLevel11id() != -1)
+				levelId = levelIndexObj.getId().getLevel11id() + "";
+			if (levelIndexObj.getId().getLevel12id() != -1)
+				levelId = levelIndexObj.getId().getLevel12id() + "";
+			if (levelIndexObj.getId().getLevel13id() != -1)
+				levelId = levelIndexObj.getId().getLevel13id() + "";
+			if (levelIndexObj.getId().getLevel14id() != -1)
+				levelId = levelIndexObj.getId().getLevel14id() + "";
+			if (levelIndexObj.getId().getLevel15id() != -1)
+				levelId = levelIndexObj.getId().getLevel15id() + "";
+		} catch (Exception e) {
+//			e.printStackTrace();
+		}
+		return levelId;
+	}
 }

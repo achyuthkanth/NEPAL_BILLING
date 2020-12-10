@@ -12,3 +12,7 @@ select * from module_Master master  where  master.moduleTypeName like '%bb%'  an
 
 select * from module_Master master  where  master.module_Type_Name like '%aa%'  or 
  master.module_Description = 'ss'  or master.module_Description like '%tt%'
+ 
+ select * from application_master;
+ 
+ select * from application_master master  where  master.applicationname = 'Atil'  order by master.applicationuniquecode asc

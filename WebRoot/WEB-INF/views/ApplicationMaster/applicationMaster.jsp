@@ -49,7 +49,7 @@
 				</div>
 				<!-- /.container-fluid -->
 			</section>
-
+		<c:if test="${command.viewType=='Edit' || command.viewType==null}">
 			<form:form action="saveOrUpdateApplicationMaster">
 			<section class="content">
 				<div class="container-fluid">
@@ -71,54 +71,64 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Application Name</label> <input type="text" required="required"
-											name="applicationname" class="form-control"
+											name="applicationname" class="form-control" value="${command.applicationname}"
 											placeholder="Application Name">
+											<form:hidden path="applicationuniqueid"></form:hidden>
+											<form:hidden path="applicationuniquecode"></form:hidden>
 									</div>
 									<div class="form-group">
 										<label>Owner Name</label> <input type="text" required="required"
-											name="applicationowner" class="form-control"
+											name="applicationowner" class="form-control" value="${command.applicationowner}"
 											placeholder="Application Owner Name">
 									</div>
 									 <div class="form-group">
 						                  <label>Base Hierarchy Level</label>
-						                  <select class="form-control select2" name="level1Id" >
-						                    <option value="0" >Level-0</option>
-						                    <option value="1">Level-1</option>
-						                    <option value="1">Level-2</option>
-						                    <option value="1">Level-3</option>
-						                    <option value="1">Level-4</option>
-						                    <option value="1">Level-5</option>
-						                    <option value="1">Level-6</option>
-						                  </select>
+						                  <form:select path="level1Id" class="form-control select2">
+										<%-- 	<form:option value="1" label="Select" /> --%>
+										<form:options items="${command.levelMapList}"/>
+										</form:select>
 					                </div>
 					                <div class="form-group">
-										<label>No Of Application Hierarchies </label> <input type="number"  value="0"
-											name="subhierarchylevel" class="form-control"
+										<label>No Of Application Hierarchies </label> <input type="number" 
+											name="subhierarchylevel" class="form-control" value="${command.subhierarchylevel}"
 											placeholder="No Of Application Hierarchies">
 									</div>
-									
+									<div class="form-group">
+										<label>Application Status </label> 
+										<form:select path="applicationstatus" class="form-control">
+											<form:option value="NONE" label="Select" />
+											<form:options items="${command.applicationStatusList}"/>
+										</form:select>
+									</div>
 
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Application Short Code</label> <input type="text"
-											name="applicationid" class="form-control"
+											name="applicationid" class="form-control" value="${command.applicationid}"
 											placeholder="Application Short Code">
 									</div>
 									<div class="form-group">
-										<label>No Of Organization Hierarchies </label> <input type="number" value="0"
-											name="orghierarchylevel" class="form-control"
+										<label>No Of Organization Hierarchies </label> <input type="number"
+											name="orghierarchylevel" class="form-control" value="${command.orghierarchylevel}"
 											placeholder="No Of Organization Hierarchies">
 									</div>
 									<div class="form-group">
-										<label>No Of Persons Allowed </label> <input type="number" value="0"
-											name="personsallowed" class="form-control"
+										<label>No Of Persons Allowed </label> <input type="number"
+											name="personsallowed" class="form-control" value="${command.personsallowed}"
 											placeholder="No Of Persons Allowed">
 									</div>
 									<div class="form-group">
-										<label>No Of Users Allowed </label> <input type="number" value="0"
-											name="appusersallowed" class="form-control"
+										<label>No Of Users Allowed </label> <input type="number" 
+											name="appusersallowed" class="form-control" value="${command.appusersallowed}"
 											placeholder="No Of Users Allowed">
+									</div>
+									<div class="form-group">
+										<label>Sub Hierarchy Level Type </label> 
+										<form:select path="subhierarchyleveltype" class="form-control">
+											<form:option value="NONE" label="Select" />
+											<form:options items="${command.organizationList}"/>
+										</form:select>
 									</div>
 								</div>
 							</div>
@@ -145,24 +155,27 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Primary Contact</label> <input type="number"
-											name="primarycontact" class="form-control"
+											name="primarycontact" class="form-control" value="${command.primarycontact}"
 											placeholder="Primary Contact">
 									</div>
 									<div class="form-group">
 										<label>Address</label> 
-										<textarea rows="3" name="contactaddress" class="form-control"
-											placeholder="Address"></textarea>
+										 <input type="text"
+											name="contactaddress" class="form-control" value="${command.contactaddress}"
+											placeholder="Address">
+										<%-- <textarea rows="3" name="contactaddress" class="form-control"
+											placeholder="Address" value="${command.contactaddress}"></textarea> --%>
 									</div>
 									
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Alternate Contact</label> <input type="number"
-											name="alternatecontact" class="form-control"
+											name="alternatecontact" class="form-control" value="${command.alternatecontact}"
 											placeholder="Alternate Contact">
 									</div>
 									<div class="form-group">
-										<label>Email Address</label> <input type="email"
+										<label>Email Address</label> <input type="email" value="${command.emailaddress}"
 											name="emailaddress" class="form-control"
 											placeholder="Email Address">
 									</div>
@@ -179,6 +192,108 @@
 				</div>
 			</section>
 		</form:form>
+	</c:if>
+
+	<c:if test="${command.viewType=='View'}">
+		<section class="content">
+				<div class="container-fluid">
+					<!-- SELECT2 EXAMPLE -->
+					<div class="card card-default">
+						<div class="card-header">
+							<h3 class="card-title">Application Master Information</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								
+							</div>
+						</div>
+						<div class="card-body">
+							<dl class="row">
+								<dt class="col-sm-4">Application Name</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.applicationname}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Owner Name</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.applicationowner}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Base Hierarchy Level</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.level1Id}"></c:out>
+								</dd>
+								<dt class="col-sm-4">No Of Application Hierarchies</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.subhierarchylevel}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Application Status</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.applicationstatus}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Application Short Code</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.applicationid}"></c:out>
+								</dd>
+								<dt class="col-sm-4">No Of Organization Hierarchies</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.orghierarchylevel}"></c:out>
+								</dd>
+								<dt class="col-sm-4">No Of Persons Allowed</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.personsallowed}"></c:out>
+								</dd>
+								<dt class="col-sm-4">No Of Users Allowed</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.appusersallowed}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Sub Hierarchy Level Type</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.subhierarchyleveltype}"></c:out>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<section class="content">
+				<div class="container-fluid">
+					<!-- SELECT2 EXAMPLE -->
+					<div class="card card-default">
+						<div class="card-header">
+							<h3 class="card-title">Contact Information</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body">
+							<dl class="row">
+								<dt class="col-sm-4">Primary Contact</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.primarycontact}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Address</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.contactaddress}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Alternate Contact</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.alternatecontact}"></c:out>
+								</dd>
+								<dt class="col-sm-4">Email Address</dt>
+								<dd class="col-sm-8">
+									<c:out value="${command.emailaddress}"></c:out>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</section>
+	</c:if>
 
 			<!-- Main content -->
 			<section class="content">
@@ -406,7 +521,7 @@
 									}
 								}, {
 									data: function(row, type, set) {
-										return " <a href='deleteApplicationMaster?moduleTypeName=" + row.applicationuniquecode + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure You want to delete this record?')\"><i class='fas fa-trash'></i></a>";
+										return " <a href='deleteApplicationMaster?applicationuniquecode=" + row.applicationuniquecode + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure You want to delete this record?')\"><i class='fas fa-trash'></i></a>";
 									}
 								}, ]
 							});
@@ -425,7 +540,7 @@
 							if(columns!=""){
 								for(var i = 0; i < 17; i++) {		//Iterate Columns
 									var x = i + 1;
-									if(columns.includes(x+"")) {	
+									if(columns.split(",").includes(x+"")) {	
 										showColumns = x + "," + showColumns;
 									} else {
 										hideColumns = x + "," + hideColumns;
@@ -475,10 +590,10 @@
 					</script>
 					<script type="text/javascript">
 					$(document).ready(function() {
-						if($(".moduleNameClass").val() == '') {
-							$(".moduleNameClass").prop('readonly', false);
+						if($(".applicationNameClass").val() == '') {
+							$(".applicationNameClass").prop('readonly', false);
 						} else {
-							$(".moduleNameClass").prop('readonly', 'true');
+							$(".applicationNameClass").prop('readonly', 'true');
 						}
 					});
 					</script>

@@ -1,13 +1,14 @@
 package com.analogics.um.controllers;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +28,7 @@ import com.google.gson.GsonBuilder;
 
 /**
  * 
- * @author achyuth kanth pamuru
+ * @author Sandhya.B
  *
  */
 @Controller
@@ -41,71 +42,11 @@ public class ApplicationMasterController {
 		try {
 			model =new ModelAndView("ApplicationMaster/applicationMaster",
 					"command", masterObj);
-			masterObj.setLevelMapList(fetchLevelMapList());
 			model.addObject("command", fetchApplicationMasterColumsMap(masterObj));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return model;
-	}
-
-	private Object fetchApplicationMasterColumsMap(ApplicationMaster masterObj) {
-		try {
-			Map<String, String> columnsMap = new HashMap<String, String>();
-			columnsMap.put("1", "Application Unique Code");
-			columnsMap.put("2", "Application Name");
-			columnsMap.put("3", "Application Id");
-			columnsMap.put("4", "Application Owner");
-			columnsMap.put("5", "Primary Contact");
-			columnsMap.put("6", "Alternate Contact");
-			columnsMap.put("7", "Contact Address");
-			columnsMap.put("8", "Email Address");
-			columnsMap.put("9", "Persons Allowed");
-			columnsMap.put("10", "Appusers Allowed");
-			columnsMap.put("11", "Application Status");
-			columnsMap.put("12", "Level1 Id");
-			columnsMap.put("13", "Org Hierarchy Level");
-			columnsMap.put("14", "Sub hierarchyLevel");
-			columnsMap.put("15", "Sub HierarchyLevel Type");
-			columnsMap.put("16", "Application Unique Id");
-			masterObj.setColumnsMap(columnsMap);
-			
-			Map<String,String> searchColumnsMap=new HashMap<String,String>();
-			searchColumnsMap.put("applicationuniquecode", "APPLICATION UNIQUE CODE");
-			searchColumnsMap.put("applicationname", "APPLICATION NAME");
-			searchColumnsMap.put("applicationid", "APPLICATION ID");
-			masterObj.setSearchColumnsMap(searchColumnsMap);
-			
-			List<String> conditionListStr = new ArrayList<String>();
-			conditionListStr.add("EQUAL TO");
-			conditionListStr.add("LIKE");
-			conditionListStr.add("NOT EQUAL TO");
-			masterObj.setConditionListStr(conditionListStr);
-			
-			Map<String, String> appstatusList = new HashMap<String, String>();
-			appstatusList.put("ENABLE", "ENABLE");
-			appstatusList.put("DISABLE", "DISABLE");
-			masterObj.setApplicationStatusList(appstatusList);
-			
-			Map<String, String> organizationList = new HashMap<String, String>();
-			organizationList.put("ORGANIZATION", "ORGANIZATION");
-			organizationList.put("APPLICATION", "APPLICATION");
-			masterObj.setOrganizationList(organizationList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return masterObj;
-	}
-	
-	private Map<Integer, String> fetchLevelMapList() {
-		Map<Integer, String> levelMapList = new HashMap<Integer, String>();
-		ApplicationMasterDao masterDaoObj = new ApplicationMasterDao();
-		try {
-			levelMapList = masterDaoObj.fetchLevelMapList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return levelMapList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -158,12 +99,13 @@ public class ApplicationMasterController {
 		boolean isSaved = false;
 		try {
 			CommonDAO daoObj = new CommonDAO();
-			HttpSession session = request.getSession();
-			UserLoginDetails userLoginSessionObj=(UserLoginDetails)session.getAttribute("userLoginSessionObj"); 
-			masterObj.setInserteduser(userLoginSessionObj.getBiouserdetails().getUserid());
+//			HttpSession session = request.getSession();
+//			UserLoginDetails userLoginSessionObj=(UserLoginDetails)session.getAttribute("sessionObj"); 
+//			masterObj.setInserteduser(userLoginSessionObj.getBiouserdetails().getUserid());
 			masterObj.setInserteddate(new Timestamp(new Date().getTime()));
-			masterObj.setApplicationid(masterObj.getApplicationname());
-			masterObj.setApplicationuniquecode(masterObj.getApplicationname());
+			if(masterObj.getApplicationuniquecode()==null || masterObj.getApplicationuniquecode()==""){
+				masterObj.setApplicationuniquecode(masterObj.getApplicationname());
+			}
 			isSaved = daoObj.saveOrUpdate(masterObj);
 			if (isSaved == true) {
 				model = new ModelAndView("redirect:/applicationMaster");
@@ -211,6 +153,67 @@ public class ApplicationMasterController {
 			e.printStackTrace();
 		}
 		return model;
+	}
+	
+	
+	private Object fetchApplicationMasterColumsMap(ApplicationMaster masterObj) {
+		try {
+			Map<String, String> columnsMap = new HashMap<String, String>();
+			columnsMap.put("1", "Application Unique Code");
+			columnsMap.put("2", "Application Name");
+			columnsMap.put("3", "Application Id");
+			columnsMap.put("4", "Application Owner");
+			columnsMap.put("5", "Primary Contact");
+			columnsMap.put("6", "Alternate Contact");
+			columnsMap.put("7", "Contact Address");
+			columnsMap.put("8", "Email Address");
+			columnsMap.put("9", "Persons Allowed");
+			columnsMap.put("10", "Appusers Allowed");
+			columnsMap.put("11", "Application Status");
+			columnsMap.put("12", "Level1 Id");
+			columnsMap.put("13", "Org Hierarchy Level");
+			columnsMap.put("14", "Sub hierarchyLevel");
+			columnsMap.put("15", "Sub HierarchyLevel Type");
+			columnsMap.put("16", "Application Unique Id");
+			masterObj.setColumnsMap(columnsMap);
+			
+			Map<String,String> searchColumnsMap=new HashMap<String,String>();
+			searchColumnsMap.put("applicationuniquecode", "APPLICATION UNIQUE CODE");
+			searchColumnsMap.put("applicationname", "APPLICATION NAME");
+			searchColumnsMap.put("applicationid", "APPLICATION ID");
+			masterObj.setSearchColumnsMap(searchColumnsMap);
+			
+			List<String> conditionListStr = new ArrayList<String>();
+			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("LIKE");
+			conditionListStr.add("NOT EQUAL TO");
+			masterObj.setConditionListStr(conditionListStr);
+			
+			Map<String, String> appstatusList = new HashMap<String, String>();
+			appstatusList.put("ENABLE", "ENABLE");
+			appstatusList.put("DISABLE", "DISABLE");
+			masterObj.setApplicationStatusList(appstatusList);
+			
+			Map<String, String> organizationList = new HashMap<String, String>();
+			organizationList.put("ORGANIZATION", "ORGANIZATION");
+			organizationList.put("APPLICATION", "APPLICATION");
+			masterObj.setOrganizationList(organizationList);
+			masterObj.setLevelMapList(fetchLevelMapList());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return masterObj;
+	}
+	
+	private Map<Integer, String> fetchLevelMapList() {
+		Map<Integer, String> levelMapList = new HashMap<Integer, String>();
+		ApplicationMasterDao masterDaoObj = new ApplicationMasterDao();
+		try {
+			levelMapList = masterDaoObj.fetchLevelMapList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return levelMapList;
 	}
 	
 

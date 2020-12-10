@@ -37,7 +37,7 @@ public class HierarchyLevelsController {
 
 	@RequestMapping("viewHierarchyLevels")
 	public ModelAndView viewHierarchyLevels() {
-		ModelAndView model = new ModelAndView("HierarchyLevels/error.jsp");
+		ModelAndView model = new ModelAndView("common/error.jsp");
 		HierarchyLevelsVo hierObj = new HierarchyLevelsVo();
 		Map<String, String> levelMap = new HashMap<String, String>();
 		try {

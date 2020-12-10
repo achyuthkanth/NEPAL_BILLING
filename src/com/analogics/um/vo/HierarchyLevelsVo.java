@@ -3,7 +3,9 @@ package com.analogics.um.vo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HierarchyLevelsVo {
+import com.analogics.utils.ExtraFieldspojo;
+
+public class HierarchyLevelsVo  extends ExtraFieldspojo{
 	private String level1Id="-1";
 	private String level2Id="-1";
 	private String level3Id="-1";
@@ -37,16 +39,56 @@ public class HierarchyLevelsVo {
 	private Map<String,String> level15Map=new HashMap<String,String>();
 	
 	
+	
+	
+	private String appLevel1Id="-1";
+	private String appLevel2Id="-1";
+	private String appLevel3Id="-1";
+	private String appLevel4Id="-1";
+	private String appLevel5Id="-1";
+	private String appLevel6Id="-1";
+	private String appLevel7Id="-1";
+	private String appLevel8Id="-1";
+	private String appLevel9Id="-1";
+	private String appLevel10Id="-1";
+	private String appLevel11Id="-1";
+	private String appLevel12Id="-1";
+	private String appLevel13Id="-1";
+	private String appLevel14Id="-1";
+	private String appLevel15Id="-1";
+	
+	private Map<String,String> appLevel1Map=new HashMap<String,String>();
+	private Map<String,String> appLevel2Map=new HashMap<String,String>();
+	private Map<String,String> appLevel3Map=new HashMap<String,String>();
+	private Map<String,String> appLevel4Map=new HashMap<String,String>();
+    private Map<String,String> appLevel5Map=new HashMap<String,String>();
+	private Map<String,String> appLevel6Map=new HashMap<String,String>();
+	private Map<String,String> appLevel7Map=new HashMap<String,String>();
+	private Map<String,String> appLevel8Map=new HashMap<String,String>();
+	private Map<String,String> appLevel9Map=new HashMap<String,String>();
+	private Map<String,String> appLevel10Map=new HashMap<String,String>();
+	private Map<String,String> appLevel11Map=new HashMap<String,String>();
+	private Map<String,String> appLevel12Map=new HashMap<String,String>();
+	private Map<String,String> appLevel13Map=new HashMap<String,String>();
+	private Map<String,String> appLevel14Map=new HashMap<String,String>();
+	private Map<String,String> appLevel15Map=new HashMap<String,String>();
+	
+	
+	
+	
 	private String hLevelId;
 	private String hLevelName;
 	private String hLevelCode;
 	private String hLevelUniqueCode;
 	private String hPreviousLevelId;
 	private LevelIndexMaster levelIndexObj;
+	private ApplicationLevelIndexMaster appLevelIndexObj;
 	private String levelCount;
 	private String levelCode;
 	private String levelName;
 	private String levelUniqueCode;
+	private String hApplicationUniqueId;
+	
 	public String getLevel1Id() {
 		return level1Id;
 	}
@@ -286,5 +328,197 @@ public class HierarchyLevelsVo {
 	}
 	public void setLevelCount(String levelCount) {
 		this.levelCount = levelCount;
+	}
+	public String getAppLevel1Id() {
+		return appLevel1Id;
+	}
+	public void setAppLevel1Id(String appLevel1Id) {
+		this.appLevel1Id = appLevel1Id;
+	}
+	public String getAppLevel2Id() {
+		return appLevel2Id;
+	}
+	public void setAppLevel2Id(String appLevel2Id) {
+		this.appLevel2Id = appLevel2Id;
+	}
+	public String getAppLevel3Id() {
+		return appLevel3Id;
+	}
+	public void setAppLevel3Id(String appLevel3Id) {
+		this.appLevel3Id = appLevel3Id;
+	}
+	public String getAppLevel4Id() {
+		return appLevel4Id;
+	}
+	public void setAppLevel4Id(String appLevel4Id) {
+		this.appLevel4Id = appLevel4Id;
+	}
+	public String getAppLevel5Id() {
+		return appLevel5Id;
+	}
+	public void setAppLevel5Id(String appLevel5Id) {
+		this.appLevel5Id = appLevel5Id;
+	}
+	public String getAppLevel6Id() {
+		return appLevel6Id;
+	}
+	public void setAppLevel6Id(String appLevel6Id) {
+		this.appLevel6Id = appLevel6Id;
+	}
+	public String getAppLevel7Id() {
+		return appLevel7Id;
+	}
+	public void setAppLevel7Id(String appLevel7Id) {
+		this.appLevel7Id = appLevel7Id;
+	}
+	public String getAppLevel8Id() {
+		return appLevel8Id;
+	}
+	public void setAppLevel8Id(String appLevel8Id) {
+		this.appLevel8Id = appLevel8Id;
+	}
+	public String getAppLevel9Id() {
+		return appLevel9Id;
+	}
+	public void setAppLevel9Id(String appLevel9Id) {
+		this.appLevel9Id = appLevel9Id;
+	}
+	public String getAppLevel10Id() {
+		return appLevel10Id;
+	}
+	public void setAppLevel10Id(String appLevel10Id) {
+		this.appLevel10Id = appLevel10Id;
+	}
+	public String getAppLevel11Id() {
+		return appLevel11Id;
+	}
+	public void setAppLevel11Id(String appLevel11Id) {
+		this.appLevel11Id = appLevel11Id;
+	}
+	public String getAppLevel12Id() {
+		return appLevel12Id;
+	}
+	public void setAppLevel12Id(String appLevel12Id) {
+		this.appLevel12Id = appLevel12Id;
+	}
+	public String getAppLevel13Id() {
+		return appLevel13Id;
+	}
+	public void setAppLevel13Id(String appLevel13Id) {
+		this.appLevel13Id = appLevel13Id;
+	}
+	public String getAppLevel14Id() {
+		return appLevel14Id;
+	}
+	public void setAppLevel14Id(String appLevel14Id) {
+		this.appLevel14Id = appLevel14Id;
+	}
+	public String getAppLevel15Id() {
+		return appLevel15Id;
+	}
+	public void setAppLevel15Id(String appLevel15Id) {
+		this.appLevel15Id = appLevel15Id;
+	}
+	public Map<String, String> getAppLevel1Map() {
+		return appLevel1Map;
+	}
+	public void setAppLevel1Map(Map<String, String> appLevel1Map) {
+		this.appLevel1Map = appLevel1Map;
+	}
+	public Map<String, String> getAppLevel2Map() {
+		return appLevel2Map;
+	}
+	public void setAppLevel2Map(Map<String, String> appLevel2Map) {
+		this.appLevel2Map = appLevel2Map;
+	}
+	public Map<String, String> getAppLevel3Map() {
+		return appLevel3Map;
+	}
+	public void setAppLevel3Map(Map<String, String> appLevel3Map) {
+		this.appLevel3Map = appLevel3Map;
+	}
+	public Map<String, String> getAppLevel4Map() {
+		return appLevel4Map;
+	}
+	public void setAppLevel4Map(Map<String, String> appLevel4Map) {
+		this.appLevel4Map = appLevel4Map;
+	}
+	public Map<String, String> getAppLevel5Map() {
+		return appLevel5Map;
+	}
+	public void setAppLevel5Map(Map<String, String> appLevel5Map) {
+		this.appLevel5Map = appLevel5Map;
+	}
+	public Map<String, String> getAppLevel6Map() {
+		return appLevel6Map;
+	}
+	public void setAppLevel6Map(Map<String, String> appLevel6Map) {
+		this.appLevel6Map = appLevel6Map;
+	}
+	public Map<String, String> getAppLevel7Map() {
+		return appLevel7Map;
+	}
+	public void setAppLevel7Map(Map<String, String> appLevel7Map) {
+		this.appLevel7Map = appLevel7Map;
+	}
+	public Map<String, String> getAppLevel8Map() {
+		return appLevel8Map;
+	}
+	public void setAppLevel8Map(Map<String, String> appLevel8Map) {
+		this.appLevel8Map = appLevel8Map;
+	}
+	public Map<String, String> getAppLevel9Map() {
+		return appLevel9Map;
+	}
+	public void setAppLevel9Map(Map<String, String> appLevel9Map) {
+		this.appLevel9Map = appLevel9Map;
+	}
+	public Map<String, String> getAppLevel10Map() {
+		return appLevel10Map;
+	}
+	public void setAppLevel10Map(Map<String, String> appLevel10Map) {
+		this.appLevel10Map = appLevel10Map;
+	}
+	public Map<String, String> getAppLevel11Map() {
+		return appLevel11Map;
+	}
+	public void setAppLevel11Map(Map<String, String> appLevel11Map) {
+		this.appLevel11Map = appLevel11Map;
+	}
+	public Map<String, String> getAppLevel12Map() {
+		return appLevel12Map;
+	}
+	public void setAppLevel12Map(Map<String, String> appLevel12Map) {
+		this.appLevel12Map = appLevel12Map;
+	}
+	public Map<String, String> getAppLevel13Map() {
+		return appLevel13Map;
+	}
+	public void setAppLevel13Map(Map<String, String> appLevel13Map) {
+		this.appLevel13Map = appLevel13Map;
+	}
+	public Map<String, String> getAppLevel14Map() {
+		return appLevel14Map;
+	}
+	public void setAppLevel14Map(Map<String, String> appLevel14Map) {
+		this.appLevel14Map = appLevel14Map;
+	}
+	public Map<String, String> getAppLevel15Map() {
+		return appLevel15Map;
+	}
+	public void setAppLevel15Map(Map<String, String> appLevel15Map) {
+		this.appLevel15Map = appLevel15Map;
+	}
+	public ApplicationLevelIndexMaster getAppLevelIndexObj() {
+		return appLevelIndexObj;
+	}
+	public void setAppLevelIndexObj(ApplicationLevelIndexMaster appLevelIndexObj) {
+		this.appLevelIndexObj = appLevelIndexObj;
+	}
+	public String gethApplicationUniqueId() {
+		return hApplicationUniqueId;
+	}
+	public void sethApplicationUniqueId(String hApplicationUniqueId) {
+		this.hApplicationUniqueId = hApplicationUniqueId;
 	}
 }

@@ -26,6 +26,9 @@ public class ExtraFieldspojo {
 	private Map<String,String> organizationList = new HashMap<String,String>();
 	private Map<Integer,String> levelMapList = new HashMap<Integer, String>();
 	
+	private List<String> userStatusList=new ArrayList<String>();
+	private List<String> bioUserGroupList=new ArrayList<String>();
+	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
 	}
@@ -92,6 +95,7 @@ public class ExtraFieldspojo {
 	public void setViewType(String viewType) {
 		this.viewType = viewType;
 	}
+
 	public Map<String, String> getApplicationStatusList() {
 		return applicationStatusList;
 	}
@@ -109,6 +113,18 @@ public class ExtraFieldspojo {
 	}
 	public void setLevelMapList(Map<Integer, String> levelMapList) {
 		this.levelMapList = levelMapList;
+	}
+	public List<String> getUserStatusList() {
+		return userStatusList;
+	}
+	public void setUserStatusList(List<String> userStatusList) {
+		this.userStatusList = userStatusList;
+	}
+	public List<String> getBioUserGroupList() {
+		return bioUserGroupList;
+	}
+	public void setBioUserGroupList(List<String> bioUserGroupList) {
+		this.bioUserGroupList = bioUserGroupList;
 	}
 
 }

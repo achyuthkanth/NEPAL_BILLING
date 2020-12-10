@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * BioUserDetails entity. @author MyEclipse Persistence Tools
  */
 
-public class BioUserDetails implements java.io.Serializable {
+public class BioUserDetails extends HierarchyLevelsVo implements java.io.Serializable {
 
 	private static final long serialVersionUID = 4204225870201504648L;
 	private String userid;

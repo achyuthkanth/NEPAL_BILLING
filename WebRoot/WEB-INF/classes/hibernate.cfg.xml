@@ -13,7 +13,7 @@
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<property name="myeclipse.connection.profile">postgres</property>
 
-
+<!-- Hierarchy Levels -->
 		<mapping resource="com/analogics/um/hbm/HierarchyLevel1.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/HierarchyLevel2.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/HierarchyLevel3.hbm.xml" />
@@ -31,6 +31,28 @@
 		<mapping resource="com/analogics/um/hbm/HierarchyLevel15.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/LevelIndexMaster.hbm.xml" />
 		
+		<!-- App Hierarchy Levels -->
+		
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel1.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel2.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel3.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel4.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel5.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel6.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel7.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel8.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel9.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel10.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel11.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel12.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel13.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel14.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationHierarchyLevel15.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/ApplicationLevelIndexMaster.hbm.xml" />
+		
+		
+		<!--Um Masters-->
+		
 		<mapping resource="com/analogics/um/hbm/ModuleMaster.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ModuleDetails.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ApplicationMaster.hbm.xml" />
@@ -40,6 +62,8 @@
 		<mapping resource="com/analogics/um/hbm/ViewsMaster2.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ViewsMaster3.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ViewsMaster4.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/UserGroup.hbm.xml" />
+		<mapping resource="com/analogics/um/hbm/BioUserDetails.hbm.xml" />
 		
 		
 	</session-factory>
