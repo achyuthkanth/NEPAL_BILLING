@@ -8,6 +8,7 @@ public class ParamTableId implements java.io.Serializable {
 
 	// Fields
 
+	private static final long serialVersionUID = 7600124703153695199L;
 	private String paramType;
 	private String paramName;
 

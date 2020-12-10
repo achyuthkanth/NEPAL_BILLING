@@ -23,7 +23,7 @@ import com.analogics.utils.EncAndDecLogic;
 public class LoginController {
 	HierarchyLevelsDao daoObj = new HierarchyLevelsDao();
 	UserLoginDao loginDaoObj = new UserLoginDao();
-	/*@RequestMapping(value="/userLogin",method=RequestMethod.POST)
+	@RequestMapping(value="/userLogin",method=RequestMethod.POST)
 	public ModelAndView userLogin(@RequestParam("userid")String userid,
 			@RequestParam("userpassword")String userpassword,HttpServletRequest request){
 		
@@ -80,14 +80,10 @@ public class LoginController {
 		}
 		return model;
 	}
-	*/
 	
 	
 	
 	
-<<<<<<< HEAD
-	@RequestMapping(value = "/userLogin", method = RequestMethod.GET)
-=======
 	
 
 
@@ -162,10 +158,12 @@ public class LoginController {
 
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
->>>>>>> 1cb3dfebc5c8521b2b145dbe788cb2839c0d9b87
 	public ModelAndView sampleCall(HttpServletRequest request ,HttpServletResponse response) {
 		ModelAndView model = new ModelAndView("common/error");
 		try {
+			
+			
+			
 			
 			System.out.println("in login");
 			model=new ModelAndView("common/homepage");
