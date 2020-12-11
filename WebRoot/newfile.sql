@@ -12,7 +12,6 @@ select * from hierarchy_level2;
 select * from hierarchy_level3;
 select * from level_index_master;
 
-delete from hierarchy_level2 where level2_id='7'
 
 
 

@@ -209,15 +209,12 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Master</p> </a>
 						</li>
-<<<<<<< HEAD
 						<li class="nav-item"><a href="paramDetailsAction"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Param Master</p> </a>
 						</li>
 						<li class="nav-item"><a href="userGroups"
-=======
 						<li class="nav-item"><a href="viewUserGroup"
->>>>>>> d589440f631bc1637a8118242358b9c0d1cc8d9e
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>User Groups</p> </a>
 						</li>
