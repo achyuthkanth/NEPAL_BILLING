@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="NEPAL_BILLING"
+  name="usermanagement"
   id="myeclipse.1606895202285"
-  context-root="/billing"
+  context-root="/usermanagement"
   j2ee-spec="6.0"
-  archive="NEPAL_BILLING.war">
+  archive="usermanagement.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>
