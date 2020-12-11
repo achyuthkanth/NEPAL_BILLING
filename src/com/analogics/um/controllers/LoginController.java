@@ -153,7 +153,26 @@ public class LoginController {
 		return sessionObj;
 	}
 
-
+	@RequestMapping("/logOut")
+	public ModelAndView logOut(HttpServletRequest request)
+	{
+		ModelAndView model =null;
+		String response="error";
+		try {
+			HttpSession session=request.getSession();
+			session.removeAttribute("sessionObj");
+			if (session != null) {
+			    session.invalidate();
+			    response ="success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(response == "success"){
+			model= new ModelAndView("common/login");
+		}
+		return model;
+	}
 
 
 

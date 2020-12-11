@@ -11,6 +11,37 @@
 		<!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
+      
+      
+      <ul class="navbar-nav">
+     <li class="nav-item"><a href="logOut" class="nav-link"> <i
+								class="far fa-circle nav-icon">Log out</i>
+		</a></li>
+      
+      </ul>
+     <!--  <li class="nav-item d-none d-sm-inline-block"><a
+			href="../../index3.html" class="nav-link">Log out</a></li> -->
+			<!-- <li class="nav-item"><a href="#" class="nav-link"> <i
+						class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							Dashboard<i class="right fas fa-angle-left"></i>
+						</p> </a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item"><a href="call" class="nav-link"> 
+						<li class="nav-item"><a href="moduleMasterDetails" class="nav-link"> <i
+								class="far fa-circle nav-icon"></i>
+								<p>Module Master</p> </a></li>
+						<li class="nav-item"><a href="applicationMaster" class="nav-link"> <i
+								class="far fa-circle nav-icon"></i>
+								<p>Dashboard v1</p> </a></li>
+						<li class="nav-item"><a href="../../index2.html"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Dashboard v2</p> </a></li>
+						<li class="nav-item"><a href="../../index3.html"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Dashboard v3</p> </a></li>
+					</ul></li> -->
+			
 	</ul>
 
 
@@ -178,11 +209,15 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Master</p> </a>
 						</li>
+<<<<<<< HEAD
 						<li class="nav-item"><a href="paramDetailsAction"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Param Master</p> </a>
 						</li>
 						<li class="nav-item"><a href="userGroups"
+=======
+						<li class="nav-item"><a href="viewUserGroup"
+>>>>>>> d589440f631bc1637a8118242358b9c0d1cc8d9e
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>User Groups</p> </a>
 						</li>

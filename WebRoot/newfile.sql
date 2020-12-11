@@ -1,7 +1,20 @@
 
 
-select * from bio_user_details
+select * from Views_Master1
 select * from application_master;
+
+
+
+
+
+select * from hierarchy_level1;
+select * from hierarchy_level2;
+select * from hierarchy_level3;
+select * from level_index_master;
+
+delete from hierarchy_level2 where level2_id='7'
+
+
 
 
  insert into hierarchy_level2  (level2_name ,level2_code,level2_uniquecode ,level1_id) values('NEA1','NEA1','1_NEA1','1')
@@ -30,7 +43,7 @@ insert into hierarchy_level1 (level1_Name ,level1_Code,level1_UniqueCode ) value
 delete from  hierarchy_level2 where level1_id='1'
 select * from hierarchy_level1;
 select * from hierarchy_level2;
-select * from level_index_master;
+select * from module_Actions;
 update bio_user_details set applicationuniqueid='-1' , organizationuniqueid='-1' where userid='superuser'
 
 
