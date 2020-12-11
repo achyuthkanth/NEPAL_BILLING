@@ -156,7 +156,7 @@ public class ViewsMasterDAO extends BaseHibernateDAO{
 			Map<String,Map<String,String>> viewsMap=new HashMap<String,Map<String,String>>();
 			session=getSession();
 			
-			Query queryObj=session.createQuery("select viewname,viewdescription,actionName,1 from ViewsMaster1");
+			Query queryObj=session.createQuery("select viewname,viewdescription,actionname,1 from ViewsMaster1");
 			List<Object[]> objList=queryObj.list();
 			
 			for(Object[] objArr:objList){
@@ -169,7 +169,7 @@ public class ViewsMasterDAO extends BaseHibernateDAO{
 				viewsMap.put(parentView, submap);
 			}
 			
-			queryObj=session.createQuery("select viewname,viewdescription,actionName,parentview from ViewsMaster2");
+			queryObj=session.createQuery("select viewname,viewdescription,actionname,parentview from ViewsMaster2");
 			objList=queryObj.list();
 			
 			for(Object[] objArr:objList){
@@ -182,7 +182,7 @@ public class ViewsMasterDAO extends BaseHibernateDAO{
 				viewsMap.put(parentView, submap);
 			}
 			
-			queryObj=session.createQuery("select viewname,viewdescription,actionName,parentview from ViewsMaster3");
+			queryObj=session.createQuery("select viewname,viewdescription,actionname,parentview from ViewsMaster3");
 			objList=queryObj.list();
 			
 			for(Object[] objArr:objList){
@@ -195,7 +195,7 @@ public class ViewsMasterDAO extends BaseHibernateDAO{
 				viewsMap.put(parentView, submap);
 			}
 			
-			queryObj=session.createQuery("select viewname,viewdescription,actionName,parentview from ViewsMaster4");
+			queryObj=session.createQuery("select viewname,viewdescription,actionname,parentview from ViewsMaster4");
 			objList=queryObj.list();
 			
 			for(Object[] objArr:objList){

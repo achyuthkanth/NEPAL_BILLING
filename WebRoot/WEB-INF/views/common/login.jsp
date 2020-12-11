@@ -26,7 +26,7 @@
 
       <form action="userLogin" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="userid" class="form-control" placeholder="User name">
+          <input type="text" name="userid" class="form-control" placeholder="User name" required="required">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="userpassword" class="form-control" placeholder="User password">
+          <input type="password" name="userpassword" class="form-control" placeholder="User password" required="required">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

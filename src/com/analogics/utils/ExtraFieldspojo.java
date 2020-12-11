@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.analogics.um.vo.ModuleDetails;
+import com.analogics.um.vo.UserGroup;
+
 public class ExtraFieldspojo {
 	
 	private Map<String,String> columnsMap=new HashMap<String,String>();
@@ -20,7 +23,9 @@ public class ExtraFieldspojo {
 	private String response;
 	private String reasonResponse;
 	
-	
+	// User Group
+	private List<ModuleDetails> moduleDetails;
+	private List<UserGroup> userGroupList;
 	//Application Master
 	private Map<String,String> applicationStatusList = new HashMap<String,String>();
 	private Map<String,String> organizationList = new HashMap<String,String>();
@@ -125,6 +130,18 @@ public class ExtraFieldspojo {
 	}
 	public void setBioUserGroupList(List<String> bioUserGroupList) {
 		this.bioUserGroupList = bioUserGroupList;
+	}
+	public List<ModuleDetails> getModuleDetails() {
+		return moduleDetails;
+	}
+	public void setModuleDetails(List<ModuleDetails> moduleDetails) {
+		this.moduleDetails = moduleDetails;
+	}
+	public List<UserGroup> getUserGroupList() {
+		return userGroupList;
+	}
+	public void setUserGroupList(List<UserGroup> userGroupList) {
+		this.userGroupList = userGroupList;
 	}
 
 }

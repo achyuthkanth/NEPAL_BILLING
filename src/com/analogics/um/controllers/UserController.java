@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,7 @@ import com.analogics.um.vo.ApplicationMaster;
 import com.analogics.um.vo.BioUserDetails;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.ServerDataTable;
+import com.analogics.um.vo.UserLoginDetails;
 import com.analogics.utils.EncAndDecLogic;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -198,6 +200,9 @@ public class UserController {
 		ModelAndView model =new ModelAndView("common/error");
 		BioUserDetails detaisObj = new BioUserDetails();
 		try {
+			HttpSession session = request.getSession();
+			UserLoginDetails UserSessionObj = (UserLoginDetails) session
+					.getAttribute("sessionObj");
 			detaisObj = userObj.editNewUserDetails(userId);
 			model = new ModelAndView("/NewUserMaster/AddOrViewUserMaster","command",detaisObj);
 			
@@ -219,7 +224,7 @@ public class UserController {
 					model.addObject("level14Id", detaisObj.getLevel14Id());
 					model.addObject("level15Id", detaisObj.getLevel15Id());
             
-				model.addObject("level1Map", daoObj.nextLevelsMap("1","-1"));
+				model.addObject("level1Map", UserSessionObj.getLevel1Map());
 				model.addObject("level2Map", daoObj.nextLevelsMap("1",detaisObj.getLevel1Id()));
 				model.addObject("level3Map", daoObj.nextLevelsMap("2",detaisObj.getLevel2Id()));
 				model.addObject("level4Map", daoObj.nextLevelsMap("3",detaisObj.getLevel3Id()));
@@ -287,4 +292,6 @@ public class UserController {
 		}
 		return userDetailsObj;
 	}
+	
+	
 }
