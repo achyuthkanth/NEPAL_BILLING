@@ -352,7 +352,7 @@
 							proceed='true';
 						}
 						if(proceed=='true'){
-							$('<form method="post" id="myForm" action="' + action + '"><input type="text" name="id.moduleTypeName" value="' + moduleTypeName + '" /><input type="text" name="id.moduleAction" value="' + moduleAction + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+							$('<form method="post" id="myForm" action="' + action + '"><input type="hidden" name="id.moduleTypeName" value="' + moduleTypeName + '" /><input type="hidden" name="id.moduleAction" value="' + moduleAction + '" /><input type="hidden" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
 						}
 					}
 					</script>

@@ -178,6 +178,10 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Master</p> </a>
 						</li>
+						<li class="nav-item"><a href="paramDetailsAction"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Param Master</p> </a>
+						</li>
 						<li class="nav-item"><a href="userGroups"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>User Groups</p> </a>

@@ -97,8 +97,8 @@ public class ApplicationMasterController {
 			@ModelAttribute("masterObj") ApplicationMaster masterObj,HttpServletRequest request) {
 		ModelAndView model = null;
 		boolean isSaved = false;
+		CommonDAO daoObj = new CommonDAO();
 		try {
-			CommonDAO daoObj = new CommonDAO();
 //			HttpSession session = request.getSession();
 //			UserLoginDetails userLoginSessionObj=(UserLoginDetails)session.getAttribute("sessionObj"); 
 //			masterObj.setInserteduser(userLoginSessionObj.getBiouserdetails().getUserid());

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.analogics.um.vo.ParamTable;
+
 public class ExtraFieldspojo {
 	
 	private Map<String,String> columnsMap=new HashMap<String,String>();
@@ -25,6 +27,11 @@ public class ExtraFieldspojo {
 	private Map<String,String> applicationStatusList = new HashMap<String,String>();
 	private Map<String,String> organizationList = new HashMap<String,String>();
 	private Map<Integer,String> levelMapList = new HashMap<Integer, String>();
+	
+	//Param Master
+	private Map<String, String> paramStatusList=new HashMap<String, String>();
+	private List<ParamTable> paramTypeList=new ArrayList<ParamTable>();
+	private String paramType;
 	
 	private List<String> userStatusList=new ArrayList<String>();
 	private List<String> bioUserGroupList=new ArrayList<String>();
@@ -125,6 +132,24 @@ public class ExtraFieldspojo {
 	}
 	public void setBioUserGroupList(List<String> bioUserGroupList) {
 		this.bioUserGroupList = bioUserGroupList;
+	}
+	public Map<String, String> getParamStatusList() {
+		return paramStatusList;
+	}
+	public void setParamStatusList(Map<String, String> paramStatusList) {
+		this.paramStatusList = paramStatusList;
+	}
+	public List<ParamTable> getParamTypeList() {
+		return paramTypeList;
+	}
+	public void setParamTypeList(List<ParamTable> paramTypeList) {
+		this.paramTypeList = paramTypeList;
+	}
+	public String getParamType() {
+		return paramType;
+	}
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
 	}
 
 }

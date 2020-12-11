@@ -1,10 +1,12 @@
 package com.analogics.um.vo;
 
+import com.analogics.utils.ExtraFieldspojo;
+
 /**
  * ParamTable entity. @author MyEclipse Persistence Tools
  */
 
-public class ParamTable implements java.io.Serializable {
+public class ParamTable extends ExtraFieldspojo implements java.io.Serializable {
 
 	// Fields
 

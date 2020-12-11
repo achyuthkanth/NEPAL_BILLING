@@ -22,7 +22,22 @@
 					<!-- Theme style -->
 					<link rel="stylesheet" href="dist/css/adminlte.min.css">
 					<link rel="stylesheet" href="css/styles.css"> </head>
-
+<style type="text/css">
+ol, ul {
+    margin-top: 0;
+   margin-bottom: 1px !important;
+} 
+.leftside-inner-list-group{
+    margin-bottom: 1px;
+    border-bottom:1px solid #e8e8e8;
+    padding: 5px;
+    color: red;
+    text-decoration: none;
+    background-color: #ffffff;
+    margin-top: 0;
+    list-style: disclosure-closed !important;
+    }
+</style>
 				<body class="hold-transition sidebar-mini">
 					<div class="wrapper">
 						<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -33,11 +48,11 @@
 									<div class="container-fluid">
 										<div class="row mb-2">
 											<div class="col-sm-6">
-												<h1>Module Master</h1> </div>
+												<h1>Param Master</h1> </div>
 											<div class="col-sm-6">
 												<ol class="breadcrumb float-sm-right">
 													<li class="breadcrumb-item"><a href="#">Home</a> </li>
-													<li class="breadcrumb-item active">Module Master</li>
+													<li class="breadcrumb-item active">Param Master</li>
 												</ol>
 											</div>
 										</div>
@@ -48,27 +63,38 @@
 									<div class="container-fluid">
 										<!-- SELECT2 EXAMPLE -->
 										<div class="card card-default">
-											<c:if test="${command.viewType=='Edit' || command.viewType==null}">
+											<c:if test="${command.viewType=='Edit' || command.viewType==null || command.viewType==''}">
 												<div class="card-header">
-													<h3 class="card-title">Add / Update Module Master</h3>
+													<h3 class="card-title">Add / Update Param Master</h3>
 													<div class="card-tools">
 														<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 													</div>
 												</div>
 												<div class="card-body">
-													<form:form action="saveOrUpdateModuleMaster">
+													<form:form action="saveOrUpdateParamDetails">
 														<div class="row">
 															<div class="col-sm-12">
 																<div class="col-sm-6">
 																	<div class="form-group">
-																		<label>Module Type Name</label>
-																		<input type="text" name="moduleTypeName" value="${command.moduleTypeName}" class="form-control moduleNameClass" autocomplete="off" placeholder="Module Type Name" required="required"> </div>
+																		<label>Param Type</label>
+																		<input type="text" name="id.paramType" value="${command.id.paramType}" class="form-control paramTypeC" autocomplete="off" placeholder="Param Type" required="required"> </div>
 																	<div class="form-group">
-																		<label>Module Type Code</label>
-																		<input type="text" name="moduleTypeCode" value="${command.moduleTypeCode}" class="form-control" autocomplete="off" placeholder="Module Type Code" required="required"> </div>
+																		<label>Param Name</label>
+																		<input type="text" name="id.paramName" value="${command.id.paramName}" class="form-control paramNameC" autocomplete="off" placeholder="Param Name" required="required"> </div>
 																	<div class="form-group">
-																		<label>Module Description</label>
-																		<input type="text" name="moduleDescription" value="${command.moduleDescription}" class="form-control" autocomplete="off" placeholder="Module Description" required="required"> </div>
+																		<label>Param Value</label>
+																		<input type="text" name="paramValue" value="${command.paramValue}" class="form-control" autocomplete="off" placeholder="Param Value" required="required"> </div>
+																	<div class="form-group">
+																		<label>Order No</label>
+																		<form:input path="orderNo" class="form-control" autocomplete="off" placeholder="Order No" required="required"></form:input>
+																	<div class="form-group">
+																		<label>Status</label>
+																		<form:select path="status"
+																			cssClass="form-control">
+																			<form:option value="NONE" label="Select" />
+																			<form:options items="${command.paramStatusList}" />
+																		</form:select></div>
+												
 																</div>
 															</div>
 															<div class="form-group col-sm-12" style="text-align: center;">
@@ -81,7 +107,7 @@
 											</c:if>
 											<c:if test="${command.viewType=='View'}">
 												<div class="card-header">
-													<h3 class="card-title">View Module Master</h3>
+													<h3 class="card-title">View Param Master</h3>
 													<div class="card-tools">
 														<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 													</div>
@@ -92,17 +118,25 @@
 													<!-- /.card-header -->
 													<div class="card-body">
 														<dl class="row">
-															<dt class="col-sm-4">Module Type Name</dt>
+															<dt class="col-sm-4">Param Type</dt>
 															<dd class="col-sm-8">
-																<c:out value="${command.moduleTypeName}"></c:out>
+																<c:out value="${command.id.paramType}"></c:out>
 															</dd>
-															<dt class="col-sm-4">Module Type Code</dt>
+															<dt class="col-sm-4">Param Name</dt>
 															<dd class="col-sm-8">
-																<c:out value="${command.moduleTypeCode}"></c:out>
+																<c:out value="${command.id.paramName}"></c:out>
 															</dd>
-															<dt class="col-sm-4">Module Description</dt>
+															<dt class="col-sm-4">Param Value</dt>
 															<dd class="col-sm-8">
-																<c:out value="${command.moduleDescription}"></c:out>
+																<c:out value="${command.paramValue}"></c:out>
+															</dd>
+															<dt class="col-sm-4">Status</dt>
+															<dd class="col-sm-8">
+																<c:out value="${command.status}"></c:out>
+															</dd>
+															<dt class="col-sm-4">Order No</dt>
+															<dd class="col-sm-8">
+																<c:out value="${command.orderNo}"></c:out>
 															</dd>
 														</dl>
 													</div>
@@ -112,12 +146,35 @@
 										</div>
 									</div>
 								</section>
+								
+								
+									<div class="col-sm-3">
+										<div class="ibox">
+												<div class="card-title" style="background-color: #7151a5;color:#fff !important;width: 200px;">
+												<h4>Param Types</h4>
+												<div class="ibox-content">
+											<div class="card-content">
+											<c:forEach var="listValue" items="${command.paramTypeList}">
+												<ul style="padding:0px;">
+													<li class="leftside-inner-list-group"><a
+														onclick="callFunction('<c:url value="${listValue.id.paramType}"/>')">${listValue.id.paramType}</a>
+													</li>
+												</ul>
+											</c:forEach>
+											</div>
+											</div>
+											</div>
+										
+											
+										</div>
+									</div>
+								
 								<!-- Main content -->
 								<section class="content">
 									<div class="container-fluid">
 										<div class="card card-default">
 											<div class="card-header">
-												<h3 class="card-title">Module Master Details</h3>
+												<h3 class="card-title">Param Master Details</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 												</div>
@@ -142,13 +199,15 @@
 													</div>
 													<div class="col-sm-2"> </div>
 												</div>
-												<table id="example1" class="table ">
+												<table id="example1" class="table">
 													<thead>
 														<tr>
 															<th>S.No</th>
-															<th>Module Type Name</th>
-															<th>Module Type Code</th>
-															<th>Module Description</th>
+															<th>param Type</th>
+															<th>Param Name</th>
+															<th>Param Value</th>
+															<th>Status</th>
+															<th>Order No</th>
 															<th>View</th>
 															<th>Edit</th>
 															<th>Delete</th>
@@ -229,37 +288,46 @@
 					<!-- AdminLTE for demo purposes -->
 					<script src="dist/js/demo.js"></script>
 					<!-- Page specific script -->
+					
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var hideColumns = "";
 						var showColumns = "0";
 						var url;
-						url = "searchSelectVar=" + '${command.searchSelectVar}' + "&" + "searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
+						url = "paramType=" + '${command.id.paramType}' + "&" +"searchSelectVar=" + '${command.searchSelectVar}' + "&" + "searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
 						loadDataTable(url, "", "");
 
 						function loadDataTable(url, hideColumns, showColumns) {
-							// alert("hideColumns "+hideColumns);
+// 							alert("hideColumns "+hideColumns);
 							// alert("showColumns "+showColumns);
 							var $table = $('#example1');
 							var table = $table.DataTable({
-								"responsive": true,
+								/* "responsive": true,
 								"lengthChange": false,
-								"autoWidth": false,
+								"scrollX": true,
+								"autoWidth": true, */
 								"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-								"destroy": true,
+								"bServerSide": true,
+						        "bProcessing": true,
+						        "pageLength": 100,
+						        "bJQueryUI": true,
+						        "render": true,
+						        "bDestroy": true,
+						        "scrollX": true,
+								/* "destroy": true,
 								"bProcessing": true,
 								"bServerSide": true,
 								"sort": "position",
 								"bStateSave": false,
 								"iDisplayLength": 10,
-								"iDisplayStart": 0,
+								"iDisplayStart": 0, */
 								"processing": true,
 						        "language": {
 						            'loadingRecords': '&nbsp;',
 						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
 						        },
 								"fnDrawCallback": function() {},
-								"sAjaxSource": "fetchModuleMasterDetails?" + url,
+								"sAjaxSource": "fetchParamTypeDetailsData?" + url,
 								"aoColumns": [{
 									"mData": "id",
 									"defaultContent": "-",
@@ -267,27 +335,31 @@
 										return meta.row + meta.settings._iDisplayStart + 1;
 									}
 								}, {
-						          data: function (row, type, set)
-						              {
-						             return '<a href="#" onClick="submitMyForm(\'fetchOrAddModuleDetails\',\'' + row.moduleTypeName + '\',\'\')">'+ row.moduleTypeName+'</a>';
-						              }
-						        } ,{
-									"mData": "moduleTypeCode",
+									"mData": "id.paramType",
 									"defaultContent": "-"
 								}, {
-									"mData": "moduleDescription",
+									"mData": "id.paramName",
+									"defaultContent": "-"
+								},{
+									"mData": "paramValue",
+									"defaultContent": "-"
+								},{
+									"mData": "status",
+									"defaultContent": "-"
+								},{
+									"mData": "orderNo",
 									"defaultContent": "-"
 								}, {
 									data: function(row, type, set) {
-										return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'viewModuleMaster \',\'' + row.moduleTypeName + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
+										return '<a class="btn btn-info btn-sm" onClick="submitMyForm(\'editParamTypeDetails \',\'' + row.id.paramType + '\',\'' + row.id.paramName + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
 									}
 								}, {
 									data: function(row, type, set) {
-										return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'viewModuleMaster \',\'' + row.moduleTypeName + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>';
+										return '<a class="btn btn-warning btn-sm"  onClick="submitMyForm(\'' + 'editParamTypeDetails' + '\',\'' + row.id.paramType + '\',\'' + row.id.paramName + '\',\'' + 'Edit' + '\')" ><i class="fas fa-pencil-alt"></i></a>'
 									}
 								}, {
 									data: function(row, type, set) {
-										return " <a href='deleteModuleMaster?moduleTypeName=" + row.moduleTypeName + "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure You want to delete this record?')\"><i class='fas fa-trash'></i></a>";
+									return '<a class="btn btn-danger btn-sm"  onClick="submitMyForm(\'' + 'deleteParamTypeDetails' + '\',\'' + row.id.paramType + '\',\'' + row.id.paramName + '\',\'\')" ><i class="fas fa-trash"></i></a>'
 									}
 								}, ]
 							});
@@ -295,16 +367,16 @@
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0, 1, 2, 3, 4, 5, 6).visible(true); //Total No.of columns
+								table.columns(0, 1, 2, 3, 4, 5, 6, 7, 8).visible(true); //Total No.of columns
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
 							hideColumns = "";       
-							showColumns = "0,4,5,6";			  //S.No,View,Edit and Delete columns
+							showColumns = "0, 6, 7, 8";			  //S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
-								for(var i = 0; i < 4; i++) {		//Iterate Columns
+								for(var i = 0; i < 6; i++) {		//Iterate Columns
 									var x = i + 1;
 									if(columns.split(",").includes(x+"")) {	
 										showColumns = x + "," + showColumns;
@@ -339,26 +411,51 @@
 							searchSelectVar = searchSelectVar.slice(0, -1);
 							conditionStr = conditionStr.slice(0, -1);
 							if(validate) {
-								url = "searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
+								url = "paramType=" + '${command.id.paramType}' + "&" +"searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
 								loadDataTable(url, "", "");
 								$("#myModal").modal("hide");
 							}
 						});
 					});
 					</script>
+					
 					<script type="text/javascript">
-					function submitMyForm(action, moduleTypeName, viewType) {
-						$('<form method="post" action="' + action + '"><input type="hidden" name="moduleTypeName" value="' + moduleTypeName + '" /><input type="hidden" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
-					}
+							function callFunction(paramType) {
+								var action = "getParamTypeDetails";
+								$('<form method="post" action="'+action+'"><input type="text" name="paramType" value="'+paramType+'" /></form>')
+										.appendTo('body').submit();
+							}
+							
+							function submitMyForm(actionname,paramType, paramName,viewType){
+								var proceed='false';
+										if(actionname.startsWith("delete")){
+											if(confirm("Are you sure You want to delete?")){
+											proceed='true';
+											}
+										}else{
+											proceed='true';
+										}
+										if(proceed=='true'){
+								  	 	var formStr= $('<form method="post" action="'+actionname+'"><input type="hidden" name="viewType" value="' + viewType + '" /><input type="hidden" name="paramType" value="'+paramType+'" /><input type="hidden" name="paramName" value="'+paramName+'" /></form>')
+										.appendTo('body').submit();
+											}
+								}
+					
 					</script>
 					<script type="text/javascript">
-					$(document).ready(function() {
-						if($(".moduleNameClass").val() == '') {
-							$(".moduleNameClass").prop('readonly', false);
-						} else {
-							$(".moduleNameClass").prop('readonly', 'true');
-						}
+					 $(document).ready(function() {
+					   if ($(".paramTypeC").val() == '') {
+					   $(".paramTypeC").prop('readonly', false);
+					   }else{
+					   $(".paramTypeC").prop('readonly', 'true');
+					   }
+					   if ($(".paramNameC").val() == '') {
+					   $(".paramNameC").prop('readonly', false);
+					   }else{
+					   $(".paramNameC").prop('readonly', 'true');
+					   }
 					});
+
 					</script>
 					<script type="text/javascript">
 					$(function() {

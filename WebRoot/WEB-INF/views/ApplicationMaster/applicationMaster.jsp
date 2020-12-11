@@ -439,17 +439,25 @@
 // 							alert("showColumns "+showColumns);
 							var $table = $('#example1');
 							var table = $table.DataTable({
-								"responsive": true,
+								/* "responsive": true,
 								"lengthChange": false,
-								"autoWidth": false,
+								"scrollX": true,
+								"autoWidth": true, */
 								"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-								"destroy": true,
+								"bServerSide": true,
+						        "bProcessing": true,
+						        "pageLength": 100,
+						        "bJQueryUI": true,
+						        "render": true,
+						        "bDestroy": true,
+						        "scrollX": true,
+								/* "destroy": true,
 								"bProcessing": true,
 								"bServerSide": true,
 								"sort": "position",
 								"bStateSave": false,
 								"iDisplayLength": 10,
-								"iDisplayStart": 0,
+								"iDisplayStart": 0, */
 								"processing": true,
 						        "language": {
 						            'loadingRecords': '&nbsp;',
@@ -585,7 +593,7 @@
 
 					<script type="text/javascript">
 					function submitMyForm(action, applicationuniquecode, viewType) {
-						$('<form method="post" action="' + action + '"><input type="text" name="applicationuniquecode" value="' + applicationuniquecode + '" /><input type="text" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+						$('<form method="post" action="' + action + '"><input type="hidden" name="applicationuniquecode" value="' + applicationuniquecode + '" /><input type="hidden" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
 					}
 					</script>
 					<script type="text/javascript">
