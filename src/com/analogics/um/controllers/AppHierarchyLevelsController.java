@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.analogics.um.dao.HierarchyLevelsDao;
 import com.analogics.um.vo.ApplicationLevelIndexMaster;
 import com.analogics.um.vo.HierarchyLevelsVo;
-import com.analogics.um.vo.LevelIndexMaster;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

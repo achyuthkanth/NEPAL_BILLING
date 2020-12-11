@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
-import com.analogics.um.vo.ParamTable;
-=======
 import com.analogics.um.vo.ModuleDetails;
+import com.analogics.um.vo.ParamTable;
 import com.analogics.um.vo.UserGroup;
->>>>>>> d589440f631bc1637a8118242358b9c0d1cc8d9e
 
 public class ExtraFieldspojo {
 	
@@ -140,7 +137,6 @@ public class ExtraFieldspojo {
 	public void setBioUserGroupList(List<String> bioUserGroupList) {
 		this.bioUserGroupList = bioUserGroupList;
 	}
-<<<<<<< HEAD
 	public Map<String, String> getParamStatusList() {
 		return paramStatusList;
 	}
@@ -158,7 +154,7 @@ public class ExtraFieldspojo {
 	}
 	public void setParamType(String paramType) {
 		this.paramType = paramType;
-=======
+	}
 	public List<ModuleDetails> getModuleDetails() {
 		return moduleDetails;
 	}
@@ -170,7 +166,6 @@ public class ExtraFieldspojo {
 	}
 	public void setUserGroupList(List<UserGroup> userGroupList) {
 		this.userGroupList = userGroupList;
->>>>>>> d589440f631bc1637a8118242358b9c0d1cc8d9e
 	}
 
 }
