@@ -1,0 +1,756 @@
+package com.analogics.controllers;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import jxl.Sheet;
+import jxl.Workbook;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.analogics.dao.MeterMasterDao;
+import com.analogics.um.controllers.UserHierUtils;
+import com.analogics.um.dao.CommonDAO;
+import com.analogics.um.dao.HierarchyLevelsDao;
+import com.analogics.um.vo.HierarchyLevelsVo;
+import com.analogics.um.vo.LevelIndexMaster;
+import com.analogics.um.vo.ServerDataTable;
+import com.analogics.um.vo.UserLoginDetails;
+import com.analogics.vo.MeterMaster;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+@Controller
+public class MeterMasterController {
+	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	UserHierUtils utilsObj = new UserHierUtils();
+	MeterMasterDao meterDaoObj = new MeterMasterDao();
+	CommonDAO commonDaoObj = new CommonDAO();
+	
+	
+	
+	@RequestMapping("/addOrViewMeterMaster")
+	public ModelAndView addOrViewMeterMaster(HttpServletRequest request ,HttpServletResponse response,
+			@ModelAttribute("masterObj")MeterMaster masterObj,@ModelAttribute("hierVoObj") HierarchyLevelsVo hierVoObj){
+		ModelAndView model = new ModelAndView("common/error.jsp");
+		try {
+			model = new ModelAndView("Masters/MeterMaster/AddOrViewMeterMaster","command", masterObj);
+			HttpSession session=request.getSession();
+			UserLoginDetails userSessionObj=(UserLoginDetails) session.getAttribute("sessionObj");
+			if(!hierVoObj.getLevel1Id().equalsIgnoreCase("-1")){
+				utilsObj.fetchHierarchyLevels(model,userSessionObj,hierVoObj);
+			}else{
+				utilsObj.frameLevelMaps(model,userSessionObj);
+			}
+			model.addObject("command", fetchMeterMasterColumsMap(masterObj));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return model;
+	}
+	
+	
+	
+	
+
+
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value = "/fetchMeterMasterDetails", method = RequestMethod.GET)
+	public @ResponseBody
+	String fetchMeterMasterDetails(HttpServletRequest request,
+			@RequestParam("iDisplayStart") String iDisplayStart,
+			@RequestParam("sSearch") String searchParameter,
+			@RequestParam("iDisplayLength") String pageDisplayLength,
+			@ModelAttribute("masterObj") MeterMaster masterObj,@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj)
+			throws IOException {
+		String json=null;
+	
+	try {
+		List<MeterMaster> meterList=new ArrayList<MeterMaster>();
+		int pageNumber = 0;
+		pageNumber = Integer.parseInt(iDisplayStart);
+		ServerDataTable dataTable = new ServerDataTable();
+		Map<String,Integer> levelMap=new HashMap<String,Integer>();
+		LevelIndexMaster levelIndexObj = new LevelIndexMaster();
+		utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
+		levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
+		
+		meterList=meterDaoObj.fetchMeterMasterList(pageNumber,
+				Integer.parseInt(pageDisplayLength), searchParameter,
+				masterObj,levelIndexObj);
+    	Long count =meterDaoObj.fetchMeterMasterCount(masterObj,levelIndexObj);
+
+    	dataTable.setiTotalRecords(count.intValue());
+		dataTable.setiTotalDisplayRecords(count.intValue());
+
+		dataTable.setAaData(meterList);
+		 json = gson.toJson(dataTable);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	return json;
+}
+	
+	
+	@RequestMapping("/saveMeterMasterDetails")
+	public ModelAndView saveMeterMasterDetails(@ModelAttribute("meterDetailsObj")MeterMaster meterDetailsObj,
+												HttpServletRequest request ,HttpServletResponse response){
+		ModelAndView model = new ModelAndView("common/error.jsp");
+		boolean isSaved = false;
+		Map<String, Integer> levelMap = new HashMap<String, Integer>();
+		
+		try {
+			HttpSession session = request.getSession();
+			UserLoginDetails UserSessionObj = (UserLoginDetails) session
+					.getAttribute("sessionObj");
+			UserHierUtils UserHierarchyUtilsObj = new UserHierUtils();
+			try {
+				levelMap.put("level1Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel1Id())));
+				levelMap.put("level2Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel2Id())));
+				levelMap.put("level3Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel3Id())));
+				levelMap.put("level4Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel4Id())));
+				levelMap.put("level5Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel5Id())));
+				levelMap.put("level6Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel6Id())));
+				levelMap.put("level7Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel7Id())));
+				levelMap.put("level8Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel8Id())));
+				levelMap.put("level9Id",Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel9Id())));
+				levelMap.put("level10Id", Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel10Id())));
+				levelMap.put("level11Id", Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel11Id())));
+				levelMap.put("level12Id",Integer.parseInt( UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel12Id())));
+				levelMap.put("level13Id", Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel13Id())));
+				levelMap.put("level14Id",Integer.parseInt( UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel14Id())));
+				levelMap.put("level15Id", Integer.parseInt(UserHierarchyUtilsObj.getlevelId(meterDetailsObj.getLevel15Id())));
+				
+				LevelIndexMaster LevelIndexMasterObj = utilsObj.fetchIndexIdDetails(levelMap);
+						try {
+							if (LevelIndexMasterObj != null) {
+//								frameLevelsIdCodeDetails(levelNumber, meterDetailsObj,LevelIndexMasterObj);
+							 meterDetailsObj.setIndexid(LevelIndexMasterObj.getIndexid());
+							 meterDetailsObj.setInsertedDate(new Timestamp(new Date().getTime()));
+							 meterDetailsObj.setInstallationDate(new Timestamp(new Date().getTime()));
+							 meterDetailsObj.setInsertedUser(UserSessionObj
+										.getBiouserdetails().getUserid());
+							 isSaved = commonDaoObj.saveOrUpdate(meterDetailsObj);
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (isSaved == true) {
+				model = new ModelAndView("redirect:/addOrViewMeterMaster");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	@RequestMapping("editMeterMaster")
+	public ModelAndView editMeterMaster(@RequestParam("meterNumber") String meterNumber,@RequestParam("viewType") String viewType,HttpServletRequest request,HttpServletResponse response){
+		ModelAndView model =new ModelAndView("common/error.jsp");
+		MeterMaster masterObj = new MeterMaster();
+		HierarchyLevelsDao daoObj = new HierarchyLevelsDao();
+		try {
+			HttpSession session = request.getSession();
+			UserLoginDetails UserSessionObj = (UserLoginDetails) session
+					.getAttribute("sessionObj");
+			masterObj = meterDaoObj.fetchMeterMasterDetails(meterNumber);
+			model = new ModelAndView("Masters/MeterMaster/AddOrViewMeterMaster","command", masterObj);
+				try {
+					meterDaoObj.fetchLevelIndexMasterDetails(masterObj);
+					model.addObject("level1Id", masterObj.getLevel1Id());
+					model.addObject("level2Id", masterObj.getLevel2Id());
+					model.addObject("level3Id", masterObj.getLevel3Id());
+					model.addObject("level4Id", masterObj.getLevel4Id());
+					model.addObject("level5Id", masterObj.getLevel5Id());
+					model.addObject("level6Id", masterObj.getLevel6Id());
+					model.addObject("level7Id", masterObj.getLevel7Id());
+					model.addObject("level8Id", masterObj.getLevel8Id());
+					model.addObject("level9Id", masterObj.getLevel9Id());
+					model.addObject("level10Id", masterObj.getLevel10Id());
+					model.addObject("level11Id", masterObj.getLevel11Id());
+					model.addObject("level12Id", masterObj.getLevel12Id());
+					model.addObject("level13Id", masterObj.getLevel13Id());
+					model.addObject("level14Id", masterObj.getLevel14Id());
+					model.addObject("level15Id", masterObj.getLevel15Id());
+            
+				model.addObject("level1Map", UserSessionObj.getLevel1Map());
+				model.addObject("level2Map", daoObj.nextLevelsMap("1",masterObj.getLevel1Id()));
+				model.addObject("level3Map", daoObj.nextLevelsMap("2",masterObj.getLevel2Id()));
+				model.addObject("level4Map", daoObj.nextLevelsMap("3",masterObj.getLevel3Id()));
+				model.addObject("level5Map", daoObj.nextLevelsMap("4",masterObj.getLevel4Id()));
+				model.addObject("level6Map", daoObj.nextLevelsMap("5",masterObj.getLevel5Id()));
+				model.addObject("level7Map", daoObj.nextLevelsMap("6",masterObj.getLevel6Id()));
+				model.addObject("level8Map", daoObj.nextLevelsMap("7",masterObj.getLevel7Id()));
+				model.addObject("level9Map", daoObj.nextLevelsMap("8",masterObj.getLevel8Id()));
+				model.addObject("level10Map", daoObj.nextLevelsMap("9",masterObj.getLevel9Id()));
+				model.addObject("level11Map", daoObj.nextLevelsMap("10",masterObj.getLevel10Id()));
+				model.addObject("level12Map",daoObj.nextLevelsMap("11",masterObj.getLevel11Id()));
+				model.addObject("level13Map",daoObj.nextLevelsMap("12",masterObj.getLevel12Id()));
+				model.addObject("level14Map",daoObj.nextLevelsMap("13",masterObj.getLevel13Id()));
+				model.addObject("level15Map",daoObj.nextLevelsMap("14",masterObj.getLevel14Id()));
+				masterObj.setViewType(viewType);
+				model.addObject("command", fetchMeterMasterColumsMap(masterObj));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	
+	@RequestMapping("deleteMeterMaster")
+	public ModelAndView deleteMeterMaster(@RequestParam("meterNumber")String meterNumber){
+		ModelAndView model = new ModelAndView("common/error.jsp");
+		boolean isSaved = false;
+		try {
+			isSaved= meterDaoObj.deleteMeterMasterDetails(meterNumber);
+			if (isSaved == true) {
+				model = new ModelAndView("redirect:/addOrViewMeterMaster");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	
+	
+	@RequestMapping("bulkMeterMasterUpload")
+	public ModelAndView bulkMeterMasterUpload(@RequestParam("MeterDataupload") MultipartFile MeterDataupload,
+			HttpServletRequest request){
+		
+		ModelAndView model = new ModelAndView("common/error.jsp");
+		MeterMaster masterObj = new MeterMaster();
+		
+		HashMap<String, String> rowDataMap = null;     
+		Map<String, String> successMetersMap = new HashMap<String, String>();
+		Map<String, String> failureMetersMap = new HashMap<String, String>();
+		Map<String, Integer> levelIndexMap = new HashMap<String, Integer>();
+		
+		LevelIndexMaster LevelIndexMasterObj = new LevelIndexMaster();
+		int rowCount = 0;
+		try {
+			HttpSession session = request.getSession();
+			UserLoginDetails UserSessionObj = (UserLoginDetails) session
+					.getAttribute("sessionObj");
+			String fileName = MeterDataupload.getOriginalFilename();
+			File file = new File("/tmp/" + fileName);
+			MeterDataupload.transferTo(file);
+			Workbook w = Workbook.getWorkbook(file);
+			Sheet sheet = w.getSheet(0);
+			String header = commonDaoObj.readHeader(sheet);
+			HashMap<String, Integer> headerMap =commonDaoObj.prepareHeaderMap(header);
+			int TotalRowCount = sheet.getRows();
+			int totalRows = TotalRowCount - 1;
+			
+				while (totalRows != rowCount) {
+					rowCount++; 
+				 	rowDataMap = commonDaoObj.getRowDataMap(sheet.getRow(rowCount), headerMap);
+				 	MeterMaster meterMaster = new MeterMaster();
+					meterMaster.setMeterNumber(rowDataMap.get("METER_NUMBER"));
+					meterMaster.setMeterMake(rowDataMap.get("METER_MAKE"));
+					meterMaster.setInstallationType(rowDataMap.get("HARDWARE_AMR"));
+					meterMaster.setInstallationSubType(rowDataMap.get("INSTALL_POINT"));
+					meterMaster.setIdentificationNumber(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
+					meterMaster.setConnectionStatus(rowDataMap.get("CONNECTION_STATUS"));//NEED
+					meterMaster.setSimNumber(rowDataMap.get("SIM_SR_NO"));
+					meterMaster.setMdnNumber(rowDataMap.get("SIM_MDN_NUMBER"));
+					meterMaster.setModemNumber(rowDataMap.get("HARDWARE_SR_NO"));
+					
+					try{
+	                	 if( !rowDataMap.get("VOLTAGE_MULTIPLIER").equalsIgnoreCase("")){
+			                	meterMaster.setVoltageMultiplier(Double.parseDouble(rowDataMap.get("VOLTAGE_MULTIPLIER")));
+			                }
+	                }catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+					try{	
+	                	 if( !rowDataMap.get("CURRENT_MULTIPLIER").equalsIgnoreCase("")){
+			                	meterMaster.setCurrentMultiplier(Double.parseDouble(rowDataMap.get("CURRENT_MULTIPLIER")));
+			                }
+	                }catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+					 try{
+	                	 if( !rowDataMap.get("MF").equalsIgnoreCase("")){
+	                		 	meterMaster.setMf(rowDataMap.get("MF"));
+			                	meterMaster.setEnergyMultiplier(Double.parseDouble(rowDataMap.get("MF")));
+			                }
+	                }catch (Exception e) {
+						// TODO: handle exception
+					}
+					 meterMaster.setModemVersion(rowDataMap.get("MODEM_VERSION"));
+					 
+					 try{
+							SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						    Date parsedDate = dateFormat.parse(rowDataMap.get("INSTALLATION_DATE"));
+						    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+						    meterMaster.setInstallationDate(timestamp);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
+					 
+					 meterMaster.setSimProvider(rowDataMap.get("SIM_PROVIDER"));
+					 meterMaster.setConsumerNumber(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
+					 meterMaster.setConsumerAddress(rowDataMap.get("ASSET/CONSUMER_LOCATION"));
+					 meterMaster.setConsumerName(rowDataMap.get("ASSET/CONSUMER_NAME"));
+					 meterMaster.setAccountId(rowDataMap.get("ACCOUNT_ID"));
+					 meterMaster.setIpAddress(rowDataMap.get("SIM_IP_ADDRESS"));
+					 meterMaster.setDtCode(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
+					 meterMaster.setFeederCode(rowDataMap.get("FEEDER_CODE"));
+					 meterMaster.setSubstationCode(rowDataMap.get("SUBSTATION_CODE"));
+					 meterMaster.setVoltageRating(rowDataMap.get("VOLTAGE_RATING"));
+					 meterMaster.setSupplyDirection(rowDataMap.get("SUPPLY_DIRECTION"));//NEED
+					 meterMaster.setInstallationId(rowDataMap.get("INSTALLATION_ID"));
+					 meterMaster.setRfdnodenumber(rowDataMap.get("RFDNODENUMBER"));
+					 
+					 String latitude=rowDataMap.get("LATITUDE");
+					 String longitude=rowDataMap.get("LATITUDE");
+				     meterMaster.setGpscoordinates(latitude+"|"+longitude);
+				     meterMaster.setMetercapacity(rowDataMap.get("METER_CAPACITY"));
+				     meterMaster.setCtratio(rowDataMap.get("METER_CT"));//NEED
+				     meterMaster.setPtratio(rowDataMap.get("METER_PT"));//NEED
+				     meterMaster.setMeterratio(rowDataMap.get("METER_RATIO"));
+				     meterMaster.setPinconfig(rowDataMap.get("PIN_CONFIG"));
+				     meterMaster.setSlaveid(rowDataMap.get("SLAVE_ID"));
+				     meterMaster.setFeedername(rowDataMap.get("FEEDER_NAME"));
+				     meterMaster.setDtname(rowDataMap.get("DT_NAME"));
+				     meterMaster.setLevel1Code("NEPAL");
+					 meterMaster.setLevel2Code(rowDataMap.get("LEVEL_2CODE"));
+					 meterMaster.setLevel3Code(rowDataMap.get("LEVEL_3CODE"));
+					 meterMaster.setLevel4Code(rowDataMap.get("LEVEL_4CODE"));
+					 meterMaster.setLevel5Code(rowDataMap.get("LEVEL_5CODE"));
+					 meterMaster.setLevel6Code(rowDataMap.get("LEVEL_6CODE"));
+					 meterMaster.setLevel7Code(rowDataMap.get("LEVEL_7CODE"));
+					 meterMaster.setLevel8Code(rowDataMap.get("LEVEL_8CODE"));
+					 meterMaster.setLevel9Code(rowDataMap.get("LEVEL_9CODE"));
+				     		try {
+				     			String uniqueCodeStr="";
+						    	String levelCode="";
+						    	
+						    	if(StringUtils.isNotEmpty(meterMaster.getLevel1Code())){
+						    		
+						    		levelCode = meterMaster.getLevel1Code();
+									uniqueCodeStr += "_" + levelCode;
+									
+									try {
+										Object[] strArr = meterDaoObj.fetchLevelDetails(1, uniqueCodeStr);
+										Integer levelId = (Integer) strArr[0];
+										String levelName=(String) strArr[1];
+						        		meterMaster.setLevel1Name(levelName+"");
+						        		meterMaster.setLevel1Id(levelId+"");
+						        		levelIndexMap.put("1", levelId);
+									} catch (Exception e) {
+										levelIndexMap.put("1", -1);
+										LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 1 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+										throw e;
+									}
+						    		
+						    	}else{
+					        		levelIndexMap.put("1", -1);
+					        	}
+						    if(StringUtils.isNotEmpty(meterMaster.getLevel2Code())){
+						    	
+						    	try {
+						    		levelCode = meterMaster.getLevel2Code();
+									uniqueCodeStr += "_" + levelCode;
+									Object[] strArr = meterDaoObj.fetchLevelDetails(2, uniqueCodeStr);
+									Integer levelId = (Integer) strArr[0];
+									String levelName=(String) strArr[1];
+					        		meterMaster.setLevel2Name(levelName+"");
+					        		meterMaster.setLevel2Id(levelId+"");
+					        		levelIndexMap.put("2", levelId);
+								} catch (Exception e) {
+									 levelIndexMap.put("2", -1);
+					    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 2 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+					    			 throw e;
+								}
+						    	
+						    }else{
+				        		levelIndexMap.put("2", -1);
+				        	}
+						 if(StringUtils.isNotEmpty(meterMaster.getLevel3Code())){
+							 	try {
+							 		levelCode = meterMaster.getLevel3Code();
+									uniqueCodeStr += "_" + levelCode;
+									Object[] strArr = meterDaoObj.fetchLevelDetails(3, uniqueCodeStr);
+									Integer levelId = (Integer) strArr[0];
+									String levelName=(String) strArr[1];
+					        		meterMaster.setLevel3Name(levelName+"");
+					        		meterMaster.setLevel3Id(levelId+"");
+					        		levelIndexMap.put("3", levelId);
+								} catch (Exception e) {
+									 levelIndexMap.put("3", -1);
+					    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 3 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+					    			 throw e;
+								}
+							 
+							 
+						 }else{
+				        		levelIndexMap.put("3", -1);
+				        	}
+						 
+						 if (StringUtils.isNotEmpty(meterMaster.getLevel4Code())) {
+								try{
+									levelCode = meterMaster.getLevel4Code();
+									uniqueCodeStr += "_" + levelCode;
+									Object[] strArr = meterDaoObj.fetchLevelDetails(
+											4, uniqueCodeStr);
+									Integer levelId = (Integer) strArr[0];
+									String levelName = (String) strArr[1];
+									meterMaster.setLevel4Name(levelName + "");
+									meterMaster.setLevel4Id(levelId + "");
+									levelIndexMap.put("4", levelId);
+								}catch (Exception e) {
+									levelIndexMap.put("4", -1);
+									LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 4 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+									 throw e;
+								}
+								
+							} else {
+								levelIndexMap.put("4", -1);
+							}
+					    	 
+						 if(StringUtils.isNotEmpty(meterMaster.getLevel5Code())){
+					    		try{
+					    			levelCode = meterMaster.getLevel5Code();
+									uniqueCodeStr += "_" + levelCode;
+									Object[] strArr = meterDaoObj.fetchLevelDetails(5, uniqueCodeStr);
+									Integer levelId = (Integer) strArr[0];
+									String levelName=(String) strArr[1];
+					        		meterMaster.setLevel5Name(levelName+"");
+					        		meterMaster.setLevel5Id(levelId+"");
+					        		levelIndexMap.put("5", levelId);
+					    		}catch (Exception e) {
+					    			levelIndexMap.put("5", -1);
+					    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 5 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+					        		 throw e;
+								}
+									
+				        	}else{
+				        		levelIndexMap.put("5", -1);
+				        		
+				        	}	
+						 
+						 if(StringUtils.isNotEmpty(meterMaster.getLevel6Code())){
+				    		 try{
+				    			levelCode = meterMaster.getLevel6Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(6, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel6Name(levelName+"");
+				        		meterMaster.setLevel6Id(levelId+"");
+				        		levelIndexMap.put("6", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("6", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 6 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("6", -1);
+			        	}
+						 
+						 if(StringUtils.isNotEmpty(meterMaster.getLevel7Code())){
+				    		 try{
+				    			levelCode = meterMaster.getLevel7Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(7, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel7Name(levelName+"");
+				        		meterMaster.setLevel7Id(levelId+"");
+				        		levelIndexMap.put("7", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("7", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 7 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("7", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel8Code())){
+				    		 try{
+				    			levelCode = meterMaster.getLevel8Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(8, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel8Name(levelName+"");
+				        		meterMaster.setLevel8Id(levelId+"");
+				        		levelIndexMap.put("8", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("8", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 8 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("8", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel9Code())){
+				    		 try{
+				    			levelCode = meterMaster.getLevel9Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(9, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel9Name(levelName+"");
+				        		meterMaster.setLevel9Id(levelId+"");
+				        		levelIndexMap.put("9", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("9", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 9 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("9", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel10Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel10Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(10, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel10Name(levelName+"");
+				        		meterMaster.setLevel10Id(levelId+"");
+				        		levelIndexMap.put("10", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("10", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 10 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("10", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel11Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel11Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(11, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel11Name(levelName+"");
+				        		meterMaster.setLevel11Id(levelId+"");
+				        		levelIndexMap.put("11", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("11", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 11 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("11", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel12Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel12Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(12, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel12Name(levelName+"");
+				        		meterMaster.setLevel12Id(levelId+"");
+				        		levelIndexMap.put("12", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("12", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 12 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("12", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel13Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel13Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(13, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel13Name(levelName+"");
+				        		meterMaster.setLevel13Id(levelId+"");
+				        		levelIndexMap.put("13", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("13", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 13 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("13", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel14Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel14Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(14, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel14Name(levelName+"");
+				        		meterMaster.setLevel14Id(levelId+"");
+				        		levelIndexMap.put("14", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("14", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 14 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("14", -1);
+			        	}
+				    	 
+				    	 if(StringUtils.isNotEmpty(meterMaster.getLevel15Code())){
+				    		 try{
+				    			 levelCode = meterMaster.getLevel15Code();
+								uniqueCodeStr += "_" + levelCode;
+								Object[] strArr = meterDaoObj.fetchLevelDetails(15, uniqueCodeStr);
+								Integer levelId = (Integer) strArr[0];
+								String levelName=(String) strArr[1];
+				        		meterMaster.setLevel15Name(levelName+"");
+				        		meterMaster.setLevel15Id(levelId+"");
+				        		levelIndexMap.put("15", levelId);
+				    		 }catch (Exception e) {
+				    			 levelIndexMap.put("15", -1);
+				    			 LevelIndexMasterObj.setResponse("Error in fetching Hiererchylevel 15 Code :: "+levelCode+" uniqueCodeStr : "+uniqueCodeStr);
+				    			 throw e;
+							}
+								
+			        	}else{
+			        		levelIndexMap.put("15", -1);
+			        	}
+				    	 LevelIndexMasterObj = utilsObj.fetchIndexIdDetails(levelIndexMap);
+						 
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+				     
+				     try {
+				    	 if(LevelIndexMasterObj.getIndexid()!=0){
+				    		 meterMaster.setIndexid(LevelIndexMasterObj.getIndexid());
+							 meterMaster.setInsertedDate(new Timestamp(new Date().getTime()));
+							 meterMaster.setInsertedUser(UserSessionObj
+										.getBiouserdetails().getUserid());
+							 
+								masterObj=meterDaoObj.saveUploadMeterMasterDetails(meterMaster);
+				    		 
+								if(masterObj.getSuccessMessage()=="SUCCESS"){
+									successMetersMap.put(meterMaster.getMeterNumber(), "SUCCESS");
+									
+								}else{
+									failureMetersMap.put(meterMaster.getMeterNumber(), masterObj.getErrorMessage());
+								}
+				    	 }
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
+				
+				
+				
+				model = new ModelAndView(
+						"masters/MeterMaster/MeterMasterDetailsList", "command",
+						masterObj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return model;
+	}
+	
+	
+	private Object fetchMeterMasterColumsMap(MeterMaster masterObj) {
+		try {
+			Map<String, String> columnsMap = new HashMap<String, String>();
+			columnsMap.put("1", "Meter Number");
+			columnsMap.put("2", "Modem Number");
+			columnsMap.put("3", "Meter Make");
+//			columnsMap.put("4", "Modem Number");
+//			columnsMap.put("4", "Meter Make");
+			columnsMap.put("4", "Installation Type");
+			columnsMap.put("5", "Installation Sub Type");
+			columnsMap.put("6", "Identification Number");
+			columnsMap.put("7", "Connection Status");
+			columnsMap.put("8", "Sim Number");
+			columnsMap.put("9", "Mdn Number");
+			columnsMap.put("10", "Voltage Multiplier");
+			columnsMap.put("11", "Current Multiplier");
+			columnsMap.put("12", "Energy Multiplier");
+			columnsMap.put("13", "Installation Date");
+			columnsMap.put("14", "Inserted Date");
+			columnsMap.put("15", "Inserted User");
+			columnsMap.put("16", "Sim Provider");
+			columnsMap.put("17", "Consumer Number");
+			columnsMap.put("18", "Consumer Address");
+			columnsMap.put("19", "Dt Code");
+			columnsMap.put("20", "Feeder Code");
+			columnsMap.put("21", "Substation Code");
+			columnsMap.put("22", "Voltage Rating");
+			columnsMap.put("23", "Supply Direction");
+			columnsMap.put("24", "Installation Id");
+			columnsMap.put("25", "rfdnode Number");
+			masterObj.setColumnsMap(columnsMap);
+			
+			Map<String,String> searchColumnsMap=new HashMap<String,String>();
+			searchColumnsMap.put("meterNumber", "METER NUMBER");
+			
+			masterObj.setSearchColumnsMap(searchColumnsMap);
+			
+			List<String> conditionListStr = new ArrayList<String>();
+			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("LIKE");
+			conditionListStr.add("NOT EQUAL TO");
+			masterObj.setConditionListStr(conditionListStr);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return masterObj;
+	}
+}

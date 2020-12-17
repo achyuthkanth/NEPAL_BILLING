@@ -13,13 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.analogics.um.dao.BaseHibernateDAO;
+import com.analogics.um.dao.HierarchyLevelsDao;
 import com.analogics.um.vo.ApplicationLevelIndexMaster;
 import com.analogics.um.vo.ApplicationLevelIndexMasterId;
 import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.LevelIndexMasterId;
+import com.analogics.um.vo.UserLoginDetails;
 
 public class UserHierUtils extends BaseHibernateDAO{
 	
@@ -70,65 +73,59 @@ public class UserHierUtils extends BaseHibernateDAO{
 		return levelIndexMasterObj;
 	}
 	
-	
-	
-	public String daoLevelIndexString(Map<String,String> extraMap){
-		String response="";
-		StringBuilder strb=new StringBuilder();
-		try{
-			
-			if (!extraMap.get("level1Id").equalsIgnoreCase("-1"))
-				strb.append(" level.id.level1id="+extraMap.get("level1Id"));
-			
-			if (!extraMap.get("level2Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level2id="+extraMap.get("level2Id"));
-			
-			if (!extraMap.get("level3Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level3id="+extraMap.get("level3Id"));
-			
-			if (!extraMap.get("level4Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level4id="+extraMap.get("level4Id"));
-			
-			if (!extraMap.get("level5Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level5id="+extraMap.get("level5Id"));
-			
-			if (!extraMap.get("level6Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level6id="+extraMap.get("level6Id"));
-			
-			if (!extraMap.get("level7Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level7id="+extraMap.get("level7Id"));
-			
-			if (!extraMap.get("level8Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level8id="+extraMap.get("level8Id"));
-			
-			if (!extraMap.get("level9Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level9id="+extraMap.get("level9Id"));
-			
-			if (!extraMap.get("level10Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level10id="+extraMap.get("level10Id"));
-			
-			if (!extraMap.get("level11Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level11id="+extraMap.get("level11Id"));
-			
-			if (!extraMap.get("level12Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level12id="+extraMap.get("level12Id"));
-			
-			if (!extraMap.get("level13Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level13id="+extraMap.get("level13Id"));
-			
-			if (!extraMap.get("level14Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level14id="+extraMap.get("level14Id"));
-			
-			if (!extraMap.get("level15Id").equalsIgnoreCase("-1"))
-				strb.append(" and level.id.level15id="+extraMap.get("level15Id"));
-			
-			response=strb.toString();
-			
-		}catch (Exception e) {
+	public LevelIndexMaster fetchIndexIdDetails(Map<String, Integer> levelMap) {
+		LevelIndexMaster levelIndexMasterObj = null;
+
+		Session session = null;
+		try {
+			session = getSession();
+
+			StringBuilder strb = new StringBuilder();
+
+			strb.append(" from LevelIndexMaster level where ");
+			strb.append(" level.id.level1id=:level1Id");
+			strb.append(" and level.id.level2id=:level2Id");
+			strb.append(" and level.id.level3id=:level3Id");
+			strb.append(" and level.id.level4id=:level4Id");
+			strb.append(" and level.id.level5id=:level5Id");
+			strb.append(" and level.id.level6id=:level6Id");
+			strb.append(" and level.id.level7id=:level7Id");
+			strb.append(" and level.id.level8id=:level8Id");
+			strb.append(" and level.id.level9id=:level9Id");
+			strb.append(" and level.id.level10id=:level10Id");
+			strb.append(" and level.id.level11id=:level11Id");
+			strb.append(" and level.id.level12id=:level12Id");
+			strb.append(" and level.id.level13id=:level13Id");
+			strb.append(" and level.id.level14id=:level14Id");
+			strb.append(" and level.id.level15id=:level15Id");
+
+			Query queryObj = session.createQuery(strb.toString());
+			queryObj.setParameter("level1Id", levelMap.get("level1Id"));
+			queryObj.setParameter("level2Id", levelMap.get("level2Id"));
+			queryObj.setParameter("level3Id", levelMap.get("level3Id"));
+			queryObj.setParameter("level4Id", levelMap.get("level4Id"));
+			queryObj.setParameter("level5Id", levelMap.get("level5Id"));
+			queryObj.setParameter("level6Id", levelMap.get("level6Id"));
+			queryObj.setParameter("level7Id", levelMap.get("level7Id"));
+			queryObj.setParameter("level8Id", levelMap.get("level8Id"));
+			queryObj.setParameter("level9Id", levelMap.get("level9Id"));
+			queryObj.setParameter("level10Id", levelMap.get("level10Id"));
+			queryObj.setParameter("level11Id", levelMap.get("level11Id"));
+			queryObj.setParameter("level12Id", levelMap.get("level12Id"));
+			queryObj.setParameter("level13Id", levelMap.get("level13Id"));
+			queryObj.setParameter("level14Id", levelMap.get("level14Id"));
+			queryObj.setParameter("level15Id", levelMap.get("level15Id"));
+			levelIndexMasterObj = (LevelIndexMaster) queryObj.list().get(0);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
 		}
-		return response;
+		return levelIndexMasterObj;
 	}
+	
+	
 	
 	
 	
@@ -185,13 +182,125 @@ public class UserHierUtils extends BaseHibernateDAO{
 		return strb.toString();
 	}
 	
-	//****			Default framing Levels In Model  Object			****//
-
-	
-	
 	//****			 framing Levels In Model  Object Based On hierarchy		****//
 
+	public void fetchHierarchyLevels(ModelAndView model,
+			UserLoginDetails userSessionObj,HierarchyLevelsVo hierarchyObj) {
+		HierarchyLevelsDao hieDaoObj = new HierarchyLevelsDao();
+		try {
+			model.addObject("level1Id", hierarchyObj.getLevel1Id());
+			model.addObject("level2Id", hierarchyObj.getLevel2Id());
+			model.addObject("level3Id", hierarchyObj.getLevel3Id());
+			model.addObject("level4Id", hierarchyObj.getLevel4Id());
+			model.addObject("level5Id", hierarchyObj.getLevel5Id());
+			model.addObject("level6Id", hierarchyObj.getLevel6Id());
+			model.addObject("level7Id", hierarchyObj.getLevel7Id());
+			model.addObject("level8Id", hierarchyObj.getLevel8Id());
+			model.addObject("level9Id", hierarchyObj.getLevel9Id());
+			model.addObject("level10Id", hierarchyObj.getLevel10Id());
+			model.addObject("level11Id", hierarchyObj.getLevel11Id());
+			model.addObject("level12Id", hierarchyObj.getLevel12Id());
+			model.addObject("level13Id", hierarchyObj.getLevel13Id());
+			model.addObject("level14Id", hierarchyObj.getLevel14Id());
+			model.addObject("level15Id", hierarchyObj.getLevel15Id());
+			
+			model.addObject("level1Map", userSessionObj.getLevel1Map());
+			if(!hierarchyObj.getLevel1Id().equalsIgnoreCase("-1")){
+				model.addObject("level2Map", hieDaoObj.nextLevelsMap("1",hierarchyObj.getLevel1Id()));
+			}
+			if(!hierarchyObj.getLevel2Id().equalsIgnoreCase("-1")){
+			model.addObject("level3Map", hieDaoObj.nextLevelsMap("2",hierarchyObj.getLevel2Id()));
+			}
+			if(!hierarchyObj.getLevel3Id().equalsIgnoreCase("-1")){
+			model.addObject("level4Map", hieDaoObj.nextLevelsMap("3",hierarchyObj.getLevel3Id()));
+			}
+			if(!hierarchyObj.getLevel4Id().equalsIgnoreCase("-1")){
+			model.addObject("level5Map", hieDaoObj.nextLevelsMap("4",hierarchyObj.getLevel4Id()));
+			}
+			if(!hierarchyObj.getLevel5Id().equalsIgnoreCase("-1")){
+			model.addObject("level6Map", hieDaoObj.nextLevelsMap("5",hierarchyObj.getLevel5Id()));
+			}
+			if(!hierarchyObj.getLevel6Id().equalsIgnoreCase("-1")){
+			model.addObject("level7Map", hieDaoObj.nextLevelsMap("6",hierarchyObj.getLevel6Id()));
+			}
+			if(!hierarchyObj.getLevel7Id().equalsIgnoreCase("-1")){
+			model.addObject("level8Map", hieDaoObj.nextLevelsMap("7",hierarchyObj.getLevel7Id()));
+			}
+			if(!hierarchyObj.getLevel8Id().equalsIgnoreCase("-1")){
+			model.addObject("level9Map", hieDaoObj.nextLevelsMap("8",hierarchyObj.getLevel8Id()));
+			}
+			if(!hierarchyObj.getLevel9Id().equalsIgnoreCase("-1")){
+			model.addObject("level10Map", hieDaoObj.nextLevelsMap("9",hierarchyObj.getLevel9Id()));
+			}
+			if(!hierarchyObj.getLevel10Id().equalsIgnoreCase("-1")){
+			model.addObject("level11Map", hieDaoObj.nextLevelsMap("10",hierarchyObj.getLevel10Id()));
+			}
+			if(!hierarchyObj.getLevel11Id().equalsIgnoreCase("-1")){
+			model.addObject("level12Map",hieDaoObj.nextLevelsMap("11",hierarchyObj.getLevel11Id()));
+			}
+			if(!hierarchyObj.getLevel12Id().equalsIgnoreCase("-1")){
+			model.addObject("level13Map",hieDaoObj.nextLevelsMap("12",hierarchyObj.getLevel12Id()));
+			}
+			if(!hierarchyObj.getLevel13Id().equalsIgnoreCase("-1")){
+			model.addObject("level14Map",hieDaoObj.nextLevelsMap("13",hierarchyObj.getLevel13Id()));
+			}
+			if(!hierarchyObj.getLevel14Id().equalsIgnoreCase("-1")){
+			model.addObject("level15Map",hieDaoObj.nextLevelsMap("14",hierarchyObj.getLevel14Id()));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	//****			Default framing Levels In Model  Object			****//
+
+	public void frameLevelMaps(ModelAndView model,
+			UserLoginDetails UserSessionObj) {
+		Session session = null;
+		try {
+			session = getSession();
+			model.addObject("level1Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel1id()+"");
+			model.addObject("level2Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel2id()+"");
+			model.addObject("level3Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel3id()+"");
+			model.addObject("level4Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel4id()+"");
+			model.addObject("level5Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel5id()+"");
+			model.addObject("level6Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel6id()+"");
+			model.addObject("level7Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel7id()+"");
+			model.addObject("level8Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel8id()+"");
+			model.addObject("level9Id", UserSessionObj.getLevelIndexMasterObj().getId().getLevel9id()+"");
+			model.addObject("level10Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel10id()+"");
+			model.addObject("level11Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel11id()+"");
+			model.addObject("level12Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel12id()+"");
+			model.addObject("level13Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel13id()+"");
+			model.addObject("level14Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel14id()+"");
+			model.addObject("level15Id",UserSessionObj.getLevelIndexMasterObj().getId().getLevel15id()+"");
+			
+			
+			
+			model.addObject("level1Map", UserSessionObj.getLevel1Map());
+			model.addObject("level2Map", UserSessionObj.getLevel2Map());
+			model.addObject("level3Map", UserSessionObj.getLevel3Map());
+			model.addObject("level4Map", UserSessionObj.getLevel4Map());
+			model.addObject("level5Map", UserSessionObj.getLevel5Map());
+			model.addObject("level6Map", UserSessionObj.getLevel6Map());
+			model.addObject("level7Map", UserSessionObj.getLevel7Map());
+			model.addObject("level8Map", UserSessionObj.getLevel8Map());
+			model.addObject("level9Map", UserSessionObj.getLevel9Map());
+			model.addObject("level10Map", UserSessionObj.getLevel10Map());
+			model.addObject("level11Map", UserSessionObj.getLevel11Map());
+			model.addObject("level12Map", UserSessionObj.getLevel12Map());
+			model.addObject("level13Map", UserSessionObj.getLevel13Map());
+			model.addObject("level14Map", UserSessionObj.getLevel14Map());
+			model.addObject("level15Map", UserSessionObj.getLevel15Map());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (session.isOpen())
+				session.close();
+		}
+		
+	}
 
 	//		framing LevelindexMaster levels			//
 	public void frameLevelIndexLevelMaps(UserHierUtils utilsObj,
@@ -326,6 +435,26 @@ public class UserHierUtils extends BaseHibernateDAO{
 		return appLevelIndexMasterObj;
 	}
 
+	public Object fetchHierarchyObjectById(int levelNumber, String levelId) {
+		Object object=null;
+        Session session=null;
+		try {
+			session=getSession();
+			StringBuilder strb = new StringBuilder();
+			strb.append("from HierarchyLevel"+levelNumber+"" +
+                     " where level"+levelNumber+"Id=:levelId");
+			
+			Query queryObj = session.createQuery(strb.toString());
+			queryObj.setParameter("levelId", Integer.parseInt(levelId));
+			object=queryObj.list().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(session.isOpen())
+				session.close();
+		}
+		 return object;
+    }
 	
 		
 	}

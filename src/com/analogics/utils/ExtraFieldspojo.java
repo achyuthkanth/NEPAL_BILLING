@@ -40,6 +40,11 @@ public class ExtraFieldspojo {
 	private List<String> userStatusList=new ArrayList<String>();
 	private List<String> bioUserGroupList=new ArrayList<String>();
 	
+	// Meter master
+		private String successMessage;
+		private String errorMessage;
+	
+	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
 	}
@@ -166,6 +171,18 @@ public class ExtraFieldspojo {
 	}
 	public void setUserGroupList(List<UserGroup> userGroupList) {
 		this.userGroupList = userGroupList;
+	}
+	public String getSuccessMessage() {
+		return successMessage;
+	}
+	public void setSuccessMessage(String successMessage) {
+		this.successMessage = successMessage;
+	}
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }
