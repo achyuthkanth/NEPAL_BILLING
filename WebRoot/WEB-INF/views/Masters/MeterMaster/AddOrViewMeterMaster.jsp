@@ -91,6 +91,7 @@
 								<div class="form-group col-sm-12" style="text-align: center;">
 									<button type="submit" class="btn btn-success">Upload
 										MeterMaster</button>
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	<a href="exportMeterMasterReport"><img src="fonts/dnload.png" ></a>
 								</div>
 							</div>
 						</div>

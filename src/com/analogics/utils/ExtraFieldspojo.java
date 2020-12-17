@@ -43,7 +43,8 @@ public class ExtraFieldspojo {
 	// Meter master
 		private String successMessage;
 		private String errorMessage;
-	
+		private int rows;
+		private int page;
 	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
@@ -183,6 +184,18 @@ public class ExtraFieldspojo {
 	}
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 }

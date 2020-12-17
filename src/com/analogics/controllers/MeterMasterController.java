@@ -2,6 +2,7 @@ package com.analogics.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,12 +47,13 @@ public class MeterMasterController {
 	MeterMasterDao meterDaoObj = new MeterMasterDao();
 	CommonDAO commonDaoObj = new CommonDAO();
 	
-	
+	int records;
+	int total;
 	
 	@RequestMapping("/addOrViewMeterMaster")
 	public ModelAndView addOrViewMeterMaster(HttpServletRequest request ,HttpServletResponse response,
 			@ModelAttribute("masterObj")MeterMaster masterObj,@ModelAttribute("hierVoObj") HierarchyLevelsVo hierVoObj){
-		ModelAndView model = new ModelAndView("common/error.jsp");
+		ModelAndView model = null;
 		try {
 			model = new ModelAndView("Masters/MeterMaster/AddOrViewMeterMaster","command", masterObj);
 			HttpSession session=request.getSession();
@@ -277,13 +279,13 @@ public class MeterMasterController {
 				 	MeterMaster meterMaster = new MeterMaster();
 					meterMaster.setMeterNumber(rowDataMap.get("METER_NUMBER"));
 					meterMaster.setMeterMake(rowDataMap.get("METER_MAKE"));
-					meterMaster.setInstallationType(rowDataMap.get("HARDWARE_AMR"));
-					meterMaster.setInstallationSubType(rowDataMap.get("INSTALL_POINT"));
-					meterMaster.setIdentificationNumber(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
+					meterMaster.setInstallationType(rowDataMap.get("INSTALLATION_TYPE"));
+					meterMaster.setInstallationSubType(rowDataMap.get("INSTALLATION_SUB_TYPE"));
+					meterMaster.setIdentificationNumber(rowDataMap.get("IDENTIFICATION_NO"));
 					meterMaster.setConnectionStatus(rowDataMap.get("CONNECTION_STATUS"));//NEED
-					meterMaster.setSimNumber(rowDataMap.get("SIM_SR_NO"));
-					meterMaster.setMdnNumber(rowDataMap.get("SIM_MDN_NUMBER"));
-					meterMaster.setModemNumber(rowDataMap.get("HARDWARE_SR_NO"));
+					meterMaster.setSimNumber(rowDataMap.get("SIM_NO"));
+					meterMaster.setMdnNumber(rowDataMap.get("MDN_NUMBER"));
+					meterMaster.setModemNumber(rowDataMap.get("MODEM_NO"));
 					
 					try{
 	                	 if( !rowDataMap.get("VOLTAGE_MULTIPLIER").equalsIgnoreCase("")){
@@ -303,7 +305,7 @@ public class MeterMasterController {
 					
 					 try{
 	                	 if( !rowDataMap.get("MF").equalsIgnoreCase("")){
-	                		 	meterMaster.setMf(rowDataMap.get("MF"));
+	                		 	meterMaster.setMf(rowDataMap.get("ENERGY_MULTIPLIER"));
 			                	meterMaster.setEnergyMultiplier(Double.parseDouble(rowDataMap.get("MF")));
 			                }
 	                }catch (Exception e) {
@@ -321,12 +323,12 @@ public class MeterMasterController {
 						}
 					 
 					 meterMaster.setSimProvider(rowDataMap.get("SIM_PROVIDER"));
-					 meterMaster.setConsumerNumber(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
-					 meterMaster.setConsumerAddress(rowDataMap.get("ASSET/CONSUMER_LOCATION"));
-					 meterMaster.setConsumerName(rowDataMap.get("ASSET/CONSUMER_NAME"));
+					 meterMaster.setConsumerNumber(rowDataMap.get("CONSUMER_NO"));
+					 meterMaster.setConsumerAddress(rowDataMap.get("CONSUMER_ADDRESS"));
+					 meterMaster.setConsumerName(rowDataMap.get("CONSUMER_NAME"));
 					 meterMaster.setAccountId(rowDataMap.get("ACCOUNT_ID"));
 					 meterMaster.setIpAddress(rowDataMap.get("SIM_IP_ADDRESS"));
-					 meterMaster.setDtCode(rowDataMap.get("ASSET_CODE/CONSUMER_NO"));
+					 meterMaster.setDtCode(rowDataMap.get("DT_CODE"));
 					 meterMaster.setFeederCode(rowDataMap.get("FEEDER_CODE"));
 					 meterMaster.setSubstationCode(rowDataMap.get("SUBSTATION_CODE"));
 					 meterMaster.setVoltageRating(rowDataMap.get("VOLTAGE_RATING"));
@@ -703,7 +705,344 @@ public class MeterMasterController {
 		return model;
 	}
 	
+	@RequestMapping("exportMeterMasterReport")
+	@ResponseBody
+	public void exportMeterMasterReport(HttpServletRequest request,HttpServletResponse response,
+			@ModelAttribute("dataObj")MeterMaster masterObj,
+		@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj){
+		
+		try {
+			int noOfRecords=5000;
+			String headerKey = "Content-Disposition";
+			String folderPath = "/tmp";
+			String fileName = "MeterMasterExport.csv";
+			StringBuilder dataStr = new StringBuilder();
+			dataStr.append(ExportMeterMasterPrepareHeader());
+			utilsObj.appendFileData(folderPath, fileName, dataStr.toString(), response);
+			String headerValue = String.format("attachment; filename=\"%s\"",
+					fileName);
+			response.setContentType("text/csv");
+			response.setHeader(headerKey, headerValue);
+			OutputStream outputStream = response.getOutputStream();
+			
+			MeterMasterDao daoObj = new MeterMasterDao();
+			
+			HttpSession session = request.getSession();
+			UserLoginDetails UserSessionObj = (UserLoginDetails) session
+					.getAttribute("sessionObj");
+			LevelIndexMaster levelIndexObj=UserSessionObj.getLevelIndexMasterObj();
+			masterObj.setSearchSelectVar("");
+			 Map<String,Integer> levelMap=new HashMap<String,Integer>();
+			 utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
+				levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
+				List<MeterMaster> dataList = new ArrayList<MeterMaster>();
+				
+				Long totalRecords=daoObj.fetchMeterMasterCount( 
+						masterObj,levelIndexObj);
+				
+				records = totalRecords.intValue();
+				total = (int)Math.ceil(records /(double)noOfRecords);
+				
+				masterObj.setRows(noOfRecords);
+				
+				for(int i=1;i<=total;i++){
+					masterObj.setPage(i);
+					dataList= daoObj.fetchMeterMasterList(i-1, records, null, masterObj, levelIndexObj);
+					for (MeterMaster meterDetailsObj : dataList) {
+						
+						if(meterDetailsObj.getMeterNumber() != null){
+							dataStr.append(meterDetailsObj.getMeterNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getMeterMake() != null){
+							dataStr.append(meterDetailsObj.getMeterMake() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getInstallationType() != null){
+							dataStr.append(meterDetailsObj.getInstallationType() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getInstallationSubType() != null){
+							dataStr.append(meterDetailsObj.getInstallationSubType() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getIdentificationNumber() != null){
+							dataStr.append(meterDetailsObj.getIdentificationNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getConnectionStatus() != null){
+							dataStr.append(meterDetailsObj.getConnectionStatus() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getSimNumber() != null){
+							dataStr.append(meterDetailsObj.getSimNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getMdnNumber() != null){
+							dataStr.append(meterDetailsObj.getMdnNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getModemNumber() != null){
+							dataStr.append(meterDetailsObj.getModemNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getVoltageMultiplier() != null){
+							dataStr.append(meterDetailsObj.getVoltageMultiplier() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getCurrentMultiplier() != null){
+							dataStr.append(meterDetailsObj.getCurrentMultiplier() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getEnergyMultiplier() != null){
+							dataStr.append(meterDetailsObj.getEnergyMultiplier() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getModemVersion() != null){
+							dataStr.append(meterDetailsObj.getModemVersion() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getInstallationDate() != null){
+							dataStr.append(meterDetailsObj.getInstallationDate() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getSimProvider() != null){
+							dataStr.append(meterDetailsObj.getSimProvider() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getConsumerNumber() != null){
+							dataStr.append(meterDetailsObj.getConsumerNumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getConsumerAddress() != null){
+							dataStr.append(meterDetailsObj.getConsumerAddress() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getConsumerName() != null){
+							dataStr.append(meterDetailsObj.getConsumerName() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getAccountId() != null){
+							dataStr.append(meterDetailsObj.getAccountId() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getIpAddress() != null){
+							dataStr.append(meterDetailsObj.getIpAddress() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getDtCode() != null){
+							dataStr.append(meterDetailsObj.getDtCode() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getFeederCode() != null){
+							dataStr.append(meterDetailsObj.getFeederCode() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getSubstationCode() != null){
+							dataStr.append(meterDetailsObj.getSubstationCode() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getVoltageRating() != null){
+							dataStr.append(meterDetailsObj.getVoltageRating() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getSupplyDirection() != null){
+							dataStr.append(meterDetailsObj.getSupplyDirection() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getInstallationId() != null){
+							dataStr.append(meterDetailsObj.getInstallationId() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getRfdnodenumber() != null){
+							dataStr.append(meterDetailsObj.getRfdnodenumber() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getBoundarytype()!=null){
+							dataStr.append(meterDetailsObj.getBoundarytype() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getMetertype()!=null){
+							dataStr.append(meterDetailsObj.getMetertype() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getMeterclass()!=null){
+							dataStr.append(meterDetailsObj.getMeterclass() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getMdnno()!=null){
+							dataStr.append(meterDetailsObj.getMdnno() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						
+						if(meterDetailsObj.getGpscoordinates()!=null){
+							dataStr.append(meterDetailsObj.getGpscoordinates() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getMetercapacity()!=null){
+							dataStr.append(meterDetailsObj.getMetercapacity() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getCtratio()!=null){
+							dataStr.append(meterDetailsObj.getCtratio() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getPtratio()!=null){
+							dataStr.append(meterDetailsObj.getPtratio() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getMeterratio()!=null){
+							dataStr.append(meterDetailsObj.getMeterratio() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						if(meterDetailsObj.getPinconfig()!=null){
+							dataStr.append(meterDetailsObj.getPinconfig() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getMeterpono()!=null){
+							dataStr.append(meterDetailsObj.getMeterpono() + ",");
+						}else{
+							dataStr.append("-"+ ",");
+						}
+						
+						if(meterDetailsObj.getSlaveid()!=null){
+							dataStr.append(meterDetailsObj.getSlaveid() + "\n");
+						}else{
+							dataStr.append("-"+ "\n");
+						}
+					}
+			}
+			utilsObj.appendFileData(folderPath, fileName, dataStr.toString(),response);
+        outputStream.write(dataStr.toString().getBytes());
+        outputStream.flush();
+        outputStream.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 	
+	
+	    return;
+}
+	private String ExportMeterMasterPrepareHeader() {
+  		String header="";
+		try {
+			StringBuilder sb=new StringBuilder();
+			sb.append("METER NUMBER,");
+			sb.append("METER MAKE,");
+			sb.append("INSTALLATION TYPE,");
+			sb.append("INSTALLATION SUB TYPE,");
+			sb.append("IDENTIFICATION_NUMBER,");
+			sb.append("CONNECTION_STATUS,");
+			sb.append("SIM_NUMBER,");
+			sb.append("MDN_NUMBER,");
+			sb.append("MODEM_NUMBER,");
+			sb.append("VOLTAGE_MULTIPLIER,");
+			sb.append("CURRENT_MULTIPLIER,");
+			sb.append("ENERGY_MULTIPLIER,");
+			sb.append("MODEM_VERSION,");
+			sb.append("INSTALLATION_DATE,");
+			sb.append("SIM_PROVIDER,");
+			sb.append("CONSUMER_NUMBER,");
+			sb.append("CONSUMER_ADDRESS,");
+			sb.append("CONSUMER_NAME,");
+			sb.append("ACCOUNT_ID,");
+			sb.append("IP_ADDRESS,");
+			sb.append("DT_CODE,");
+			sb.append("FEEDER_CODE,");
+			sb.append("SUBSTATION_CODE,");
+			sb.append("VOLTAGE_RATING,");
+			sb.append("SUPPLY_DIRECTION,");
+			sb.append("INSTALLATION_ID,");
+			sb.append("RFDNODENUMBER"+",");
+			sb.append("BOUNDARY_TYPE,");
+			sb.append("METER_TYPE,");
+			sb.append("METER_CLASS,");
+			sb.append("MDN_NO,");
+			sb.append("GPS_COORDINATES,");
+			sb.append("METER_CAPACITY,");
+			sb.append("CT_RATIO,");
+			sb.append("PT_RATIO,");
+			sb.append("METER_RATIO,");
+			sb.append("PIN_CONFIG,");
+			sb.append("METER_PO_NO,");
+			sb.append("SLAVE_ID"+"\n");
+			header=sb.toString();
+  		} catch (Exception ex) {
+  			ex.printStackTrace();
+  		}
+  		return header;
+  	}
+
+
+
+
+
+
+
 	private Object fetchMeterMasterColumsMap(MeterMaster masterObj) {
 		try {
 			Map<String, String> columnsMap = new HashMap<String, String>();
