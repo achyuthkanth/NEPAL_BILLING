@@ -22,22 +22,22 @@
 					<!-- Theme style -->
 					<link rel="stylesheet" href="dist/css/adminlte.min.css">
 					<link rel="stylesheet" href="css/styles.css"> </head>
-<style type="text/css">
-ol, ul {
-    margin-top: 0;
-   margin-bottom: 1px !important;
-} 
-.leftside-inner-list-group{
-    margin-bottom: 1px;
-    border-bottom:1px solid #e8e8e8;
-    padding: 5px;
-    color: red;
-    text-decoration: none;
-    background-color: #ffffff;
-    margin-top: 0;
-    list-style: disclosure-closed !important;
-    }
-</style>
+			<style type="text/css">
+			ol, ul {
+			    margin-top: 0;
+			   margin-bottom: 1px !important;
+			} 
+			.leftside-inner-list-group{
+			    margin-bottom: 1px;
+			    border-bottom:1px solid #e8e8e8;
+			    padding: 5px;
+			    color: red;
+			    text-decoration: none;
+			    background-color: #ffffff;
+			    margin-top: 0;
+			    list-style: disclosure-closed !important;
+			    }
+			</style>
 				<body class="hold-transition sidebar-mini">
 					<div class="wrapper">
 						<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -199,7 +199,8 @@ ol, ul {
 													</div>
 													<div class="col-sm-2"> </div>
 												</div>
-												<table id="example1" class="table">
+												<table id="example1" style="width: 100% !important;display: inline-table;"
+										 class="table table-responsive">
 													<thead>
 														<tr>
 															<th>S.No</th>

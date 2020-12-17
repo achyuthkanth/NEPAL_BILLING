@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="usermanagement"
+  name="NEPAL_BILLING"
   id="myeclipse.1606895202285"
-  context-root="/usermanagement"
+  context-root="/billing"
   j2ee-spec="6.0"
   archive="usermanagement.war">
   <attributes>

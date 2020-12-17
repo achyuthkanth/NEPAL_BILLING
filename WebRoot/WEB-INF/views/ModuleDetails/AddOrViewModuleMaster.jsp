@@ -142,7 +142,8 @@
 													</div>
 													<div class="col-sm-2"> </div>
 												</div>
-												<table id="example1" class="table ">
+												<table id="example1" style="width: 100% !important;display: inline-table;"
+										 class="table table-responsive">
 													<thead>
 														<tr>
 															<th>S.No</th>

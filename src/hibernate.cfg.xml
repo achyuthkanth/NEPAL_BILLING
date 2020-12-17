@@ -52,7 +52,6 @@
 		
 		
 		<!--Um Masters-->
-		
 		<mapping resource="com/analogics/um/hbm/ModuleMaster.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ModuleDetails.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/ApplicationMaster.hbm.xml" />
@@ -67,6 +66,13 @@
 		<mapping resource="com/analogics/um/hbm/BioUserDetails.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/UserGroupActions.hbm.xml" />
 		<mapping resource="com/analogics/um/hbm/UserGroupViews.hbm.xml" />
+		<!--Um Masters-->
+		
+		
+		<!-- App Masters  -->
+			<mapping resource="com/analogics/hbm/ConsumerMaster.hbm.xml" />
+			<mapping resource="com/analogics/hbm/ConsumerMeterMaster.hbm.xml" />
+		<!-- App Masters -->
 		
 	</session-factory>
 

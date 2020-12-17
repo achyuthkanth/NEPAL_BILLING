@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import com.analogics.um.dao.ApplicationMasterDao;
 import com.analogics.um.dao.CommonDAO;
 import com.analogics.um.vo.ApplicationMaster;
 import com.analogics.um.vo.ServerDataTable;
+import com.analogics.um.vo.UserLoginDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -99,9 +101,9 @@ public class ApplicationMasterController {
 		boolean isSaved = false;
 		CommonDAO daoObj = new CommonDAO();
 		try {
-//			HttpSession session = request.getSession();
-//			UserLoginDetails userLoginSessionObj=(UserLoginDetails)session.getAttribute("sessionObj"); 
-//			masterObj.setInserteduser(userLoginSessionObj.getBiouserdetails().getUserid());
+			HttpSession session = request.getSession();
+			UserLoginDetails userLoginSessionObj=(UserLoginDetails)session.getAttribute("sessionObj"); 
+			masterObj.setInserteduser(userLoginSessionObj.getBiouserdetails().getUserid());
 			masterObj.setInserteddate(new Timestamp(new Date().getTime()));
 			if(masterObj.getApplicationuniquecode()==null || masterObj.getApplicationuniquecode()==""){
 				masterObj.setApplicationuniquecode(masterObj.getApplicationname());
