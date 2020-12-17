@@ -14,7 +14,8 @@ public class LevelIndexMaster implements java.io.Serializable {
 	private static final long serialVersionUID = -8024252827449539485L;
 	private LevelIndexMasterId id;
 	private Integer indexid;
-
+	//Required Fields
+	private String response;
 	// Constructors
 
 	/** default constructor */
@@ -43,6 +44,14 @@ public class LevelIndexMaster implements java.io.Serializable {
 
 	public void setIndexid(Integer indexid) {
 		this.indexid = indexid;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
 	}
 
 }

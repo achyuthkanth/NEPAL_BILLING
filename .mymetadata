@@ -5,7 +5,7 @@
   id="myeclipse.1606895202285"
   context-root="/billing"
   j2ee-spec="6.0"
-  archive="usermanagement.war">
+  archive="NEPAL_BILLING.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>
