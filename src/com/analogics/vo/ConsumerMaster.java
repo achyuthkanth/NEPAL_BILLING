@@ -2,11 +2,13 @@ package com.analogics.vo;
 
 import java.sql.Timestamp;
 
+import com.analogics.utils.ExtraFieldspojo;
+
 /**
  * ConsumerMaster entity. @author MyEclipse Persistence Tools
  */
 
-public class ConsumerMaster implements java.io.Serializable {
+public class ConsumerMaster extends ExtraFieldspojo implements java.io.Serializable {
 
 	// Fields
 	private static final long serialVersionUID = -1310296043182068140L;
