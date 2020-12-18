@@ -112,41 +112,6 @@ public class MeterMasterDao extends BaseHibernateDAO  {
 		return list;
 	}
 	
-	public MeterMaster fetchLevelIndexMasterDetails(MeterMaster meterMasterObj) {
-		Session session = null;
-		LevelIndexMaster masterObj = new LevelIndexMaster();
-		try {
-			session = getSession();
-			StringBuilder strb = new StringBuilder();
-			strb.append("from  LevelIndexMaster where  indexId=:indexId");
-			Query queryObj = session.createQuery(strb.toString());
-			queryObj.setParameter("indexId", meterMasterObj.getIndexid());
-			masterObj = (LevelIndexMaster) queryObj.list().get(0);
-			meterMasterObj.setLevel1Id(masterObj.getId().getLevel1id() + "");
-			meterMasterObj.setLevel2Id(masterObj.getId().getLevel2id() + "");
-			meterMasterObj.setLevel3Id(masterObj.getId().getLevel3id() + "");
-			meterMasterObj.setLevel4Id(masterObj.getId().getLevel4id() + "");
-			meterMasterObj.setLevel5Id(masterObj.getId().getLevel5id() + "");
-			meterMasterObj.setLevel6Id(masterObj.getId().getLevel6id() + "");
-			meterMasterObj.setLevel7Id(masterObj.getId().getLevel7id() + "");
-			meterMasterObj.setLevel8Id(masterObj.getId().getLevel8id() + "");
-			meterMasterObj.setLevel9Id(masterObj.getId().getLevel9id() + "");
-			meterMasterObj.setLevel10Id(masterObj.getId().getLevel10id() + "");
-			meterMasterObj.setLevel11Id(masterObj.getId().getLevel11id() + "");
-			meterMasterObj.setLevel12Id(masterObj.getId().getLevel12id() + "");
-			meterMasterObj.setLevel13Id(masterObj.getId().getLevel13id() + "");
-			meterMasterObj.setLevel14Id(masterObj.getId().getLevel14id() + "");
-			meterMasterObj.setLevel15Id(masterObj.getId().getLevel15id() + "");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session.isOpen())
-				session.close();
-		}
-		return meterMasterObj;
-
-	}
-	
 	public boolean deleteMeterMasterDetails(String meterNumber) {
 		Transaction tr = null;
 		Session session = null;
@@ -168,26 +133,6 @@ public class MeterMasterDao extends BaseHibernateDAO  {
 				session.close();
 		}
 		return isSaved;
-	}
-	
-	public Object[] fetchLevelDetails(Integer levelNumber,String uniqueCode){
-		Object[] strArr=null;
-		Session session=null;
-		try{
-			session=getSession();
-			Query queryObj = session.createSQLQuery("SELECT level" + levelNumber+ "_Id,level" + levelNumber+ "_Name from hierarchy_level" + levelNumber + " "
-					+ "where level" + levelNumber + "_uniqueCode=?");
-			
-			queryObj.setParameter(0, uniqueCode.toUpperCase());
-			Object[] objArr = (Object[]) queryObj.list().get(0);
-			strArr=objArr;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(session.isOpen())
-				session.close();
-		}
-		return strArr;
 	}
 	
 	

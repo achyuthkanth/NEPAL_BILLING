@@ -1,10 +1,12 @@
 package com.analogics.vo;
 
+import com.analogics.utils.ExtraFieldspojo;
+
 /**
  * ConsumerMeterMaster entity. @author MyEclipse Persistence Tools
  */
 
-public class ConsumerMeterMaster implements java.io.Serializable {
+public class ConsumerMeterMaster extends ExtraFieldspojo implements java.io.Serializable {
 
 	// Fields
 

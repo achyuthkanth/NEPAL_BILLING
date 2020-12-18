@@ -60,7 +60,7 @@
 					<!-- SELECT2 EXAMPLE -->
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Upload  Hierarchy Levels</h3>
+							<h3 class="card-title">Upload MeterMaster Excel file</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -71,27 +71,28 @@
 						</div>
 						<!-- /.card-header -->
 							<div class="card-body">
+							<form:form method="post" action="bulkMeterMasterUpload" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-12">
-										<form:form method="post" action="saveHierarchies" enctype="multipart/form-data">
+										
 											<div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
 						                      <div class="form-group">
-						                        <label for="exampleInputFile">Upload MeterMaster Excel file</label>
 						                        <div class="input-group">
 						                          <div class="custom-file">
-						                            <input type="file" class="custom-file-input" name="file" id="exampleInputFile">
+						                            <input type="file" class="custom-file-input" name="MeterDataupload" id="exampleInputFile">
 						                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
 						                          </div>
 						                        </div>
 						                      </div>
 						                    </div>
-										</form:form>
+										
 									</div>
 								</div>
 								<div class="form-group col-sm-12" style="text-align: center;">
 									<button type="submit" class="btn btn-success">Upload
 										MeterMaster</button>
 								</div>
+								</form:form>
 							</div>
 						</div>
 				</div>
@@ -316,6 +317,12 @@
 					
 						<div class="card-body">
 						<div class="row">
+						<form:form>
+								<div class="row">
+										<%@ include
+											file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
+									</div>
+						</form:form>
 						<div class="col-md-6">
 							<dl class="row">
 							

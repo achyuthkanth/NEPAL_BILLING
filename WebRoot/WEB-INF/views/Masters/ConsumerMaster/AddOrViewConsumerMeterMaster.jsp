@@ -44,23 +44,23 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Consumer Master</h1>
+							<h1>Consumer Meter Master</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Consumer Master</li>
+								<li class="breadcrumb-item active">Consumer Meter Master</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
-				<section class="content">
+				<%-- <section class="content">
 				<div class="container-fluid">
 					<!-- SELECT2 EXAMPLE -->
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Upload Consumer Master Excel file</h3>
+							<h3 class="card-title">Upload Hierarchy Levels</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -76,6 +76,7 @@
 									<div class="col-md-12">
 											<div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
 						                      <div class="form-group">
+						                        <label for="exampleInputFile">Upload Consumer Meter Master Excel file</label>
 						                        <div class="input-group">
 						                          <div class="custom-file">
 						                            <input type="file" class="custom-file-input" name="ConsumerDataupload" id="exampleInputFile">
@@ -94,16 +95,16 @@
 							</div>
 						</div>
 				</div>
-			</section>
+			</section> --%>
 			</section>
 			<c:if test="${command.viewType=='Edit' || command.viewType==null}">
-				<form:form action="saveConsumerMasterDetails">
+				<form:form action="saveConsumerMeterMasterDetails">
 					<section class="content">
 						<div class="container-fluid">
 							<!-- SELECT2 EXAMPLE -->
 							<div class="card card-default">
 								<div class="card-header">
-									<h3 class="card-title">Consumer Master Information</h3>
+									<h3 class="card-title">Consumer Meter Master Information</h3>
 									<div class="card-tools">
 										<button type="button" class="btn btn-tool"
 											data-card-widget="collapse">
@@ -114,105 +115,44 @@
 								</div>
 								<!-- 						/.card-header -->
 								<div class="card-body">
-									<div class="row">
+									<%-- <div class="row">
 										<%@ include
 											file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
-									</div>
-									<div id="new">
-										<div class="row">
+									</div> --%>
+									
+									<div class="row">
 									
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Consumer Id</label> <input type="text"
-													required="required" name="consumerId" class="form-control consumerIdClass"
-													value="${command.consumerId}" placeholder="Consumer Id">
+													required="required" name="id.consumerId" class="form-control consumerIdClass"
+													value="${command.id.consumerId}" placeholder="Consumer Id">
 											</div>
 											<div class="form-group">
-												<label>Consumer Number</label> <input type="text"
-													required="required" name="consumerNumber" class="form-control"
-													value="${command.consumerNumber}" placeholder="Consumer Number">
-											</div>
-											<div class="form-group">
-												<label>Consumer Address</label> <input type="text"
-													required="required" name="consumerAddress"
-													class="form-control" value="${command.consumerAddress}"
-													placeholder="Consumer Address">
-											</div>
-											<div class="form-group">
-												<label>Consumer Company Details </label> <input type="text"
-													name="consumerCompanyDetails" class="form-control"
-													value="${command.consumerCompanyDetails}"
-													placeholder="Consumer Company Details">
-											</div>
-											<div class="form-group">
-												<label>Email Address</label> <input type="text"
-													name="emailAddress" class="form-control"
-													value="${command.emailAddress}" placeholder="Email Address">
+												<label>Meter Number</label> <input type="text"
+													required="required" name="id.meterNumber" class="form-control"
+													value="${command.id.meterNumber}" placeholder="Meter Number">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Contact No </label> <input type="text"
-													name="contactNo" class="form-control"
-													value="${command.contactNo}"
-													placeholder="Contact Number">
+												<label>Status Of Meter </label> <input type="text"
+													name="statusOfMeter" class="form-control"
+													value="${command.statusOfMeter}"
+													placeholder="Status Of Meter">
 											</div>
-											<div class="form-group">
-												<label>Alternate Contact</label> <input type="text"
-													name="alternateContact" class="form-control"
-													value="${command.alternateContact}"
-													placeholder="Alternate Contact">
-											</div>
-											<div class="form-group">
-												<label>Identification Number</label> <input type="text"
-													name="identificationNumber" class="form-control"
-													value="${command.identificationNumber}"
-													placeholder="Identification Number">
-											</div>
+										</div>
 
-											<div class="form-group">
-												<label>Connection Status</label> <input type="text"
-													name="connectionStatus" class="form-control"
-													value="${command.connectionStatus}" placeholder="Connection Status">
-											</div>
-										</div>
-									</div>
-									</div>
-									<hr/>
-									<div id="content">
-									</div>
-									<c:if test="${command.viewType=='Edit'}">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<input type="text" required="required"
-														name="csmMeterMasterObj.id.meterNumber" value="${csmMeterMasterObj.id.meterNumber}"
-														class="form-control" placeholder="Select Meter Number" />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<input type="text" required="required"
-														name="csmMeterMasterObj.statusOfMeter" value="${csmMeterMasterObj.statusOfMeter}"
-														class="form-control" placeholder="Consumer Id">
-												</div>
-											</div>
-											<input style="height: min-content;" type="button" value="-"
-												onclick="removeRow(this)">
-										</div>
-									</c:if>
-									
 										<div class="form-group col-sm-12" style="text-align: center;">
-											<button class="btn btn-info" onclick="addRow()">Add Meter</button>
 											<button type="submit" class="btn btn-success">Save/Update</button>
 											<button type="reset" class="btn btn-warning">Reset</button>
 										</div>
-									
+									</div>
 								</div>
 							</div>
 						</div>
 					</section>
-					
+
 				</form:form>
 			</c:if>
 
@@ -222,7 +162,7 @@
 					<!-- SELECT2 EXAMPLE -->
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Consumer Master Information</h3>
+							<h3 class="card-title">Consumer Meter Master Information</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -235,55 +175,30 @@
 						<div class="card-body">
 						<div class="row">
 						
-						<form:form>
+						<%-- <form:form>
 								<div class="row">
 										<%@ include
 											file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
 									</div>
-						</form:form>
+						</form:form> --%>
 						
 						<div class="col-md-6">
 							<dl class="row">
 								<dt class="col-sm-4">Consumer Id</dt>
 								<dd class="col-sm-8">
-									<c:out value="${command.consumerId}"></c:out>
+									<c:out value="${command.id.consumerId}"></c:out>
 								</dd>
-								<dt class="col-sm-4">Consumer Number</dt>
+								<dt class="col-sm-4">Meter Number</dt>
 								<dd class="col-sm-8">
-									<c:out value="${command.consumerNumber}"></c:out>
-								</dd>
-								<dt class="col-sm-4">Consumer Address</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.consumerAddress}"></c:out>
-								</dd>
-								<dt class="col-sm-4">Email Address</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.emailAddress}"></c:out>
-								</dd>
-								<dt class="col-sm-4">Consumer Company Details</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.consumerCompanyDetails}"></c:out>
+									<c:out value="${command.id.meterNumber}"></c:out>
 								</dd>
 							</dl>
 							</div>
 							<div class="col-md-6">
 							<dl class="row">
-								<dt class="col-sm-4">Contact No </dt>
+								<dt class="col-sm-4">Status Of Meter</dt>
 								<dd class="col-sm-8">
-									<c:out value="${command.contactNo}"></c:out>
-								</dd>
-								<dt class="col-sm-4">Alternate Contact</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.alternateContact}"></c:out>
-								</dd>
-								
-								<dt class="col-sm-4">Identification Number</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.identificationNumber}"></c:out>
-								</dd>
-								<dt class="col-sm-4">Connection Status</dt>
-								<dd class="col-sm-8">
-									<c:out value="${command.connectionStatus}"></c:out>
+									<c:out value="${command.statusOfMeter}"></c:out>
 								</dd>
 							</dl>
 							</div>
@@ -300,7 +215,7 @@
 				<div class="container-fluid">
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Consumer Master Details</h3>
+							<h3 class="card-title">Consumer Meter Master Details</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -346,17 +261,8 @@
 									<tr>
 										<th>S.No</th>
 										<th>Consumer Id</th>
-										<th>Consumer Number</th>
-										<th>Consumer Address</th>
-										<th>Consumer Company Details</th>
-										<th>Contact No</th>
-										<th>Alternate Contact</th>
-										<th>Email Address</th>
-										<th>Identification Number</th>
-										<th>Connection Status</th>
-										<th>Installation Date</th>
-										<th>Inserted Date</th>
-										<th>Inserted User</th>
+										<th>Meter Number</th>
+										<th>Status Of Meter</th>
 										<th>View</th>
 										<th>Edit</th>
 										<th>Delete</th>
@@ -494,14 +400,8 @@
 						loadDataTable(url, "", "");
 
 						function loadDataTable(url, hideColumns, showColumns) {
-// 							alert("hideColumns "+hideColumns);
-// 							alert("showColumns "+showColumns);
 							var $table = $('#example1');
 							var table = $table.DataTable({
-								/* "responsive": true,
-								"lengthChange": false,
-								"scrollX": true,
-								"autoWidth": true, */
 								"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
 								"bServerSide": true,
 						        "bProcessing": true,
@@ -510,20 +410,13 @@
 						        "render": true,
 						        "bDestroy": true,
 						        "scrollX": true,
-								/* "destroy": true,
-								"bProcessing": true,
-								"bServerSide": true,
-								"sort": "position",
-								"bStateSave": false,
-								"iDisplayLength": 10,
-								"iDisplayStart": 0, */
 								"processing": true,
 						        "language": {
 						            'loadingRecords': '&nbsp;',
 						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
 						        },
 								"fnDrawCallback": function() {},
-								"sAjaxSource": "fetchConsumerMasterDetails?" + url,
+								"sAjaxSource": "fetchConsumerMeterMasterDetails?" + url,
 								 "aoColumns": [
          	{
 	                 "mData": "id",
@@ -532,54 +425,24 @@
 	                 return meta.row + meta.settings._iDisplayStart + 1;
 			    }
 			},
-         	{ "mData": "consumerId" ,  "defaultContent": "-"},
-         	{ "mData": "consumerNumber" ,  "defaultContent": "-"},
-            { "mData": "consumerAddress" ,  "defaultContent": "-"},
-            { "mData": "consumerCompanyDetails" ,  "defaultContent": "-"},
-            { "mData": "contactNo" ,  "defaultContent": "-"},
-            { "mData": "alternateContact" ,  "defaultContent": "-"},
-            { "mData": "emailAddress" ,  "defaultContent": "-"},
-            { "mData": "identificationNumber" ,  "defaultContent": "-"},
-            { "mData": "connectionStatus" ,  "defaultContent": "-"},
-            {
-                 "mData": "installationDate",
-    			 "render": function (data) {
-    			 if (data == null){ return '-'; }else{
-        		 var date = new Date(data);
-       			 var month = date.getMonth() + 1;
-       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-			      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-			      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-			      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-			   } }},
-			   {
-                 "mData": "insertedDate",
-    			 "render": function (data) {
-    			 if (data == null){ return '-'; }else{
-        		 var date = new Date(data);
-       			 var month = date.getMonth() + 1;
-       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-			      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-			      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-			      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-			   } }},
-            
-            { "mData": "insertedUser" ,  "defaultContent": "-"},
+         	{ "mData": "id.consumerId" ,  "defaultContent": "-"},
+         	{ "mData": "id.meterNumber" ,  "defaultContent": "-"},
+            { "mData": "statusOfMeter" ,  "defaultContent": "-"},
          	{
           		render: function (data, type, row)
                 {
-                return ' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'viewConsumerMaster \',\'' + row.consumerId + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
+                return ' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'viewConsumerMeterMaster \',\'' + row.id.consumerId + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
                  }
             },
 			{
           		render: function (data, type, row)
                 {
-                return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'viewConsumerMaster \',\'' + row.consumerId + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>';
+                return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'viewConsumerMeterMaster \',\'' + row.id.consumerId + '\',\'' + 'Edit' + '\')"><i class="fas fa-pencil-alt"></i></a>';
                  }
             },
        		{
           		render: function (data, type, row){
-         		return '<a class="btn btn-danger btn-sm" onClick="submitMyForm(\'deleteConsumerMaster \',\'' + row.consumerId + '\',\'\')"><i class="fas fa-trash"></i></a>';
+         		return '<a class="btn btn-danger btn-sm" onClick="submitMyForm(\'deleteConsumerMeterMaster \',\'' + row.id.consumerId + '\',\'\')"><i class="fas fa-trash"></i></a>';
          		}  
        		},
         ]
@@ -588,16 +451,16 @@
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15).visible(true);//Total No.of columns
+								table.columns(0,1,2,3,4,5,6).visible(true);//Total No.of columns
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
 							hideColumns = "";       
-							showColumns = "0,13,14,15";			  	//S.No,View,Edit and Delete columns
+							showColumns = "0,4,5,6";			  	//S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
-								for(var i = 0; i < 13; i++) {		//Iterate Columns
+								for(var i = 0; i < 4; i++) {		//Iterate Columns
 									var x = i + 1;
 									if(columns.split(",").includes(x+"")) {	
 										showColumns = x + "," + showColumns;
@@ -653,7 +516,7 @@
 							proceed='true';
 						}
 						if(proceed=='true'){
-						$('<form method="post" action="' + action + '"><input type="hidden" name="consumerId" value="' + consumerId + '" /><input type="hidden" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
+						$('<form method="post" action="' + action + '"><input type="hidden" name="id.consumerId" value="' + consumerId + '" /><input type="hidden" name="viewType" value="' + viewType + '" /></form>').appendTo('body').submit();
 						}
 				}
 	</script>
@@ -728,39 +591,5 @@
 						});
 					});
 	</script>
-	<script type="text/javascript">
-	function addRow () {
-  document.querySelector('#content').insertAdjacentHTML(
-    'afterbegin',
-    '<div class="row"><div class="col-md-4"><div class="form-group">'
-      +'<input type="text" required="required" name="csmMeterMasterObj.id.meterNumber" class="form-control" placeholder="Select Meter Number"/>'
-      +'</div></div><div class="col-md-4"><div class="form-group"><input type="text" required="required" name="csmMeterMasterObj.statusOfMeter" '
-      +' class="form-control" placeholder="Consumer Id"></div></div>'
-      +'<input style="height: min-content;" type="button" value="-" onclick="removeRow(this)">'
-    +'</div>'      
-  )
-}
-
-function removeRow (input) {
-  input.parentNode.remove()
-}
-	</script>
-	<!-- <script type="text/javascript">
-      function add() {
-        var i = document.getElementById( 'old' );
-        var d = document.createElement( 'div' );
-        d.id = "new1";
-        d.innerHTML = i.innerHTML ;
-        var p = document.getElementById('new');
-        p.appendChild(d);
-    }
-    function removeLocation() {
-        var d = document.getElementById( 'new1' );
-        var p = document.getElementById('new');
-        alert(p);
-        var r1 = p.closest(".row");
-        r1.removeChild(d);
-    }
-	</script> -->
 </body>
 </html>

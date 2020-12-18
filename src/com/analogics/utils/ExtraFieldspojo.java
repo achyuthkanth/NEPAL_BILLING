@@ -8,6 +8,7 @@ import java.util.Map;
 import com.analogics.um.vo.ModuleDetails;
 import com.analogics.um.vo.ParamTable;
 import com.analogics.um.vo.UserGroup;
+import com.analogics.vo.MeterMaster;
 
 public class ExtraFieldspojo {
 	
@@ -43,6 +44,9 @@ public class ExtraFieldspojo {
 	// Meter master
 		private String successMessage;
 		private String errorMessage;
+		
+	// Consumer Master
+	private List<MeterMaster> meterNumbersList = new ArrayList<MeterMaster>(); 
 	
 	
 	public Map<String, String> getColumnsMap() {
@@ -183,6 +187,12 @@ public class ExtraFieldspojo {
 	}
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+	public List<MeterMaster> getMeterNumbersList() {
+		return meterNumbersList;
+	}
+	public void setMeterNumbersList(List<MeterMaster> meterNumbersList) {
+		this.meterNumbersList = meterNumbersList;
 	}
 
 }

@@ -455,8 +455,46 @@ public class UserHierUtils extends BaseHibernateDAO{
 		}
 		 return object;
     }
-	
-		
+
+	public LevelIndexMaster fetchLevelIndexMasterDetails(Integer indexId,LevelIndexMaster masterObj) {
+		Session session = null;
+		try {
+			session = getSession();
+			StringBuilder strb = new StringBuilder();
+			strb.append("from LevelIndexMaster where indexId=:indexId");
+			Query queryObj = session.createQuery(strb.toString());
+			queryObj.setParameter("indexId", indexId);
+			masterObj = (LevelIndexMaster) queryObj.list().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return masterObj;
 	}
+	
+	
+	public Object[] fetchLevelDetails(Integer levelNumber,String uniqueCode){
+		Object[] strArr=null;
+		Session session=null;
+		try{
+			session=getSession();
+			Query queryObj = session.createSQLQuery("SELECT level" + levelNumber+ "_Id,level" + levelNumber+ "_Name from hierarchy_level" + levelNumber + " "
+					+ "where level" + levelNumber + "_uniqueCode=?");
+			
+			queryObj.setParameter(0, uniqueCode.toUpperCase());
+			Object[] objArr = (Object[]) queryObj.list().get(0);
+			strArr=objArr;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(session.isOpen())
+				session.close();
+		}
+		return strArr;
+	}
+		
+}
 	
 	

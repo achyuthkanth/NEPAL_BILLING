@@ -75,6 +75,8 @@ public class ConsumerMaster extends ExtraFieldspojo implements java.io.Serializa
 	private String accountId;
 	private String remarks1;
 	private String remarks2;
+	
+	private ConsumerMeterMaster csmMeterMasterObj;
 
 	// Constructors
 
@@ -687,6 +689,14 @@ public class ConsumerMaster extends ExtraFieldspojo implements java.io.Serializa
 
 	public void setRemarks2(String remarks2) {
 		this.remarks2 = remarks2;
+	}
+
+	public ConsumerMeterMaster getCsmMeterMasterObj() {
+		return csmMeterMasterObj;
+	}
+
+	public void setCsmMeterMasterObj(ConsumerMeterMaster csmMeterMasterObj) {
+		this.csmMeterMasterObj = csmMeterMasterObj;
 	}
 
 }

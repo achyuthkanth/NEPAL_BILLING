@@ -234,10 +234,6 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Application Hierarchy Master</p> </a>
 						</li> -->
-						<li class="nav-item"><a href="ViewNewUserMaster"
-							class="nav-link"> <i class="far fa-circle nav-icon"></i>
-								<p>Consumer Master</p> </a>
-						</li>
 						<li class="nav-item"><a href="../../index3.html"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Dashboard v3</p> </a>
@@ -254,6 +250,14 @@
 						<li class="nav-item"><a href="addOrViewMeterMaster"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Meter Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="consumerMasterDetails"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Consumer Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="consumerMeterMasterDetails"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Consumer Meter Master</p> </a>
 						</li>
 					</ul>
 				</li>

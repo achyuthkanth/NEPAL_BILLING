@@ -11,6 +11,8 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.analogics.vo.MeterMaster;
+
 /**
  * 
  * @author achyuth kanth pamuru
@@ -58,6 +60,7 @@ public class CommonDAO extends BaseHibernateDAO{
 		}
 		return response;
 	}
+	
 
 	public static void main(String[] args) {
 		new CommonDAO().save(null);
