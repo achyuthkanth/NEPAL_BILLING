@@ -44,10 +44,15 @@ public class ExtraFieldspojo {
 	// Meter master
 		private String successMessage;
 		private String errorMessage;
+<<<<<<< HEAD
 		
 	// Consumer Master
 	private List<MeterMaster> meterNumbersList = new ArrayList<MeterMaster>(); 
 	
+=======
+		private int rows;
+		private int page;
+>>>>>>> b8b03637df42f7a9a842670102fdb3d7a9ad868e
 	
 	public Map<String, String> getColumnsMap() {
 		return columnsMap;
@@ -188,11 +193,25 @@ public class ExtraFieldspojo {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+<<<<<<< HEAD
 	public List<MeterMaster> getMeterNumbersList() {
 		return meterNumbersList;
 	}
 	public void setMeterNumbersList(List<MeterMaster> meterNumbersList) {
 		this.meterNumbersList = meterNumbersList;
+=======
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+>>>>>>> b8b03637df42f7a9a842670102fdb3d7a9ad868e
 	}
 
 }
