@@ -42,11 +42,11 @@ public class ConsumerMasterDao extends BaseHibernateDAO {
 			
 			if(!masterObj.getSearchSelectVar().equalsIgnoreCase("")
 					&& !masterObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
-				strb.append(" and ");
+				strb.append(" and (");
 				strb1 = queryFrameObj.conditionQuery(masterObj.getSearchSelectVar(),
 						masterObj.getSearchParameter(),
 						masterObj.getConditionStr());
-				strb.append(strb1);
+				strb.append(strb1+")");
 			}
 			
 			strb.append(" order by master.insertedDate");
@@ -81,11 +81,11 @@ public class ConsumerMasterDao extends BaseHibernateDAO {
 					.frameUserHierarchyQuery(levelIndexObj));
 			if(!masterObj.getSearchSelectVar().equalsIgnoreCase("")
 					&& !masterObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
-				strb.append(" and ");
+				strb.append(" and (");
 				strb1 = queryFrameObj.conditionQuery(masterObj.getSearchSelectVar(),
 						masterObj.getSearchParameter(),
 						masterObj.getConditionStr());
-				strb.append(strb1);
+				strb.append(strb1+")");
 			}
 			Query queryObj = session.createQuery(strb.toString());
 		
@@ -191,8 +191,7 @@ public class ConsumerMasterDao extends BaseHibernateDAO {
 
 	
 	@SuppressWarnings("unchecked")
-	public ConsumerMaster fetchMeterNumberList() {
-		ConsumerMaster masterObj = new ConsumerMaster();
+	public ConsumerMaster fetchMeterNumberList(ConsumerMaster masterObj) {
 		List<MeterMaster> list = new ArrayList<MeterMaster>();
 		Session session = null;
 		try {
@@ -211,38 +210,24 @@ public class ConsumerMasterDao extends BaseHibernateDAO {
 		return masterObj;
 	}
 
-	public ConsumerMeterMaster fetchConsumerMeterMasterDetails(String consumerId) {
-		ConsumerMeterMaster list = new ConsumerMeterMaster();
+	@SuppressWarnings("unchecked")
+	public List<ConsumerMeterMaster> fetchConsumerMeterMasterDetails(String consumerId) {
+		List<ConsumerMeterMaster> masterList = new ArrayList<ConsumerMeterMaster>();
 		Session session = null;
 		try {
 			session = getSession();
 			String str = "from ConsumerMeterMaster where id.consumerId=:consumerId";
 			Query que = session.createQuery(str);
 			que.setParameter("consumerId", consumerId);
-			list = (ConsumerMeterMaster) que.list().get(0);
+			masterList = que.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session.isOpen())
 				session.close();
 		}
-		return list;
+		return masterList;
 	}
 	
 	
-	
-	/*public List<ConsumerMaster> fetchConsumerMeterMasterList(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
-			ConsumerMaster masterObj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Long fetchConsumerMeterMasterCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, ConsumerMaster masterObj) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
-
-
 }

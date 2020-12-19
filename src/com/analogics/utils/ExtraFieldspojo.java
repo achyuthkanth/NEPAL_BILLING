@@ -8,6 +8,7 @@ import java.util.Map;
 import com.analogics.um.vo.ModuleDetails;
 import com.analogics.um.vo.ParamTable;
 import com.analogics.um.vo.UserGroup;
+import com.analogics.vo.ConsumerMeterMaster;
 import com.analogics.vo.MeterMaster;
 
 public class ExtraFieldspojo {
@@ -47,6 +48,8 @@ public class ExtraFieldspojo {
 	
 	// Consumer Master
 	private List<MeterMaster> meterNumbersList = new ArrayList<MeterMaster>(); 
+	private List<ConsumerMeterMaster> csmMeterMasterList = new ArrayList<ConsumerMeterMaster>();
+	private List<String> statusList = new ArrayList<String>();
 	
 	private int rows;
 	private int page;
@@ -207,6 +210,18 @@ public class ExtraFieldspojo {
 	}
 	public void setPage(int page) {
 		this.page = page;
+	}
+	public List<ConsumerMeterMaster> getCsmMeterMasterList() {
+		return csmMeterMasterList;
+	}
+	public void setCsmMeterMasterList(List<ConsumerMeterMaster> csmMeterMasterList) {
+		this.csmMeterMasterList = csmMeterMasterList;
+	}
+	public List<String> getStatusList() {
+		return statusList;
+	}
+	public void setStatusList(List<String> statusList) {
+		this.statusList = statusList;
 	}
 
 }

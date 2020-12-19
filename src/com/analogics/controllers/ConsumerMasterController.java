@@ -62,7 +62,7 @@ public class ConsumerMasterController {
 		try {
 			model =new ModelAndView("Masters/ConsumerMaster/AddOrViewConsumerDetails",
 					"command", masterObj);
-			masterObj = masterDaoObj.fetchMeterNumberList();
+			masterObj = masterDaoObj.fetchMeterNumberList(masterObj);
 			HttpSession session=request.getSession();
 			UserLoginDetails userSessionObj=(UserLoginDetails) session.getAttribute("sessionObj");
 			if(!hierVoObj.getLevel1Id().equalsIgnoreCase("-1")){
@@ -70,7 +70,9 @@ public class ConsumerMasterController {
 			}else{
 				utilsObj.frameLevelMaps(model,userSessionObj);
 			}
+			model.addObject("masterObj", masterObj);
 			model.addObject("command", fetchConsumerMasterColumsMap(masterObj));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -168,7 +170,7 @@ public class ConsumerMasterController {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						
+			if(masterObj.getCsmMeterMasterObj()!=null){
 				String [] meterNumber = masterObj.getCsmMeterMasterObj().getId().getMeterNumber().split(",");
 				String [] status = masterObj.getCsmMeterMasterObj().getStatusOfMeter().split(",");
 				if(meterNumber.length>0){
@@ -185,10 +187,11 @@ public class ConsumerMasterController {
 						}
 					}
 				}
+			}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (isSaved == true && isDeleted ==true) {
+			if (isSaved == true) {
 				model = new ModelAndView("redirect:/consumerMasterDetails");
 			}else{
 				model = new ModelAndView("common/error");
@@ -207,15 +210,16 @@ public class ConsumerMasterController {
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView model = null;
 		ConsumerMaster masterObj = new ConsumerMaster();
-		ConsumerMeterMaster meterMasterObj = new ConsumerMeterMaster();
+		List<ConsumerMeterMaster> meterMasterList = new ArrayList<ConsumerMeterMaster>();
 		HierarchyLevelsDao daoObj = new HierarchyLevelsDao();
 		try {
 			HttpSession session = request.getSession();
 			UserLoginDetails UserSessionObj = (UserLoginDetails) session
 					.getAttribute("sessionObj");
 			masterObj = masterDaoObj.fetchConsumerMasterDetails(consumerId);
-			meterMasterObj = masterDaoObj.fetchConsumerMeterMasterDetails(consumerId);
-			masterObj.setCsmMeterMasterObj(meterMasterObj);
+			masterDaoObj.fetchMeterNumberList(masterObj);
+			meterMasterList = masterDaoObj.fetchConsumerMeterMasterDetails(consumerId);
+			masterObj.setCsmMeterMasterList(meterMasterList);
 			model = new ModelAndView("Masters/ConsumerMaster/AddOrViewConsumerDetails","command", masterObj);
 				try {
 					LevelIndexMaster levelObj = new LevelIndexMaster();
@@ -282,68 +286,6 @@ public class ConsumerMasterController {
 	}
 	
 	
-	/*@RequestMapping("/consumerMeterMasterDetails")
-	public ModelAndView consumerMeterMasterDetails(@ModelAttribute("masterObj") ConsumerMeterMaster masterObj) {
-		ModelAndView model =null;
-		try {
-			model =new ModelAndView("Masters/ConsumerMaster/AddOrViewConsumerMeterMaster",
-					"command", masterObj);
-			model.addObject("command", fetchConsumerMeterMasterColumsMap(masterObj));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return model;
-	}
-
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/fetchConsumerMeterMasterDetails", method = RequestMethod.GET)
-	public @ResponseBody
-	String fetchConsumerMeterMasterDetails(HttpServletRequest request,
-			@RequestParam("iDisplayStart") String iDisplayStart,
-			@RequestParam("sSearch") String searchParameter,
-			@RequestParam("sSortDir_0") String sorting,
-			@RequestParam("iSortCol_0") String sCol,
-			@RequestParam("iColumns") String iColumns,
-			@RequestParam("iDisplayLength") String pageDisplayLength,
-			@ModelAttribute("masterObj") ConsumerMaster masterObj,
-			@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj)
-			throws IOException {
-		String json = null;
-		Long count = 0l;
-		List<ConsumerMaster> consumerList = new ArrayList<ConsumerMaster>();
-		try {
-			int pageNumber = 0;
-			pageNumber = Integer.parseInt(iDisplayStart);
-			@SuppressWarnings("rawtypes")
-			ServerDataTable dataTable = new ServerDataTable();
-			Map<String,Integer> levelMap=new HashMap<String,Integer>();
-			LevelIndexMaster levelIndexObj = new LevelIndexMaster();
-			utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
-			levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
-			try {
-				consumerList = masterDaoObj.fetchConsumerMeterMasterList(pageNumber,
-						Integer.parseInt(pageDisplayLength), searchParameter,
-						sorting,masterObj);
-				count = masterDaoObj.fetchConsumerMeterMasterCount(pageNumber,
-						Integer.parseInt(pageDisplayLength), searchParameter,
-						sorting,masterObj);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			dataTable.setiTotalRecords(count.intValue());
-			dataTable.setiTotalDisplayRecords(count.intValue());
-			dataTable.setAaData(consumerList);
-			json = gson.toJson(dataTable);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return json;
-	}
-	*/
-	
-	
-	
 	@RequestMapping("bulkConsumerMasterUpload")
 	public ModelAndView bulkConsumerMasterUpload(@RequestParam("ConsumerDataupload") MultipartFile ConsumerDataupload,
 			HttpServletRequest request){
@@ -383,7 +325,7 @@ public class ConsumerMasterController {
 					masterObj.setContactNo(rowDataMap.get("CONTACT_NO"));
 					masterObj.setAlternateContact(rowDataMap.get("ALTERNATE_CONTACT"));
 //					masterObj.setEmailAddress(rowDataMap.get("EMAIL_ADDRESS"));
-					masterObj.setEmailAddress("s@gmail.com");
+					masterObj.setEmailAddress("@gmail.com");
 					masterObj.setIdentificationNumber(rowDataMap.get("IDENTIFICATION_NO"));
 					masterObj.setConnectionStatus(rowDataMap.get("CONNECTION_STATUS"));
 					masterObj.setAccountId(rowDataMap.get("ACCOUNT_ID"));
@@ -780,6 +722,11 @@ public class ConsumerMasterController {
 			conditionListStr.add("LIKE");
 			conditionListStr.add("NOT EQUAL TO");
 			masterObj.setConditionListStr(conditionListStr);
+			
+			List<String> statusList = new ArrayList<String>();
+			statusList.add("ENABLE");
+			statusList.add("DISABLE");
+			masterObj.setStatusList(statusList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -787,29 +734,4 @@ public class ConsumerMasterController {
 	}
 	
 	
-	private Object fetchConsumerMeterMasterColumsMap(ConsumerMeterMaster masterObj) {
-		try {
-			Map<String, String> columnsMap = new HashMap<String, String>();
-			columnsMap.put("1", "Consumer Id");
-			columnsMap.put("2", "Meter Number");
-			columnsMap.put("3", "status Of Meter");
-			masterObj.setColumnsMap(columnsMap);
-			
-			Map<String,String> searchColumnsMap=new HashMap<String,String>();
-			searchColumnsMap.put("id.consumerId", "CONSUMER ID");
-			searchColumnsMap.put("id.meterNumber", "CONSUMER NUMBER");
-			masterObj.setSearchColumnsMap(searchColumnsMap);
-			
-			List<String> conditionListStr = new ArrayList<String>();
-			conditionListStr.add("EQUAL TO");
-			conditionListStr.add("LIKE");
-			conditionListStr.add("NOT EQUAL TO");
-			masterObj.setConditionListStr(conditionListStr);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return masterObj;
-	}
-
-
 }
