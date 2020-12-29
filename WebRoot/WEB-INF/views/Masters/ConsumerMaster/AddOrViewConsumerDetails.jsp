@@ -184,10 +184,9 @@
 										</div>
 									</div>
 									</div>
-									<hr/>
-									<div id="content">
-									</div>
-									<c:if test="${command.viewType=='Edit'}">
+									<!-- <div id="content">
+									</div> -->
+									<%-- <c:if test="${command.viewType=='Edit'}">
 									<c:forEach items="${command.csmMeterMasterList}"
 																		var="author" varStatus="status">
 										<div class="row">
@@ -199,16 +198,6 @@
 															class="form-control meterNumClass" placeholder="Select Meter Number"
 															name="csmMeterMasterObj.id.meterNumber" id="statusListId"
 															required="required">
-														<%-- <datalist id="browsers">
-											   <form:select path="">
-											   	<form:options items="${command.csmMeterMasterList}"/>
-											   </form:select>
-											  </datalist> --%>
-												<%-- <input type='text' name='particular' 
-												class='ui-widget col-sm-6 form-control' onpaste='return false;' required class='autoCompClass'>
-													<input type="text" required="required"
-														name="csmMeterMasterObj.id.meterNumber" value="${author.id.meterNumber}"
-														class="form-control" placeholder="Select Meter Number" /> --%>
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -238,14 +227,102 @@
 												</div>
 											</div>
 									</c:forEach>
-									</c:if>
+									</c:if> --%>
 									
+								 <c:if test="${command.viewType=='Edit' || command.viewType==null}">
+									<div class="card-header">
+										<h3 class="card-title">Add Meter</h3>
+									</div>
+									<input type="hidden" class="indexCountClass" dest="1">
+										<div class="modal-body" id="addMeterMainId">
+											<div class="row" id="startingROw">
+											<c:choose>
+												<c:when test="${fn:length(command.csmMeterMasterList) > 0}">
+												<c:forEach items="${command.csmMeterMasterList}"
+																		var="author" varStatus="status"> 
+													<div class="col-md-4">
+														<div class="form-group">
+															<input type="hidden" class='indexCountClass'
+																dest="${status.count}"> <input type="text"
+																value="${author.id.meterNumber}" autocomplete="off"
+																dest="${status.count}" onkeypress="mulSelFunction(this)"
+																id="autoCompId${status.count}"
+																class="form-control meterNumClass"
+																placeholder="Select Meter Number"
+																name="csmMeterMasterObj.id.meterNumber"
+																id="statusListId" readonly>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<form:select path="csmMeterMasterObj.statusOfMeter"
+																class="form-control">
+																<c:set var="moduleValue" value="${author.statusOfMeter}" />
+																<form:option value="${author.statusOfMeter}"></form:option>
+																<c:forEach var="theUser" items="${command.statusList}">
+																	<c:choose>
+																		<c:when test="${theUser eq moduleValue}">
+																		</c:when>
+																		<c:otherwise>
+																			<form:option value="${theUser}"></form:option>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+															</form:select>
+														</div>
+													</div>
+													<div class="col col-md-4">
+														<div class="btn-group" role="group"
+															aria-label="operation">
+															<a class="btn btn-success btn-plus btn-sm"> <i
+																class="fas fa-plus"> </i> </a>&nbsp;
+														</div>
+													</div>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<div class="col col-md-4">
+														<div class="form-group">
+															<input type="hidden" class='sNoClass'> <input
+																type="text" value="${author.id.meterNumber}"
+																autocomplete="off" dest="${status.count}"
+																onkeypress="mulSelFunction(this)"
+																id="autoCompId${status.count}"
+																class="form-control meterNumClass"
+																placeholder="Select Meter Number"
+																name="csmMeterMasterObj.id.meterNumber"
+																id="statusListId" required="required">
+														</div>
+													</div>
+													<div class="col col-md-4">
+														<div class="form-group">
+															<form:select
+																class="form-control checkVar0 conditionStrClass1"
+																path="csmMeterMasterObj.statusOfMeter">
+																<form:options items="${command.statusList}" />
+															</form:select>
+														</div>
+													</div>
+													<div class="col col-md-4">
+														<div class="btn-group" role="group"
+															aria-label="operation">
+															<a class="btn btn-success btn-plus btn-sm"> <i
+																class="fas fa-plus"> </i> </a>&nbsp;
+														</div>
+													</div>
+													</c:otherwise>
+
+											</c:choose>
+											</div>
+										</div>
+										<%-- </c:forEach> --%>
+									<!-- </div> -->
+									<br>
 										<div class="form-group col-sm-12" style="text-align: center;">
-											<button class="btn btn-info" onclick="addRow()">Add Meter</button>
 											<button type="submit" class="btn btn-success">Save/Update</button>
 											<button type="reset" class="btn btn-warning">Reset</button>
 										</div>
-									
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -813,56 +890,10 @@
 					});
 </script>
 <script type="text/javascript">
-function addRow(){
-			var validate = true;
-							var i;
-								$('.meterNumClass').each(function() {
-									$(this).css('border-color', '');
-									if($(this).val() == '') {
-										var abc = $(this).val();
-										validate = false;
-										$(this).css('border-color', 'red');
-									}
-								});
-	
-if(validate) {	
-	 var y=0;
-           $( ".sNoClass" ).each(function() {
-                       y=y+1;
-                       $(this).val(y);
-           });
-			++y;
-			  document.querySelector('#content').insertAdjacentHTML(
-			    'afterbegin',
-			    "<div class='row'><div class='col-md-4'><div class='form-group'><input type='hidden' class='sNoClass'>"
-			      +"<input type='text' required='required' name='csmMeterMasterObj.id.meterNumber' autocomplete='off' class='form-control meterNumClass' dest='"+y+"' onkeypress='mulSelFunction(this)' id='autoCompId"+y+"' placeholder='Select Meter Number'/>"
-			      +"</div></div><div class='col-md-4'><div class='form-group'><select name='csmMeterMasterObj.statusOfMeter' id='statusListStr' class='form-control'></select>"
-			      +"</div></div><div class='col-md-4'><div class='form-group'>"
-			      +"<input style='height: min-content;background: darkgray;' type='button' value='-' dest='"+y+"' onclick='removeRow(this)'>"
-			      +"</div></div></div>"
-			  )
-					var statusList = '${command.statusList}';
- 					var statusCols = new Array();
-					statusCols = statusList.split(", ");
-					for(var i = 0; i < statusCols.length; i++) {
-						var splitArr = statusCols[i];
-						var val = splitArr.replace("[", "").replace("]", "");
-						$("#statusListStr").append('<option value="' + val + '">' + val + '</option>');
-					}
-	}
-}
-
-function removeRow (e) {
-		e.parentElement.parentElement.closest("div.row").remove();
- 			var y=0;
-           $( ".sNoClass" ).each(function() {
-                       y=y+1;
-                       $(this).val(y);
-           });
-}
-
 function mulSelFunction(e){
+
 var destId = $(e).attr('dest');
+// alert(destId);
 	var list = '${command.meterNumbersList}';
 		list = list.replace("[", "").replace("]", "");
 		var xy = new Array();
@@ -894,5 +925,56 @@ var destId = $(e).attr('dest');
 		}); 
 }
 </script>
+
+<script type="text/javascript">
+		$(document).ready(function() {
+						var y = 0;
+						$('#addMeterMainId').on('click', '.btn-plus', function() {
+							validate = true;
+								$('.meterNumClass').each(function() {
+									$(this).css('border-color', '');
+									if($(this).val() == '' || $(this).val() == '0') {
+										var abc = $(this).val();
+										validate = false;
+										$(this).css('border-color', 'red');
+									}
+								});
+							if(validate) {
+					           $( ".indexCountClass" ).each(function() {
+					                       y=y+1;
+					                       $(this).val(y);
+					           });
+							      var htmlContent = "<div class='row removeDiv" + y + "'><div class='col col-md-4 removeDiv" + y + "'><br>" + "<div><input type='text' required='required' name='csmMeterMasterObj.id.meterNumber' autocomplete='off' class='form-control meterNumClass' dest='"+y+"' onkeypress='mulSelFunction(this)' id='autoCompId"+y+"' placeholder='Select Meter Number'/></div></div><div class='col col-md-4 removeDiv" + y + "'><br>" + "<select name='csmMeterMasterObj.statusOfMeter' id='statusListStr" + y + "' class='form-control'></select><input type='hidden' class='form-control countClass' dest=" + y + "></div>" + "<div class='col col-md-4 removeDiv" + y + "'><br><div class='btn-group' role='group' aria-label='operation'><button type='button' class='btn btn-success btn-sm btn-plus btn-secondary'>" + "<span class='fa-img'><i class='fa fa-plus'></i></span></button>&nbsp;" + "<button type='button' class='btn btn-danger btn-sm btn-minus btn-secondary' dest='" + y + "'><span class='fa-img'>" + "<i class='fa fa-minus'></i></span></button></div></div>" + "</div>";
+								$("#addMeterMainId").append(htmlContent);
+								
+								var statusList = '${command.statusList}';
+			 					var statusCols = new Array();
+								statusCols = statusList.split(", ");
+								for(var i = 0; i < statusCols.length; i++) {
+									var splitArr = statusCols[i];
+									var val = splitArr.replace("[", "").replace("]", "");
+									$("#statusListStr"+y).append('<option value="' + val + '">' + val + '</option>');
+								}
+								
+								var itemNo = 0;
+								$(".indexCountClass").each(function() {
+									itemNo = itemNo + 1;
+									$(this).val(itemNo);
+								});
+							}
+						});
+						$('#addMeterMainId').on('click', '.btn-minus', function() {
+							var destId = $(this).attr('dest');
+							$('.removeDiv' + destId).remove();
+							var itemNo = 0;
+							$(".indexCountClass").each(function() {
+								itemNo = itemNo + 1;
+								$(this).val(itemNo);
+							});
+						});
+					});
+</script>
+
+
 </body>
 </html>

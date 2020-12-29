@@ -255,10 +255,10 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Master</p> </a>
 						</li>
-						<li class="nav-item"><a href="consumerMeterMasterDetails"
+						<!-- <li class="nav-item"><a href="consumerMeterMasterDetails"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Meter Master</p> </a>
-						</li>
+						</li> -->
 					</ul>
 				</li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i
