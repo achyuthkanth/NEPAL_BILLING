@@ -36,6 +36,8 @@ import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.ServerDataTable;
 import com.analogics.um.vo.UserLoginDetails;
+import com.analogics.vo.ConsumerMeterMaster;
+import com.analogics.vo.ConsumerMeterMasterId;
 import com.analogics.vo.MeterMaster;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -152,6 +154,22 @@ public class MeterMasterController {
 							 meterDetailsObj.setInsertedUser(UserSessionObj
 										.getBiouserdetails().getUserid());
 							 isSaved = commonDaoObj.saveOrUpdate(meterDetailsObj);
+							 if(isSaved){
+								 isSaved = false;
+								 ConsumerMeterMaster csmObj = new ConsumerMeterMaster();
+								 ConsumerMeterMasterId csmObjId = new ConsumerMeterMasterId();
+								 boolean status = meterDaoObj.fetchMeterStatus(meterDetailsObj);
+								 if(status== false){
+									 csmObjId.setConsumerId(meterDetailsObj.getConsumerId());
+									 csmObjId.setMeterNumber(meterDetailsObj.getMeterNumber());
+									 csmObj.setId(csmObjId);
+									 csmObj.setStatusOfMeter("ENABLE");
+									 isSaved = commonDaoObj.saveOrUpdate(csmObj);
+								 }
+									 model = new ModelAndView("redirect:/addOrViewMeterMaster");
+								 
+							 }
+							
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -251,10 +269,10 @@ public class MeterMasterController {
 		MeterMaster masterObj = new MeterMaster();
 		
 		HashMap<String, String> rowDataMap = null;     
-		Map<String, String> successMetersMap = new HashMap<String, String>();
-		Map<String, String> failureMetersMap = new HashMap<String, String>();
+	/*	Map<String, String> successMetersMap = new HashMap<String, String>();
+		Map<String, String> failureMetersMap = new HashMap<String, String>();*/
 		Map<String, Integer> levelIndexMap = new HashMap<String, Integer>();
-		
+		boolean isSaved =false;
 		LevelIndexMaster LevelIndexMasterObj = new LevelIndexMaster();
 		int rowCount = 0;
 		try {
@@ -673,25 +691,34 @@ public class MeterMasterController {
 							 meterMaster.setInsertedDate(new Timestamp(new Date().getTime()));
 							 meterMaster.setInsertedUser(UserSessionObj
 										.getBiouserdetails().getUserid());
-							 
-								masterObj=meterDaoObj.saveUploadMeterMasterDetails(meterMaster);
+							 isSaved = commonDaoObj.saveOrUpdate(meterMaster);
+							 if(isSaved){
+								 isSaved = false;
+								 ConsumerMeterMaster csmObj = new ConsumerMeterMaster();
+								 ConsumerMeterMasterId csmObjId = new ConsumerMeterMasterId();
+								 
+								 csmObjId.setConsumerId(meterMaster.getConsumerNumber());
+								 csmObjId.setMeterNumber(meterMaster.getMeterNumber());
+								 csmObj.setId(csmObjId);
+								 csmObj.setStatusOfMeter("ENABLE");
+								 isSaved = commonDaoObj.saveOrUpdate(csmObj);
+							 }
+							 if(isSaved){
+								 model = new ModelAndView("redirect:/addOrViewMeterMaster");
+							 }
+//								masterObj=meterDaoObj.saveUploadMeterMasterDetails(meterMaster);
 				    		 
-								if(masterObj.getSuccessMessage()=="SUCCESS"){
+								/*if(masterObj.getSuccessMessage()=="SUCCESS"){
 									successMetersMap.put(meterMaster.getMeterNumber(), "SUCCESS");
 									
 								}else{
 									failureMetersMap.put(meterMaster.getMeterNumber(), masterObj.getErrorMessage());
-								}
+								}*/
 				    	 }
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-				
-				
-				
-				
-				
 				model = new ModelAndView(
 						"masters/MeterMaster/MeterMasterDetailsList", "command",
 						masterObj);

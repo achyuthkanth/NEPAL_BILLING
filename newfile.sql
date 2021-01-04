@@ -1,6 +1,10 @@
 
 
-select * from module_details where module_Type_Name='sss';
+
+ALTER TABLE meter_master
+ADD COLUMN consumer_Id varchar(50);
+
+select * from Consumer_Meter_Master where module_Type_Name='sss';
  
  select * from hierarchy_level2;
  

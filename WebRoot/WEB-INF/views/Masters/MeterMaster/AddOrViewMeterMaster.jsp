@@ -285,6 +285,22 @@
 													value="${command.rfdnodenumber}"
 													placeholder="Rfd Node Number">
 											</div>
+											<c:if test="${command.viewType=='Edit'}">
+											<div class="form-group">
+												<label>Consumer Id</label> <input type="text"
+													name="consumerId" class="form-control"
+													value="${command.consumerId}"
+													placeholder="Consumer Id" readonly="readonly">
+											</div>
+											</c:if>
+											<c:if test="${command.viewType==null}">
+											<div class="form-group">
+												<label>Consumer Id</label> <input type="text"
+													name="consumerId" class="form-control"
+													value="${command.consumerId}"
+													placeholder="Consumer Id" required="required">
+											</div>
+											</c:if>
 										</div>
 
 										<div class="form-group col-sm-12" style="text-align: center;">
@@ -379,78 +395,7 @@
 								</dd>
 							</dl>
 							</div>
-						<%-- 	<div class="col-md-6">
-											<div class="form-group">
-												<label>Connection Status</label> <input type="text"
-													name="connectionStatus" class="form-control"
-													value="${command.connectionStatus}"
-													placeholder="Connection Status">
-											</div>
-											<div class="form-group">
-												<label>Sim Number</label> <input type="text"
-													name="simNumber" class="form-control"
-													value="${command.simNumber}" placeholder="simNumber">
-											</div>
-											<div class="form-group">
-												<label>Mdn Number </label> <input type="text"
-													name="mdnNumber" class="form-control"
-													value="${command.mdnNumber}" placeholder="mdnNumber">
-											</div>
-											<div class="form-group">
-												<label>Modem Number </label> <input type="text"
-													name="modemNumber" class="form-control"
-													value="${command.modemNumber}" placeholder="Modem Number">
-											</div>
-											<div class="form-group">
-												<label>Voltage Multiplier</label> <input type="text"
-													name="voltageMultiplier" class="form-control"
-													value="${command.voltageMultiplier}"
-													placeholder="Voltage Multiplier">
-											</div>
-											<div class="form-group">
-												<label>Energy Multiplier</label> <input type="text"
-													name="energyMultiplier" class="form-control"
-													value="${command.energyMultiplier}"
-													placeholder="Energy Multiplier">
-											</div>
-											<div class="form-group">
-												<label>Consumer Number</label> <input type="text"
-													name="consumerNumber" class="form-control"
-													value="${command.consumerNumber}"
-													placeholder="Consumer Number">
-											</div>
-
-											<div class="form-group">
-												<label>Account Id</label> <input type="text"
-													name="accountId" class="form-control"
-													value="${command.accountId}" placeholder="Account Id">
-											</div>
-
-											75<div class="form-group">37
-												<label>Dt Code</label> <input type="text" name="dtCode"
-													class="form-control" value="${command.dtCode}"
-													placeholder="Dt Code">
-											</div>
-
-											<div class="form-group">
-												<label>Substation Code</label> <input type="text"
-													name="substationCode" class="form-control"
-													value="${command.substationCode}"
-													placeholder="Substation Code">
-											</div>
-											<div class="form-group">
-												<label>Supply Direction</label> <input type="text"
-													name="supplyDirection" class="form-control"
-													value="${command.supplyDirection}"
-													placeholder="Supply Direction">
-											</div>
-											<div class="form-group">
-												<label>Rfd Node Number</label> <input type="text"
-													name="rfdnodenumber" class="form-control"
-													value="${command.rfdnodenumber}"
-													placeholder="Rfd Node Number">
-											</div>
-										</div> --%>
+						
 							<div class="col-md-6">
 							<dl class="row">
 							
@@ -500,9 +445,9 @@
 									<c:out value="${command.voltageRating}"></c:out>
 								</dd>
 								
-								<dt class="col-sm-4">Installation Id</dt>
+								<dt class="col-sm-4">Consumer Id</dt>
 								<dd class="col-sm-8">
-									<c:out value="${command.installationId}"></c:out>
+									<c:out value="${command.consumerId}"></c:out>
 								</dd>
 							</dl>
 							</div>
@@ -813,7 +758,7 @@
          	{
           		render: function (data, type, row)
                 {
-                return ' <a class="btn btn-warning btn-sm" onClick="submitMyForm(\'editMeterMaster \',\'' + row.meterNumber + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
+                return ' <a class="btn btn-info btn-sm" onClick="submitMyForm(\'editMeterMaster \',\'' + row.meterNumber + '\',\'' + 'View' + '\')"><i class="fas fa-binoculars"></i></a>';
                  }
             },
 			{

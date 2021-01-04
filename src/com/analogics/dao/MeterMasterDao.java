@@ -42,7 +42,7 @@ public class MeterMasterDao extends BaseHibernateDAO  {
 				strb.append(strb1);
 			}
 			
-			strb.append(" order by master.insertedDate");
+			strb.append(" order by master.insertedDate desc");
 			Query queryObj = session.createQuery(strb.toString());
 			queryObj.setFirstResult(pageNumber);
 			queryObj.setMaxResults(parseInt);
@@ -161,4 +161,29 @@ public class MeterMasterDao extends BaseHibernateDAO  {
 		}
 		return meterMasterObj;
 	}
+
+	public boolean fetchMeterStatus(MeterMaster meterDetailsObj) {
+			boolean a = false;
+			Session session = null;
+			try {
+				session = getSession();
+				StringBuilder strb=new StringBuilder();
+				strb.append("from ConsumerMeterMaster where id.meterNumber ='"+meterDetailsObj.getMeterNumber()+"'" +
+						 " and id.consumerId ='"+meterDetailsObj.getConsumerId()+"'");
+				
+				if(session.createQuery(strb.toString()).uniqueResult()!=null){
+					a=true;
+				 }else{
+					 a=false;
+				 }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				if (session.isOpen())
+					session.close();
+	        }
+		  
+			return a;
+		}
+
 }

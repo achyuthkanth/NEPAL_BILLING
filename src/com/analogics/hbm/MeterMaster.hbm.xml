@@ -295,5 +295,8 @@
         <property name="dtname" type="java.lang.String">
             <column name="dtname" length="45" />
         </property>
+         <property name="consumerId" type="java.lang.String">
+            <column name="consumer_Id" length="50" />
+        </property>
     </class>
 </hibernate-mapping>

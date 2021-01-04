@@ -110,7 +110,7 @@ public class MeterMaster  extends ExtraFieldspojo  implements java.io.Serializab
 	private String meterpono;
 	private String feedername;
 	private String dtname;
-
+	private String consumerId;
 	// Constructors
 
 	/** default constructor */
@@ -1023,6 +1023,14 @@ public class MeterMaster  extends ExtraFieldspojo  implements java.io.Serializab
 
 	public void setDtname(String dtname) {
 		this.dtname = dtname;
+	}
+
+	public String getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(String consumerId) {
+		this.consumerId = consumerId;
 	}
 
 }
