@@ -26,6 +26,9 @@ public class ExtraFieldspojo {
 	private String response;
 	private String reasonResponse;
 	
+	private String fromDate;
+	private String toDate;
+	
 	// User Group
 	private List<ModuleDetails> moduleDetails;
 	private List<UserGroup> userGroupList;
@@ -222,6 +225,18 @@ public class ExtraFieldspojo {
 	}
 	public void setStatusList(List<String> statusList) {
 		this.statusList = statusList;
+	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
 
 }
