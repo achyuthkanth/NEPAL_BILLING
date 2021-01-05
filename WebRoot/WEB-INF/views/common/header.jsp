@@ -1,4 +1,3 @@
-
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 	<!-- Left navbar links -->
@@ -254,6 +253,10 @@
 						<li class="nav-item"><a href="consumerMasterDetails"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="viewAlarmData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Alarm Master</p> </a>
 						</li>
 						<!-- <li class="nav-item"><a href="consumerMeterMasterDetails"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>

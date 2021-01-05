@@ -1,6 +1,10 @@
 
 
 
+
+select * from bio_user_details
+
+
 ALTER TABLE meter_master
 ADD COLUMN consumer_Id varchar(50);
 

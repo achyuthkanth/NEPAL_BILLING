@@ -51,6 +51,10 @@ public class ExtraFieldspojo {
 	private List<ConsumerMeterMaster> csmMeterMasterList = new ArrayList<ConsumerMeterMaster>();
 	private List<String> statusList = new ArrayList<String>();
 	
+	
+	
+	private String fromDate;
+	private String toDate;
 	private int rows;
 	private int page;
 
@@ -222,6 +226,18 @@ public class ExtraFieldspojo {
 	}
 	public void setStatusList(List<String> statusList) {
 		this.statusList = statusList;
+	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
 
 }
