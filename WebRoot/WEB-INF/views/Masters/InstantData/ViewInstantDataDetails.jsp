@@ -14,15 +14,28 @@
 					<!-- Font Awesome -->
 					<link rel="stylesheet" href="fonts/fontawesome-free/css/all.min.css">
 					<!-- DataTables -->
-					<link rel="stylesheet" href="datatables/datatables-bs4/css/dataTables.bootstrap4.min.css">
-					<link rel="stylesheet" href="datatables/datatables-responsive/css/responsive.bootstrap4.min.css">
-					<link rel="stylesheet" href="datatables/datatables-buttons/css/buttons.bootstrap4.min.css">
+					<link rel="stylesheet"
+						href="datatables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+					<link rel="stylesheet"
+						href="datatables/datatables-responsive/css/responsive.bootstrap4.min.css">
+					<link rel="stylesheet"
+						href="datatables/datatables-buttons/css/buttons.bootstrap4.min.css">
 					<link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-					<link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+					<link rel="stylesheet"
+						href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 					<!-- Theme style -->
 					<link rel="stylesheet" href="dist/css/adminlte.min.css">
-					<link rel="stylesheet" href="css/styles.css"> </head>
-
+					<script src="plugins/jquery/jquery.min.js"></script>
+					<link rel="stylesheet" href="css/styles.css">
+					<script src="js/validation.js"></script>
+					<link href="css/date-picker/datapicker/datepicker3.css" rel="stylesheet">
+					<link href="css/date-picker/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+<style type="text/css">
+.dropdown-menu{
+	overflow-y: scroll;
+	height: 300px;
+}
+</style>
 				<body class="hold-transition sidebar-mini">
 					<div class="wrapper">
 						<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -65,8 +78,55 @@
 														<%@ include
 															file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
 													</div>
-												</form:form>
-											</div>
+													</form:form>
+												<div class="row">
+													<div class="col-md-3">
+														<div class="form-group">
+															<label>From Date</label>
+															<div class="input-group date" id="data_1">
+																<div class="input-group date">
+																	<span class="input-group-addon"><i
+																		class="fa fa-calendar"></i> </span>
+					
+																	<form:input class="form-control" type="text" id="fromDate"
+																		path="command.fromDate" readonly="true"></form:input>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label>To Date</label>
+															<div class="input-group date" id="data_1">
+																<div class="input-group date">
+																	<span class="input-group-addon"><i
+																		class="fa fa-calendar"></i> </span>
+					
+																	<form:input class="form-control" type="text" id="toDate"
+																		path="command.toDate" readonly="true"></form:input>
+																</div>
+															</div>
+														</div>
+					
+					
+													</div>
+													<div class="col-md-1">
+														<div class="form-group">
+															<div class="" style="margin-top: 32px;">
+																<button type="submit" class="btn btn-success submitClass">View</button>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+													<div class="form-group">
+														<div class="" style="margin-top: 35px;">
+															<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
+														</div>
+														</div>
+													</div>
+												</div>
+												
+										</div>
 										</div>
 									</div>
 								</section>
@@ -80,7 +140,7 @@
 												</div>
 											</div>
 											<div class="card-body">
-												<div class="row col-sm-12">
+												<%-- <div class="row col-sm-12">
 													<div class="col-sm-6">
 														<div class="form-group">
 															<div class="select2-purple">
@@ -98,7 +158,7 @@
 														<button type="button" class="btn btn-danger showColumnsClass"><i class="fa fa-retweet"></i>Re-Load</button>
 													</div>
 													<div class="col-sm-2"> </div>
-												</div>
+												</div> --%>
 												<table id="example1" style="width: 100% !important;display: inline-table;"
 													 class="table table-responsive">
 													<thead>
@@ -246,17 +306,24 @@
 								<!-- /.control-sidebar -->
 					</div>
 					<!-- ./wrapper -->
+					
+					<script src="js/datepicker/datapicker/bootstrap-datepicker.js"></script>
+					<script src="js/datepicker/daterangepicker/daterangepicker.js"></script>
 					<!-- jQuery -->
-					<script src="plugins/jquery/jquery.min.js"></script>
+					
 					<!-- Bootstrap 4 -->
 					<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 					<!-- DataTables  & Plugins -->
 					<script src="datatables/datatables/jquery.dataTables.min.js"></script>
 					<script src="datatables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-					<script src="datatables/datatables-responsive/js/dataTables.responsive.min.js"></script>
-					<script src="datatables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-					<script src="datatables/datatables-buttons/js/dataTables.buttons.min.js"></script>
-					<script src="datatables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+					<script
+						src="datatables/datatables-responsive/js/dataTables.responsive.min.js"></script>
+					<script
+						src="datatables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+					<script
+						src="datatables/datatables-buttons/js/dataTables.buttons.min.js"></script>
+					<script
+						src="datatables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 					<script src="datatables/jszip/jszip.min.js"></script>
 					<script src="datatables/pdfmake/pdfmake.min.js"></script>
 					<script src="datatables/pdfmake/vfs_fonts.js"></script>
@@ -270,6 +337,50 @@
 					<!-- AdminLTE for demo purposes -->
 					<script src="dist/js/demo.js"></script>
 					<!-- Page specific script -->
+					<script type="text/javascript">
+					$(document).ready(function() {
+						$('.levelSelectClass').change(function() {
+							var levelIdRef = $(this).attr('id');
+							if(levelIdRef == "level1Id") {
+								levelCount = 1;
+							} else if(levelIdRef == "level2Id") {
+								levelCount = 2;
+							} else if(levelIdRef == "level3Id") {
+								levelCount = 3;
+							} else if(levelIdRef == "level4Id") {
+								levelCount = 4;
+							} else if(levelIdRef == "level5Id") {
+								levelCount = 5;
+							} else if(levelIdRef == "level6Id") {
+								levelCount = 6;
+							} else if(levelIdRef == "level7Id") {
+								levelCount = 7;
+							} else if(levelIdRef == "level8Id") {
+								levelCount = 8;
+							} else if(levelIdRef == "level9Id") {
+								levelCount = 9;
+							} else if(levelIdRef == "level10Id") {
+								levelCount = 10;
+							}
+							var a = levelCount + 1;
+							$('#level' + a + 'Id').find('option').each(function() {
+								$('#level' + a + 'Id option[value="NEW LEVEL"]').hide();
+							});
+						});
+					});
+					</script>					
+
+					<script>
+						$('#data_1 .input-group.date').datepicker({
+				                 todayBtn: "linked",
+				                 keyboardNavigation: false,
+				                 forceParse: false,
+				                 calendarWeeks: true,
+				                 autoclose: true,
+				                 endDate: 'today',
+				                 format : 'yyyy-mm-dd',
+				             });
+					</script>
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var hideColumns = "";
@@ -291,26 +402,36 @@
 							"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 							"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
 							"fromDate="+'${command.fromDate}'+"&"+
-							"toDate="+'${command.toDate}'
+							"toDate="+'${command.toDate}'+"&"+
 							"searchSelectVar=" + '${command.searchSelectVar}' + "&" + 
 							"searchParameter=" + '${command.searchParameter}' + "&" +
 							"conditionStr=" + '${command.conditionStr}';
-						loadDataTable(url, "", "");
+// 							alert(url);
+						loadDataTable(url);
 
-						function loadDataTable(url, hideColumns, showColumns) {
+						function loadDataTable(url) {
 							var $table = $('#example1');
 							var table = $table.DataTable({
-								"responsive": true,
+								/* "responsive": true,
 								"lengthChange": false,
-								"autoWidth": false,
-								"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-								"destroy": true,
+								"scrollX": true,
+								"autoWidth": true, */
+								 dom: 'Bfrtip',
+								"buttons": ["colvis"],
+								"bServerSide": true,
+						        "bProcessing": true,
+						        "pageLength": 100,
+						        "bJQueryUI": true,
+						        "render": true,
+						        "bDestroy": true,
+						        "scrollX": true,
+								/* "destroy": true,
 								"bProcessing": true,
 								"bServerSide": true,
 								"sort": "position",
 								"bStateSave": false,
 								"iDisplayLength": 10,
-								"iDisplayStart": 0,
+								"iDisplayStart": 0, */
 								"processing": true,
 						        "language": {
 						            'loadingRecords': '&nbsp;',
@@ -397,22 +518,14 @@
 									{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"},
 								]
 							});
-							if(hideColumns != "") {
-								table.columns(hideColumns).visible(false);
-								table.columns(showColumns).visible(true);
-							} else {
-								table.columns(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-									16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,
-									32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49).visible(true); //Total No.of columns
-							}
 						}
-						$('.showColumnsClass').on('click', function(e) {
+						/* $('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
 							hideColumns = "";       
 							showColumns = "0";			  					//S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
-								for(var i = 0; i < 4; i++) {					//Iterate Columns
+								for(var i = 0; i < 50; i++) {					//Iterate Columns
 									var x = i + 1;
 									if(columns.split(",").includes(x+"")) {	
 										showColumns = x + "," + showColumns;
@@ -423,7 +536,7 @@
 							}
 							hideColumns = hideColumns.slice(0, -1);
 							loadDataTable(url, hideColumns, showColumns);
-						});
+						}); */
 						$('.submitClass').click(function() {
 							validate = true;
 							var searchParameter = "",
@@ -462,12 +575,12 @@
 								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
 								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 								"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
-								"fromDate="+$('.fromDateC').val()+"&"+
-								"toDate="+$('.toDateC').val();
+								"fromDate="+$('#fromDate').val()+"&"+
+								"toDate="+$('#toDate').val()+"&"+
 								"searchSelectVar=" + searchSelectVar + "&" +
 								"searchParameter=" + searchParameter + "&" + 
 								"conditionStr=" + conditionStr;
-								loadDataTable(url, "", "");
+								loadDataTable(url);
 								$("#myModal").modal("hide");
 							}
 						});
@@ -534,7 +647,7 @@
 							});
 						});
 					});
-					</script>
+</script>
 				</body>
 
 				</html>

@@ -23,6 +23,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 	
 	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();
 	UserHierarchyQueryFraming frameObj = new UserHierarchyQueryFraming();
+	
 	@SuppressWarnings("unchecked")
 	public List<InstantData> fetchInstantDataList(int pageNumber, int parseInt,
 			String searchParameter, String sorting, InstantData dataObj,
@@ -34,9 +35,9 @@ public class InstantDataDao extends BaseHibernateDAO {
 			StringBuffer stb1 = new StringBuffer();
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
-			strb.append(" from InstantData instant, MeterMaster mas,LevelIndexMaster levels ");
-			strb.append("where instant.id.meterNumber=mas.meterNumber");
-			strb.append(" and instant.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append(" from InstantData master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.id.meterNumber=mas.meterNumber");
+			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
 			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
@@ -52,7 +53,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 			strb.append(stb1);
 			Query queryObj = session.createQuery(strb.toString());
 			
-			strb.append(" order by instant.insertedDate");
+			strb.append(" order by master.insertedDate");
 			
 			queryObj.setFirstResult(pageNumber);
 			queryObj.setMaxResults(parseInt);
@@ -82,9 +83,9 @@ public class InstantDataDao extends BaseHibernateDAO {
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
 			
-			strb.append("select count(*) from InstantData instant, MeterMaster mas,LevelIndexMaster levels ");
-			strb.append("where instant.id.meterNumber=mas.meterNumber");
-			strb.append(" and instant.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append("select count(*) from InstantData master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.id.meterNumber=mas.meterNumber");
+			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
 			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);

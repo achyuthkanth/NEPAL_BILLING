@@ -12,8 +12,14 @@
 				</form:select>
 			</c:when>
 			<c:otherwise>
-				<form:hidden path="level1Id" value="${level1Id}"
-					 ></form:hidden>
+			<div style=" display: none;">
+				<form:select path="level1Id" id="level1Id"
+						cssClass="level1Class">
+						<form:options items="${level1Map}" />
+					</form:select>
+			</div>
+			<%-- 	<form:hidden path="level1Id" value="${level1Id}"
+					 cssClass="level1Class"></form:hidden> --%>
 			</c:otherwise>
 		</c:choose>
 	</c:if>

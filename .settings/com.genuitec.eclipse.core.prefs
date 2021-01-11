@@ -2,5 +2,5 @@
 <<<<<<<=HEAD
 >>>>>>>=e985723c20e61a255c63757aa8303073f9c3750d
 eclipse.preferences.version=1
-validator.Checked=/
+validator.Checked=/,WebRoot/WEB-INF/views/Masters/AlarmData/MyJsp.jsp
 validator.Unchecked=WebRoot

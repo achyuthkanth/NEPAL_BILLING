@@ -4,13 +4,13 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import com.analogics.utils.ExtraFieldspojo;
+import com.analogics.um.vo.HierarchyLevelsVo;
 
 /**
  * InstantData entity. @author MyEclipse Persistence Tools
  */
 
-public class InstantData extends ExtraFieldspojo implements java.io.Serializable {
+public class InstantData extends HierarchyLevelsVo implements java.io.Serializable {
 
 	// Fields
 

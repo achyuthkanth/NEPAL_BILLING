@@ -26,9 +26,6 @@ public class ExtraFieldspojo {
 	private String response;
 	private String reasonResponse;
 	
-	private String fromDate;
-	private String toDate;
-	
 	// User Group
 	private List<ModuleDetails> moduleDetails;
 	private List<UserGroup> userGroupList;
@@ -54,6 +51,10 @@ public class ExtraFieldspojo {
 	private List<ConsumerMeterMaster> csmMeterMasterList = new ArrayList<ConsumerMeterMaster>();
 	private List<String> statusList = new ArrayList<String>();
 	
+	
+	
+	private String fromDate;
+	private String toDate;
 	private int rows;
 	private int page;
 

@@ -48,6 +48,7 @@ public class InstantDataController {
 		try {
 			HttpSession session=request.getSession();
 			UserLoginDetails userSessionObj=(UserLoginDetails) session.getAttribute("sessionObj");
+			
 			if (dataObj.getFromDate() == null) {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				Date d = new Date();
@@ -117,7 +118,7 @@ public class InstantDataController {
 	
 	private Object fetchInstantDataColumsMap(InstantData dataObj) {
 		try {
-			Map<String, String> columnsMap = new HashMap<String, String>();
+			/*Map<String, String> columnsMap = new HashMap<String, String>();
 			columnsMap.put("1", "METER NUMBER");
 			columnsMap.put("2", "Consumer Number");
 			columnsMap.put("3", "Consumer Address");
@@ -130,9 +131,9 @@ public class InstantDataController {
 			columnsMap.put("10", "Installation Date");
 			columnsMap.put("11", "Inserted Date");
 			columnsMap.put("12", "Inserted User");
-			dataObj.setColumnsMap(columnsMap);
+			dataObj.setColumnsMap(columnsMap);*/
 			
-			Map<String,String> searchColumnsMap=new HashMap<String,String>();
+			Map<String,String> searchColumnsMap = new HashMap<String,String>();
 			searchColumnsMap.put("id.meterNumber", "METER NUMBER");
 			searchColumnsMap.put("nodeNumber", "NODE NUMBER");
 			dataObj.setSearchColumnsMap(searchColumnsMap);
