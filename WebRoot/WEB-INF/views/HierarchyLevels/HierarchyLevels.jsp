@@ -16,6 +16,7 @@
 					cssClass="level1Class" ></form:input>
 			</c:otherwise> --%>
 			<c:otherwise>
+<<<<<<< HEAD
 				<div style=" display: none;">
 					<label> Level 1</label>
 					</label>
@@ -24,6 +25,16 @@
 						<form:options items="${level1Map}" />
 					</form:select>
 				</div>
+=======
+			<div style=" display: none;">
+				<form:select path="level1Id" id="level1Id"
+						cssClass="level1Class">
+						<form:options items="${level1Map}" />
+					</form:select>
+			</div>
+			<%-- 	<form:hidden path="level1Id" value="${level1Id}"
+					 cssClass="level1Class"></form:hidden> --%>
+>>>>>>> bf6badd1fd8e23ce0059a106d3fc375f4a3062b6
 			</c:otherwise>
 		</c:choose>
 	</c:if>

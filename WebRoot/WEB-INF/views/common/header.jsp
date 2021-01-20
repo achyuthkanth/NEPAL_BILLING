@@ -212,7 +212,7 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Param Master</p> </a>
 						</li>
-						<li class="nav-item"><a href="userGroups"
+						<!-- <li class="nav-item"><a href="userGroups" -->
 						<li class="nav-item"><a href="viewUserGroup"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>User Groups</p> </a>
@@ -254,6 +254,9 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Master</p> </a>
 						</li>
+						<li class="nav-item"><a href="viewInstantData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Instant Data</p> </a>
 						<li class="nav-item"><a href="viewAlarmData"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Alarm Master</p> </a>

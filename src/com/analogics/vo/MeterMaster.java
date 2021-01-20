@@ -2,7 +2,6 @@ package com.analogics.vo;
 
 import java.sql.Timestamp;
 
-import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.utils.ExtraFieldspojo;
 
 /**
