@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>TANGEDCO - MDAS</title>
-<link rel="icon" href="img/TANGEDCO.png" type="image/gif" sizes="32x32"> 
+ <link rel="icon" href="img/TANGEDCO.png" type="image/gif" sizes="32x32"> 
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -14,7 +14,8 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dashboard.css">
-<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
 <script type="text/javascript" language="javascript"
 	src="js/datatable/jquery-3.3.1.js"></script>
@@ -24,18 +25,77 @@
 <script type="text/javascript"
 	src="js/datatable/jquery.dataTables.min.js"></script>
 	<script src="js/validation.js"></script>
-	 <link href="css/date-picker/datapicker/datepicker3.css" rel="stylesheet">
+ <link href="css/date-picker/datapicker/datepicker3.css" rel="stylesheet">
 <link href="css/date-picker/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-<!-- <script src="js/validation.js"></script> -->
 <style type="text/css">
 #example_filter {
 	display: none;
 }
 </style>
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
-	var url;
+var url;
 			url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
 			"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
 			"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
@@ -52,22 +112,19 @@ $(document).ready(function() {
 			"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 			"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
 			"instType="+'${command.instType}'+"&"+
-			"categoryType="+'${command.categoryType}'+"&"+
-			"meterNumber="+'${command.meterNumber}'+"&"+
-			"fromDate="+'${command.fromDate}'+"&"+
-			"toDate="+'${command.toDate}';
+			"meterNumber="+'${command.meterNumber}';
 			
 			loadDataTable(url);
 			
 function loadDataTable(url) {
-		$('#example').dataTable({
+	var $dtable = $('#example');
+var dtable  = $dtable.DataTable({
 	        "bServerSide": true,
 	        "bProcessing": true,
-	        "pageLength": 100,
 	        "bJQueryUI": true,
 	        "render": true,
 	         "bDestroy": true,
-	        "sAjaxSource": "fetchAlarmDataDetails?"+url,
+	        "sAjaxSource": "fetchAlarmDataLatestDetails?"+url,    
 	        "fnServerData": function (sSource, aoData, fnCallback) {
 	            $.ajax({
 	                "dataType": 'json',
@@ -85,24 +142,24 @@ function loadDataTable(url) {
 	                 return meta.row + meta.settings._iDisplayStart + 1;
 			    }
 			},
-			{ "mData": "id.nodeNumber" ,  "defaultContent": "-"},
+			{ "mData": "nodeNumber" ,  "defaultContent": "-"},
 			{ "mData": "meterNumber" ,  "defaultContent": "-"},
 			{ "mData": "meterMasterObj.consumerName" ,  "defaultContent": "-"},
 			{ "mData": "meterMasterObj.consumerNumber" ,  "defaultContent": "-"},
 			{
-                 "mData": "alarmDate",
-    			 "render": function (data) {
-    			 if (data == null){ return '-'; }else{
-        		 var date = new Date(data);
-       			 var month = date.getMonth() + 1;
-       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
+	                 "mData": "alarmDate",
+	    			"render": function (data) {
+	    			 if (data == null){ return '-'; }else{
+	        		 var date = new Date(data);
+	       			 var month = date.getMonth() + 1;
+	       			  return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
 			      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
 			      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
 			      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
 			   } }},
-			{ "mData": "sequenceNumber" ,  "defaultContent": "-"},
-			{ "mData": "alarmCode" ,  "defaultContent": "-"},
-			{ "mData": "alarmDescription" ,  "defaultContent": "-"},
+			{ "mData": "sequenceNumber" ,className: "sensitive",   "defaultContent": "-"},
+			{ "mData": "alarmCode" , className: "sensitive",  "defaultContent": "-"},
+			{ "mData": "alarmDescription" ,className: "sensitive",  "defaultContent": "-"},
 			/* { "mData": "meterMasterObj.installationType" ,  "defaultContent": "-"}, */
 			{ "mData": "meterMasterObj.level1Name" ,  "defaultContent": "-"},
 			{ "mData": "meterMasterObj.level1Code" ,  "defaultContent": "-"},
@@ -124,45 +181,71 @@ function loadDataTable(url) {
 			{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"},
 		]
 	    } );
-	}
-	function loadUrlData(){
-	url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
-								"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
-								"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
-								"level4Id="+$('.level4Class').find('option:selected').val()+"&"+
-								"level5Id="+$('.level5Class').find('option:selected').val()+"&"+
-								"level6Id="+$('.level6Class').find('option:selected').val()+"&"+
-								"level7Id="+$('.level7Class').find('option:selected').val()+"&"+
-								"level8Id="+$('.level8Class').find('option:selected').val()+"&"+
-								"level9Id="+$('.level9Class').find('option:selected').val()+"&"+
-								"level10Id="+$('.level10Class').find('option:selected').val()+"&"+
-								"level11Id="+$('.level11Class').find('option:selected').val()+"&"+
-								"level12Id="+$('.level12Class').find('option:selected').val()+"&"+
-								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
-								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
-								"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
-								"instType="+$('.installationTypeC').val()+"&"+
-								"categoryType="+$('.categoryType').val()+"&"+
-								"meterNumber="+	$('#meterNumber').val()+"&"+
-								"fromDate="+$('.fromDateC').val()+"&"+
-								"toDate="+$('.toDateC').val();
-	}							
-	
+	    
+	    
+	    $('.rect-check input').change(function(e){
+		var className = '.sensitive';
+		var isChecked = document.getElementById("checkId").checked;
+		  var columns = dtable.columns(className);
+		  columns.each(function() { 
+		    this.visible(!isChecked)
+		  }) 
+		})
+	    
+}
+
+function loadUrlData(){
+url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
+					"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
+					"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
+					"level4Id="+$('.level4Class').find('option:selected').val()+"&"+
+					"level5Id="+$('.level5Class').find('option:selected').val()+"&"+
+					"level6Id="+$('.level6Class').find('option:selected').val()+"&"+
+					"level7Id="+$('.level7Class').find('option:selected').val()+"&"+
+					"level8Id="+$('.level8Class').find('option:selected').val()+"&"+
+					"level9Id="+$('.level9Class').find('option:selected').val()+"&"+
+					"level10Id="+$('.level10Class').find('option:selected').val()+"&"+
+					"level11Id="+$('.level11Class').find('option:selected').val()+"&"+
+					"level12Id="+$('.level12Class').find('option:selected').val()+"&"+
+					"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
+					"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
+					"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
+					"instType="+$('.installationTypeC').val()+"&"+
+					"meterNumber="+$('#meterNumber').val();
+}
+
 	$('.submitClass').click(function(){
-	var validate = dateFunctionCall();
-					if(validate!=false){
-					loadUrlData();		 
-	    			loadDataTable(url);
-					}
+				$("#checkId").prop("checked", false);
+	  				loadUrlData();
+			    	loadDataTable(url);
 	    	});
 	    	
-	    	
-	    		$('.ExportClass').click(function(){
+	    	   		$('.ExportClass').click(function(){
 	    				loadUrlData(url); 
-	    				var action ="exportAlarmDataDetails?"+url;
+	    				var action ="exportAlarmLatestDataDetails?"+url;
 $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 	    	});
-});
+} );
+
+
+
+
+</script>
+
+<script type="text/javascript">
+function callFunction(){
+
+ var columns = $('#example').columns(className);
+ 
+ alert(columns);
+
+
+	if(document.getElementById("checkId").checked==false){
+	//  alert("false");
+	}else{
+	// alert("true");
+	}
+}
 </script>
 
 </head>
@@ -179,11 +262,10 @@ $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 				
 				<div class="">
 					<div class="card">
-					
-					<div class="chart-wrapper mb-4">
-						<div class="ibox">
+						<div class="chart-wrapper mb-4">
+							<div class="ibox">
 										<div class="card-title bg-black" style="color:#fff !important;">
-											<h4>ALARM DATA</h4>
+											<h4>ALARM DATA LATEST</h4>
 											<div class="card-sub-heading">
 												<a class="collapse-link" href=""> <i
 													class="fa fa-chevron-up"></i> </a> <a class="close-link" href="">
@@ -192,47 +274,22 @@ $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 										</div>
 										<div class="ibox-content">
 							<form:form>
-									<div class="card-content">
-										<div class="row">
-											<%@ include
-												file="/WEB-INF/Views/Hierarchies/HierarchyLevels.jsp"%>
-										</div>
-									</div>
+								<div class="card-content">
+								<div class="row">
+						 			<%@ include file="/WEB-INF/Views/Hierarchies/HierarchyLevels.jsp"%>
+								</div>
+							</div>
 							</form:form>
 							<div class="card-content">
 							<div class="row">
-										<div class="col-sm-2 form-box">
-											<label>From Date </label> 
-											<div class="input-group date" id="data_1">
-												<div class="input-group date">
-													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i>
-													</span>
-													<form:input class="form-control col-sm-6 fromDateC requiredClass" type="text"
-														id="fromDate" path="command.fromDate" readonly="true"></form:input>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-2 form-box">
-											<label>To Date </label> 
-											<div class="input-group date" id="data_2">
-												<div class="input-group date">
-													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i>
-													</span>
-													<form:input class="form-control toDateC requiredClass" type="text"
-														id="toDate" path="command.toDate" readonly="true"></form:input>
-												</div>
-											</div>
-										</div>
 										<div class="col-sm-3 form-box">
 											<label>Meter Number </label>
-													<form:input class="control1 form-control col-sm-6" type="text"
+													<form:input class="form-control control1 col-sm-6" type="text"
 														id="meterNumber" path="command.meterNumber"
 														autocomplete="off"  ondrop="return false;"></form:input> 
 												</div>
 												
-														<div class="col-sm-2 form-box">
+												<div class="col-sm-2 form-box">
 															<label>Select Installation Type </label> 
 																	<form:select path="command.instType"
 																		cssClass="control1 form-control col-sm-6 installationTypeC">
@@ -240,26 +297,30 @@ $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 																		<form:options items="${instTypeList}" />
 																	</form:select>
 																</div>
-												
-												
 												<div class="button-center col-sm-2">
 													<div class="" style="margin-top: 20px;">
+														<!-- <div class="rect-check">
+															<input data-column=".sensitive" type="checkbox">
+															Show sensitive
+														</div> -->
 														<button type="submit" class="btn btn-danger submitClass">View</button>
 														<button type="button" class="btn btn-danger ExportClass" id="ExportButton"><span class="icon-img"><img src="img/icons/excel.png" style="width:22px;height:22px;"></span> Export</button>
 													</div>
 												</div>
+												
+												<div class="rect-check" style="float:left;margin-top:20px;"><label class="switch" class="rect-check"> 
+														<input type="checkbox" id="checkId"> <span class="slider round"></span> </label>
+														</div>
 										</div>
 							
 							</div>
 							</div>
 							</div>
-							
 							</div>
-					
 						<div class="chart-wrapper mb-4">
 							<div class="ibox">
 										<div class="card-title bg-black" style="color:#fff !important;">
-											<h4>ALARM DATA DETAILS</h4>
+											<h4>ALARM DATA LATEST DETAILS</h4>
 											<div class="card-sub-heading">
 <!-- 												<a href="#" class="btn btn-dark-blue btn-circle active tip-top btn-sm" data-toggle="tooltip" title="" data-original-title="Upload"><i class="fas fa-file-excel"></i></a> -->
 													<a class="collapse-link" href=""> <i
@@ -269,7 +330,6 @@ $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 										</div>
 										<div class="ibox-content">
 							<div class="card-content">
-
 								<table cellpadding="0" cellspacing="0" border="0"
 									class="inline-block nowrap table table-responsive table-bordered table-hover table-striped dataTable no-footer"
 									id="example" style="display: block !important;">
@@ -306,15 +366,15 @@ $('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
 										</tr>
 									</thead>
 								</table>
-							</div>
-							</div>
+								</div>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<%@ include file="/WEB-INF/Views/common/footer.jsp"%>
 	
 	</div>
@@ -364,8 +424,8 @@ $('#level'+a+'Id').find('option').each(function()
                  forceParse: false,
                  calendarWeeks: true,
                  autoclose: true,
-                 endDate: 'today',
                  format : 'yyyy-mm-dd',
+                 enableOnReadonly: false,
              });
 </script>
 <script>
@@ -375,8 +435,8 @@ $('#level'+a+'Id').find('option').each(function()
                 forceParse: false,
                 calendarWeeks: true,
                 autoclose: true,
-                endDate: 'today',
                 format : 'yyyy-mm-dd',
+                enableOnReadonly: false,
             });
 </script>
 <script>

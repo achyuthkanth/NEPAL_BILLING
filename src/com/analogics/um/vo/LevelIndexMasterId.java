@@ -12,21 +12,21 @@ public class LevelIndexMasterId implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2106169047565248131L;
-	private Integer level15id;
-	private Integer level14id;
-	private Integer level13id;
-	private Integer level12id;
-	private Integer level11id;
-	private Integer level10id;
-	private Integer level9id;
-	private Integer level8id;
-	private Integer level7id;
-	private Integer level6id;
-	private Integer level5id;
-	private Integer level4id;
-	private Integer level3id;
-	private Integer level2id;
-	private Integer level1id;
+	private Integer level15id=-1;
+	private Integer level14id=-1;
+	private Integer level13id=-1;
+	private Integer level12id=-1;
+	private Integer level11id=-1;
+	private Integer level10id=-1;
+	private Integer level9id=-1;
+	private Integer level8id=-1;
+	private Integer level7id=-1;
+	private Integer level6id=-1;
+	private Integer level5id=-1;
+	private Integer level4id=-1;
+	private Integer level3id=-1;
+	private Integer level2id=-1;
+	private Integer level1id=-1;
 
 	// Constructors
 

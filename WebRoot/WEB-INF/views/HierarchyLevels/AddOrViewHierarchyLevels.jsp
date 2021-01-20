@@ -80,8 +80,8 @@
 						<!-- /.card-header -->
 							<div class="card-body">
 								<div class="row">
-									<div class="col-md-12">
-										<form:form method="post" action="saveHierarchies" enctype="multipart/form-data">
+									<div class="col-md-6">
+										<form:form method="post" action="TestHierarchies" enctype="multipart/form-data">
 											<div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
 						                      <div class="form-group">
 						                        <label for="exampleInputFile">Upload Hierarchies CSV file</label>
@@ -93,13 +93,14 @@
 						                        </div>
 						                      </div>
 						                    </div>
-										</form:form>
+										<div class="form-group col-sm-12" style="text-align: center;">
+											<button type="submit" class="btn btn-success">Upload
+												Hierarchies</button>
+										</div>
+									</form:form>
 									</div>
 								</div>
-								<div class="form-group col-sm-12" style="text-align: center;">
-									<button type="submit" class="btn btn-success">Upload
-										Hierarchies</button>
-								</div>
+								
 							</div>
 						</div>
 				</div>

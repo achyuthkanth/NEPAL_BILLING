@@ -258,6 +258,14 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Alarm Master</p> </a>
 						</li>
+						<li class="nav-item"><a href="viewAlarmDataLatest"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Latest Alarm Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="addorviewFieldInstallation"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Field Installation Master</p> </a>
+						</li>
 						<!-- <li class="nav-item"><a href="consumerMeterMasterDetails"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Meter Master</p> </a>

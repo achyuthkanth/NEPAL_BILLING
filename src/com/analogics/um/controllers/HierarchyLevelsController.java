@@ -159,7 +159,169 @@ public class HierarchyLevelsController {
 		}
 		return model;
 	}
-	
+	@RequestMapping(value="/TestHierarchies",method=RequestMethod.POST)  
+	public ModelAndView TestHierarchies(@RequestParam("file") MultipartFile file,HttpSession session)
+	{
+ 		@SuppressWarnings("unused")
+		String response="error";
+		String levelName=null;
+		String levelCode=null;
+		String uniqueCode = null;
+		Integer levelId=0;
+		
+		String fileName=file.getOriginalFilename();
+		
+		
+		try {
+			File file1=new File("/tmp/"+fileName); 
+			file.transferTo(file1);
+			List<String> dataList= FileUtils.readLines(file1);
+			
+			for (String data : dataList) {
+				try {
+					LevelIndexMaster masterObj=new LevelIndexMaster();
+					LevelIndexMasterId masterObjId=new LevelIndexMasterId();
+					masterObj.setId(masterObjId);
+					String[] HierarchyData=data.split("\\,",-1);
+					Map<String,String> levelMap=new HashMap<String,String>();
+					Integer levelCount=1;
+					
+					for(int i=0;i<HierarchyData.length;i=i+2){
+						String levelname=HierarchyData[i];
+						String levelcode=HierarchyData[i+1];
+						
+						levelMap.put("level"+levelCount+"name", levelname);
+						levelMap.put("level"+levelCount+"code", levelcode);
+						
+						levelCount++;
+					}
+					
+					try {
+						levelName=levelMap.get("level1name");
+						levelCode=levelMap.get("level1code");
+						Map<Integer,Integer> levelIndexMap=new HashMap<Integer,Integer>();
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,-1,1,masterObj);
+							levelIndexMap.put(1, masterObj.getId().getLevel1id());
+						}
+						
+						
+						levelName=levelMap.get("level2name");
+						levelCode=levelMap.get("level2code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel1id(),2,masterObj);
+						levelIndexMap.put(2, levelId);
+						}
+						
+						
+						levelName=levelMap.get("level3name");
+						levelCode=levelMap.get("level3code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel2id(),3,masterObj);
+						levelIndexMap.put(3, levelId);
+						}
+						
+						levelName=levelMap.get("level4name");
+						levelCode=levelMap.get("level4code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel3id(),4,masterObj);
+						levelIndexMap.put(4, levelId);
+						}
+						
+						levelName=levelMap.get("level5name");
+						levelCode=levelMap.get("level5code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel4id(),5,masterObj);
+						levelIndexMap.put(5, levelId);
+						}
+						
+						levelName=levelMap.get("level6name");
+						levelCode=levelMap.get("level6code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel5id(),6,masterObj);
+						levelIndexMap.put(6, levelId);
+						}
+						
+						levelName=levelMap.get("level7name");
+						levelCode=levelMap.get("level7code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel6id(),7,masterObj);
+						levelIndexMap.put(7, levelId);
+						}
+						
+						levelName=levelMap.get("level8name");
+						levelCode=levelMap.get("level8code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel7id(),8,masterObj);
+						levelIndexMap.put(8, levelId);
+						}
+						levelName=levelMap.get("level9name");
+						levelCode=levelMap.get("level9code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel8id(),9,masterObj);
+						levelIndexMap.put(9, levelId);
+						}
+						
+						levelName=levelMap.get("level10name");
+						levelCode=levelMap.get("level10code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel9id(),10,masterObj);
+						levelIndexMap.put(10, levelId);
+						}
+						
+						levelName=levelMap.get("level11name");
+						levelCode=levelMap.get("level11code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel10id(),11,masterObj);
+						levelIndexMap.put(11, levelId);
+						}
+						
+						levelName=levelMap.get("level12name");
+						levelCode=levelMap.get("level12code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel11id(),12,masterObj);
+						levelIndexMap.put(12, levelId);
+						}
+						
+						levelName=levelMap.get("level13name");
+						levelCode=levelMap.get("level13code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel12id(),13,masterObj);
+						levelIndexMap.put(13, levelId);
+						}
+						
+						levelName=levelMap.get("level14name");
+						levelCode=levelMap.get("level14code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel13id(),14,masterObj);
+						levelIndexMap.put(14, levelId);
+						}
+						
+						levelName=levelMap.get("level15name");
+						levelCode=levelMap.get("level15code");
+						if(levelName!=null){
+							masterObj=daoObj.saveTestHierarchyLevel(levelName,levelCode,uniqueCode,masterObj.getId().getLevel14id(),15,masterObj);
+						levelIndexMap.put(15, levelId);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					} catch (Exception e) {
+					e.printStackTrace();
+					}
+					
+					
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return new ModelAndView("redirect:/viewHierarchyLevels");
+		
+		
+		
+	}
 	@RequestMapping(value="/saveHierarchies",method=RequestMethod.POST)  
 	public ModelAndView uploadFile(@RequestParam("file") MultipartFile file,HttpSession session)
 	{
@@ -416,6 +578,6 @@ public class HierarchyLevelsController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ModelAndView("/Hierarchies/newHierarchies");
+		return new ModelAndView("redirect:/viewHierarchyLevels");
 	}
 }

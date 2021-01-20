@@ -75,6 +75,7 @@
 			<mapping resource="com/analogics/hbm/ConsumerMeterMaster.hbm.xml" />
 			<mapping resource="com/analogics/hbm/AlarmData.hbm.xml" />
 			<mapping resource="com/analogics/hbm/AlarmDataLatest.hbm.xml" />
+			<mapping resource="com/analogics/hbm/FieldInstallationMaster.hbm.xml" />
 			
 		<!-- App Masters -->
 		

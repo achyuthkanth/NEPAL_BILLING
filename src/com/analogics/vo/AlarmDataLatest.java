@@ -4,11 +4,13 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.analogics.um.vo.HierarchyLevelsVo;
+
 /**
  * AlarmDataLatest entity. @author MyEclipse Persistence Tools
  */
 
-public class AlarmDataLatest implements java.io.Serializable {
+public class AlarmDataLatest extends HierarchyLevelsVo implements java.io.Serializable {
 
 	// Fields
 

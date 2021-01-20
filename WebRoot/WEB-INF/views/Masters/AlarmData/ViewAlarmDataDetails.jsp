@@ -74,10 +74,10 @@
 								</div>
 								<!-- 						/.card-header -->
 								<div class="card-body">
-									<%-- <div class="row">
+									<div class="row">
 										<%@ include
 											file="/WEB-INF/views/HierarchyLevels/HierarchyLevels.jsp"%>
-									</div> --%>
+									</div>
 									<div class="row">
 									<div class="col-md-3">
 									<div class="form-group">
@@ -135,7 +135,7 @@
 				<div class="container-fluid">
 					<div class="card card-default">
 						<div class="card-header">
-							<h3 class="card-title">Meter Master Details</h3>
+							<h3 class="card-title">Alarm Data Details</h3>
 							<div class="card-tools">
 								<button type="button" class="btn btn-tool"
 									data-card-widget="collapse">
@@ -352,11 +352,22 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-		alert('${command.fromDate}');
+		/* alert($('.level1Class').find('option:selected').val());
+		alert($('.level3Class').find('option:selected').val()); */
 						var hideColumns = "";
 						var showColumns = "0";
 						var url;
-						url = "searchSelectVar=" + '${command.searchSelectVar}' + "&" +"fromDate=" + '${command.fromDate}' + "&" +"toDate=" + '${command.toDate}' + "&" +"searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
+						url = "searchSelectVar=" + '${command.searchSelectVar}' + "&" +"fromDate=" + '${command.fromDate}'
+						+ "&" +"level1Id="+$('.level1Class').find('option:selected').val() 
+						+ "&" +"level2Id="+$('.level2Class').find('option:selected').val() 
+						+ "&" +"level3Id="+$('.level3Class').find('option:selected').val() 
+						+ "&" +"level4Id="+$('.level4Class').find('option:selected').val() 
+						+ "&" +"level5Id="+$('.level5Class').find('option:selected').val() 
+						+ "&" +"level6Id="+$('.level6Class').find('option:selected').val() 
+						+ "&" +"level7Id="+$('.level7Class').find('option:selected').val() 
+						+ "&" +"level8Id="+$('.level8Class').find('option:selected').val() 
+						+ "&" +"level9Id="+$('.level9Class').find('option:selected').val() 
+						+ "&" +"toDate=" + '${command.toDate}' + "&" +"searchParameter=" + '${command.searchParameter}' + "&" + "conditionStr=" + '${command.conditionStr}';
 						loadDataTable(url, "", "");
 
 						function loadDataTable(url, hideColumns, showColumns) {
@@ -441,13 +452,13 @@
 								table.columns(hideColumns).visible(false);
 								table.columns(showColumns).visible(true);
 							} else {
-								table.columns(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28).visible(true);//Total No.of columns
+								table.columns(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25).visible(true);//Total No.of columns
 							}
 						}
 						$('.showColumnsClass').on('click', function(e) {
 							e.preventDefault();
 							hideColumns = "";       
-							showColumns = "0,26,27,28";			  	//S.No,View,Edit and Delete columns
+							showColumns = "0";			  	//S.No,View,Edit and Delete columns
 							var columns = $('.displayColumnsClass').val().toString();
 							if(columns!=""){
 								for(var i = 0; i < 26; i++) {		//Iterate Columns
@@ -486,7 +497,24 @@
 							searchSelectVar = searchSelectVar.slice(0, -1);
 							conditionStr = conditionStr.slice(0, -1);
 							if(validate) {
-								url = "searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
+// 								url = "searchSelectVar=" + searchSelectVar + "&" + "searchParameter=" + searchParameter + "&" + "conditionStr=" + conditionStr;
+								
+									url = "searchSelectVar=" + searchSelectVar 
+						+ "&" +"level1Id="+$('.level1Class').find('option:selected').val() 
+						+ "&" +"level2Id="+$('.level2Class').find('option:selected').val() 
+						+ "&" +"level3Id="+$('.level3Class').find('option:selected').val() 
+						+ "&" +"level4Id="+$('.level4Class').find('option:selected').val() 
+						+ "&" +"level5Id="+$('.level5Class').find('option:selected').val() 
+						+ "&" +"level6Id="+$('.level6Class').find('option:selected').val() 
+						+ "&" +"level7Id="+$('.level7Class').find('option:selected').val() 
+						+ "&" +"level8Id="+$('.level8Class').find('option:selected').val() 
+						+ "&" +"level9Id="+$('.level9Class').find('option:selected').val() 
+						+ "&" +"fromDate="+$('#fromDate').val() 
+						+ "&" +"toDate="+$('#toDate').val() + "&" +"searchParameter=" +searchParameter + "&" + "conditionStr=" + conditionStr;
+						loadDataTable(url, "", "");
+								
+								
+								
 								loadDataTable(url, "", "");
 								$("#myModal").modal("hide");
 							}
