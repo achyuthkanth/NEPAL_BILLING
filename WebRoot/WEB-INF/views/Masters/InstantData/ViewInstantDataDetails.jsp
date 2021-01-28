@@ -161,7 +161,7 @@
 												</div> --%>
 												<table id="example1" style="width: 100% !important;display: inline-table;"
 													 class="table table-responsive">
-													<thead>
+													<!-- <thead>
 														<tr>
 															<th></th>
 															<th></th>
@@ -211,26 +211,26 @@
 															<th>NODE </th>
 															<th>NODE TIME</th>
 															<th>SEQ.NO</th>
-															<th>R-PHASE</th><!-- VOLTAGES -->
+															<th>R-PHASE</th>VOLTAGES
 															<th>Y-PHASE</th>
 															<th>B-PHASE</th>
-															<th>R-PHASE</th><!-- CURRENTS -->
+															<th>R-PHASE</th>CURRENTS
 															<th>Y-PHASE</th>
 															<th>B-PHASE</th>
-															<th>R-PHASE</th><!-- POWER FACTORS -->
+															<th>R-PHASE</th>POWER FACTORS
 															<th>Y-PHASE</th>
 															<th>B-PHASE</th>
 															<th>AVERAGE</th>
-															<th>ACTIVE</th><!-- POWER -->
+															<th>ACTIVE</th>POWER
 															<th>APPARENT</th>
 															<th>REACTIVE</th>
-															<th>IMPORT</th><!-- ACTIVE ENERGY -->
+															<th>IMPORT</th>ACTIVE ENERGY
 															<th>EXPORT</th>
-															<th>IMPORT</th><!-- APPARENT ENERGY -->
+															<th>IMPORT</th>APPARENT ENERGY
 															<th>EXPORT</th>
-															<th>LEAD</th><!-- REACTIVE ENERGY EXPORT -->
+															<th>LEAD</th>REACTIVE ENERGY EXPORT
 															<th>LAG</th>
-															<th>LAG</th><!-- REACTIVE ENERGY IMPORT -->
+															<th>LAG</th>REACTIVE ENERGY IMPORT
 															<th>LEAD</th>
 															<th>FREQ</th>
 															<th>SIGNAL STRENGTH</th>
@@ -253,6 +253,138 @@
 															<th>Sub Station Code</th>
 															<th>Feeder</th>
 															<th>Feeder Code</th>
+														</tr>
+													</thead> -->
+													<thead>
+														<tr>
+															<th>S.No</th>
+															<th>Meter Number</th>
+															<th>Meter Date Time</th>
+															<th>Interval No</th>
+															<th>Active Energy</th>
+															<th>Active Energy Import</th>
+															<th>Active Energy Import L1</th>
+															<th>Active Energy Import L2</th>
+															<th>Active Energy Import L3</th>
+															<th>Active Energy Import T1</th>
+															<th>Active Energy Import T2</th>
+															<th>Active Energy Import T3</th>
+															<th>Active Energy Import T4</th>
+															<th>Active Energy Import T5</th>
+															<th>Active Energy Import T6</th>
+															<th>Active Energy Import T7</th>
+															<th>Active Energy Import T8</th>
+															<th>Active Energy Export</th>
+															<th>Active Energy Export L1</th>
+															<th>Active Energy Export L2</th>
+															<th>Active Energy Export L3</th>
+															<th>Active Energy Export T1</th>
+															<th>Active Energy Export T2</th>
+															<th>Active Energy Export T3</th>
+															<th>Active Energy Export T4</th>
+															<th>Active Energy Export T5</th>
+															<th>Active Energy Export T6</th>
+															<th>Active Energy Export T7</th>
+															<th>Active Energy Export T8</th>
+															<th>Active Energy Combined Total</th>
+															<th>Active Energy Combined Total T1</th>
+															<th>Active Energy Combined Total T2</th>
+															<th>Active Energy Combined Total T3</th>
+															<th>Active Energy Combined Total T4</th>
+															<th>Active Energy Combined Total T5</th>
+															<th>Active Energy Combined Total T6</th>
+															<th>Active Energy Combined Total T7</th>
+															<th>Active Energy Combined Total T8</th>
+															<th>Active Energy NetTotal</th>
+															<th>Active Energy NetTotalT1</th>
+															<th>Active Energy NetTotalT2</th>
+															<th>Active Energy NetTotalT3</th>
+															<th>Active Energy NetTotalT4</th>
+															<th>active Energy NetTotalT5</th>
+															<th>Active Energy NetTotalT6</th>
+															<th>Active Energy NetTotalT7</th>
+															<th>Active Energy NetTotalT8</th>
+															<th>Reactive Energy</th>
+															<th>Reactive Energy Import</th>
+															<th>Reactive Energy Export</th>
+															<th>Reactive Energy Q1</th>
+															<th>Reactive Energy Q2</th>
+															<th>Reactive Energy Q3</th>
+															<th>Reactive Energy Q4</th>
+															<th>Apparent Energy</th>
+															<th>Apparent Energy Import</th>
+															<th>Apparent Energy Import T1</th>
+															<th>Apparent Energy Import T2</th>
+															<th>Apparent Energy Import T3</th>
+															<th>Apparent Energy Import T4</th>
+															<th>Apparent Energy Import T5</th>
+															<th>Apparent Energy Import T6</th>
+															<th>Apparent Energy Import T7</th>
+															<th>Apparent Energy Import T8</th>
+															<!-- <th>apparentEnergyExport</th>
+															<th>apparentEnergyExportT1</th>
+															<th>apparentEnergyExportT2</th>
+															<th>apparentEnergyExportT3</th>
+															<th>apparentEnergyExportT4</th>
+															<th>apparentEnergyExportT5</th>
+															<th>apparentEnergyExportT6</th>
+															<th>apparentEnergyExportT7</th>
+															<th>apparentEnergyExportT8</th>
+															<th>activePowerImport</th>
+															<th>activePowerImportL1</th>
+															<th>activePowerImportL2</th>
+															<th>activePowerImportL3</th>
+															<th>activePowerExport</th>
+															<th>activePowerExportL1</th>
+															<th>activePowerExportL2</th>
+															<th>activePowerExportL3</th>
+															<th>reactivePower</th>
+															<th>reactivePowerImport</th>
+															<th>reactivePowerImportL1</th>
+															<th>reactivePowerImportL2</th>
+															<th>reactivePowerImportL3</th>
+															<th>reactivePowerExport</th>
+															<th>reactivePowerExportL1</th>
+															<th>reactivePowerExportL2</th>
+															<th>reactivePowerExportL3</th>
+															<th>apparentPower</th>
+															<th>apparentPowerImport</th>
+															<th>apparentPowerImportL1</th>
+															<th>apparentPowerImportL2</th>
+															<th>apparentPowerImportL3</th>
+															<th>apparentPowerExport</th>
+															<th>apparentPowerExportL1</th>
+															<th>apparentPowerExportL2</th>
+															<th>apparentPowerExportL3</th>
+															<th>powerFactor</th>
+															<th>powerFactorL1</th>
+															<th>powerFactorL2</th>
+															<th>powerFactorL3</th>
+															<th>phaseAngle</th>
+															<th>phaseAngleL1</th>
+															<th>phaseAngleL2</th>
+															<th>phaseAngleL3</th>
+															<th>voltage</th>
+															<th>voltageL1</th>
+															<th>voltageL2</th>
+															<th>voltageL3</th>
+															<th>current</th>
+															<th>currentL1</th>
+															<th>currentL2</th>
+															<th>currentL3</th>
+															<th>ampereHoursInAbsenceOfVoltageL1</th>
+															<th>ampereHoursInAbsenceOfVoltageL2</th>
+															<th>ampereHoursInAbsenceOfVoltageL3</th>
+															<th>activeDemand</th>
+															<th>activeDemandImport</th>
+															<th>activeDemandImportOccTime</th>
+															<th>activeDemandExport</th>
+															<th>activeDemandExportOccTime</th>
+															<th>apparentDemand</th>
+															<th>apparentDemandImport</th>
+															<th>apparentDemandImportOccTime</th>
+															<th>apparentDemandExport</th>
+															<th>apparentDemandExportOccTime</th> -->
 														</tr>
 													</thead>
 												</table>
@@ -448,6 +580,147 @@
 									    }
 									},
 									{ "mData": "id.meterNumber" ,  "defaultContent": "-"},
+									{
+									                 "mData": "id.meterDateTime",
+									    			"render": function (data) {
+									    			 if (data == null){ return '-'; }else{
+									        		 var date = new Date(data);
+									       			 var month = date.getMonth() + 1;
+									       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
+									      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
+									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
+									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
+									   }} },
+									{ "mData": "intervalNo" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergy" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImport" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportL1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportL2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportL3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT4" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT5" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT6" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT7" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyImportT8" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExport" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportL1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportL2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportL3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT4" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT5" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT6" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT7" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyExportT8" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotal" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT4" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT5" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT6" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT7" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyCombinedTotalT8" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotal" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT1" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT2" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT3" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT4" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT5" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT6" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT7" ,  "defaultContent": "-"},
+									{ "mData": "activeEnergyNetTotalT8" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergy" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyImport" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyExport" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyQ1" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyQ2" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyQ3" ,  "defaultContent": "-"},
+									{ "mData": "reactiveEnergyQ4" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergy" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImport" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT1" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT2" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT3" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT4" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT5" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT6" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT7" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyImportT8" ,  "defaultContent": "-"},
+									/* { "mData": "apparentEnergyExport" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT1" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT2" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT3" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT4" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT5" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT6" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT7" ,  "defaultContent": "-"},
+									{ "mData": "apparentEnergyExportT8" ,  "defaultContent": "-"},
+									{ "mData": "activePowerImport" ,  "defaultContent": "-"},
+									{ "mData": "activePowerImportL1" ,  "defaultContent": "-"},
+									{ "mData": "activePowerImportL2" ,  "defaultContent": "-"},
+									{ "mData": "activePowerImportL3" ,  "defaultContent": "-"},
+									{ "mData": "activePowerExport" ,  "defaultContent": "-"},
+									{ "mData": "activePowerExportL1" ,  "defaultContent": "-"},
+									{ "mData": "activePowerExportL2" ,  "defaultContent": "-"},
+									{ "mData": "activePowerExportL3" ,  "defaultContent": "-"},
+									{ "mData": "reactivePower" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerImport" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerImportL1" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerImportL2" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerImportL3" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerExport" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerExportL1" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerExportL2" ,  "defaultContent": "-"},
+									{ "mData": "reactivePowerExportL3" ,  "defaultContent": "-"},
+									{ "mData": "apparentPower" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerImport" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerImportL1" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerImportL2" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerImportL3" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerExport" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerExportL1" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerExportL2" ,  "defaultContent": "-"},
+									{ "mData": "apparentPowerExportL3" ,  "defaultContent": "-"},
+									{ "mData": "powerFactor" ,  "defaultContent": "-"},
+									{ "mData": "powerFactorL1" ,  "defaultContent": "-"},
+									{ "mData": "powerFactorL2" ,  "defaultContent": "-"},
+									{ "mData": "powerFactorL3" ,  "defaultContent": "-"},
+									{ "mData": "phaseAngle" ,  "defaultContent": "-"},
+									{ "mData": "phaseAngleL1" ,  "defaultContent": "-"},
+									{ "mData": "phaseAngleL2" ,  "defaultContent": "-"},
+									{ "mData": "phaseAngleL3" ,  "defaultContent": "-"},
+									{ "mData": "voltage" ,  "defaultContent": "-"},
+									{ "mData": "voltageL1" ,  "defaultContent": "-"},
+									{ "mData": "voltageL2" ,  "defaultContent": "-"},
+									{ "mData": "voltageL3" ,  "defaultContent": "-"},
+									{ "mData": "current" ,  "defaultContent": "-"},
+									{ "mData": "currentL1" ,  "defaultContent": "-"},
+									{ "mData": "currentL2" ,  "defaultContent": "-"},
+									{ "mData": "currentL3" ,  "defaultContent": "-"},
+									{ "mData": "ampereHoursInAbsenceOfVoltageL1" ,  "defaultContent": "-"},
+									{ "mData": "ampereHoursInAbsenceOfVoltageL2" ,  "defaultContent": "-"},
+									{ "mData": "ampereHoursInAbsenceOfVoltageL3" ,  "defaultContent": "-"},
+									{ "mData": "activeDemand" ,  "defaultContent": "-"},
+									{ "mData": "activeDemandImport" ,  "defaultContent": "-"},
+									{ "mData": "activeDemandImportOccTime" ,  "defaultContent": "-"},
+									{ "mData": "activeDemandExport" ,  "defaultContent": "-"},
+									{ "mData": "activeDemandExportOccTime" ,  "defaultContent": "-"},
+									{ "mData": "apparentDemand" ,  "defaultContent": "-"},
+									{ "mData": "apparentDemandImport" ,  "defaultContent": "-"},
+									{ "mData": "apparentDemandImportOccTime" ,  "defaultContent": "-"},
+									{ "mData": "apparentDemandExport" ,  "defaultContent": "-"},
+									{ "mData": "apparentDemandExportOccTime" ,  "defaultContent": "-"}, */
+									
+									
+									
+									
+									/* { "mData": "id.meterNumber" ,  "defaultContent": "-"},
 									{ "mData": "meterMasterObj.consumerName" ,  "defaultContent": "-"},
 									{ "mData": "meterMasterObj.consumerNumber" ,  "defaultContent": "-"},
 									{
@@ -515,7 +788,7 @@
 									{ "mData": "meterMasterObj.level8Name" ,  "defaultContent": "-"},
 									{ "mData": "meterMasterObj.level8Code" ,  "defaultContent": "-"},
 									{ "mData": "meterMasterObj.level9Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"},
+									{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"}, */
 								]
 							});
 						}

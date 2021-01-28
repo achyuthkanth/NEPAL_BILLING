@@ -28,8 +28,15 @@ import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.ServerDataTable;
 import com.analogics.um.vo.UserLoginDetails;
 import com.analogics.vo.InstantData;
+import com.analogics.vo.InstantDataLatest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+/**
+ * 
+ * @author Sandhya.B
+ *
+ */
 
 @Controller
 public class InstantDataController {
@@ -116,23 +123,80 @@ public class InstantDataController {
 	}
 	
 	
+	
+	@RequestMapping("/viewLatestInstantData")
+	public ModelAndView viewLatestInstantData(HttpServletRequest request,
+			HttpServletResponse response,@ModelAttribute("hierVoObj") HierarchyLevelsVo hierVoObj,
+			@ModelAttribute("dataObj") InstantDataLatest dataObj) {
+		ModelAndView model = new ModelAndView("Masters/InstantData/ViewLatestInstantDataDetails",
+				"command", dataObj);
+		try {
+			HttpSession session=request.getSession();
+			UserLoginDetails userSessionObj=(UserLoginDetails) session.getAttribute("sessionObj");
+			
+			if(!hierVoObj.getLevel1Id().equalsIgnoreCase("-1") && hierVoObj.getLevel1Id()!=null){
+				utilsObj.fetchHierarchyLevels(model,userSessionObj,hierVoObj);
+			}else{
+				utilsObj.frameLevelMaps(model,userSessionObj);
+			}
+			model.addObject("command", fetchInstantLatestDataColumsMap(dataObj));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/fetchLatestInstantDataDetails", method = RequestMethod.GET)
+	public @ResponseBody
+	String fetchLatestInstantDataDetails(HttpServletRequest request,
+			@RequestParam("iDisplayStart") String iDisplayStart,
+			@RequestParam("sSearch") String searchParameter,
+			@RequestParam("sSortDir_0") String sorting,
+			@RequestParam("iSortCol_0") String sCol,
+			@RequestParam("iColumns") String iColumns,
+			@RequestParam("iDisplayLength") String pageDisplayLength,
+			@ModelAttribute("dataObj") InstantDataLatest dataObj,
+			@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj)
+			throws IOException {
+		String json = null;
+		Long count = 0l;
+		List<InstantDataLatest> dataList = new ArrayList<InstantDataLatest>();
+		try {
+			int pageNumber = 0;
+			pageNumber = Integer.parseInt(iDisplayStart);
+			@SuppressWarnings("rawtypes")
+			ServerDataTable dataTable = new ServerDataTable();
+			Map<String,Integer> levelMap=new HashMap<String,Integer>();
+			LevelIndexMaster levelIndexObj = new LevelIndexMaster();
+			utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
+			levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
+			try {
+				dataList = masterDaoObj.fetchLatestInstantDataList(pageNumber,
+						Integer.parseInt(pageDisplayLength), searchParameter,
+						sorting,dataObj,levelIndexObj);
+				count = masterDaoObj.fetchLatestInstantDataDetailsCount(pageNumber,
+						Integer.parseInt(pageDisplayLength), searchParameter,
+						sorting,dataObj,levelIndexObj);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			dataTable.setiTotalRecords(count.intValue());
+			dataTable.setiTotalDisplayRecords(count.intValue());
+			dataTable.setAaData(dataList);
+			json = gson.toJson(dataTable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
+	
+	
 	private Object fetchInstantDataColumsMap(InstantData dataObj) {
 		try {
-			/*Map<String, String> columnsMap = new HashMap<String, String>();
-			columnsMap.put("1", "METER NUMBER");
-			columnsMap.put("2", "Consumer Number");
-			columnsMap.put("3", "Consumer Address");
-			columnsMap.put("4", "Consumer Company Details");
-			columnsMap.put("5", "Contact No");
-			columnsMap.put("6", "Alternate Contact");
-			columnsMap.put("7", "Email Address");
-			columnsMap.put("8", "Identification Number");
-			columnsMap.put("9", "Connection Status");
-			columnsMap.put("10", "Installation Date");
-			columnsMap.put("11", "Inserted Date");
-			columnsMap.put("12", "Inserted User");
-			dataObj.setColumnsMap(columnsMap);*/
-			
 			Map<String,String> searchColumnsMap = new HashMap<String,String>();
 			searchColumnsMap.put("id.meterNumber", "METER NUMBER");
 			searchColumnsMap.put("nodeNumber", "NODE NUMBER");
@@ -150,4 +214,22 @@ public class InstantDataController {
 		return dataObj;
 	}
 
+	private Object fetchInstantLatestDataColumsMap(InstantDataLatest dataObj) {
+		try {
+			
+			Map<String,String> searchColumnsMap = new HashMap<String,String>();
+			searchColumnsMap.put("meterNumber", "METER NUMBER");
+			dataObj.setSearchColumnsMap(searchColumnsMap);
+			
+			List<String> conditionListStr = new ArrayList<String>();
+			conditionListStr.add("EQUAL TO");
+			conditionListStr.add("LIKE");
+			conditionListStr.add("NOT EQUAL TO");
+			dataObj.setConditionListStr(conditionListStr);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dataObj;
+	}
 }

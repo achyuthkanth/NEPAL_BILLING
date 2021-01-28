@@ -256,7 +256,16 @@
 						</li>
 						<li class="nav-item"><a href="viewInstantData"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
-								<p>Instant Data</p> </a>
+								<p>Instant Data</p> </a></li>
+						<li class="nav-item"><a href="viewLatestInstantData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Latest Instant Data</p> </a></li>
+						<li class="nav-item"><a href="viewBillingData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Billing Data</p> </a></li>
+						<li class="nav-item"><a href="viewLatestBillingData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Latest Billing Data</p> </a></li>
 						<li class="nav-item"><a href="viewAlarmData"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Alarm Master</p> </a>
