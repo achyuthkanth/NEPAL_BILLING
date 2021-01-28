@@ -12,6 +12,7 @@ public class UserGroup extends ExtraFieldspojo implements java.io.Serializable {
 
 	// Fields
 
+	private static final long serialVersionUID = 1L;
 	private UserGroupId id;
 	private String groupdescription;
 	private Timestamp inserteddate;

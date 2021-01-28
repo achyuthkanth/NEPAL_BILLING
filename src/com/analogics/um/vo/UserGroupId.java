@@ -8,6 +8,7 @@ public class UserGroupId implements java.io.Serializable {
 
 	// Fields
 
+	private static final long serialVersionUID = 1L;
 	private String groupname;
 	private Long applicationuniqueid;
 

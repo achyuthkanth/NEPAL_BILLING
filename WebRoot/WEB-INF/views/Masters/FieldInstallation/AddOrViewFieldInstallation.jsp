@@ -71,7 +71,7 @@
 						</div>
 						<!-- /.card-header -->
 							<div class="card-body">
-							<form:form method="post" action="bulkMeterMasterUpload" enctype="multipart/form-data">
+							<form:form method="post" action="bulkFieldInstallationUpload" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-12">
 										

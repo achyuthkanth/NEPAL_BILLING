@@ -269,6 +269,23 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Field Installation Master</p> </a>
 						</li>
+						<li class="nav-item"><a href="viewLoadSurveyData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Looad Survey Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="viewLoadSurveyDataLatest"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Load Survey Latest Master</p> </a>
+						</li>
+						<li class="nav-item"><a href="viewDailySnapshotData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Daily Snap Shot</p> </a>
+						</li>
+						
+						<li class="nav-item"><a href="viewDailySnapshotLatestData"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Daily Snap Shot Latest</p> </a>
+						</li>
 						<!-- <li class="nav-item"><a href="consumerMeterMasterDetails"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Consumer Meter Master</p> </a>

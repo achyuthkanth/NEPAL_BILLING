@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import com.analogics.um.dao.BaseHibernateDAO;
 import com.analogics.utils.CommonQueryFrameUtils;
 import com.analogics.vo.FieldInstallationMaster;
-import com.analogics.vo.MeterMaster;
 
 public class FieldInstallationDao extends BaseHibernateDAO  {
 	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();	
@@ -24,7 +23,7 @@ public class FieldInstallationDao extends BaseHibernateDAO  {
 		try {
 			session = getSession();
 			StringBuilder strb = new StringBuilder();
-			StringBuilder strb1 = new StringBuilder(); 
+//			StringBuilder strb1 = new StringBuilder(); 
 			strb.append(" from FieldInstallationMaster master   ");
 			
 			
