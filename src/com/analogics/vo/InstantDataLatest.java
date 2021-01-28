@@ -1,20 +1,22 @@
 package com.analogics.vo;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.analogics.um.vo.HierarchyLevelsVo;
 
 /**
- * InstantData entity. @author MyEclipse Persistence Tools
+ * InstantDataLatest entity. @author MyEclipse Persistence Tools
  */
 
-public class InstantData extends HierarchyLevelsVo implements java.io.Serializable {
+public class InstantDataLatest extends HierarchyLevelsVo implements java.io.Serializable {
 
-	private static final long serialVersionUID = 3168997208617909772L;
 	// Fields
 
-	private InstantDataId id;
+	private static final long serialVersionUID = -1590270853830030369L;
+	private String meterNumber;
+	private Timestamp meterDateTime;
 	private Date meterDate;
 	private Time meterTime;
 	private Long intervalNo;
@@ -142,25 +144,25 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 	private String apparentDemandImportOccTime;
 	private String apparentDemandExport;
 	private String apparentDemandExportOccTime;
-	
-	// Required Fields
-	private MeterMaster meterMasterObj;
 
 	// Constructors
 
 	/** default constructor */
-	public InstantData() {
+	public InstantDataLatest() {
 	}
 
 	/** minimal constructor */
-	public InstantData(InstantDataId id, Date meterDate) {
-		this.id = id;
+	public InstantDataLatest(String meterNumber, Timestamp meterDateTime,
+			Date meterDate) {
+		this.meterNumber = meterNumber;
+		this.meterDateTime = meterDateTime;
 		this.meterDate = meterDate;
 	}
 
 	/** full constructor */
-	public InstantData(InstantDataId id, Date meterDate, Time meterTime,
-			Long intervalNo, String activeEnergy, String activeEnergyImport,
+	public InstantDataLatest(String meterNumber, Timestamp meterDateTime,
+			Date meterDate, Time meterTime, Long intervalNo,
+			String activeEnergy, String activeEnergyImport,
 			String activeEnergyImportL1, String activeEnergyImportL2,
 			String activeEnergyImportL3, String activeEnergyImportT1,
 			String activeEnergyImportT2, String activeEnergyImportT3,
@@ -224,7 +226,8 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 			String apparentDemand, String apparentDemandImport,
 			String apparentDemandImportOccTime, String apparentDemandExport,
 			String apparentDemandExportOccTime) {
-		this.id = id;
+		this.meterNumber = meterNumber;
+		this.meterDateTime = meterDateTime;
 		this.meterDate = meterDate;
 		this.meterTime = meterTime;
 		this.intervalNo = intervalNo;
@@ -356,12 +359,20 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 
 	// Property accessors
 
-	public InstantDataId getId() {
-		return this.id;
+	public String getMeterNumber() {
+		return this.meterNumber;
 	}
 
-	public void setId(InstantDataId id) {
-		this.id = id;
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
+	}
+
+	public Timestamp getMeterDateTime() {
+		return this.meterDateTime;
+	}
+
+	public void setMeterDateTime(Timestamp meterDateTime) {
+		this.meterDateTime = meterDateTime;
 	}
 
 	public Date getMeterDate() {
@@ -1391,14 +1402,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 	public void setApparentDemandExportOccTime(
 			String apparentDemandExportOccTime) {
 		this.apparentDemandExportOccTime = apparentDemandExportOccTime;
-	}
-
-	public MeterMaster getMeterMasterObj() {
-		return meterMasterObj;
-	}
-
-	public void setMeterMasterObj(MeterMaster meterMasterObj) {
-		this.meterMasterObj = meterMasterObj;
 	}
 
 }

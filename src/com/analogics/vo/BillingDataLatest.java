@@ -1,23 +1,30 @@
 package com.analogics.vo;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.analogics.um.vo.HierarchyLevelsVo;
 
 /**
- * InstantData entity. @author MyEclipse Persistence Tools
+ * BillingDataLatest entity. @author MyEclipse Persistence Tools
  */
 
-public class InstantData extends HierarchyLevelsVo implements java.io.Serializable {
+public class BillingDataLatest extends HierarchyLevelsVo implements java.io.Serializable {
 
-	private static final long serialVersionUID = 3168997208617909772L;
 	// Fields
 
-	private InstantDataId id;
+	private static final long serialVersionUID = 5837025026621870070L;
+	private String meterNumber;
+	private Timestamp mdresetDateTime;
+	private Date mdresetDate;
+	private Time mdresetTime;
+	private Integer mdresetYear;
+	private Integer mdresetMonth;
+	private Integer intervalNo;
+	private Timestamp meterDateTime;
 	private Date meterDate;
 	private Time meterTime;
-	private Long intervalNo;
 	private String activeEnergy;
 	private String activeEnergyImport;
 	private String activeEnergyImportL1;
@@ -87,51 +94,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 	private String apparentEnergyExportT6;
 	private String apparentEnergyExportT7;
 	private String apparentEnergyExportT8;
-	private String activePowerImport;
-	private String activePowerImportL1;
-	private String activePowerImportL2;
-	private String activePowerImportL3;
-	private String activePowerExport;
-	private String activePowerExportL1;
-	private String activePowerExportL2;
-	private String activePowerExportL3;
-	private String reactivePower;
-	private String reactivePowerImport;
-	private String reactivePowerImportL1;
-	private String reactivePowerImportL2;
-	private String reactivePowerImportL3;
-	private String reactivePowerExport;
-	private String reactivePowerExportL1;
-	private String reactivePowerExportL2;
-	private String reactivePowerExportL3;
-	private String apparentPower;
-	private String apparentPowerImport;
-	private String apparentPowerImportL1;
-	private String apparentPowerImportL2;
-	private String apparentPowerImportL3;
-	private String apparentPowerExport;
-	private String apparentPowerExportL1;
-	private String apparentPowerExportL2;
-	private String apparentPowerExportL3;
-	private String powerFactor;
-	private String powerFactorL1;
-	private String powerFactorL2;
-	private String powerFactorL3;
-	private String phaseAngle;
-	private String phaseAngleL1;
-	private String phaseAngleL2;
-	private String phaseAngleL3;
-	private String voltage;
-	private String voltageL1;
-	private String voltageL2;
-	private String voltageL3;
-	private String current;
-	private String currentL1;
-	private String currentL2;
-	private String currentL3;
-	private String ampereHoursInAbsenceOfVoltageL1;
-	private String ampereHoursInAbsenceOfVoltageL2;
-	private String ampereHoursInAbsenceOfVoltageL3;
 	private String activeDemand;
 	private String activeDemandImport;
 	private String activeDemandImportOccTime;
@@ -142,37 +104,44 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 	private String apparentDemandImportOccTime;
 	private String apparentDemandExport;
 	private String apparentDemandExportOccTime;
-	
-	// Required Fields
-	private MeterMaster meterMasterObj;
 
 	// Constructors
 
 	/** default constructor */
-	public InstantData() {
+	public BillingDataLatest() {
 	}
 
 	/** minimal constructor */
-	public InstantData(InstantDataId id, Date meterDate) {
-		this.id = id;
+	public BillingDataLatest(String meterNumber, Timestamp mdresetDateTime,
+			Date mdresetDate, Integer mdresetYear, Integer mdresetMonth,
+			Timestamp meterDateTime, Date meterDate) {
+		this.meterNumber = meterNumber;
+		this.mdresetDateTime = mdresetDateTime;
+		this.mdresetDate = mdresetDate;
+		this.mdresetYear = mdresetYear;
+		this.mdresetMonth = mdresetMonth;
+		this.meterDateTime = meterDateTime;
 		this.meterDate = meterDate;
 	}
 
 	/** full constructor */
-	public InstantData(InstantDataId id, Date meterDate, Time meterTime,
-			Long intervalNo, String activeEnergy, String activeEnergyImport,
-			String activeEnergyImportL1, String activeEnergyImportL2,
-			String activeEnergyImportL3, String activeEnergyImportT1,
-			String activeEnergyImportT2, String activeEnergyImportT3,
-			String activeEnergyImportT4, String activeEnergyImportT5,
-			String activeEnergyImportT6, String activeEnergyImportT7,
-			String activeEnergyImportT8, String activeEnergyExport,
-			String activeEnergyExportL1, String activeEnergyExportL2,
-			String activeEnergyExportL3, String activeEnergyExportT1,
-			String activeEnergyExportT2, String activeEnergyExportT3,
-			String activeEnergyExportT4, String activeEnergyExportT5,
-			String activeEnergyExportT6, String activeEnergyExportT7,
-			String activeEnergyExportT8, String activeEnergyCombinedTotal,
+	public BillingDataLatest(String meterNumber, Timestamp mdresetDateTime,
+			Date mdresetDate, Time mdresetTime, Integer mdresetYear,
+			Integer mdresetMonth, Integer intervalNo, Timestamp meterDateTime,
+			Date meterDate, Time meterTime, String activeEnergy,
+			String activeEnergyImport, String activeEnergyImportL1,
+			String activeEnergyImportL2, String activeEnergyImportL3,
+			String activeEnergyImportT1, String activeEnergyImportT2,
+			String activeEnergyImportT3, String activeEnergyImportT4,
+			String activeEnergyImportT5, String activeEnergyImportT6,
+			String activeEnergyImportT7, String activeEnergyImportT8,
+			String activeEnergyExport, String activeEnergyExportL1,
+			String activeEnergyExportL2, String activeEnergyExportL3,
+			String activeEnergyExportT1, String activeEnergyExportT2,
+			String activeEnergyExportT3, String activeEnergyExportT4,
+			String activeEnergyExportT5, String activeEnergyExportT6,
+			String activeEnergyExportT7, String activeEnergyExportT8,
+			String activeEnergyCombinedTotal,
 			String activeEnergyCombinedTotalT1,
 			String activeEnergyCombinedTotalT2,
 			String activeEnergyCombinedTotalT3,
@@ -198,36 +167,21 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 			String apparentEnergyExportT3, String apparentEnergyExportT4,
 			String apparentEnergyExportT5, String apparentEnergyExportT6,
 			String apparentEnergyExportT7, String apparentEnergyExportT8,
-			String activePowerImport, String activePowerImportL1,
-			String activePowerImportL2, String activePowerImportL3,
-			String activePowerExport, String activePowerExportL1,
-			String activePowerExportL2, String activePowerExportL3,
-			String reactivePower, String reactivePowerImport,
-			String reactivePowerImportL1, String reactivePowerImportL2,
-			String reactivePowerImportL3, String reactivePowerExport,
-			String reactivePowerExportL1, String reactivePowerExportL2,
-			String reactivePowerExportL3, String apparentPower,
-			String apparentPowerImport, String apparentPowerImportL1,
-			String apparentPowerImportL2, String apparentPowerImportL3,
-			String apparentPowerExport, String apparentPowerExportL1,
-			String apparentPowerExportL2, String apparentPowerExportL3,
-			String powerFactor, String powerFactorL1, String powerFactorL2,
-			String powerFactorL3, String phaseAngle, String phaseAngleL1,
-			String phaseAngleL2, String phaseAngleL3, String voltage,
-			String voltageL1, String voltageL2, String voltageL3,
-			String current, String currentL1, String currentL2,
-			String currentL3, String ampereHoursInAbsenceOfVoltageL1,
-			String ampereHoursInAbsenceOfVoltageL2,
-			String ampereHoursInAbsenceOfVoltageL3, String activeDemand,
-			String activeDemandImport, String activeDemandImportOccTime,
-			String activeDemandExport, String activeDemandExportOccTime,
-			String apparentDemand, String apparentDemandImport,
-			String apparentDemandImportOccTime, String apparentDemandExport,
-			String apparentDemandExportOccTime) {
-		this.id = id;
+			String activeDemand, String activeDemandImport,
+			String activeDemandImportOccTime, String activeDemandExport,
+			String activeDemandExportOccTime, String apparentDemand,
+			String apparentDemandImport, String apparentDemandImportOccTime,
+			String apparentDemandExport, String apparentDemandExportOccTime) {
+		this.meterNumber = meterNumber;
+		this.mdresetDateTime = mdresetDateTime;
+		this.mdresetDate = mdresetDate;
+		this.mdresetTime = mdresetTime;
+		this.mdresetYear = mdresetYear;
+		this.mdresetMonth = mdresetMonth;
+		this.intervalNo = intervalNo;
+		this.meterDateTime = meterDateTime;
 		this.meterDate = meterDate;
 		this.meterTime = meterTime;
-		this.intervalNo = intervalNo;
 		this.activeEnergy = activeEnergy;
 		this.activeEnergyImport = activeEnergyImport;
 		this.activeEnergyImportL1 = activeEnergyImportL1;
@@ -297,51 +251,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 		this.apparentEnergyExportT6 = apparentEnergyExportT6;
 		this.apparentEnergyExportT7 = apparentEnergyExportT7;
 		this.apparentEnergyExportT8 = apparentEnergyExportT8;
-		this.activePowerImport = activePowerImport;
-		this.activePowerImportL1 = activePowerImportL1;
-		this.activePowerImportL2 = activePowerImportL2;
-		this.activePowerImportL3 = activePowerImportL3;
-		this.activePowerExport = activePowerExport;
-		this.activePowerExportL1 = activePowerExportL1;
-		this.activePowerExportL2 = activePowerExportL2;
-		this.activePowerExportL3 = activePowerExportL3;
-		this.reactivePower = reactivePower;
-		this.reactivePowerImport = reactivePowerImport;
-		this.reactivePowerImportL1 = reactivePowerImportL1;
-		this.reactivePowerImportL2 = reactivePowerImportL2;
-		this.reactivePowerImportL3 = reactivePowerImportL3;
-		this.reactivePowerExport = reactivePowerExport;
-		this.reactivePowerExportL1 = reactivePowerExportL1;
-		this.reactivePowerExportL2 = reactivePowerExportL2;
-		this.reactivePowerExportL3 = reactivePowerExportL3;
-		this.apparentPower = apparentPower;
-		this.apparentPowerImport = apparentPowerImport;
-		this.apparentPowerImportL1 = apparentPowerImportL1;
-		this.apparentPowerImportL2 = apparentPowerImportL2;
-		this.apparentPowerImportL3 = apparentPowerImportL3;
-		this.apparentPowerExport = apparentPowerExport;
-		this.apparentPowerExportL1 = apparentPowerExportL1;
-		this.apparentPowerExportL2 = apparentPowerExportL2;
-		this.apparentPowerExportL3 = apparentPowerExportL3;
-		this.powerFactor = powerFactor;
-		this.powerFactorL1 = powerFactorL1;
-		this.powerFactorL2 = powerFactorL2;
-		this.powerFactorL3 = powerFactorL3;
-		this.phaseAngle = phaseAngle;
-		this.phaseAngleL1 = phaseAngleL1;
-		this.phaseAngleL2 = phaseAngleL2;
-		this.phaseAngleL3 = phaseAngleL3;
-		this.voltage = voltage;
-		this.voltageL1 = voltageL1;
-		this.voltageL2 = voltageL2;
-		this.voltageL3 = voltageL3;
-		this.current = current;
-		this.currentL1 = currentL1;
-		this.currentL2 = currentL2;
-		this.currentL3 = currentL3;
-		this.ampereHoursInAbsenceOfVoltageL1 = ampereHoursInAbsenceOfVoltageL1;
-		this.ampereHoursInAbsenceOfVoltageL2 = ampereHoursInAbsenceOfVoltageL2;
-		this.ampereHoursInAbsenceOfVoltageL3 = ampereHoursInAbsenceOfVoltageL3;
 		this.activeDemand = activeDemand;
 		this.activeDemandImport = activeDemandImport;
 		this.activeDemandImportOccTime = activeDemandImportOccTime;
@@ -356,12 +265,68 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 
 	// Property accessors
 
-	public InstantDataId getId() {
-		return this.id;
+	public String getMeterNumber() {
+		return this.meterNumber;
 	}
 
-	public void setId(InstantDataId id) {
-		this.id = id;
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
+	}
+
+	public Timestamp getMdresetDateTime() {
+		return this.mdresetDateTime;
+	}
+
+	public void setMdresetDateTime(Timestamp mdresetDateTime) {
+		this.mdresetDateTime = mdresetDateTime;
+	}
+
+	public Date getMdresetDate() {
+		return this.mdresetDate;
+	}
+
+	public void setMdresetDate(Date mdresetDate) {
+		this.mdresetDate = mdresetDate;
+	}
+
+	public Time getMdresetTime() {
+		return this.mdresetTime;
+	}
+
+	public void setMdresetTime(Time mdresetTime) {
+		this.mdresetTime = mdresetTime;
+	}
+
+	public Integer getMdresetYear() {
+		return this.mdresetYear;
+	}
+
+	public void setMdresetYear(Integer mdresetYear) {
+		this.mdresetYear = mdresetYear;
+	}
+
+	public Integer getMdresetMonth() {
+		return this.mdresetMonth;
+	}
+
+	public void setMdresetMonth(Integer mdresetMonth) {
+		this.mdresetMonth = mdresetMonth;
+	}
+
+	public Integer getIntervalNo() {
+		return this.intervalNo;
+	}
+
+	public void setIntervalNo(Integer intervalNo) {
+		this.intervalNo = intervalNo;
+	}
+
+	public Timestamp getMeterDateTime() {
+		return this.meterDateTime;
+	}
+
+	public void setMeterDateTime(Timestamp meterDateTime) {
+		this.meterDateTime = meterDateTime;
 	}
 
 	public Date getMeterDate() {
@@ -378,14 +343,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 
 	public void setMeterTime(Time meterTime) {
 		this.meterTime = meterTime;
-	}
-
-	public Long getIntervalNo() {
-		return this.intervalNo;
-	}
-
-	public void setIntervalNo(Long intervalNo) {
-		this.intervalNo = intervalNo;
 	}
 
 	public String getActiveEnergy() {
@@ -948,369 +905,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 		this.apparentEnergyExportT8 = apparentEnergyExportT8;
 	}
 
-	public String getActivePowerImport() {
-		return this.activePowerImport;
-	}
-
-	public void setActivePowerImport(String activePowerImport) {
-		this.activePowerImport = activePowerImport;
-	}
-
-	public String getActivePowerImportL1() {
-		return this.activePowerImportL1;
-	}
-
-	public void setActivePowerImportL1(String activePowerImportL1) {
-		this.activePowerImportL1 = activePowerImportL1;
-	}
-
-	public String getActivePowerImportL2() {
-		return this.activePowerImportL2;
-	}
-
-	public void setActivePowerImportL2(String activePowerImportL2) {
-		this.activePowerImportL2 = activePowerImportL2;
-	}
-
-	public String getActivePowerImportL3() {
-		return this.activePowerImportL3;
-	}
-
-	public void setActivePowerImportL3(String activePowerImportL3) {
-		this.activePowerImportL3 = activePowerImportL3;
-	}
-
-	public String getActivePowerExport() {
-		return this.activePowerExport;
-	}
-
-	public void setActivePowerExport(String activePowerExport) {
-		this.activePowerExport = activePowerExport;
-	}
-
-	public String getActivePowerExportL1() {
-		return this.activePowerExportL1;
-	}
-
-	public void setActivePowerExportL1(String activePowerExportL1) {
-		this.activePowerExportL1 = activePowerExportL1;
-	}
-
-	public String getActivePowerExportL2() {
-		return this.activePowerExportL2;
-	}
-
-	public void setActivePowerExportL2(String activePowerExportL2) {
-		this.activePowerExportL2 = activePowerExportL2;
-	}
-
-	public String getActivePowerExportL3() {
-		return this.activePowerExportL3;
-	}
-
-	public void setActivePowerExportL3(String activePowerExportL3) {
-		this.activePowerExportL3 = activePowerExportL3;
-	}
-
-	public String getReactivePower() {
-		return this.reactivePower;
-	}
-
-	public void setReactivePower(String reactivePower) {
-		this.reactivePower = reactivePower;
-	}
-
-	public String getReactivePowerImport() {
-		return this.reactivePowerImport;
-	}
-
-	public void setReactivePowerImport(String reactivePowerImport) {
-		this.reactivePowerImport = reactivePowerImport;
-	}
-
-	public String getReactivePowerImportL1() {
-		return this.reactivePowerImportL1;
-	}
-
-	public void setReactivePowerImportL1(String reactivePowerImportL1) {
-		this.reactivePowerImportL1 = reactivePowerImportL1;
-	}
-
-	public String getReactivePowerImportL2() {
-		return this.reactivePowerImportL2;
-	}
-
-	public void setReactivePowerImportL2(String reactivePowerImportL2) {
-		this.reactivePowerImportL2 = reactivePowerImportL2;
-	}
-
-	public String getReactivePowerImportL3() {
-		return this.reactivePowerImportL3;
-	}
-
-	public void setReactivePowerImportL3(String reactivePowerImportL3) {
-		this.reactivePowerImportL3 = reactivePowerImportL3;
-	}
-
-	public String getReactivePowerExport() {
-		return this.reactivePowerExport;
-	}
-
-	public void setReactivePowerExport(String reactivePowerExport) {
-		this.reactivePowerExport = reactivePowerExport;
-	}
-
-	public String getReactivePowerExportL1() {
-		return this.reactivePowerExportL1;
-	}
-
-	public void setReactivePowerExportL1(String reactivePowerExportL1) {
-		this.reactivePowerExportL1 = reactivePowerExportL1;
-	}
-
-	public String getReactivePowerExportL2() {
-		return this.reactivePowerExportL2;
-	}
-
-	public void setReactivePowerExportL2(String reactivePowerExportL2) {
-		this.reactivePowerExportL2 = reactivePowerExportL2;
-	}
-
-	public String getReactivePowerExportL3() {
-		return this.reactivePowerExportL3;
-	}
-
-	public void setReactivePowerExportL3(String reactivePowerExportL3) {
-		this.reactivePowerExportL3 = reactivePowerExportL3;
-	}
-
-	public String getApparentPower() {
-		return this.apparentPower;
-	}
-
-	public void setApparentPower(String apparentPower) {
-		this.apparentPower = apparentPower;
-	}
-
-	public String getApparentPowerImport() {
-		return this.apparentPowerImport;
-	}
-
-	public void setApparentPowerImport(String apparentPowerImport) {
-		this.apparentPowerImport = apparentPowerImport;
-	}
-
-	public String getApparentPowerImportL1() {
-		return this.apparentPowerImportL1;
-	}
-
-	public void setApparentPowerImportL1(String apparentPowerImportL1) {
-		this.apparentPowerImportL1 = apparentPowerImportL1;
-	}
-
-	public String getApparentPowerImportL2() {
-		return this.apparentPowerImportL2;
-	}
-
-	public void setApparentPowerImportL2(String apparentPowerImportL2) {
-		this.apparentPowerImportL2 = apparentPowerImportL2;
-	}
-
-	public String getApparentPowerImportL3() {
-		return this.apparentPowerImportL3;
-	}
-
-	public void setApparentPowerImportL3(String apparentPowerImportL3) {
-		this.apparentPowerImportL3 = apparentPowerImportL3;
-	}
-
-	public String getApparentPowerExport() {
-		return this.apparentPowerExport;
-	}
-
-	public void setApparentPowerExport(String apparentPowerExport) {
-		this.apparentPowerExport = apparentPowerExport;
-	}
-
-	public String getApparentPowerExportL1() {
-		return this.apparentPowerExportL1;
-	}
-
-	public void setApparentPowerExportL1(String apparentPowerExportL1) {
-		this.apparentPowerExportL1 = apparentPowerExportL1;
-	}
-
-	public String getApparentPowerExportL2() {
-		return this.apparentPowerExportL2;
-	}
-
-	public void setApparentPowerExportL2(String apparentPowerExportL2) {
-		this.apparentPowerExportL2 = apparentPowerExportL2;
-	}
-
-	public String getApparentPowerExportL3() {
-		return this.apparentPowerExportL3;
-	}
-
-	public void setApparentPowerExportL3(String apparentPowerExportL3) {
-		this.apparentPowerExportL3 = apparentPowerExportL3;
-	}
-
-	public String getPowerFactor() {
-		return this.powerFactor;
-	}
-
-	public void setPowerFactor(String powerFactor) {
-		this.powerFactor = powerFactor;
-	}
-
-	public String getPowerFactorL1() {
-		return this.powerFactorL1;
-	}
-
-	public void setPowerFactorL1(String powerFactorL1) {
-		this.powerFactorL1 = powerFactorL1;
-	}
-
-	public String getPowerFactorL2() {
-		return this.powerFactorL2;
-	}
-
-	public void setPowerFactorL2(String powerFactorL2) {
-		this.powerFactorL2 = powerFactorL2;
-	}
-
-	public String getPowerFactorL3() {
-		return this.powerFactorL3;
-	}
-
-	public void setPowerFactorL3(String powerFactorL3) {
-		this.powerFactorL3 = powerFactorL3;
-	}
-
-	public String getPhaseAngle() {
-		return this.phaseAngle;
-	}
-
-	public void setPhaseAngle(String phaseAngle) {
-		this.phaseAngle = phaseAngle;
-	}
-
-	public String getPhaseAngleL1() {
-		return this.phaseAngleL1;
-	}
-
-	public void setPhaseAngleL1(String phaseAngleL1) {
-		this.phaseAngleL1 = phaseAngleL1;
-	}
-
-	public String getPhaseAngleL2() {
-		return this.phaseAngleL2;
-	}
-
-	public void setPhaseAngleL2(String phaseAngleL2) {
-		this.phaseAngleL2 = phaseAngleL2;
-	}
-
-	public String getPhaseAngleL3() {
-		return this.phaseAngleL3;
-	}
-
-	public void setPhaseAngleL3(String phaseAngleL3) {
-		this.phaseAngleL3 = phaseAngleL3;
-	}
-
-	public String getVoltage() {
-		return this.voltage;
-	}
-
-	public void setVoltage(String voltage) {
-		this.voltage = voltage;
-	}
-
-	public String getVoltageL1() {
-		return this.voltageL1;
-	}
-
-	public void setVoltageL1(String voltageL1) {
-		this.voltageL1 = voltageL1;
-	}
-
-	public String getVoltageL2() {
-		return this.voltageL2;
-	}
-
-	public void setVoltageL2(String voltageL2) {
-		this.voltageL2 = voltageL2;
-	}
-
-	public String getVoltageL3() {
-		return this.voltageL3;
-	}
-
-	public void setVoltageL3(String voltageL3) {
-		this.voltageL3 = voltageL3;
-	}
-
-	public String getCurrent() {
-		return this.current;
-	}
-
-	public void setCurrent(String current) {
-		this.current = current;
-	}
-
-	public String getCurrentL1() {
-		return this.currentL1;
-	}
-
-	public void setCurrentL1(String currentL1) {
-		this.currentL1 = currentL1;
-	}
-
-	public String getCurrentL2() {
-		return this.currentL2;
-	}
-
-	public void setCurrentL2(String currentL2) {
-		this.currentL2 = currentL2;
-	}
-
-	public String getCurrentL3() {
-		return this.currentL3;
-	}
-
-	public void setCurrentL3(String currentL3) {
-		this.currentL3 = currentL3;
-	}
-
-	public String getAmpereHoursInAbsenceOfVoltageL1() {
-		return this.ampereHoursInAbsenceOfVoltageL1;
-	}
-
-	public void setAmpereHoursInAbsenceOfVoltageL1(
-			String ampereHoursInAbsenceOfVoltageL1) {
-		this.ampereHoursInAbsenceOfVoltageL1 = ampereHoursInAbsenceOfVoltageL1;
-	}
-
-	public String getAmpereHoursInAbsenceOfVoltageL2() {
-		return this.ampereHoursInAbsenceOfVoltageL2;
-	}
-
-	public void setAmpereHoursInAbsenceOfVoltageL2(
-			String ampereHoursInAbsenceOfVoltageL2) {
-		this.ampereHoursInAbsenceOfVoltageL2 = ampereHoursInAbsenceOfVoltageL2;
-	}
-
-	public String getAmpereHoursInAbsenceOfVoltageL3() {
-		return this.ampereHoursInAbsenceOfVoltageL3;
-	}
-
-	public void setAmpereHoursInAbsenceOfVoltageL3(
-			String ampereHoursInAbsenceOfVoltageL3) {
-		this.ampereHoursInAbsenceOfVoltageL3 = ampereHoursInAbsenceOfVoltageL3;
-	}
-
 	public String getActiveDemand() {
 		return this.activeDemand;
 	}
@@ -1391,14 +985,6 @@ public class InstantData extends HierarchyLevelsVo implements java.io.Serializab
 	public void setApparentDemandExportOccTime(
 			String apparentDemandExportOccTime) {
 		this.apparentDemandExportOccTime = apparentDemandExportOccTime;
-	}
-
-	public MeterMaster getMeterMasterObj() {
-		return meterMasterObj;
-	}
-
-	public void setMeterMasterObj(MeterMaster meterMasterObj) {
-		this.meterMasterObj = meterMasterObj;
 	}
 
 }

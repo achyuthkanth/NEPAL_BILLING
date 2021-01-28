@@ -46,11 +46,11 @@
 									<div class="container-fluid">
 										<div class="row mb-2">
 											<div class="col-sm-6">
-												<h1>Instant Data</h1> </div>
+												<h1>Billing Data</h1> </div>
 											<div class="col-sm-6">
 												<ol class="breadcrumb float-sm-right">
 													<li class="breadcrumb-item"><a href="#">Home</a> </li>
-													<li class="breadcrumb-item active">Instant Data</li>
+													<li class="breadcrumb-item active">Billing Data</li>
 												</ol>
 											</div>
 										</div>
@@ -62,7 +62,7 @@
 										<!-- SELECT2 EXAMPLE -->
 										<div class="card card-default">
 											<div class="card-header">
-												<h3 class="card-title">Instant Data Information</h3>
+												<h3 class="card-title">Billing Data Information</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool"
 														data-card-widget="collapse">
@@ -134,135 +134,27 @@
 									<div class="container-fluid">
 										<div class="card card-default">
 											<div class="card-header">
-												<h3 class="card-title">Instant Data Details</h3>
+												<h3 class="card-title">Billing Data Details</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 												</div>
 											</div>
 											<div class="card-body">
-												<%-- <div class="row col-sm-12">
-													<div class="col-sm-6">
-														<div class="form-group">
-															<div class="select2-purple">
-																<form:select path="command.colStr" class="select2 displayColumnsClass" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
-																	<form:options items="${command.columnsMap}" /> </form:select>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-2">
-														<div class="form-group">
-															<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
-														</div>
-													</div>
-													<div class="col-sm-2">
-														<button type="button" class="btn btn-danger showColumnsClass"><i class="fa fa-retweet"></i>Re-Load</button>
-													</div>
-													<div class="col-sm-2"> </div>
-												</div> --%>
 												<table id="example1" style="width: 100% !important;display: inline-table;"
 													 class="table table-responsive">
-													<!-- <thead>
-														<tr>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th colspan="3">VOLTAGE</th>
-															<th colspan="3">CURRENT</th>
-															<th colspan="4">POWER FACTOR</th>
-															<th colspan="3">POWER</th>
-															<th colspan="2" >ACTIVE ENERGY</th>
-															<th colspan="2" >APPARENT ENERGY</th>
-															<th colspan="2" >REACTIVE ENERGY EXPORT</th>
-															<th colspan="2" >REACTIVE ENERGY IMPORT</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															
-														</tr>
-														<tr>
-															<th>S.NO</th>
-															<th>METER </th>
-															<th>CONSUMER NAME </th>
-															<th>CONSUMER NUMBER</th>
-															<th>METER TIME</th>
-															<th>NODE </th>
-															<th>NODE TIME</th>
-															<th>SEQ.NO</th>
-															<th>R-PHASE</th>VOLTAGES
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>R-PHASE</th>CURRENTS
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>R-PHASE</th>POWER FACTORS
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>AVERAGE</th>
-															<th>ACTIVE</th>POWER
-															<th>APPARENT</th>
-															<th>REACTIVE</th>
-															<th>IMPORT</th>ACTIVE ENERGY
-															<th>EXPORT</th>
-															<th>IMPORT</th>APPARENT ENERGY
-															<th>EXPORT</th>
-															<th>LEAD</th>REACTIVE ENERGY EXPORT
-															<th>LAG</th>
-															<th>LAG</th>REACTIVE ENERGY IMPORT
-															<th>LEAD</th>
-															<th>FREQ</th>
-															<th>SIGNAL STRENGTH</th>
-															<th>BATTERY STATUS</th>
-															<th>Utility</th>
-															<th>Utility Code</th>
-															<th>Region</th>
-															<th>Region Code</th>
-															<th>Circle</th>
-															<th>Circle Code</th>
-															<th>Division</th>
-															<th>Division Code</th>
-															<th>Sub Division</th>
-															<th>Sub Division Code</th>
-															<th>Town</th>
-															<th>Town Code</th>
-															<th>Section</th>
-															<th>Section Code</th>
-															<th>Sub Station</th>
-															<th>Sub Station Code</th>
-															<th>Feeder</th>
-															<th>Feeder Code</th>
-														</tr>
-													</thead> -->
 													<thead>
 														<tr>
 															<th>S.No</th>
 															<th>Meter Number</th>
-															<th>Meter Date Time</th>
+															<th>Md reset DateTime</th>
+															<th>Md reset Year</th>
+															<th>Md reset Month</th>
 															<th>Interval No</th>
-															<th>Active Energy</th>
-															<th>Active Energy Import</th>
+															<th>Meter DateTime</th>
+															<th>Meter Date</th>
+															<th>Meter Time</th>
+															<th>Active Energy </th>
+															<th>Active Energy Import </th>
 															<th>Active Energy Import L1</th>
 															<th>Active Energy Import L2</th>
 															<th>Active Energy Import L3</th>
@@ -274,7 +166,7 @@
 															<th>Active Energy Import T6</th>
 															<th>Active Energy Import T7</th>
 															<th>Active Energy Import T8</th>
-															<th>Active Energy Export</th>
+															<th>Active Energy Export </th>
 															<th>Active Energy Export L1</th>
 															<th>Active Energy Export L2</th>
 															<th>Active Energy Export L3</th>
@@ -286,7 +178,7 @@
 															<th>Active Energy Export T6</th>
 															<th>Active Energy Export T7</th>
 															<th>Active Energy Export T8</th>
-															<th>Active Energy Combined Total</th>
+															<th>Active Energy Combined Total </th>
 															<th>Active Energy Combined Total T1</th>
 															<th>Active Energy Combined Total T2</th>
 															<th>Active Energy Combined Total T3</th>
@@ -295,24 +187,24 @@
 															<th>Active Energy Combined Total T6</th>
 															<th>Active Energy Combined Total T7</th>
 															<th>Active Energy Combined Total T8</th>
-															<th>Active Energy NetTotal</th>
-															<th>Active Energy NetTotalT1</th>
-															<th>Active Energy NetTotalT2</th>
-															<th>Active Energy NetTotalT3</th>
-															<th>Active Energy NetTotalT4</th>
-															<th>active Energy NetTotalT5</th>
-															<th>Active Energy NetTotalT6</th>
-															<th>Active Energy NetTotalT7</th>
-															<th>Active Energy NetTotalT8</th>
-															<th>Reactive Energy</th>
-															<th>Reactive Energy Import</th>
-															<th>Reactive Energy Export</th>
+															<th>Active Energy Net Total </th>
+															<th>Active Energy Net Total T1</th>
+															<th>Active Energy Net Total T2</th>
+															<th>Active Energy Net Total T3</th>
+															<th>Active Energy Net Total T4</th>
+															<th>Active Energy Net Total T5</th>
+															<th>Active Energy Net Total T6</th>
+															<th>Active Energy Net Total T7</th>
+															<th>Active Energy Net Total T8</th>
+															<th>Reactive Energy </th>
+															<th>Reactive Energy Import </th>
+															<th>Reactive Energy Export </th>
 															<th>Reactive Energy Q1</th>
 															<th>Reactive Energy Q2</th>
 															<th>Reactive Energy Q3</th>
 															<th>Reactive Energy Q4</th>
-															<th>Apparent Energy</th>
-															<th>Apparent Energy Import</th>
+															<th>Apparent Energy </th>
+															<th>Apparent Energy Import </th>
 															<th>Apparent Energy Import T1</th>
 															<th>Apparent Energy Import T2</th>
 															<th>Apparent Energy Import T3</th>
@@ -321,70 +213,25 @@
 															<th>Apparent Energy Import T6</th>
 															<th>Apparent Energy Import T7</th>
 															<th>Apparent Energy Import T8</th>
-															<!-- <th>apparentEnergyExport</th>
-															<th>apparentEnergyExportT1</th>
-															<th>apparentEnergyExportT2</th>
-															<th>apparentEnergyExportT3</th>
-															<th>apparentEnergyExportT4</th>
-															<th>apparentEnergyExportT5</th>
-															<th>apparentEnergyExportT6</th>
-															<th>apparentEnergyExportT7</th>
-															<th>apparentEnergyExportT8</th>
-															<th>activePowerImport</th>
-															<th>activePowerImportL1</th>
-															<th>activePowerImportL2</th>
-															<th>activePowerImportL3</th>
-															<th>activePowerExport</th>
-															<th>activePowerExportL1</th>
-															<th>activePowerExportL2</th>
-															<th>activePowerExportL3</th>
-															<th>reactivePower</th>
-															<th>reactivePowerImport</th>
-															<th>reactivePowerImportL1</th>
-															<th>reactivePowerImportL2</th>
-															<th>reactivePowerImportL3</th>
-															<th>reactivePowerExport</th>
-															<th>reactivePowerExportL1</th>
-															<th>reactivePowerExportL2</th>
-															<th>reactivePowerExportL3</th>
-															<th>apparentPower</th>
-															<th>apparentPowerImport</th>
-															<th>apparentPowerImportL1</th>
-															<th>apparentPowerImportL2</th>
-															<th>apparentPowerImportL3</th>
-															<th>apparentPowerExport</th>
-															<th>apparentPowerExportL1</th>
-															<th>apparentPowerExportL2</th>
-															<th>apparentPowerExportL3</th>
-															<th>powerFactor</th>
-															<th>powerFactorL1</th>
-															<th>powerFactorL2</th>
-															<th>powerFactorL3</th>
-															<th>phaseAngle</th>
-															<th>phaseAngleL1</th>
-															<th>phaseAngleL2</th>
-															<th>phaseAngleL3</th>
-															<th>voltage</th>
-															<th>voltageL1</th>
-															<th>voltageL2</th>
-															<th>voltageL3</th>
-															<th>current</th>
-															<th>currentL1</th>
-															<th>currentL2</th>
-															<th>currentL3</th>
-															<th>ampereHoursInAbsenceOfVoltageL1</th>
-															<th>ampereHoursInAbsenceOfVoltageL2</th>
-															<th>ampereHoursInAbsenceOfVoltageL3</th>
-															<th>activeDemand</th>
-															<th>activeDemandImport</th>
-															<th>activeDemandImportOccTime</th>
-															<th>activeDemandExport</th>
-															<th>activeDemandExportOccTime</th>
-															<th>apparentDemand</th>
-															<th>apparentDemandImport</th>
-															<th>apparentDemandImportOccTime</th>
-															<th>apparentDemandExport</th>
-															<th>apparentDemandExportOccTime</th> -->
+															<!-- <th>Apparent Energy Export </th>
+															<th>Apparent Energy Export T1</th>
+															<th>Apparent Energy Export T2</th>
+															<th>Apparent Energy Export T3</th>
+															<th>Apparent Energy Export T4</th>
+															<th>Apparent Energy Export T5</th>
+															<th>Apparent Energy Export T6</th>
+															<th>Apparent Energy Export T7</th>
+															<th>Apparent Energy Export T8</th>
+															<th>Active Demand</th>
+															<th>Active Demand Import</th>
+															<th>Active Demand Import OccTime</th>
+															<th>Active Demand Export </th>
+															<th>Active Demand Export OccTime</th>
+															<th>Apparent Demand</th>
+															<th>Apparent Demand Import</th>
+															<th>Apparent Demand Import OccTime</th>
+															<th>Apparent Demand Export </th>
+															<th>Apparent Demand Export OccTime</th>-->
 														</tr>
 													</thead>
 												</table>
@@ -570,7 +417,7 @@
 						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
 						        },
 								"fnDrawCallback": function() {},
-								"sAjaxSource": "fetchInstantDataDetails?" + url,
+								"sAjaxSource": "fetchBillingDataDetails?" + url,
 								"aoColumns": [
 						         	{
 							                 "mData": "id",
@@ -581,7 +428,7 @@
 									},
 									{ "mData": "id.meterNumber" ,  "defaultContent": "-"},
 									{
-									                 "mData": "id.meterDateTime",
+									                 "mData": "id.mdresetDateTime",
 									    			"render": function (data) {
 									    			 if (data == null){ return '-'; }else{
 									        		 var date = new Date(data);
@@ -591,7 +438,12 @@
 									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
 									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
 									   }} },
+									{ "mData": "mdresetYear" ,  "defaultContent": "-"},
+									{ "mData": "mdresetMonth" ,  "defaultContent": "-"},
 									{ "mData": "intervalNo" ,  "defaultContent": "-"},
+									{ "mData": "meterDateTime" ,  "defaultContent": "-"},
+									{ "mData": "meterDate" ,  "defaultContent": "-"},
+									{ "mData": "meterTime" ,  "defaultContent": "-"},
 									{ "mData": "activeEnergy" ,  "defaultContent": "-"},
 									{ "mData": "activeEnergyImport" ,  "defaultContent": "-"},
 									{ "mData": "activeEnergyImportL1" ,  "defaultContent": "-"},
@@ -661,51 +513,6 @@
 									{ "mData": "apparentEnergyExportT6" ,  "defaultContent": "-"},
 									{ "mData": "apparentEnergyExportT7" ,  "defaultContent": "-"},
 									{ "mData": "apparentEnergyExportT8" ,  "defaultContent": "-"},
-									{ "mData": "activePowerImport" ,  "defaultContent": "-"},
-									{ "mData": "activePowerImportL1" ,  "defaultContent": "-"},
-									{ "mData": "activePowerImportL2" ,  "defaultContent": "-"},
-									{ "mData": "activePowerImportL3" ,  "defaultContent": "-"},
-									{ "mData": "activePowerExport" ,  "defaultContent": "-"},
-									{ "mData": "activePowerExportL1" ,  "defaultContent": "-"},
-									{ "mData": "activePowerExportL2" ,  "defaultContent": "-"},
-									{ "mData": "activePowerExportL3" ,  "defaultContent": "-"},
-									{ "mData": "reactivePower" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerImport" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerImportL1" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerImportL2" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerImportL3" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerExport" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerExportL1" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerExportL2" ,  "defaultContent": "-"},
-									{ "mData": "reactivePowerExportL3" ,  "defaultContent": "-"},
-									{ "mData": "apparentPower" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerImport" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerImportL1" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerImportL2" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerImportL3" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerExport" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerExportL1" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerExportL2" ,  "defaultContent": "-"},
-									{ "mData": "apparentPowerExportL3" ,  "defaultContent": "-"},
-									{ "mData": "powerFactor" ,  "defaultContent": "-"},
-									{ "mData": "powerFactorL1" ,  "defaultContent": "-"},
-									{ "mData": "powerFactorL2" ,  "defaultContent": "-"},
-									{ "mData": "powerFactorL3" ,  "defaultContent": "-"},
-									{ "mData": "phaseAngle" ,  "defaultContent": "-"},
-									{ "mData": "phaseAngleL1" ,  "defaultContent": "-"},
-									{ "mData": "phaseAngleL2" ,  "defaultContent": "-"},
-									{ "mData": "phaseAngleL3" ,  "defaultContent": "-"},
-									{ "mData": "voltage" ,  "defaultContent": "-"},
-									{ "mData": "voltageL1" ,  "defaultContent": "-"},
-									{ "mData": "voltageL2" ,  "defaultContent": "-"},
-									{ "mData": "voltageL3" ,  "defaultContent": "-"},
-									{ "mData": "current" ,  "defaultContent": "-"},
-									{ "mData": "currentL1" ,  "defaultContent": "-"},
-									{ "mData": "currentL2" ,  "defaultContent": "-"},
-									{ "mData": "currentL3" ,  "defaultContent": "-"},
-									{ "mData": "ampereHoursInAbsenceOfVoltageL1" ,  "defaultContent": "-"},
-									{ "mData": "ampereHoursInAbsenceOfVoltageL2" ,  "defaultContent": "-"},
-									{ "mData": "ampereHoursInAbsenceOfVoltageL3" ,  "defaultContent": "-"},
 									{ "mData": "activeDemand" ,  "defaultContent": "-"},
 									{ "mData": "activeDemandImport" ,  "defaultContent": "-"},
 									{ "mData": "activeDemandImportOccTime" ,  "defaultContent": "-"},
@@ -716,100 +523,9 @@
 									{ "mData": "apparentDemandImportOccTime" ,  "defaultContent": "-"},
 									{ "mData": "apparentDemandExport" ,  "defaultContent": "-"},
 									{ "mData": "apparentDemandExportOccTime" ,  "defaultContent": "-"}, */
-									
-									
-									
-									
-									/* { "mData": "id.meterNumber" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.consumerName" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.consumerNumber" ,  "defaultContent": "-"},
-									{
-									                 "mData": "id.meterDateTime",
-									    			"render": function (data) {
-									    			 if (data == null){ return '-'; }else{
-									        		 var date = new Date(data);
-									       			 var month = date.getMonth() + 1;
-									       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-									      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-									   }} },
-									   { "mData": "nodeNumber" ,  "defaultContent": "-"},
-									{
-									                 "mData": "gsmDateTime",
-									    			"render": function (data) {
-									    			 if (data == null){ return '-'; }else{
-									        		 var date = new Date(data);
-									       			 var month = date.getMonth() + 1;
-									       			return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-									      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-									   } }},
-									{ "mData": "sequenceNumber" ,  "defaultContent": "-"},
-									{ "mData": "voltageRPhase" ,  "defaultContent": "-"},
-									{ "mData": "voltageYPhase" ,  "defaultContent": "-"},
-									{ "mData": "voltageBPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentRPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentYPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentBPhase" ,  "defaultContent": "-"},
-									{ "mData": "rphasepf" ,  "defaultContent": "-"},
-									{ "mData": "yphasepf" ,  "defaultContent": "-"},
-									{ "mData": "bphasepf" ,  "defaultContent": "-"},
-									{ "mData": "averagePf" ,  "defaultContent": "-"},
-									{ "mData": "activePower" ,  "defaultContent": "-"},
-									{ "mData": "apparentPower" ,  "defaultContent": "-"},
-									{ "mData": "reactivePower" ,  "defaultContent": "-"},
-									{ "mData": "activeEnergyImp" ,  "defaultContent": "-"},
-									{ "mData": "activeEnergyExp" ,  "defaultContent": "-"},
-									{ "mData": "apparentEnergyImp" ,  "defaultContent": "-"},
-									{ "mData": "apparentEnergyExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLeadExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLagExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLagImp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLeadImp" ,  "defaultContent": "-"},
-									{ "mData": "frequency" ,  "defaultContent": "-"},
-									{ "mData": "signalStrength" ,  "defaultContent": "-"},
-									{ "mData": "batteryStatus" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level1Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level1Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level2Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level2Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level3Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level3Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level4Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level4Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level5Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level5Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level6Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level6Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level7Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level7Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level8Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level8Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level9Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"}, */
 								]
 							});
 						}
-						/* $('.showColumnsClass').on('click', function(e) {
-							e.preventDefault();
-							hideColumns = "";       
-							showColumns = "0";			  					//S.No,View,Edit and Delete columns
-							var columns = $('.displayColumnsClass').val().toString();
-							if(columns!=""){
-								for(var i = 0; i < 50; i++) {					//Iterate Columns
-									var x = i + 1;
-									if(columns.split(",").includes(x+"")) {	
-										showColumns = x + "," + showColumns;
-									} else {
-										hideColumns = x + "," + hideColumns;
-									}
-								}
-							}
-							hideColumns = hideColumns.slice(0, -1);
-							loadDataTable(url, hideColumns, showColumns);
-						}); */
 						$('.submitClass').click(function() {
 							validate = true;
 							var searchParameter = "",

@@ -28,8 +28,6 @@
 					<script src="plugins/jquery/jquery.min.js"></script>
 					<link rel="stylesheet" href="css/styles.css">
 					<script src="js/validation.js"></script>
-					<link href="css/date-picker/datapicker/datepicker3.css" rel="stylesheet">
-					<link href="css/date-picker/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
 <style type="text/css">
 .dropdown-menu{
 	overflow-y: scroll;
@@ -46,11 +44,11 @@
 									<div class="container-fluid">
 										<div class="row mb-2">
 											<div class="col-sm-6">
-												<h1>Instant Data</h1> </div>
+												<h1>Instant Latest Data </h1> </div>
 											<div class="col-sm-6">
 												<ol class="breadcrumb float-sm-right">
 													<li class="breadcrumb-item"><a href="#">Home</a> </li>
-													<li class="breadcrumb-item active">Instant Data</li>
+													<li class="breadcrumb-item active">Instant Data Latest</li>
 												</ol>
 											</div>
 										</div>
@@ -62,7 +60,7 @@
 										<!-- SELECT2 EXAMPLE -->
 										<div class="card card-default">
 											<div class="card-header">
-												<h3 class="card-title">Instant Data Information</h3>
+												<h3 class="card-title">Instant Latest Data Information</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool"
 														data-card-widget="collapse">
@@ -80,36 +78,6 @@
 													</div>
 													</form:form>
 												<div class="row">
-													<div class="col-md-3">
-														<div class="form-group">
-															<label>From Date</label>
-															<div class="input-group date" id="data_1">
-																<div class="input-group date">
-																	<span class="input-group-addon"><i
-																		class="fa fa-calendar"></i> </span>
-					
-																	<form:input class="form-control" type="text" id="fromDate"
-																		path="command.fromDate" readonly="true"></form:input>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-3">
-														<div class="form-group">
-															<label>To Date</label>
-															<div class="input-group date" id="data_1">
-																<div class="input-group date">
-																	<span class="input-group-addon"><i
-																		class="fa fa-calendar"></i> </span>
-					
-																	<form:input class="form-control" type="text" id="toDate"
-																		path="command.toDate" readonly="true"></form:input>
-																</div>
-															</div>
-														</div>
-					
-					
-													</div>
 													<div class="col-md-1">
 														<div class="form-group">
 															<div class="" style="margin-top: 32px;">
@@ -134,133 +102,20 @@
 									<div class="container-fluid">
 										<div class="card card-default">
 											<div class="card-header">
-												<h3 class="card-title">Instant Data Details</h3>
+												<h3 class="card-title">Instant Latest Data Details</h3>
 												<div class="card-tools">
 													<button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button>
 												</div>
 											</div>
 											<div class="card-body">
-												<%-- <div class="row col-sm-12">
-													<div class="col-sm-6">
-														<div class="form-group">
-															<div class="select2-purple">
-																<form:select path="command.colStr" class="select2 displayColumnsClass" multiple="multiple" data-placeholder="Select a Column" data-dropdown-css-class="select2-purple" style="width: 100%;">
-																	<form:options items="${command.columnsMap}" /> </form:select>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-2">
-														<div class="form-group">
-															<button type="button" class="btn btn-outline-primary btn-block btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-binoculars"></i>Search Critearia</button>
-														</div>
-													</div>
-													<div class="col-sm-2">
-														<button type="button" class="btn btn-danger showColumnsClass"><i class="fa fa-retweet"></i>Re-Load</button>
-													</div>
-													<div class="col-sm-2"> </div>
-												</div> --%>
 												<table id="example1" style="width: 100% !important;display: inline-table;"
 													 class="table table-responsive">
-													<!-- <thead>
-														<tr>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th colspan="3">VOLTAGE</th>
-															<th colspan="3">CURRENT</th>
-															<th colspan="4">POWER FACTOR</th>
-															<th colspan="3">POWER</th>
-															<th colspan="2" >ACTIVE ENERGY</th>
-															<th colspan="2" >APPARENT ENERGY</th>
-															<th colspan="2" >REACTIVE ENERGY EXPORT</th>
-															<th colspan="2" >REACTIVE ENERGY IMPORT</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															
-														</tr>
-														<tr>
-															<th>S.NO</th>
-															<th>METER </th>
-															<th>CONSUMER NAME </th>
-															<th>CONSUMER NUMBER</th>
-															<th>METER TIME</th>
-															<th>NODE </th>
-															<th>NODE TIME</th>
-															<th>SEQ.NO</th>
-															<th>R-PHASE</th>VOLTAGES
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>R-PHASE</th>CURRENTS
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>R-PHASE</th>POWER FACTORS
-															<th>Y-PHASE</th>
-															<th>B-PHASE</th>
-															<th>AVERAGE</th>
-															<th>ACTIVE</th>POWER
-															<th>APPARENT</th>
-															<th>REACTIVE</th>
-															<th>IMPORT</th>ACTIVE ENERGY
-															<th>EXPORT</th>
-															<th>IMPORT</th>APPARENT ENERGY
-															<th>EXPORT</th>
-															<th>LEAD</th>REACTIVE ENERGY EXPORT
-															<th>LAG</th>
-															<th>LAG</th>REACTIVE ENERGY IMPORT
-															<th>LEAD</th>
-															<th>FREQ</th>
-															<th>SIGNAL STRENGTH</th>
-															<th>BATTERY STATUS</th>
-															<th>Utility</th>
-															<th>Utility Code</th>
-															<th>Region</th>
-															<th>Region Code</th>
-															<th>Circle</th>
-															<th>Circle Code</th>
-															<th>Division</th>
-															<th>Division Code</th>
-															<th>Sub Division</th>
-															<th>Sub Division Code</th>
-															<th>Town</th>
-															<th>Town Code</th>
-															<th>Section</th>
-															<th>Section Code</th>
-															<th>Sub Station</th>
-															<th>Sub Station Code</th>
-															<th>Feeder</th>
-															<th>Feeder Code</th>
-														</tr>
-													</thead> -->
 													<thead>
 														<tr>
 															<th>S.No</th>
 															<th>Meter Number</th>
 															<th>Meter Date Time</th>
-															<th>Interval No</th>
+															<th>intervalNo</th>
 															<th>Active Energy</th>
 															<th>Active Energy Import</th>
 															<th>Active Energy Import L1</th>
@@ -286,40 +141,40 @@
 															<th>Active Energy Export T6</th>
 															<th>Active Energy Export T7</th>
 															<th>Active Energy Export T8</th>
-															<th>Active Energy Combined Total</th>
-															<th>Active Energy Combined Total T1</th>
-															<th>Active Energy Combined Total T2</th>
-															<th>Active Energy Combined Total T3</th>
-															<th>Active Energy Combined Total T4</th>
-															<th>Active Energy Combined Total T5</th>
-															<th>Active Energy Combined Total T6</th>
-															<th>Active Energy Combined Total T7</th>
-															<th>Active Energy Combined Total T8</th>
-															<th>Active Energy NetTotal</th>
-															<th>Active Energy NetTotalT1</th>
-															<th>Active Energy NetTotalT2</th>
-															<th>Active Energy NetTotalT3</th>
-															<th>Active Energy NetTotalT4</th>
-															<th>active Energy NetTotalT5</th>
-															<th>Active Energy NetTotalT6</th>
-															<th>Active Energy NetTotalT7</th>
-															<th>Active Energy NetTotalT8</th>
-															<th>Reactive Energy</th>
-															<th>Reactive Energy Import</th>
-															<th>Reactive Energy Export</th>
-															<th>Reactive Energy Q1</th>
-															<th>Reactive Energy Q2</th>
-															<th>Reactive Energy Q3</th>
-															<th>Reactive Energy Q4</th>
-															<th>Apparent Energy</th>
-															<th>Apparent Energy Import</th>
-															<th>Apparent Energy Import T1</th>
-															<th>Apparent Energy Import T2</th>
-															<th>Apparent Energy Import T3</th>
-															<th>Apparent Energy Import T4</th>
-															<th>Apparent Energy Import T5</th>
-															<th>Apparent Energy Import T6</th>
-															<th>Apparent Energy Import T7</th>
+															<th>Active Energy CombinedTotal</th> 
+															<th>Active Energy CombinedTotal T1</th> 
+															<th>Active Energy CombinedTotal T2</th> 
+															<th>Active Energy CombinedTotal T3</th> 
+															<th>Active Energy CombinedTotal T4</th> 
+															<th>Active Energy CombinedTotal T5</th> 
+															<th>Active Energy CombinedTotal T6</th> 
+															<th>Active Energy CombinedTotal T7</th> 
+															<th>Active Energy CombinedTotal T8</th> 
+															<th>Active Energy NetTotal</th> 
+															<th>Active Energy NetTotal T1</th> 
+															<th>Active Energy NetTotal T2</th> 
+															<th>Active Energy NetTotal T3</th> 
+															<th>Active Energy NetTotal T4</th> 
+															<th>Active Energy NetTotal T5</th> 
+															<th>Active Energy NetTotal T6</th> 
+															<th>Active Energy NetTotal T7</th> 
+															<th>Active Energy NetTotal T8</th> 
+															<th>Reactive Energy </th> 
+															<th>Reactive Energy Import </th> 
+															<th>Reactive Energy Export </th> 
+															<th>Reactive Energy Q1</th> 
+															<th>Reactive Energy Q2</th> 
+															<th>Reactive Energy Q3</th> 
+															<th>Reactive Energy Q4</th> 
+															<th>Apparent Energy </th> 
+															<th>Apparent Energy Import </th> 
+															<th>Apparent Energy Import T1</th> 
+															<th>Apparent Energy Import T2</th> 
+															<th>Apparent Energy Import T3</th> 
+															<th>Apparent Energy Import T4</th> 
+															<th>Apparent Energy Import T5</th> 
+															<th>Apparent Energy Import T6</th> 
+															<th>Apparent Energy Import T7</th> 
 															<th>Apparent Energy Import T8</th>
 															<!-- <th>apparentEnergyExport</th>
 															<th>apparentEnergyExportT1</th>
@@ -439,10 +294,6 @@
 					</div>
 					<!-- ./wrapper -->
 					
-					<script src="js/datepicker/datapicker/bootstrap-datepicker.js"></script>
-					<script src="js/datepicker/daterangepicker/daterangepicker.js"></script>
-					<!-- jQuery -->
-					
 					<!-- Bootstrap 4 -->
 					<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 					<!-- DataTables  & Plugins -->
@@ -502,17 +353,6 @@
 					});
 					</script>					
 
-					<script>
-						$('#data_1 .input-group.date').datepicker({
-				                 todayBtn: "linked",
-				                 keyboardNavigation: false,
-				                 forceParse: false,
-				                 calendarWeeks: true,
-				                 autoclose: true,
-				                 endDate: 'today',
-				                 format : 'yyyy-mm-dd',
-				             });
-					</script>
 					<script type="text/javascript">
 					$(document).ready(function() {
 						var hideColumns = "";
@@ -533,8 +373,6 @@
 							"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
 							"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 							"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
-							"fromDate="+'${command.fromDate}'+"&"+
-							"toDate="+'${command.toDate}'+"&"+
 							"searchSelectVar=" + '${command.searchSelectVar}' + "&" + 
 							"searchParameter=" + '${command.searchParameter}' + "&" +
 							"conditionStr=" + '${command.conditionStr}';
@@ -570,7 +408,7 @@
 						            'processing': '<div class="fa fa-spinner fa-pulse fa-2x fa-fw"></div>'
 						        },
 								"fnDrawCallback": function() {},
-								"sAjaxSource": "fetchInstantDataDetails?" + url,
+								"sAjaxSource": "fetchLatestInstantDataDetails?" + url,
 								"aoColumns": [
 						         	{
 							                 "mData": "id",
@@ -579,9 +417,9 @@
 							                 return meta.row + meta.settings._iDisplayStart + 1;
 									    }
 									},
-									{ "mData": "id.meterNumber" ,  "defaultContent": "-"},
+									{ "mData": "meterNumber" ,  "defaultContent": "-"},
 									{
-									                 "mData": "id.meterDateTime",
+									                 "mData": "meterDateTime",
 									    			"render": function (data) {
 									    			 if (data == null){ return '-'; }else{
 									        		 var date = new Date(data);
@@ -716,100 +554,9 @@
 									{ "mData": "apparentDemandImportOccTime" ,  "defaultContent": "-"},
 									{ "mData": "apparentDemandExport" ,  "defaultContent": "-"},
 									{ "mData": "apparentDemandExportOccTime" ,  "defaultContent": "-"}, */
-									
-									
-									
-									
-									/* { "mData": "id.meterNumber" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.consumerName" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.consumerNumber" ,  "defaultContent": "-"},
-									{
-									                 "mData": "id.meterDateTime",
-									    			"render": function (data) {
-									    			 if (data == null){ return '-'; }else{
-									        		 var date = new Date(data);
-									       			 var month = date.getMonth() + 1;
-									       			 return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-									      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-									   }} },
-									   { "mData": "nodeNumber" ,  "defaultContent": "-"},
-									{
-									                 "mData": "gsmDateTime",
-									    			"render": function (data) {
-									    			 if (data == null){ return '-'; }else{
-									        		 var date = new Date(data);
-									       			 var month = date.getMonth() + 1;
-									       			return (date.getDate() < 10 ? ("0"+date.getDate()) : date.getDate())+"-"+(month < 10 ? ("0"+month) : month) + "-" + date.getFullYear()+ "&nbsp;&nbsp;" 
-									      +(date.getHours() < 10 ? ("0"+date.getHours()) : date.getHours())+ ":"
-									      +(date.getMinutes() < 10 ? ("0"+date.getMinutes()) : date.getMinutes())+ ":"
-									      +(date.getSeconds() < 10 ? ("0"+date.getSeconds()) : date.getSeconds());
-									   } }},
-									{ "mData": "sequenceNumber" ,  "defaultContent": "-"},
-									{ "mData": "voltageRPhase" ,  "defaultContent": "-"},
-									{ "mData": "voltageYPhase" ,  "defaultContent": "-"},
-									{ "mData": "voltageBPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentRPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentYPhase" ,  "defaultContent": "-"},
-									{ "mData": "currentBPhase" ,  "defaultContent": "-"},
-									{ "mData": "rphasepf" ,  "defaultContent": "-"},
-									{ "mData": "yphasepf" ,  "defaultContent": "-"},
-									{ "mData": "bphasepf" ,  "defaultContent": "-"},
-									{ "mData": "averagePf" ,  "defaultContent": "-"},
-									{ "mData": "activePower" ,  "defaultContent": "-"},
-									{ "mData": "apparentPower" ,  "defaultContent": "-"},
-									{ "mData": "reactivePower" ,  "defaultContent": "-"},
-									{ "mData": "activeEnergyImp" ,  "defaultContent": "-"},
-									{ "mData": "activeEnergyExp" ,  "defaultContent": "-"},
-									{ "mData": "apparentEnergyImp" ,  "defaultContent": "-"},
-									{ "mData": "apparentEnergyExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLeadExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLagExp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLagImp" ,  "defaultContent": "-"},
-									{ "mData": "reactiveEnergyLeadImp" ,  "defaultContent": "-"},
-									{ "mData": "frequency" ,  "defaultContent": "-"},
-									{ "mData": "signalStrength" ,  "defaultContent": "-"},
-									{ "mData": "batteryStatus" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level1Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level1Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level2Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level2Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level3Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level3Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level4Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level4Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level5Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level5Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level6Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level6Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level7Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level7Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level8Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level8Code" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level9Name" ,  "defaultContent": "-"},
-									{ "mData": "meterMasterObj.level9Code" ,  "defaultContent": "-"}, */
 								]
 							});
 						}
-						/* $('.showColumnsClass').on('click', function(e) {
-							e.preventDefault();
-							hideColumns = "";       
-							showColumns = "0";			  					//S.No,View,Edit and Delete columns
-							var columns = $('.displayColumnsClass').val().toString();
-							if(columns!=""){
-								for(var i = 0; i < 50; i++) {					//Iterate Columns
-									var x = i + 1;
-									if(columns.split(",").includes(x+"")) {	
-										showColumns = x + "," + showColumns;
-									} else {
-										hideColumns = x + "," + hideColumns;
-									}
-								}
-							}
-							hideColumns = hideColumns.slice(0, -1);
-							loadDataTable(url, hideColumns, showColumns);
-						}); */
 						$('.submitClass').click(function() {
 							validate = true;
 							var searchParameter = "",
@@ -848,8 +595,6 @@
 								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
 								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
 								"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
-								"fromDate="+$('#fromDate').val()+"&"+
-								"toDate="+$('#toDate').val()+"&"+
 								"searchSelectVar=" + searchSelectVar + "&" +
 								"searchParameter=" + searchParameter + "&" + 
 								"conditionStr=" + conditionStr;

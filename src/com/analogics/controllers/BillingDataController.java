@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.analogics.dao.InstantDataDao;
+import com.analogics.dao.BillingDataDao;
 import com.analogics.um.controllers.UserHierUtils;
 import com.analogics.um.dao.CommonDAO;
 import com.analogics.um.vo.HierarchyLevelsVo;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.um.vo.ServerDataTable;
 import com.analogics.um.vo.UserLoginDetails;
-import com.analogics.vo.InstantData;
-import com.analogics.vo.InstantDataLatest;
+import com.analogics.vo.BillingData;
+import com.analogics.vo.BillingDataLatest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -39,18 +39,18 @@ import com.google.gson.GsonBuilder;
  */
 
 @Controller
-public class InstantDataController {
+public class BillingDataController {
 	
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	UserHierUtils utilsObj = new UserHierUtils();
 	CommonDAO commonDaoObj = new CommonDAO();
-	InstantDataDao masterDaoObj = new InstantDataDao();
+	BillingDataDao masterDaoObj = new BillingDataDao();
 	
-	@RequestMapping("/viewInstantData")
-	public ModelAndView viewInstantData(HttpServletRequest request,
+	@RequestMapping("/viewBillingData")
+	public ModelAndView viewBillingData(HttpServletRequest request,
 			HttpServletResponse response,@ModelAttribute("hierVoObj") HierarchyLevelsVo hierVoObj,
-			@ModelAttribute("dataObj") InstantData dataObj) {
-		ModelAndView model = new ModelAndView("Masters/InstantData/ViewInstantDataDetails",
+			@ModelAttribute("dataObj") BillingData dataObj) {
+		ModelAndView model = new ModelAndView("Masters/BillingData/ViewBillingDataDetails",
 				"command", dataObj);
 		try {
 			HttpSession session=request.getSession();
@@ -68,7 +68,7 @@ public class InstantDataController {
 			}else{
 				utilsObj.frameLevelMaps(model,userSessionObj);
 			}
-			model.addObject("command", fetchInstantDataColumsMap(dataObj));
+			model.addObject("command", fetchBillingDataColumsMap(dataObj));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,21 +77,21 @@ public class InstantDataController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/fetchInstantDataDetails", method = RequestMethod.GET)
+	@RequestMapping(value = "/fetchBillingDataDetails", method = RequestMethod.GET)
 	public @ResponseBody
-	String fetchInstantDataDetails(HttpServletRequest request,
+	String fetchBillingDataDetails(HttpServletRequest request,
 			@RequestParam("iDisplayStart") String iDisplayStart,
 			@RequestParam("sSearch") String searchParameter,
 			@RequestParam("sSortDir_0") String sorting,
 			@RequestParam("iSortCol_0") String sCol,
 			@RequestParam("iColumns") String iColumns,
 			@RequestParam("iDisplayLength") String pageDisplayLength,
-			@ModelAttribute("dataObj") InstantData dataObj,
+			@ModelAttribute("dataObj") BillingData dataObj,
 			@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj)
 			throws IOException {
 		String json = null;
 		Long count = 0l;
-		List<InstantData> dataList = new ArrayList<InstantData>();
+		List<BillingData> dataList = new ArrayList<BillingData>();
 		try {
 			int pageNumber = 0;
 			pageNumber = Integer.parseInt(iDisplayStart);
@@ -102,10 +102,10 @@ public class InstantDataController {
 			utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
 			levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
 			try {
-				dataList = masterDaoObj.fetchInstantDataList(pageNumber,
+				dataList = masterDaoObj.fetchBillingDataList(pageNumber,
 						Integer.parseInt(pageDisplayLength), searchParameter,
 						sorting,dataObj,levelIndexObj);
-				count = masterDaoObj.fetchInstantDataDetailsCount(pageNumber,
+				count = masterDaoObj.fetchBillingDataDetailsCount(pageNumber,
 						Integer.parseInt(pageDisplayLength), searchParameter,
 						sorting,dataObj,levelIndexObj);
 			} catch (Exception e) {
@@ -124,11 +124,11 @@ public class InstantDataController {
 	
 	
 	
-	@RequestMapping("/viewLatestInstantData")
-	public ModelAndView viewLatestInstantData(HttpServletRequest request,
+	@RequestMapping("/viewLatestBillingData")
+	public ModelAndView viewLatestBillingData(HttpServletRequest request,
 			HttpServletResponse response,@ModelAttribute("hierVoObj") HierarchyLevelsVo hierVoObj,
-			@ModelAttribute("dataObj") InstantDataLatest dataObj) {
-		ModelAndView model = new ModelAndView("Masters/InstantData/ViewLatestInstantDataDetails",
+			@ModelAttribute("dataObj") BillingDataLatest dataObj) {
+		ModelAndView model = new ModelAndView("Masters/BillingData/ViewLatestBillingDataDetails",
 				"command", dataObj);
 		try {
 			HttpSession session=request.getSession();
@@ -139,7 +139,7 @@ public class InstantDataController {
 			}else{
 				utilsObj.frameLevelMaps(model,userSessionObj);
 			}
-			model.addObject("command", fetchInstantLatestDataColumsMap(dataObj));
+			model.addObject("command", fetchBillingLatestDataColumsMap(dataObj));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -148,21 +148,21 @@ public class InstantDataController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/fetchLatestInstantDataDetails", method = RequestMethod.GET)
+	@RequestMapping(value = "/fetchLatestBillingDataDetails", method = RequestMethod.GET)
 	public @ResponseBody
-	String fetchLatestInstantDataDetails(HttpServletRequest request,
+	String fetchLatestBillingDataDetails(HttpServletRequest request,
 			@RequestParam("iDisplayStart") String iDisplayStart,
 			@RequestParam("sSearch") String searchParameter,
 			@RequestParam("sSortDir_0") String sorting,
 			@RequestParam("iSortCol_0") String sCol,
 			@RequestParam("iColumns") String iColumns,
 			@RequestParam("iDisplayLength") String pageDisplayLength,
-			@ModelAttribute("dataObj") InstantDataLatest dataObj,
+			@ModelAttribute("dataObj") BillingDataLatest dataObj,
 			@ModelAttribute("hierVoObj")HierarchyLevelsVo hierVoObj)
 			throws IOException {
 		String json = null;
 		Long count = 0l;
-		List<InstantDataLatest> dataList = new ArrayList<InstantDataLatest>();
+		List<BillingDataLatest> dataList = new ArrayList<BillingDataLatest>();
 		try {
 			int pageNumber = 0;
 			pageNumber = Integer.parseInt(iDisplayStart);
@@ -173,10 +173,10 @@ public class InstantDataController {
 			utilsObj.frameLevelIndexLevelMaps(utilsObj,hierVoObj,levelMap);
 			levelIndexObj = utilsObj.fetchIndexIdDetails(levelMap);
 			try {
-				dataList = masterDaoObj.fetchLatestInstantDataList(pageNumber,
+				dataList = masterDaoObj.fetchLatestBillingDataList(pageNumber,
 						Integer.parseInt(pageDisplayLength), searchParameter,
 						sorting,dataObj,levelIndexObj);
-				count = masterDaoObj.fetchLatestInstantDataDetailsCount(pageNumber,
+				count = masterDaoObj.fetchLatestBillingDataDetailsCount(pageNumber,
 						Integer.parseInt(pageDisplayLength), searchParameter,
 						sorting,dataObj,levelIndexObj);
 			} catch (Exception e) {
@@ -195,11 +195,10 @@ public class InstantDataController {
 	
 	
 	
-	private Object fetchInstantDataColumsMap(InstantData dataObj) {
+	private Object fetchBillingDataColumsMap(BillingData dataObj) {
 		try {
 			Map<String,String> searchColumnsMap = new HashMap<String,String>();
 			searchColumnsMap.put("id.meterNumber", "METER NUMBER");
-			searchColumnsMap.put("nodeNumber", "NODE NUMBER");
 			dataObj.setSearchColumnsMap(searchColumnsMap);
 			
 			List<String> conditionListStr = new ArrayList<String>();
@@ -214,7 +213,7 @@ public class InstantDataController {
 		return dataObj;
 	}
 
-	private Object fetchInstantLatestDataColumsMap(InstantDataLatest dataObj) {
+	private Object fetchBillingLatestDataColumsMap(BillingDataLatest dataObj) {
 		try {
 			
 			Map<String,String> searchColumnsMap = new HashMap<String,String>();
@@ -232,4 +231,6 @@ public class InstantDataController {
 		}
 		return dataObj;
 	}
+	
+
 }

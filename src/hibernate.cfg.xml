@@ -77,11 +77,17 @@
 			<mapping resource="com/analogics/hbm/AlarmDataLatest.hbm.xml" />
 			<mapping resource="com/analogics/hbm/FieldInstallationMaster.hbm.xml" />
 			<mapping resource="com/analogics/hbm/InstantData.hbm.xml" />
+<<<<<<< HEAD
 			<mapping resource="com/analogics/hbm/LoadSurvey.hbm.xml" />
 			<mapping resource="com/analogics/hbm/LoadSurveyLatest.hbm.xml" />
 			<mapping resource="com/analogics/hbm/DailySnapshot.hbm.xml" />
 			<mapping resource="com/analogics/hbm/DailySnapshotLatest.hbm.xml" />
 			
+=======
+			<mapping resource="com/analogics/hbm/InstantDataLatest.hbm.xml" />
+			<mapping resource="com/analogics/hbm/BillingData.hbm.xml" />
+			<mapping resource="com/analogics/hbm/BillingDataLatest.hbm.xml" />
+>>>>>>> 8e7a8580e410a0c1e3c7d25c82f81bc08ec4d39b
 		<!-- App Masters -->
 		
 	</session-factory>

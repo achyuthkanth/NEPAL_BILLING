@@ -10,8 +10,8 @@ import com.analogics.um.dao.BaseHibernateDAO;
 import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.utils.CommonQueryFrameUtils;
 import com.analogics.utils.UserHierarchyQueryFraming;
-import com.analogics.vo.InstantData;
-import com.analogics.vo.InstantDataLatest;
+import com.analogics.vo.BillingData;
+import com.analogics.vo.BillingDataLatest;
 import com.analogics.vo.MeterMaster;
 
 /**
@@ -20,25 +20,25 @@ import com.analogics.vo.MeterMaster;
  *
  */
 
-public class InstantDataDao extends BaseHibernateDAO {
+public class BillingDataDao extends BaseHibernateDAO {
 	
 	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();
 	UserHierarchyQueryFraming frameObj = new UserHierarchyQueryFraming();
 	
 	@SuppressWarnings("unchecked")
-	public List<InstantData> fetchInstantDataList(int pageNumber, int parseInt,
-			String searchParameter, String sorting, InstantData dataObj,
+	public List<BillingData> fetchBillingDataList(int pageNumber, int parseInt,
+			String searchParameter, String sorting, BillingData dataObj,
 			LevelIndexMaster levelIndexObj) {
-		List<InstantData> dataList=new ArrayList<InstantData>();
+		List<BillingData> dataList=new ArrayList<BillingData>();
 		Session session = null;
 		try {
 			session = getSession();
 			StringBuffer stb1 = new StringBuffer();
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
-			strb.append(" from InstantData master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append(" from BillingData master, MeterMaster mas,LevelIndexMaster levels ");
 			strb.append("where master.id.meterNumber=mas.meterNumber");
-			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append(" and master.mdresetDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
 			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
@@ -54,16 +54,16 @@ public class InstantDataDao extends BaseHibernateDAO {
 			strb.append(stb1);
 			Query queryObj = session.createQuery(strb.toString());
 			
-			strb.append(" order by master.id.meterDateTime");
+			strb.append(" order by master.id.mdresetDateTime");
 			
 			queryObj.setFirstResult(pageNumber);
 			queryObj.setMaxResults(parseInt);
 			List<Object[]> objList= queryObj.list();
 			for(Object[] objArr:objList){
-				InstantData instantDataObj=(InstantData) objArr[0];
+				BillingData billingDataObj=(BillingData) objArr[0];
 				MeterMaster masterObj = (MeterMaster) objArr[1];
-				instantDataObj.setMeterMasterObj(masterObj);
-				dataList.add(instantDataObj);
+				billingDataObj.setMeterMasterObj(masterObj);
+				dataList.add(billingDataObj);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,8 +73,8 @@ public class InstantDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchInstantDataDetailsCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, InstantData dataObj,
+	public Long fetchBillingDataDetailsCount(int pageNumber, int parseInt,
+			String searchParameter, String sorting, BillingData dataObj,
 			LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
@@ -84,9 +84,9 @@ public class InstantDataDao extends BaseHibernateDAO {
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
 			
-			strb.append("select count(*) from InstantData master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("select count(*) from BillingData master, MeterMaster mas,LevelIndexMaster levels ");
 			strb.append("where master.id.meterNumber=mas.meterNumber");
-			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append(" and master.mdresetDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
 			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
@@ -111,18 +111,18 @@ public class InstantDataDao extends BaseHibernateDAO {
 		return count;
 	}
 	@SuppressWarnings("unchecked")
-	public List<InstantDataLatest> fetchLatestInstantDataList(int pageNumber,
+	public List<BillingDataLatest> fetchLatestBillingDataList(int pageNumber,
 			int parseInt, String searchParameter, String sorting,
-			InstantDataLatest dataObj, LevelIndexMaster levelIndexObj) {
-		List<InstantDataLatest> dataList=new ArrayList<InstantDataLatest>();
+			BillingDataLatest dataObj, LevelIndexMaster levelIndexObj) {
+		List<BillingDataLatest> dataList=new ArrayList<BillingDataLatest>();
 		Session session = null;
 		try {
 			session = getSession();
 			StringBuffer stb1 = new StringBuffer();
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
-			strb.append(" from InstantDataLatest master, MeterMaster mas,LevelIndexMaster levels ");
-			strb.append("where master.meterNumber=mas.meterNumber");
+			strb.append(" from BillingDataLatest master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append(" where master.meterNumber=mas.meterNumber");
 			strb.append(" and mas.indexid=levels.indexid");
 			
 			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
@@ -139,16 +139,16 @@ public class InstantDataDao extends BaseHibernateDAO {
 			strb.append(stb1);
 			Query queryObj = session.createQuery(strb.toString());
 			
-			strb.append(" order by master.meterDateTime");
+			strb.append(" order by master.mdresetDateTime");
 			
 			queryObj.setFirstResult(pageNumber);
 			queryObj.setMaxResults(parseInt);
 			List<Object[]> objList= queryObj.list();
 			for(Object[] objArr:objList){
-				InstantDataLatest instantDataObj=(InstantDataLatest) objArr[0];
+				BillingDataLatest billingDataObj=(BillingDataLatest) objArr[0];
 				/*MeterMaster masterObj = (MeterMaster) objArr[1];
 				instantDataObj.setMeterMasterObj(masterObj);*/
-				dataList.add(instantDataObj);
+				dataList.add(billingDataObj);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,9 +158,9 @@ public class InstantDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchLatestInstantDataDetailsCount(int pageNumber,
+	public Long fetchLatestBillingDataDetailsCount(int pageNumber,
 			int parseInt, String searchParameter, String sorting,
-			InstantDataLatest dataObj, LevelIndexMaster levelIndexObj) {
+			BillingDataLatest dataObj, LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
 		try {
@@ -169,7 +169,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
 			
-			strb.append("select count(*) from InstantDataLatest master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("select count(*) from BillingDataLatest master, MeterMaster mas,LevelIndexMaster levels ");
 			strb.append("where master.meterNumber=mas.meterNumber");
 			strb.append(" and mas.indexid=levels.indexid");
 			
