@@ -280,7 +280,7 @@
 						</li>
 						<li class="nav-item"><a href="viewLoadSurveyData"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
-								<p>Looad Survey Master</p> </a>
+								<p>Load Survey Master</p> </a>
 						</li>
 						<li class="nav-item"><a href="viewLoadSurveyDataLatest"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
