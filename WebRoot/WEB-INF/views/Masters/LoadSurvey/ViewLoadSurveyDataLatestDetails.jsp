@@ -116,7 +116,8 @@
 									<div class="col-md-3">
 									<div class="form-group">
 												<div class="" style="margin-top: 20px;"> 
-												<button type="submit" class="btn btn-success">View</button>
+												<button type="submit" class="btn btn-success">View</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+												<button type="button" class="btn btn-danger ExportClass">Export </button>
 												</div>
 											</div>
 											
@@ -614,6 +615,11 @@
 								$("#myModal").modal("hide");
 							}
 						});
+							$('.ExportClass').click(function() {
+								loadDataTable(url, "", "");
+								var action = "exportLoadSurveyLatestDetails?" + url;
+								$('<form method="post" action="' + action + '"></form>').appendTo('body').submit();
+							});
 					});
 	</script>
 

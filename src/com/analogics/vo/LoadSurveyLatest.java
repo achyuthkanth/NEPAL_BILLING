@@ -146,7 +146,8 @@ public class LoadSurveyLatest extends HierarchyLevelsVo implements java.io.Seria
 	private String apparentDemandImportOccTime;
 	private String apparentDemandExport;
 	private String apparentDemandExportOccTime;
-
+	//Required Fields
+		private MeterMaster meterMasterObj;
 	// Constructors
 
 	/** default constructor */
@@ -1434,6 +1435,14 @@ public class LoadSurveyLatest extends HierarchyLevelsVo implements java.io.Seria
 	public void setApparentDemandExportOccTime(
 			String apparentDemandExportOccTime) {
 		this.apparentDemandExportOccTime = apparentDemandExportOccTime;
+	}
+
+	public MeterMaster getMeterMasterObj() {
+		return meterMasterObj;
+	}
+
+	public void setMeterMasterObj(MeterMaster meterMasterObj) {
+		this.meterMasterObj = meterMasterObj;
 	}
 
 }
