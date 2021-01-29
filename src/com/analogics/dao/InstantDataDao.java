@@ -73,8 +73,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchInstantDataDetailsCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, InstantData dataObj,
+	public Long fetchInstantDataDetailsCount(InstantData dataObj,
 			LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
@@ -158,9 +157,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchLatestInstantDataDetailsCount(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
-			InstantDataLatest dataObj, LevelIndexMaster levelIndexObj) {
+	public Long fetchLatestInstantDataDetailsCount(InstantDataLatest dataObj, LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
 		try {
@@ -194,5 +191,7 @@ public class InstantDataDao extends BaseHibernateDAO {
 		}
 		return count;
 	}
+	
+	
 
 }

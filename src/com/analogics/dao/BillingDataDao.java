@@ -73,8 +73,7 @@ public class BillingDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchBillingDataDetailsCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, BillingData dataObj,
+	public Long fetchBillingDataDetailsCount(BillingData dataObj,
 			LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
@@ -158,9 +157,7 @@ public class BillingDataDao extends BaseHibernateDAO {
 		}
 		return dataList;
 	}
-	public Long fetchLatestBillingDataDetailsCount(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
-			BillingDataLatest dataObj, LevelIndexMaster levelIndexObj) {
+	public Long fetchLatestBillingDataDetailsCount(BillingDataLatest dataObj, LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
 		try {

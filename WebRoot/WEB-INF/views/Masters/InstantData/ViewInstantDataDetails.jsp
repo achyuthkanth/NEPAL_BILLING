@@ -117,6 +117,13 @@
 															</div>
 														</div>
 													</div>
+													<div class="col-md-1">
+														<div class="form-group">
+															<div class="" style="margin-top: 32px;">
+																	<button type="button" class="btn btn-danger ExportClass">Export </button> 
+															</div>
+														</div>
+													</div>
 													<div class="col-md-2">
 													<div class="form-group">
 														<div class="" style="margin-top: 35px;">
@@ -857,6 +864,36 @@
 								$("#myModal").modal("hide");
 							}
 						});
+						
+						$('.ExportClass').click(function(){
+		    				var searchParameter = "",
+								searchSelectVar = "",
+								conditionStr = "";
+								url="level1Id="+$('.level1Class').find('option:selected').val()+"&"+
+								"level2Id="+$('.level2Class').find('option:selected').val()+"&"+
+								"level3Id="+$('.level3Class').find('option:selected').val()+"&"+
+								"level4Id="+$('.level4Class').find('option:selected').val()+"&"+
+								"level5Id="+$('.level5Class').find('option:selected').val()+"&"+
+								"level6Id="+$('.level6Class').find('option:selected').val()+"&"+
+								"level7Id="+$('.level7Class').find('option:selected').val()+"&"+
+								"level8Id="+$('.level8Class').find('option:selected').val()+"&"+
+								"level9Id="+$('.level9Class').find('option:selected').val()+"&"+
+								"level10Id="+$('.level10Class').find('option:selected').val()+"&"+
+								"level11Id="+$('.level11Class').find('option:selected').val()+"&"+
+								"level12Id="+$('.level12Class').find('option:selected').val()+"&"+
+								"level13Id="+$('.level13Class').find('option:selected').val()+"&"+
+								"level14Id="+$('.level14Class').find('option:selected').val()+"&"+
+								"level15Id="+$('.level15Class').find('option:selected').val()+"&"+
+								"fromDate="+$('#fromDate').val()+"&"+
+								"toDate="+$('#toDate').val()+"&"+
+								"searchSelectVar=" + searchSelectVar + "&" +
+								"searchParameter=" + searchParameter + "&" + 
+								"conditionStr=" + conditionStr;
+		    				var action ="exportInstantData?"+url;
+								$('<form method="post" action="'+action+'"></form>').appendTo('body').submit();
+						});
+						
+						
 					});
 					</script>
 					<script type="text/javascript">

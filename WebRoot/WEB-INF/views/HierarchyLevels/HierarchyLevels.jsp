@@ -13,22 +13,13 @@
 			</c:when>
 			
 			<c:otherwise>
-<<<<<<< HEAD
 
-=======
->>>>>>> 8e7a8580e410a0c1e3c7d25c82f81bc08ec4d39b
 			<div style=" display: none;">
-				<form:select path="level1Id" id="level1Id"
+					<form:select path="level1Id" id="level1Id"
 						cssClass="level1Class">
 						<form:options items="${level1Map}" />
 					</form:select>
 			</div>
-<<<<<<< HEAD
-			
-=======
-			<%-- 	<form:hidden path="level1Id" value="${level1Id}"
-					 cssClass="level1Class"></form:hidden> --%>
->>>>>>> 8e7a8580e410a0c1e3c7d25c82f81bc08ec4d39b
 			</c:otherwise>
 		</c:choose>
 	</c:if>
