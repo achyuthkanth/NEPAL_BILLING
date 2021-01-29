@@ -11,6 +11,7 @@ import com.analogics.um.vo.LevelIndexMaster;
 import com.analogics.utils.CommonQueryFrameUtils;
 import com.analogics.utils.UserHierarchyQueryFraming;
 import com.analogics.vo.LoadSurvey;
+import com.analogics.vo.LoadSurveyLatest;
 import com.analogics.vo.MeterMaster;
 
 public class LoadSurveyDao extends BaseHibernateDAO {
@@ -18,8 +19,7 @@ public class LoadSurveyDao extends BaseHibernateDAO {
 	CommonQueryFrameUtils queryFrameObj = new CommonQueryFrameUtils();
 	UserHierarchyQueryFraming frameObj = new UserHierarchyQueryFraming();
 	
-	public Long fetchLoadSurveyDataDetailsCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, LoadSurvey dataObj,
+	public Long fetchLoadSurveyDataDetailsCount( LoadSurvey dataObj,
 			LevelIndexMaster levelIndexObj) {
 		
 		long count = 0;
@@ -30,8 +30,8 @@ public class LoadSurveyDao extends BaseHibernateDAO {
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
 			
-			strb.append("select count(*) from LoadSurveyLatest master, MeterMaster mas,LevelIndexMaster levels ");
-			strb.append("where master.meterNumber=mas.meterNumber");
+			strb.append("select count(*) from LoadSurvey master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.id.meterNumber=mas.meterNumber");
 			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
@@ -58,7 +58,7 @@ public class LoadSurveyDao extends BaseHibernateDAO {
 	}
 
 	public List<LoadSurvey> fetchLoadSurveyDataList(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
+			int parseInt, 
 			LoadSurvey dataObj, LevelIndexMaster levelIndexObj) {
 		List<LoadSurvey> dataList=new ArrayList<LoadSurvey>();
 		Session session = null;
@@ -67,8 +67,8 @@ public class LoadSurveyDao extends BaseHibernateDAO {
 			StringBuffer stb1 = new StringBuffer();
 			StringBuilder stb2 = new StringBuilder(); 
 			StringBuilder strb = new StringBuilder();
-			strb.append(" from LoadSurveyLatest master, MeterMaster mas,LevelIndexMaster levels ");
-			strb.append("where master.meterNumber=mas.meterNumber");
+			strb.append(" from LoadSurvey master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.id.meterNumber=mas.meterNumber");
 			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
 			strb.append(" and mas.indexid=levels.indexid");
 			
@@ -104,5 +104,91 @@ public class LoadSurveyDao extends BaseHibernateDAO {
 				session.close();
 		}
 		return dataList;
+	}
+
+	public List<LoadSurveyLatest> fetchLoadSurveyLatestDataList(int pageNumber,
+			int parseInt, LoadSurveyLatest dataObj,
+			LevelIndexMaster levelIndexObj) {
+		List<LoadSurveyLatest> dataList=new ArrayList<LoadSurveyLatest>();
+		Session session = null;
+		try {
+			session = getSession();
+			StringBuffer stb1 = new StringBuffer();
+			StringBuilder stb2 = new StringBuilder(); 
+			StringBuilder strb = new StringBuilder();
+			strb.append(" from LoadSurveyLatest master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.meterNumber=mas.meterNumber");
+			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append(" and mas.indexid=levels.indexid");
+			
+			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
+			if(!dataObj.getSearchSelectVar().equalsIgnoreCase("")
+					&& !dataObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
+				strb.append(" and (");
+				stb2 = queryFrameObj.conditionQuery(dataObj.getSearchSelectVar(),
+						dataObj.getSearchParameter(),
+						dataObj.getConditionStr());
+				strb.append(stb2+")");
+			}
+			
+			strb.append(stb1);
+			Query queryObj = session.createQuery(strb.toString());
+			
+			strb.append(" order by master.insertedDate");
+			
+			queryObj.setFirstResult(pageNumber);
+			queryObj.setMaxResults(parseInt);
+			@SuppressWarnings("unchecked")
+			List<Object[]> objList= queryObj.list();
+			for(Object[] objArr:objList){
+				LoadSurveyLatest loadSurveyDataObj=(LoadSurveyLatest) objArr[0];
+				MeterMaster masterObj = (MeterMaster) objArr[1];
+				loadSurveyDataObj.setMeterMasterObj(masterObj);
+				dataList.add(loadSurveyDataObj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return dataList;
+	}
+
+	public Long fetchLoadSurveyDataLatestDetailsCount( LoadSurveyLatest dataObj,
+			LevelIndexMaster levelIndexObj) {
+		long count = 0;
+		Session session = null;
+		try {
+			session = getSession();
+			StringBuffer stb1 = new StringBuffer();
+			StringBuilder stb2 = new StringBuilder(); 
+			StringBuilder strb = new StringBuilder();
+			
+			strb.append("select count(*) from LoadSurveyLatest master, MeterMaster mas,LevelIndexMaster levels ");
+			strb.append("where master.meterNumber=mas.meterNumber");
+			strb.append(" and master.meterDate between '"+dataObj.getFromDate()+"' and '"+dataObj.getToDate()+"'");
+			strb.append(" and mas.indexid=levels.indexid");
+			
+			stb1=frameObj.frameUserHierarchyQuery(levelIndexObj);
+			if(!dataObj.getSearchSelectVar().equalsIgnoreCase("")
+					&& !dataObj.getSearchSelectVar().equalsIgnoreCase("SELECT")){
+				strb.append(" and (");
+				stb2 = queryFrameObj.conditionQuery(dataObj.getSearchSelectVar(),
+						dataObj.getSearchParameter(),
+						dataObj.getConditionStr());
+				strb.append(stb2+")");
+			}
+			
+			strb.append(stb1);
+			Query queryObj = session.createQuery(strb.toString());
+			count = (Long) queryObj.list().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
+		return count;
 	}
 }

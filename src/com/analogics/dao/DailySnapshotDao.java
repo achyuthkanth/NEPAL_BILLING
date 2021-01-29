@@ -20,7 +20,7 @@ public class DailySnapshotDao  extends BaseHibernateDAO{
 	UserHierarchyQueryFraming frameObj = new UserHierarchyQueryFraming();
 	@SuppressWarnings("unchecked")
 	public List<DailySnapshot> fetchDailySnapshotDataList(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
+			int parseInt,
 			DailySnapshot dataObj, LevelIndexMaster levelIndexObj) {
 		List<DailySnapshot> dataList=new ArrayList<DailySnapshot>();
 		Session session = null;
@@ -67,8 +67,7 @@ public class DailySnapshotDao  extends BaseHibernateDAO{
 		return dataList;
 	}
 
-	public Long fetchDailySnapshotDetailsCount(int pageNumber, int parseInt,
-			String searchParameter, String sorting, DailySnapshot dataObj,
+	public Long fetchDailySnapshotDetailsCount( DailySnapshot dataObj,
 			LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;
@@ -106,8 +105,8 @@ public class DailySnapshotDao  extends BaseHibernateDAO{
 	}
 
 	public List<DailySnapshotLatest> fetchDailySnapshotLatestDataList(
-			int pageNumber, int parseInt, String searchParameter,
-			String sorting, DailySnapshotLatest dataObj,
+			int pageNumber, int parseInt,
+			 DailySnapshotLatest dataObj,
 			LevelIndexMaster levelIndexObj) {
 		List<DailySnapshotLatest> dataList=new ArrayList<DailySnapshotLatest>();
 		Session session = null;
@@ -155,8 +154,7 @@ public class DailySnapshotDao  extends BaseHibernateDAO{
 		return dataList;
 	}
 
-	public Long fetchDailySnapshotLatestDetailsCount(int pageNumber,
-			int parseInt, String searchParameter, String sorting,
+	public Long fetchDailySnapshotLatestDetailsCount(
 			DailySnapshotLatest dataObj, LevelIndexMaster levelIndexObj) {
 		long count = 0;
 		Session session = null;

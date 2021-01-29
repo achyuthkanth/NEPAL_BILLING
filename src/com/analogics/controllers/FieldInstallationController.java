@@ -1,10 +1,8 @@
 package com.analogics.controllers;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.OutputStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -150,7 +148,7 @@ public class FieldInstallationController {
 			int noOfRecords=5000;
 			StringBuilder dataStr = new StringBuilder();
 			dataStr.append(ExportFieldInstallationHeader());
-			appendFileData(folderPath, fileName, dataStr.toString(), response);
+			utilsObj.appendFileData(folderPath, fileName, dataStr.toString(), response);
 			String headerValue = String.format("attachment; filename=\"%s\"",
 					fileName);
 			response.setContentType("text/csv");
@@ -728,7 +726,7 @@ public class FieldInstallationController {
 								
 								}
 				}
-				appendFileData(folderPath, fileName, dataStr.toString(),response);
+				utilsObj.appendFileData(folderPath, fileName, dataStr.toString(),response);
 
 		        outputStream.write(dataStr.toString().getBytes());
 		        outputStream.flush();
@@ -847,25 +845,6 @@ public class FieldInstallationController {
   	}
 
 
-	private void appendFileData(String folderPath, String fileName,
-			String data, HttpServletResponse response) {
-		try {
-  			File file = new File(folderPath, fileName);
-  			if (!file.exists()) {
-  				file.createNewFile();
-  			}else {
-  				file.delete();
-  				file.createNewFile();
-  			}
-  			FileWriter fileWritter = new FileWriter(file, true);
-  			BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-  			bufferWritter.write(data);
-  			bufferWritter.close();
-  			
-  		} catch (IOException e) {
-  			e.printStackTrace();
-  		}
-	}
 	
 	
 	@RequestMapping("bulkFieldInstallationUpload")
@@ -890,12 +869,14 @@ public class FieldInstallationController {
 			
 			
 			while (totalRows != rowCount) {
+				NumberFormat f = NumberFormat.getInstance();
 				rowCount++; 
 			 	rowDataMap = commonDaoObj.getRowDataMap(sheet.getRow(rowCount), headerMap);
 			 	FieldInstallationMaster InsmasterObj = new FieldInstallationMaster();
 				FieldInstallationMasterId InsmasterObjId  = new FieldInstallationMasterId();
 			 	
 				InsmasterObjId.setCircleid(rowDataMap.get("CIRCLE ID"));
+			
 				InsmasterObjId.setConsumerNo(rowDataMap.get("CONSUEMR NO"));
 				InsmasterObjId.setConsumerid(rowDataMap.get("CONSUMER ID"));
 				InsmasterObj.setConsId(rowDataMap.get("CONS ID"));
@@ -914,7 +895,8 @@ public class FieldInstallationController {
 				InsmasterObj.setName(rowDataMap.get("NAME"));
 				InsmasterObj.setAddr(rowDataMap.get("ADDR"));
 				InsmasterObj.setConsumerCategory(rowDataMap.get("CONSUMER CATEGORY"));
-//				InsmasterObj.setCdKva(rowDataMap.get(Double.parseDouble("CDKVA")));
+				
+				InsmasterObj.setCdKva(f.parse(rowDataMap.get("CDKVA")).doubleValue());
 				InsmasterObj.setOfficePhone(rowDataMap.get("OFFICE PHONE"));
 				InsmasterObj.setMobileNo(rowDataMap.get("MOBILE NO"));
 				InsmasterObj.setEmailAddress(rowDataMap.get("EMAIL ADDRESS"));
@@ -959,7 +941,7 @@ public class FieldInstallationController {
 				InsmasterObj.setAcno(rowDataMap.get("ACNO"));
 				InsmasterObj.setMCt(rowDataMap.get("MCT"));
 				InsmasterObj.setMPt(rowDataMap.get("MPT"));
-//				InsmasterObj.setMf(Double.parseDouble(rowDataMap.get("MF")));
+				InsmasterObj.setMf(f.parse(rowDataMap.get("MF")).doubleValue());
 				InsmasterObj.setMake(rowDataMap.get("MAKE"));
 				InsmasterObj.setMeterSealDate(rowDataMap.get("METER SEAL DATE"));
 				InsmasterObj.setMeterSealNo(rowDataMap.get("METER SEAL NO"));

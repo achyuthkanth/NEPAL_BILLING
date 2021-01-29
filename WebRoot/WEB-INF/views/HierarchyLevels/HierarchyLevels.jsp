@@ -20,6 +20,12 @@
 						<form:options items="${level1Map}" />
 					</form:select>
 			</div>
+<<<<<<< HEAD
+=======
+			
+			<%-- 	<form:hidden path="level1Id" value="${level1Id}"
+					 cssClass="level1Class"></form:hidden> --%>
+>>>>>>> e85fad4553871e2ec930b367bad827e297cce2ab
 			</c:otherwise>
 		</c:choose>
 	</c:if>
