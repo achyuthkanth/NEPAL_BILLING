@@ -874,86 +874,114 @@ public class FieldInstallationController {
 			 	rowDataMap = commonDaoObj.getRowDataMap(sheet.getRow(rowCount), headerMap);
 			 	FieldInstallationMaster InsmasterObj = new FieldInstallationMaster();
 				FieldInstallationMasterId InsmasterObjId  = new FieldInstallationMasterId();
-			 	
-				InsmasterObjId.setCircleid(rowDataMap.get("CIRCLE ID"));
-			
-				InsmasterObjId.setConsumerNo(rowDataMap.get("CONSUEMR NO"));
-				InsmasterObjId.setConsumerid(rowDataMap.get("CONSUMER ID"));
-				InsmasterObj.setConsId(rowDataMap.get("CONS ID"));
-				InsmasterObj.setDiscomid(rowDataMap.get("DISCOM ID"));
 				InsmasterObj.setDiscom(rowDataMap.get("DISCOM"));
-				InsmasterObj.setBoardid(rowDataMap.get("BOARD ID"));
+				InsmasterObj.setDiscomid(rowDataMap.get("DISCOMID"));
+				InsmasterObj.setBoardid(rowDataMap.get("BOARDID"));
 				InsmasterObj.setBoardid(rowDataMap.get("BOARD"));
+				
+				InsmasterObjId.setCircleid(rowDataMap.get("CIRCLEID"));
 				InsmasterObj.setCircle(rowDataMap.get("CIRCLE"));
-				InsmasterObj.setDivisionid(rowDataMap.get("DIVISION ID"));
+				
+				InsmasterObj.setDivisionid(rowDataMap.get("DIVISIONID"));
 				InsmasterObj.setDivision(rowDataMap.get("DIVISION"));
-				InsmasterObj.setSubdivision(rowDataMap.get("SUB DIVISION"));
-				InsmasterObj.setSubdivisionid(rowDataMap.get("SUB DIVISION ID"));
-				InsmasterObj.setSectionid(rowDataMap.get("SECTION ID"));
+				
+				InsmasterObj.setSubdivisionid(rowDataMap.get("SUBDIVISIONID"));
+				InsmasterObj.setSubdivision(rowDataMap.get("SUBDIVISION"));
+				
+				
+				
+				InsmasterObj.setSectionid(rowDataMap.get("SECTIONID"));
 				InsmasterObj.setSection(rowDataMap.get("SECTION"));
-				InsmasterObj.setRegistratonId(rowDataMap.get("REGISTRATON ID"));
+				
+				InsmasterObjId.setConsumerNo(rowDataMap.get("CONSUMER_NO"));
+				InsmasterObjId.setConsumerid(rowDataMap.get("CONSUMERID"));
+				
+				
+				
+				InsmasterObj.setConsId(rowDataMap.get("CONS_ID"));
+				InsmasterObj.setRegistratonId(rowDataMap.get("REGISTRATONID"));
+				
 				InsmasterObj.setName(rowDataMap.get("NAME"));
 				InsmasterObj.setAddr(rowDataMap.get("ADDR"));
-				InsmasterObj.setConsumerCategory(rowDataMap.get("CONSUMER CATEGORY"));
-				
-				InsmasterObj.setCdKva(f.parse(rowDataMap.get("CDKVA")).doubleValue());
-				InsmasterObj.setOfficePhone(rowDataMap.get("OFFICE PHONE"));
-				InsmasterObj.setMobileNo(rowDataMap.get("MOBILE NO"));
-				InsmasterObj.setEmailAddress(rowDataMap.get("EMAIL ADDRESS"));
-				InsmasterObj.setLoadType(rowDataMap.get("LOAD TYPE"));
+				InsmasterObj.setConsumerCategory(rowDataMap.get("CONSUMER_CATEGORY"));
+				InsmasterObj.setConsumerCategory(rowDataMap.get("CD_KVA"));
+				InsmasterObj.setOfficePhone(rowDataMap.get("OFFICE_PHONE"));
+				InsmasterObj.setMobileNo(rowDataMap.get("MOBILE_NO"));
+//				InsmasterObj.setEmailAddress(rowDataMap.get("EMAIL_ADDRESS"));
+				InsmasterObj.setLoadType(rowDataMap.get("LOAD_TYPE"));
 				InsmasterObj.setPhase(rowDataMap.get("PHASE"));
-				InsmasterObj.setSchedulePower(rowDataMap.get("SCHEDULE POWER"));
+				InsmasterObj.setSchedulePower(rowDataMap.get("SCHEDULE_POWER"));
+				
 				InsmasterObj.setCategory(rowDataMap.get("CATEGORY"));
-				InsmasterObj.setMeterCtType(rowDataMap.get("METER CT TYPE"));
-				InsmasterObj.setMeterOwnership(rowDataMap.get("METER OWNERSHIP"));
-				InsmasterObj.setMeterElecType(rowDataMap.get("METER ELECTYPE"));
-				InsmasterObj.setTransformerownership(rowDataMap.get("TRANSFORMER OWNERSHIP"));
-				InsmasterObj.setTransformerscapacity(rowDataMap.get("TRANSFORMERS CAPACITY"));
-				InsmasterObj.setTransformermake(rowDataMap.get("TRANSFORMER MAKE"));
-				InsmasterObj.setTransferLocation(rowDataMap.get("TRANSFER LOCATION"));
-				InsmasterObj.setTransformerserialno(rowDataMap.get("TRANSFORMER SERIAL NO"));
+				InsmasterObj.setMeterCtType(rowDataMap.get("METER_CT_TYPE"));
+				
+				InsmasterObj.setMeterOwnership(rowDataMap.get("METER_OWNERSHIP"));
+				InsmasterObj.setMeterElecType(rowDataMap.get("METER_ELEC_TYPE"));
+				
+				InsmasterObj.setTransformerownership(rowDataMap.get("TRANSFORMEROWNERSHIP"));
+				InsmasterObj.setTransformerscapacity(rowDataMap.get("TRANSFORMERSCAPACITY"));
+				InsmasterObj.setTransformermake(rowDataMap.get("TRANSFORMERMAKE"));
+				InsmasterObj.setTransferLocation(rowDataMap.get("TRANSFER_LOCATION"));
+				InsmasterObj.setTransformerserialno(rowDataMap.get("TRANSFORMERSERIALNO"));
 				InsmasterObj.setIndependent(rowDataMap.get("INDEPENDENT"));
 				InsmasterObj.setMeterno(rowDataMap.get("METER NO"));
 				InsmasterObj.setHid(rowDataMap.get("HID"));
-				InsmasterObj.setModemmeidnumber(rowDataMap.get("MODEM MEID NUMBER"));
-				InsmasterObj.setModemmdn(rowDataMap.get("MODEM MDN"));
-				InsmasterObj.setModemnumber(rowDataMap.get("MODEM NUMBER"));
+				InsmasterObj.setModemmeidnumber(rowDataMap.get("MODEMMEIDNUMBER"));
+				InsmasterObj.setModemmdn(rowDataMap.get("MODEMMDN"));
 				InsmasterObj.setMcc(rowDataMap.get("MCC"));
 				InsmasterObj.setMnc(rowDataMap.get("MNC"));
 				InsmasterObj.setLac(rowDataMap.get("LAC"));
 				InsmasterObj.setCellid(rowDataMap.get("CELLID"));
 				InsmasterObj.setSqual(rowDataMap.get("SQUAL"));
 				InsmasterObj.setSrclev(rowDataMap.get("SRCLEV"));
-				InsmasterObj.setImeiNumber(rowDataMap.get("IMEI NUMBER"));
-				InsmasterObj.setSimProviderName(rowDataMap.get("SIM PROVIDER NAME"));
-				InsmasterObj.setModemmanufacturername(rowDataMap.get("MODEM MANUFACTURER NAME"));
+				InsmasterObj.setImeiNumber(rowDataMap.get("IMEINUMBER"));
+				InsmasterObj.setSimProviderName(rowDataMap.get("SIMPROVIDERNAME"));
+				InsmasterObj.setModemmanufacturername(rowDataMap.get("MODEMMANUFACTURERNAME"));
+				InsmasterObj.setModemnumber(rowDataMap.get("MODEMNUMBER"));
 				InsmasterObj.setLatitude(rowDataMap.get("LATITUDE"));
 				InsmasterObj.setLongitude(rowDataMap.get("LONGITUDE"));
 				InsmasterObj.setPhotolocation(rowDataMap.get("PHOTOLOCATION"));
+
 				InsmasterObj.setSubstation(rowDataMap.get("SUBSTATION"));
-				InsmasterObj.setSubstationCode(rowDataMap.get("SUB STATION CODE"));
+				InsmasterObj.setSubstationCode(rowDataMap.get("SUBSTATION_CODE"));
 				InsmasterObj.setFeeder(rowDataMap.get("FEEDER"));
-				InsmasterObj.setFeederCode(rowDataMap.get("FEEDER CODE"));
+				InsmasterObj.setFeederCode(rowDataMap.get("FEEDER_CODE"));
 				InsmasterObj.setFeedertype(rowDataMap.get("FEEDER TYPE"));
 				InsmasterObj.setDtname(rowDataMap.get("DTNAME"));
 				InsmasterObj.setDtcode(rowDataMap.get("DTCODE"));
-				InsmasterObj.setPermanentpolenumber(rowDataMap.get("PERMANENT POLE NUMBER"));
+				InsmasterObj.setPermanentpolenumber(rowDataMap.get("PERMANENTPOLENUMBER"));
 				InsmasterObj.setAcno(rowDataMap.get("ACNO"));
-				InsmasterObj.setMCt(rowDataMap.get("MCT"));
-				InsmasterObj.setMPt(rowDataMap.get("MPT"));
-				InsmasterObj.setMf(f.parse(rowDataMap.get("MF")).doubleValue());
+				InsmasterObj.setMCt(rowDataMap.get("M_CT"));
+				InsmasterObj.setMPt(rowDataMap.get("M_PT"));
+				try{
+               	 if( !rowDataMap.get("CDKVA").equalsIgnoreCase("")){
+               		InsmasterObj.setCdKva(Double.parseDouble(rowDataMap.get("CDKVA")));
+		                }
+               }catch (Exception e) {
+					// TODO: handle exception
+				}
+				try{
+	               	 if( !rowDataMap.get("MF").equalsIgnoreCase("")){
+	               		InsmasterObj.setCdKva(Double.parseDouble(rowDataMap.get("MF")));
+			                }
+	               }catch (Exception e) {
+						// TODO: handle exception
+					}
+//				String cdkvaStr = rowDataMap.get("CDKVA");
+//				InsmasterObj.setCdKva(Double.parseDouble(cdkvaStr));
+//				InsmasterObj.setMf(f.parse(rowDataMap.get("MF")).doubleValue());
 				InsmasterObj.setMake(rowDataMap.get("MAKE"));
-				InsmasterObj.setMeterSealDate(rowDataMap.get("METER SEAL DATE"));
-				InsmasterObj.setMeterSealNo(rowDataMap.get("METER SEAL NO"));
-				InsmasterObj.setMeterRevolutionPermit(rowDataMap.get("METER REVOLUTION PERMIT"));
-				InsmasterObj.setMeterMfgDate(rowDataMap.get("METER MFG DATE"));
-				InsmasterObj.setMeterDecimal(rowDataMap.get("METER DECIMAL"));
-				InsmasterObj.setMeterDigit(rowDataMap.get("METER DIGIT"));
-				InsmasterObj.setMeterCapacity(rowDataMap.get("METER CAPACITY"));
-				InsmasterObj.setCurrentrating(rowDataMap.get("CURRENT RATING"));
-				InsmasterObj.setVoltagerating(rowDataMap.get("VOLTAGE RATING"));
-				InsmasterObj.setConnectiondate(rowDataMap.get("CONNECTION DATE"));
-				InsmasterObj.setMeterChnageFlag(rowDataMap.get("METERCHNAGEF LAG"));
+				InsmasterObj.setMeterSealDate(rowDataMap.get("METER_SEAL_DATE"));
+				InsmasterObj.setMeterSealNo(rowDataMap.get("METER_SEAL_NO"));
+				InsmasterObj.setMeterRevolutionPermit(rowDataMap.get("METER_REVOLUTION_PERMIT"));
+				InsmasterObj.setMeterMfgDate(rowDataMap.get("METER_MFG_DATE"));
+				InsmasterObj.setMeterDecimal(rowDataMap.get("METER_DECIMAL"));
+				InsmasterObj.setMeterDigit(rowDataMap.get("METER_DIGIT"));
+				InsmasterObj.setMeterCapacity(rowDataMap.get("METER_CAPACITY"));
+				InsmasterObj.setCurrentrating(rowDataMap.get("CURRENTRATING"));
+				InsmasterObj.setVoltagerating(rowDataMap.get("VOLTAGERATING"));
+				InsmasterObj.setConnectiondate(rowDataMap.get("CONNECTIONDATE"));
+				InsmasterObj.setMeterChnageFlag(rowDataMap.get("METER_CHNAGE_FLAG"));
 				InsmasterObj.setProprietorName(rowDataMap.get("PROPRIETOR NAME"));
 				InsmasterObj.setDistrict(rowDataMap.get("DISTRICT"));
 				InsmasterObj.setMunicipalityVdc(rowDataMap.get("MUNICIPALITY VDC"));

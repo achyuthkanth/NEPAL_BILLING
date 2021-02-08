@@ -3,10 +3,9 @@ INSERT INTO hierarchy_level1 VALUES(null,'NEA45','123','NEA45')
 select * from hierarchy_level1;
 select * from hierarchy_level2;
 
-select * from level_index_master where level_1id='29';
+select * from FIELD_INSTALLATION_MASTER where level_1id='29';
 
 delete from hierarchy_level2 where level1_id='34'
-truncate table FIELD_INSTALLATION_MASTER
 
 CREATE TABLE "public".FIELD_INSTALLATION_MASTER (CIRCLEID varchar(50) not null,CONSUMER_NO varchar(50) not null,CONSUMERID VARCHAR(50) not null
 ,CONS_ID varchar(50),
@@ -31,7 +30,6 @@ BILL_DATE varchar(50),USSD_CODE varchar(50),OFF_SET varchar(50),constraint pk_IN
 (CIRCLEID,CONSUMER_NO,CONSUMERID)
 );
 
-DROP TABLE FIELD_INSTALLATION_MASTER;
 
 alter table FIELD_INSTALLATION_MASTER alter column CONSUMERID VARCHAR(50);
 
